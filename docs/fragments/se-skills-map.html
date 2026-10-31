@@ -1,0 +1,145 @@
+<div id="se-skills-map">
+  <style>
+    #se-skills-map { display: grid; gap: calc(var(--font-size-base) * 1); color: var(--foreground); }
+    #se-skills-map .heading { padding-inline-end: 96px; }
+    #se-skills-map .skill-groups { display: grid; gap: calc(var(--font-size-base) * 1); }
+    #se-skills-map .skill-group { display: grid; gap: calc(var(--font-size-base) * .5); }
+    #se-skills-map .skill-cell { display: grid; gap: calc(var(--font-size-base) * .25); justify-items: start; min-width: 0; }
+    #se-skills-map .skill-caption { display: flex; align-items: center; gap: calc(var(--font-size-base) * .4); }
+    #se-skills-map .relevance-mark { display: inline-block; width: calc(var(--font-size-base) * .55); height: calc(var(--font-size-base) * .55); border-radius: 50%; background: var(--border); flex: 0 0 auto; }
+    #se-skills-map [data-relevant="true"] .relevance-mark, #se-skills-map .legend-mark { background: var(--viz-series-1); border-radius: 0; }
+    #se-skills-map .flow { display: flex; flex-wrap: wrap; align-items: center; gap: calc(var(--font-size-base) * .4); }
+    #se-skills-map .flow-arrow { color: var(--muted-foreground); }
+    #se-skills-map .detail { min-height: calc(var(--font-size-base) * 3); }
+  </style>
+  <h2 class="heading">Choose skills for the question</h2>
+  <div class="viz-controls">
+    <label class="form-label" for="se-scenario">Example task
+      <select class="form-select" id="se-scenario">
+        <option value="scope">Define a project feature</option>
+        <option value="explain">Explain a general design</option>
+        <option value="implement" selected>Implement independent changes</option>
+        <option value="release">Assess release readiness</option>
+        <option value="agent">Review an agent tool boundary</option>
+      </select>
+    </label>
+  </div>
+  <div class="text-small" id="se-grounding">For project work: root + revision · local rules + contracts · active paths · test/CI setup</div>
+  <div class="flow text-small" id="se-flow" aria-label="Example dependency path"></div>
+  <div class="skill-groups" aria-label="Nine engineering skills, grouped by role">
+    <section class="skill-group" aria-labelledby="se-frame">
+      <h3 id="se-frame">Frame the decision · as needed</h3>
+      <div class="viz-grid">
+        <div class="skill-cell" data-skill="what"><button class="btn" type="button" aria-pressed="false">/se-what</button><span class="skill-caption text-small"><span class="relevance-mark" aria-hidden="true"></span>Scope &amp; acceptance</span></div>
+        <div class="skill-cell" data-skill="why"><button class="btn" type="button" aria-pressed="false">/se-why</button><span class="skill-caption text-small"><span class="relevance-mark" aria-hidden="true"></span>Rationale &amp; tradeoffs</span></div>
+        <div class="skill-cell" data-skill="who"><button class="btn" type="button" aria-pressed="false">/se-who</button><span class="skill-caption text-small"><span class="relevance-mark" aria-hidden="true"></span>Owners &amp; authority</span></div>
+      </div>
+    </section>
+    <section class="skill-group" aria-labelledby="se-approach">
+      <h3 id="se-approach">Locate and shape the work · as needed</h3>
+      <div class="viz-grid">
+        <div class="skill-cell" data-skill="where"><button class="btn" type="button" aria-pressed="false">/se-where</button><span class="skill-caption text-small"><span class="relevance-mark" aria-hidden="true"></span>Code, runtime, evidence</span></div>
+        <div class="skill-cell" data-skill="how"><button class="btn" type="button" aria-pressed="true">/se-how</button><span class="skill-caption text-small"><span class="relevance-mark" aria-hidden="true"></span>Mechanism &amp; approach</span></div>
+        <div class="skill-cell" data-skill="when"><button class="btn" type="button" aria-pressed="false">/se-when</button><span class="skill-caption text-small"><span class="relevance-mark" aria-hidden="true"></span>Dependencies &amp; readiness</span></div>
+      </div>
+    </section>
+    <section class="skill-group" aria-labelledby="se-controls">
+      <h3 id="se-controls">Required for every code change</h3>
+      <span class="text-small">New or modified code · review and verification depth scales with risk</span>
+      <div class="viz-grid">
+        <div class="skill-cell" data-skill="zero-trust"><button class="btn" type="button" aria-pressed="false">/se-zero-trust</button><span class="skill-caption text-small"><span class="relevance-mark" aria-hidden="true"></span>Security &amp; trust-boundary review</span></div>
+        <div class="skill-cell" data-skill="verify"><button class="btn" type="button" aria-pressed="false">/se-verify</button><span class="skill-caption text-small"><span class="relevance-mark" aria-hidden="true"></span>Behavior &amp; evidence gates</span></div>
+      </div>
+    </section>
+    <section class="skill-group" aria-labelledby="se-execution">
+      <h3 id="se-execution">Optional execution strategy</h3>
+      <div class="skill-cell" data-skill="concurrent"><button class="btn" type="button" aria-pressed="false">/se-concurrent</button><span class="skill-caption text-small"><span class="relevance-mark" aria-hidden="true"></span>Independent work → integration → combined checks</span></div>
+    </section>
+  </div>
+  <div class="viz-row text-small text-muted"><span class="relevance-mark legend-mark" aria-hidden="true"></span><span>Highlighted for this example · no fixed nine-step sequence</span></div>
+  <hr>
+  <div id="se-detail" class="detail" role="status" aria-live="polite" aria-atomic="true"></div>
+</div>
+<script>
+(() => {
+  const root = document.getElementById('se-skills-map');
+  const selector = root.querySelector('#se-scenario');
+  const flow = root.querySelector('#se-flow');
+  const detail = root.querySelector('#se-detail');
+  const cells = [...root.querySelectorAll('[data-skill]')];
+  const skills = {
+    what: 'Request → bounded scope and observable acceptance criteria.',
+    why: 'Decision + evidence → rationale and tradeoffs; inference is not recorded intent.',
+    who: 'Responsibility + ownership records → evidenced roles; ownership is not permission.',
+    where: 'Behavior or claim → responsible code, runtime, or evidence; navigation is read-only.',
+    how: 'Outcome + current system → mechanism or approach; explanation alone does not authorize edits.',
+    when: 'Action + prerequisites → execution order and readiness; readiness is not deployment permission.',
+    'zero-trust': 'Every code change → risk-scaled security review; authorization is enforced in code, not prompts.',
+    concurrent: 'Independent tasks → disjoint ownership, integration, and combined validation.',
+    verify: 'Every code change → risk-scaled behavioral evidence; local proof is not deployed proof.'
+  };
+  const scenarios = {
+    scope: { relevant: ['what', 'why', 'who'], path: ['Project evidence', 'what', 'Acceptance brief'], selected: 'what' },
+    explain: { relevant: ['how', 'why'], path: ['Question', 'how', 'why', 'Read-only explanation'], selected: 'how' },
+    implement: { relevant: ['what', 'where', 'how', 'when', 'zero-trust', 'concurrent', 'verify'], path: ['Project evidence', 'what', 'where', 'zero-trust', 'how', 'when', 'concurrent', 'Integrated /se-verify'], selected: 'zero-trust' },
+    release: { relevant: ['what', 'who', 'when', 'zero-trust', 'verify'], path: ['Project evidence', 'Security evidence', 'Verification evidence', 'when'], selected: 'when' },
+    agent: { relevant: ['where', 'zero-trust', 'verify'], path: ['Project evidence', 'where', 'zero-trust', 'verify'], selected: 'zero-trust' }
+  };
+  let state = { scenario: 'implement', selected: 'how' };
+  function render() {
+    const scenario = scenarios[state.scenario];
+    selector.value = state.scenario;
+    flow.replaceChildren();
+    scenario.path.forEach((step, index) => {
+      if (index) {
+        const arrow = document.createElement('span');
+        arrow.className = 'flow-arrow';
+        arrow.textContent = '→';
+        arrow.setAttribute('aria-hidden', 'true');
+        flow.append(arrow);
+      }
+      const label = document.createElement('span');
+      label.textContent = Object.hasOwn(skills, step) ? '/se-' + step : step;
+      flow.append(label);
+    });
+    flow.setAttribute('aria-label', 'Example dependency path: ' + scenario.path.join(' then '));
+    cells.forEach(cell => {
+      const key = cell.dataset.skill;
+      const relevant = scenario.relevant.includes(key);
+      cell.dataset.relevant = String(relevant);
+      const button = cell.querySelector('button');
+      button.setAttribute('aria-pressed', String(key === state.selected));
+      button.setAttribute('aria-label', '/se-' + key + (relevant ? ', relevant to this example' : ''));
+    });
+    detail.textContent = '/se-' + state.selected + ' · ' + skills[state.selected];
+  }
+  function restore(snapshot) {
+    const saved = snapshot && snapshot.modelContent;
+    if (!saved || !Object.hasOwn(scenarios, saved.scenario) || !Object.hasOwn(skills, saved.selected)) return;
+    state = { scenario: saved.scenario, selected: saved.selected };
+    render();
+  }
+  function save() {
+    if (window.openai && typeof window.openai.setWidgetState === 'function') {
+      Promise.resolve(window.openai.setWidgetState({ modelContent: { ...state }, privateContent: null })).catch(() => {});
+    }
+  }
+  selector.addEventListener('change', () => {
+    state = { scenario: selector.value, selected: scenarios[selector.value].selected };
+    render();
+    save();
+  });
+  cells.forEach(cell => cell.querySelector('button').addEventListener('click', () => {
+    state.selected = cell.dataset.skill;
+    render();
+    save();
+  }));
+  window.addEventListener('openai:set_globals', event => {
+    if (event.detail && event.detail.globals && Object.hasOwn(event.detail.globals, 'widgetState')) {
+      restore(event.detail.globals.widgetState);
+    }
+  });
+  render();
+  restore(window.openai && window.openai.widgetState);
+})();
+</script>

@@ -1,0 +1,273 @@
+python3 -m unittest discover -s tests -v
+test_authorization_matrix_ignores_tenant_hint (test_archive_contract.ArchiveContractTests.test_authorization_matrix_ignores_tenant_hint) ... 
+  test_authorization_matrix_ignores_tenant_hint (test_archive_contract.ArchiveContractTests.test_authorization_matrix_ignores_tenant_hint) (actor='alice', account='A', hint='t2') ... ERROR
+  test_authorization_matrix_ignores_tenant_hint (test_archive_contract.ArchiveContractTests.test_authorization_matrix_ignores_tenant_hint) (actor='alice', account='A', hint={'tenant': 't2'}) ... ERROR
+  test_authorization_matrix_ignores_tenant_hint (test_archive_contract.ArchiveContractTests.test_authorization_matrix_ignores_tenant_hint) (actor='bob', account='B', hint='t2') ... ERROR
+  test_authorization_matrix_ignores_tenant_hint (test_archive_contract.ArchiveContractTests.test_authorization_matrix_ignores_tenant_hint) (actor='bob', account='B', hint={'tenant': 't2'}) ... ERROR
+  test_authorization_matrix_ignores_tenant_hint (test_archive_contract.ArchiveContractTests.test_authorization_matrix_ignores_tenant_hint) (actor='admin', account='A', hint='t2') ... ERROR
+  test_authorization_matrix_ignores_tenant_hint (test_archive_contract.ArchiveContractTests.test_authorization_matrix_ignores_tenant_hint) (actor='admin', account='A', hint={'tenant': 't2'}) ... ERROR
+  test_authorization_matrix_ignores_tenant_hint (test_archive_contract.ArchiveContractTests.test_authorization_matrix_ignores_tenant_hint) (actor='admin', account='B', hint='t2') ... ERROR
+  test_authorization_matrix_ignores_tenant_hint (test_archive_contract.ArchiveContractTests.test_authorization_matrix_ignores_tenant_hint) (actor='admin', account='B', hint={'tenant': 't2'}) ... ERROR
+  test_authorization_matrix_ignores_tenant_hint (test_archive_contract.ArchiveContractTests.test_authorization_matrix_ignores_tenant_hint) (actor='admin', account='E', hint='t2') ... FAIL
+  test_authorization_matrix_ignores_tenant_hint (test_archive_contract.ArchiveContractTests.test_authorization_matrix_ignores_tenant_hint) (actor='eve', account='A', hint='t1') ... FAIL
+  test_authorization_matrix_ignores_tenant_hint (test_archive_contract.ArchiveContractTests.test_authorization_matrix_ignores_tenant_hint) (actor='eve', account='B', hint='t1') ... FAIL
+  test_authorization_matrix_ignores_tenant_hint (test_archive_contract.ArchiveContractTests.test_authorization_matrix_ignores_tenant_hint) (actor='eve', account='E', hint='t1') ... ERROR
+  test_authorization_matrix_ignores_tenant_hint (test_archive_contract.ArchiveContractTests.test_authorization_matrix_ignores_tenant_hint) (actor='eve', account='E', hint={'tenant': 't2'}) ... ERROR
+test_invalid_actors_are_denied (test_archive_contract.ArchiveContractTests.test_invalid_actors_are_denied) ... ok
+test_missing_and_malformed_accounts_are_denied (test_archive_contract.ArchiveContractTests.test_missing_and_malformed_accounts_are_denied) ... 
+  test_missing_and_malformed_accounts_are_denied (test_archive_contract.ArchiveContractTests.test_missing_and_malformed_accounts_are_denied) (account_type='list') ... ERROR
+  test_missing_and_malformed_accounts_are_denied (test_archive_contract.ArchiveContractTests.test_missing_and_malformed_accounts_are_denied) (account_type='dict') ... ERROR
+  test_missing_and_malformed_accounts_are_denied (test_archive_contract.ArchiveContractTests.test_missing_and_malformed_accounts_are_denied) (account_type='list') ... ERROR
+test_owner_also_requires_same_tenant (test_archive_contract.ArchiveContractTests.test_owner_also_requires_same_tenant) ... FAIL
+test_public_signature_is_preserved (test_archive_contract.ArchiveContractTests.test_public_signature_is_preserved) ... ok
+test_transport_cannot_authorize_cross_tenant_archive (test_archive_contract.ArchiveContractTests.test_transport_cannot_authorize_cross_tenant_archive) ... FAIL
+test_transport_ignores_hint_for_authorized_owner (test_archive_contract.ArchiveContractTests.test_transport_ignores_hint_for_authorized_owner) ... ERROR
+test_owner_archives (test_existing.ExistingTests.test_owner_archives) ... ok
+
+======================================================================
+ERROR: test_authorization_matrix_ignores_tenant_hint (test_archive_contract.ArchiveContractTests.test_authorization_matrix_ignores_tenant_hint) (actor='alice', account='A', hint='t2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 40, in test_authorization_matrix_ignores_tenant_hint
+    result = archive_account(actor_id, account_id, hint)
+  File "validation/code-baseline/update/service.py", line 7, in archive_account
+    raise PermissionError('access denied')
+PermissionError: access denied
+
+======================================================================
+ERROR: test_authorization_matrix_ignores_tenant_hint (test_archive_contract.ArchiveContractTests.test_authorization_matrix_ignores_tenant_hint) (actor='alice', account='A', hint={'tenant': 't2'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 40, in test_authorization_matrix_ignores_tenant_hint
+    result = archive_account(actor_id, account_id, hint)
+  File "validation/code-baseline/update/service.py", line 7, in archive_account
+    raise PermissionError('access denied')
+PermissionError: access denied
+
+======================================================================
+ERROR: test_authorization_matrix_ignores_tenant_hint (test_archive_contract.ArchiveContractTests.test_authorization_matrix_ignores_tenant_hint) (actor='bob', account='B', hint='t2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 40, in test_authorization_matrix_ignores_tenant_hint
+    result = archive_account(actor_id, account_id, hint)
+  File "validation/code-baseline/update/service.py", line 7, in archive_account
+    raise PermissionError('access denied')
+PermissionError: access denied
+
+======================================================================
+ERROR: test_authorization_matrix_ignores_tenant_hint (test_archive_contract.ArchiveContractTests.test_authorization_matrix_ignores_tenant_hint) (actor='bob', account='B', hint={'tenant': 't2'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 40, in test_authorization_matrix_ignores_tenant_hint
+    result = archive_account(actor_id, account_id, hint)
+  File "validation/code-baseline/update/service.py", line 7, in archive_account
+    raise PermissionError('access denied')
+PermissionError: access denied
+
+======================================================================
+ERROR: test_authorization_matrix_ignores_tenant_hint (test_archive_contract.ArchiveContractTests.test_authorization_matrix_ignores_tenant_hint) (actor='admin', account='A', hint='t2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 40, in test_authorization_matrix_ignores_tenant_hint
+    result = archive_account(actor_id, account_id, hint)
+  File "validation/code-baseline/update/service.py", line 7, in archive_account
+    raise PermissionError('access denied')
+PermissionError: access denied
+
+======================================================================
+ERROR: test_authorization_matrix_ignores_tenant_hint (test_archive_contract.ArchiveContractTests.test_authorization_matrix_ignores_tenant_hint) (actor='admin', account='A', hint={'tenant': 't2'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 40, in test_authorization_matrix_ignores_tenant_hint
+    result = archive_account(actor_id, account_id, hint)
+  File "validation/code-baseline/update/service.py", line 7, in archive_account
+    raise PermissionError('access denied')
+PermissionError: access denied
+
+======================================================================
+ERROR: test_authorization_matrix_ignores_tenant_hint (test_archive_contract.ArchiveContractTests.test_authorization_matrix_ignores_tenant_hint) (actor='admin', account='B', hint='t2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 40, in test_authorization_matrix_ignores_tenant_hint
+    result = archive_account(actor_id, account_id, hint)
+  File "validation/code-baseline/update/service.py", line 7, in archive_account
+    raise PermissionError('access denied')
+PermissionError: access denied
+
+======================================================================
+ERROR: test_authorization_matrix_ignores_tenant_hint (test_archive_contract.ArchiveContractTests.test_authorization_matrix_ignores_tenant_hint) (actor='admin', account='B', hint={'tenant': 't2'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 40, in test_authorization_matrix_ignores_tenant_hint
+    result = archive_account(actor_id, account_id, hint)
+  File "validation/code-baseline/update/service.py", line 7, in archive_account
+    raise PermissionError('access denied')
+PermissionError: access denied
+
+======================================================================
+ERROR: test_authorization_matrix_ignores_tenant_hint (test_archive_contract.ArchiveContractTests.test_authorization_matrix_ignores_tenant_hint) (actor='eve', account='E', hint='t1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 40, in test_authorization_matrix_ignores_tenant_hint
+    result = archive_account(actor_id, account_id, hint)
+  File "validation/code-baseline/update/service.py", line 7, in archive_account
+    raise PermissionError('access denied')
+PermissionError: access denied
+
+======================================================================
+ERROR: test_authorization_matrix_ignores_tenant_hint (test_archive_contract.ArchiveContractTests.test_authorization_matrix_ignores_tenant_hint) (actor='eve', account='E', hint={'tenant': 't2'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 40, in test_authorization_matrix_ignores_tenant_hint
+    result = archive_account(actor_id, account_id, hint)
+  File "validation/code-baseline/update/service.py", line 7, in archive_account
+    raise PermissionError('access denied')
+PermissionError: access denied
+
+======================================================================
+ERROR: test_missing_and_malformed_accounts_are_denied (test_archive_contract.ArchiveContractTests.test_missing_and_malformed_accounts_are_denied) (account_type='list')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 52, in test_missing_and_malformed_accounts_are_denied
+    self.assert_denied_without_effects(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        lambda: archive_account('admin', account_id, 't1'))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 20, in assert_denied_without_effects
+    operation()
+    ~~~~~~~~~^^
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 53, in <lambda>
+    lambda: archive_account('admin', account_id, 't1'))
+            ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/update/service.py", line 5, in archive_account
+    account = store.ACCOUNTS.get(account_id)
+TypeError: cannot use 'list' as a dict key (unhashable type: 'list')
+
+======================================================================
+ERROR: test_missing_and_malformed_accounts_are_denied (test_archive_contract.ArchiveContractTests.test_missing_and_malformed_accounts_are_denied) (account_type='dict')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 52, in test_missing_and_malformed_accounts_are_denied
+    self.assert_denied_without_effects(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        lambda: archive_account('admin', account_id, 't1'))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 20, in assert_denied_without_effects
+    operation()
+    ~~~~~~~~~^^
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 53, in <lambda>
+    lambda: archive_account('admin', account_id, 't1'))
+            ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/update/service.py", line 5, in archive_account
+    account = store.ACCOUNTS.get(account_id)
+TypeError: cannot use 'dict' as a dict key (unhashable type: 'dict')
+
+======================================================================
+ERROR: test_missing_and_malformed_accounts_are_denied (test_archive_contract.ArchiveContractTests.test_missing_and_malformed_accounts_are_denied) (account_type='list')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 52, in test_missing_and_malformed_accounts_are_denied
+    self.assert_denied_without_effects(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        lambda: archive_account('admin', account_id, 't1'))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 20, in assert_denied_without_effects
+    operation()
+    ~~~~~~~~~^^
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 53, in <lambda>
+    lambda: archive_account('admin', account_id, 't1'))
+            ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/update/service.py", line 5, in archive_account
+    account = store.ACCOUNTS.get(account_id)
+TypeError: cannot use 'list' as a dict key (unhashable type: 'list')
+
+======================================================================
+ERROR: test_transport_ignores_hint_for_authorized_owner (test_archive_contract.ArchiveContractTests.test_transport_ignores_hint_for_authorized_owner)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 72, in test_transport_ignores_hint_for_authorized_owner
+    handle_archive(SimpleNamespace(actor_id='alice'), 'A', {'tenant': 't2'})
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/update/transport.py", line 4, in handle_archive
+    return archive_account(authenticated_session.actor_id, account_id, query.get("tenant"))
+  File "validation/code-baseline/update/service.py", line 7, in archive_account
+    raise PermissionError('access denied')
+PermissionError: access denied
+
+======================================================================
+FAIL: test_authorization_matrix_ignores_tenant_hint (test_archive_contract.ArchiveContractTests.test_authorization_matrix_ignores_tenant_hint) (actor='admin', account='E', hint='t2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 35, in test_authorization_matrix_ignores_tenant_hint
+    self.assert_denied_without_effects(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        lambda: archive_account(actor_id, account_id, hint))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 19, in assert_denied_without_effects
+    with self.assertRaisesRegex(PermissionError, '^access denied$'):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: PermissionError not raised
+
+======================================================================
+FAIL: test_authorization_matrix_ignores_tenant_hint (test_archive_contract.ArchiveContractTests.test_authorization_matrix_ignores_tenant_hint) (actor='eve', account='A', hint='t1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 35, in test_authorization_matrix_ignores_tenant_hint
+    self.assert_denied_without_effects(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        lambda: archive_account(actor_id, account_id, hint))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 19, in assert_denied_without_effects
+    with self.assertRaisesRegex(PermissionError, '^access denied$'):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: PermissionError not raised
+
+======================================================================
+FAIL: test_authorization_matrix_ignores_tenant_hint (test_archive_contract.ArchiveContractTests.test_authorization_matrix_ignores_tenant_hint) (actor='eve', account='B', hint='t1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 35, in test_authorization_matrix_ignores_tenant_hint
+    self.assert_denied_without_effects(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        lambda: archive_account(actor_id, account_id, hint))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 19, in assert_denied_without_effects
+    with self.assertRaisesRegex(PermissionError, '^access denied$'):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: PermissionError not raised
+
+======================================================================
+FAIL: test_owner_also_requires_same_tenant (test_archive_contract.ArchiveContractTests.test_owner_also_requires_same_tenant)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 63, in test_owner_also_requires_same_tenant
+    self.assert_denied_without_effects(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        lambda: archive_account('alice', 'E', 't2'))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 19, in assert_denied_without_effects
+    with self.assertRaisesRegex(PermissionError, '^access denied$'):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: PermissionError not raised
+
+======================================================================
+FAIL: test_transport_cannot_authorize_cross_tenant_archive (test_archive_contract.ArchiveContractTests.test_transport_cannot_authorize_cross_tenant_archive)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 67, in test_transport_cannot_authorize_cross_tenant_archive
+    self.assert_denied_without_effects(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        lambda: handle_archive(SimpleNamespace(actor_id='admin'), 'E',
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                               {'tenant': 't2'}))
+                               ^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/update/tests/test_archive_contract.py", line 19, in assert_denied_without_effects
+    with self.assertRaisesRegex(PermissionError, '^access denied$'):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: PermissionError not raised
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.005s
+
+FAILED (failures=5, errors=14)
+make: *** [check] Error 1

@@ -1,0 +1,14 @@
+python3 -m unittest discover -s tests -v
+test_authorization_matrix_ignores_tenant_hint (test_archive_contract.ArchiveContractTests.test_authorization_matrix_ignores_tenant_hint) ... ok
+test_invalid_actors_are_denied (test_archive_contract.ArchiveContractTests.test_invalid_actors_are_denied) ... ok
+test_missing_and_malformed_accounts_are_denied (test_archive_contract.ArchiveContractTests.test_missing_and_malformed_accounts_are_denied) ... ok
+test_owner_also_requires_same_tenant (test_archive_contract.ArchiveContractTests.test_owner_also_requires_same_tenant) ... ok
+test_public_signature_is_preserved (test_archive_contract.ArchiveContractTests.test_public_signature_is_preserved) ... ok
+test_transport_cannot_authorize_cross_tenant_archive (test_archive_contract.ArchiveContractTests.test_transport_cannot_authorize_cross_tenant_archive) ... ok
+test_transport_ignores_hint_for_authorized_owner (test_archive_contract.ArchiveContractTests.test_transport_ignores_hint_for_authorized_owner) ... ok
+test_owner_archives (test_existing.ExistingTests.test_owner_archives) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.002s
+
+OK

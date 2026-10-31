@@ -1,0 +1,21 @@
+{
+  "root": "validation/code-baseline/new",
+  "identity": "non-Git isolated fixture; SHA-256 manifest",
+  "timestamp": "2026-10-31T00:30:48.511133+08:00",
+  "python": "3.14.5",
+  "platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+  "command": "make check",
+  "exit_status": 0,
+  "source_unchanged_during_check": true,
+  "sha256": {
+    "AGENTS.md": "367d02e5600cfe923cbb1f30d26333a4f60baaf2067e2597f9aca0b5c1935211",
+    "Makefile": "d45cf9b2fa7841fe689461203e073cbd78d4b2dfddaae127e6f5d0290db40923",
+    "docs/security-contract.md": "b821dfca7631ca0ef60ba3501fde7407f0aa79591c490dc12dee6fcb2e765e8c",
+    "pyproject.toml": "cd7abacb3e956ec1e0162f74a1eee7a828b03d2aad24036e4939c0e3d6cdd3b6",
+    "service.py": "cd7c575e3e92f985628295365a6c94f28812c55e79da1825f126c4c4c63f0d16",
+    "store.py": "4932d2c4c38ce0fdadfe4a908c3e34df7696c3ae9e21e62a57955e1df419eef3",
+    "tests/test_existing.py": "d795b74ef19d4476a77695904cc5e51b38153013756ea26ac01177245d2ce75b",
+    "tests/test_export.py": "e932af23283003e699cd5f061920a5d538c9dbae0a749f6d8b76e56dd6177b86",
+    "transport.py": "e43d66726e0be0e3d6f1243cbc5e5f5bb1739f92a6d581eb29e13afc03a176e3"
+  }
+}

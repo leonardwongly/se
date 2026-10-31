@@ -1,0 +1,220 @@
+<div id="se-skills-animation">
+  <style>
+    #se-skills-animation { display: grid; gap: calc(var(--font-size-base) * .75); color: var(--foreground); }
+    #se-skills-animation .heading { padding-inline-end: 96px; }
+    #se-skills-animation .diagram { position: relative; display: grid; gap: calc(var(--font-size-base) * 1.3); }
+    #se-skills-animation .phase { position: relative; padding-inline-start: 32px; min-width: 0; }
+    #se-skills-animation .phase-title { display: flex; flex-wrap: wrap; align-items: center; gap: calc(var(--font-size-base) * .5); font-weight: 500; }
+    #se-skills-animation .phase-content { margin-top: calc(var(--font-size-base) * .2); }
+    #se-skills-animation .anchor { position: absolute; left: 9px; top: 7px; width: 10px; height: 10px; border-radius: 50%; background: var(--muted); }
+    #se-skills-animation .lanes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: calc(var(--font-size-base) * .7); margin-top: calc(var(--font-size-base) * 1.15); }
+    #se-skills-animation .lane { position: relative; padding-inline-start: 20px; min-width: 0; }
+    #se-skills-animation .lane .anchor { left: 0; top: 5px; }
+    #se-skills-animation .wires { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+    #se-skills-animation .wires path { stroke: var(--border); stroke-width: 1.5; fill: none; }
+    #se-skills-animation .token { position: absolute; left: 0; top: 0; width: 10px; height: 10px; border-radius: 50%; background: var(--viz-series-1); pointer-events: none; }
+    #se-skills-animation .current-label { color: var(--foreground); font-weight: 400; }
+    #se-skills-animation .detail { min-height: calc(var(--font-size-base) * 3); }
+    #se-skills-animation .question-labels { display: flex; flex-wrap: wrap; gap: calc(var(--font-size-base) * .55); }
+    #se-skills-animation .phase[data-active="true"] > .anchor { background: var(--viz-series-1); }
+    #se-skills-animation [hidden] { display: none; }
+    @media (prefers-reduced-motion: reduce) { #se-skills-animation .token { transition: none; } }
+  </style>
+  <div class="heading"><h2>From project evidence to verified change</h2><span class="text-small text-muted">Illustrative local example · not a live run</span></div>
+  <div class="viz-controls" aria-label="Animation playback">
+    <button class="btn btn-primary" id="se-play" type="button">Play</button>
+    <button class="btn" id="se-step" type="button">Step</button>
+    <button class="btn" id="se-replay" type="button">Replay</button>
+    <span class="text-small tabular-nums" id="se-position">1 / 12</span>
+    <span class="text-small text-muted" id="se-motion" hidden>Reduced motion</span>
+  </div>
+  <div class="detail" id="se-animation-detail" role="status" aria-live="polite" aria-atomic="true"></div>
+  <div class="diagram" role="group" aria-label="Engineering workflow. Moving dots represent illustrative work and evidence, not completed real checks.">
+    <svg class="wires" aria-hidden="true"><path></path></svg>
+    <div class="phase" data-node="ground"><span class="anchor" aria-hidden="true"></span><div class="phase-title">Ground in this project <span class="current-label text-small"></span></div><div class="phase-content text-small">Root + revision · local rules + contracts · active code · test/CI setup</div></div>
+    <div class="phase" data-node="questions"><span class="anchor" aria-hidden="true"></span><div class="phase-title">Resolve relevant questions <span class="current-label text-small"></span></div><div class="phase-content question-labels text-small"><span>/se-what</span><span>/se-why</span><span>/se-who</span><span>/se-where</span><span>/se-how</span><span>/se-when</span></div></div>
+    <div class="phase" data-node="trust"><span class="anchor" aria-hidden="true"></span><div class="phase-title">/se-zero-trust <span class="current-label text-small"></span></div><div class="phase-content text-small">Required before every new or modified code change · depth follows risk</div></div>
+    <div class="phase" data-node="work"><span class="anchor" aria-hidden="true"></span><div class="phase-title">Implement · /se-concurrent when useful <span class="current-label text-small"></span></div><div class="phase-content text-small">Optional split · disjoint ownership · shared contract</div><div class="lanes"><div class="lane" data-lane="a"><span class="anchor" aria-hidden="true"></span><span class="text-small">Owner A · interface</span></div><div class="lane" data-lane="b"><span class="anchor" aria-hidden="true"></span><span class="text-small">Owner B · service</span></div></div></div>
+    <div class="phase" data-node="integrate"><span class="anchor" aria-hidden="true"></span><div class="phase-title">Integrate the combined revision <span class="current-label text-small"></span></div><div class="phase-content text-small">Writers stopped · reconcile interfaces · capture exact source state</div></div>
+    <div class="phase" data-node="final-review"><span class="anchor" aria-hidden="true"></span><div class="phase-title">Recheck /se-zero-trust on the final diff <span class="current-label text-small"></span></div><div class="phase-content text-small">Review changed boundaries and authorization assumptions</div></div>
+    <div class="phase" data-node="verify"><span class="anchor" aria-hidden="true"></span><div class="phase-title">/se-verify <span class="current-label text-small"></span></div><div class="phase-content text-small" id="se-verify-state">Required behavioral evidence · missing evidence cannot pass</div></div>
+    <div class="phase" data-node="outcome"><span class="anchor" aria-hidden="true"></span><div class="phase-title">Close with scoped evidence <span class="current-label text-small"></span></div><div class="phase-content text-small">Local PASS ≠ deployed proof or deployment authorization</div></div>
+    <span class="token" id="se-token-a" aria-hidden="true"></span><span class="token" id="se-token-b" aria-hidden="true" hidden></span>
+  </div>
+</div>
+<script>
+(() => {
+  const root = document.getElementById('se-skills-animation');
+  const diagram = root.querySelector('.diagram');
+  const phases = [...root.querySelectorAll('[data-node]')];
+  const play = root.querySelector('#se-play');
+  const step = root.querySelector('#se-step');
+  const replay = root.querySelector('#se-replay');
+  const position = root.querySelector('#se-position');
+  const detail = root.querySelector('#se-animation-detail');
+  const verifyState = root.querySelector('#se-verify-state');
+  const tokens = [root.querySelector('#se-token-a'), root.querySelector('#se-token-b')];
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const stages = [
+    { node: 'ground', text: 'Start with the actual project, revision, contracts, active paths, and validation setup.' },
+    { node: 'questions', text: 'Use only the question skills needed to resolve scope, rationale, ownership, location, approach, and order.' },
+    { node: 'trust', text: 'Review trust and authorization before coding; existing approval stays scoped, and prompts grant no authority.' },
+    { node: 'work', split: true, text: 'Two independent owners implement against one agreed contract; concurrency is optional.' },
+    { node: 'integrate', text: 'Stop concurrent writers, reconcile their outputs, and capture combined revision A.' },
+    { node: 'final-review', text: 'Review revision A’s final diff for changed trust boundaries before accepting its evidence.' },
+    { node: 'verify', result: 'fail', text: 'Revision A: a contract check FAILS. Keep the failure; this revision cannot pass.' },
+    { node: 'work', repair: true, text: 'Recheck affected trust assumptions, reuse valid review, then repair. Revision A’s failure stays recorded.' },
+    { node: 'integrate', text: 'Reintegrate the repair with all writers stopped; capture combined revision B.' },
+    { node: 'final-review', text: 'Recheck revision B’s final diff and any changed trust assumptions.' },
+    { node: 'verify', result: 'pass', text: 'Revision B: rerun the failed check and required combined checks; the example now has passing evidence.' },
+    { node: 'outcome', text: 'Report local PASS for revision B with evidence and limits. Deployment still requires its own authorization.' }
+  ];
+  let index = 0;
+  let playing = false;
+  let timer = null;
+  let animations = [];
+  let lastPoints = null;
+  function point(element) {
+    const box = element.getBoundingClientRect();
+    const outer = diagram.getBoundingClientRect();
+    return { x: box.left - outer.left, y: box.top - outer.top };
+  }
+  function nodePoint(name) { return point(root.querySelector('[data-node="' + name + '"] > .anchor')); }
+  function lanePoint(name) { return point(root.querySelector('[data-lane="' + name + '"] .anchor')); }
+  function pathBetween(a, b) { return 'M' + (a.x + 5) + ',' + (a.y + 5) + ' L' + (b.x + 5) + ',' + (b.y + 5); }
+  function drawWires() {
+    const names = ['ground', 'questions', 'trust', 'work'];
+    let d = names.slice(1).map((name, i) => pathBetween(nodePoint(names[i]), nodePoint(name))).join(' ');
+    const start = nodePoint('work');
+    const end = nodePoint('integrate');
+    ['a', 'b'].forEach(name => {
+      const lane = lanePoint(name);
+      d += ' M' + (start.x + 5) + ',' + (start.y + 5) + ' L' + (start.x + 5) + ',' + (lane.y - 7) + ' L' + (lane.x + 5) + ',' + (lane.y - 7) + ' L' + (lane.x + 5) + ',' + (lane.y + 5);
+      d += ' M' + (lane.x + 5) + ',' + (lane.y + 5) + ' L' + (lane.x + 5) + ',' + (end.y - 8) + ' L' + (end.x + 5) + ',' + (end.y - 8) + ' L' + (end.x + 5) + ',' + (end.y + 5);
+    });
+    const tail = ['integrate', 'final-review', 'verify', 'outcome'];
+    d += ' ' + tail.slice(1).map((name, i) => pathBetween(nodePoint(tail[i]), nodePoint(name))).join(' ');
+    root.querySelector('.wires path').setAttribute('d', d);
+  }
+  function placeTokens(animate) {
+    const stage = stages[index];
+    const targets = stage.split ? [lanePoint('a'), lanePoint('b')] : stage.repair ? [lanePoint('a')] : [nodePoint(stage.node)];
+    const merging = stage.node === 'integrate' && lastPoints && lastPoints.length === 2;
+    if (merging) targets.push(targets[0]);
+    animations.forEach(animation => animation.cancel());
+    animations = [];
+    tokens.forEach((token, i) => {
+      const target = targets[i];
+      token.hidden = !target;
+      if (!target) return;
+      const from = lastPoints && (lastPoints[i] || lastPoints[0]);
+      const toTransform = 'translate(' + target.x + 'px,' + target.y + 'px)';
+      token.style.transform = toTransform;
+      if (animate && from && !reduced.matches) {
+        const route = [from];
+        if (stage.split || stage.repair) {
+          const fork = nodePoint('work');
+          route.push(fork, { x: fork.x, y: target.y - 12 }, { x: target.x, y: target.y - 12 });
+        } else if (merging) {
+          route.push({ x: from.x, y: target.y - 13 }, { x: target.x, y: target.y - 13 });
+        }
+        route.push(target);
+        const animation = token.animate(route.map(p => ({ transform: 'translate(' + p.x + 'px,' + p.y + 'px)' })), { duration: 850, easing: 'ease-in-out' });
+        if (merging && i === 1) animation.onfinish = () => { token.hidden = true; };
+        animations.push(animation);
+      } else if (merging && i === 1) token.hidden = true;
+    });
+    lastPoints = targets;
+  }
+  function save() {
+    if (window.openai && typeof window.openai.setWidgetState === 'function') {
+      Promise.resolve(window.openai.setWidgetState({ modelContent: { example: 'revision-repair', stage: index }, privateContent: null })).catch(() => {});
+    }
+  }
+  function render(animate = false) {
+    const stage = stages[index];
+    root.dataset.stage = String(index);
+    root.dataset.playing = String(playing);
+    phases.forEach(phase => {
+      const active = phase.dataset.node === stage.node;
+      phase.dataset.active = String(active);
+      if (active) phase.setAttribute('aria-current', 'step'); else phase.removeAttribute('aria-current');
+      phase.querySelector('.current-label').textContent = active ? (stage.result === 'fail' ? 'FAIL · revision A' : stage.result === 'pass' ? 'PASS · revision B' : stage.repair ? 'Repair' : 'Current') : '';
+    });
+    verifyState.textContent = index < 6 ? 'Required behavioral evidence · missing evidence cannot pass' : index < 10 ? 'Revision A: FAIL recorded · repair and new evidence required' : 'Revision A: FAIL retained → revision B: required checks PASS';
+    detail.textContent = stage.text;
+    position.textContent = (index + 1) + ' / ' + stages.length;
+    play.textContent = playing ? 'Pause' : 'Play';
+    play.disabled = index === stages.length - 1;
+    step.disabled = index === stages.length - 1;
+    root.querySelector('#se-motion').hidden = !reduced.matches;
+    drawWires();
+    placeTokens(animate);
+  }
+  function stop() {
+    playing = false;
+    clearTimeout(timer);
+    timer = null;
+    animations.forEach(animation => { if (animation.playState === 'running') animation.pause(); });
+    root.dataset.playing = 'false';
+    play.textContent = 'Play';
+  }
+  function schedule() {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      if (!playing) return;
+      index += 1;
+      if (index === stages.length - 1) playing = false;
+      render(true);
+      save();
+      if (playing) schedule();
+    }, 1900);
+  }
+  play.addEventListener('click', () => {
+    if (playing) { stop(); return; }
+    if (index === stages.length - 1) return;
+    playing = true;
+    root.dataset.playing = 'true';
+    play.textContent = 'Pause';
+    animations.forEach(animation => { if (animation.playState === 'paused') animation.play(); });
+    schedule();
+  });
+  step.addEventListener('click', () => {
+    stop();
+    index = Math.min(index + 1, stages.length - 1);
+    render(true);
+    save();
+  });
+  replay.addEventListener('click', () => {
+    stop();
+    index = 0;
+    lastPoints = null;
+    playing = true;
+    render();
+    save();
+    schedule();
+  });
+  function restore(snapshot) {
+    const saved = snapshot && snapshot.modelContent;
+    if (!saved || saved.example !== 'revision-repair' || !Number.isInteger(saved.stage) || saved.stage < 0 || saved.stage >= stages.length) return;
+    if (saved.stage === index) return;
+    stop();
+    index = saved.stage;
+    lastPoints = null;
+    render();
+  }
+  window.addEventListener('openai:set_globals', event => {
+    if (event.detail && event.detail.globals && Object.hasOwn(event.detail.globals, 'widgetState')) restore(event.detail.globals.widgetState);
+  });
+  reduced.addEventListener('change', () => { stop(); lastPoints = null; render(); });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
+  let measuredWidth = diagram.getBoundingClientRect().width;
+  new ResizeObserver(() => {
+    drawWires();
+    const width = diagram.getBoundingClientRect().width;
+    if (Math.abs(width - measuredWidth) > 1) { measuredWidth = width; placeTokens(false); }
+  }).observe(diagram);
+  render();
+  restore(window.openai && window.openai.widgetState);
+})();
+</script>

@@ -1,0 +1,66 @@
+test_cross_tenant_admin_denied (__main__.UpdatedCode.test_cross_tenant_admin_denied) ... ok
+test_invalid_resources_denied (__main__.UpdatedCode.test_invalid_resources_denied) ... 
+  test_invalid_resources_denied (__main__.UpdatedCode.test_invalid_resources_denied) (resource=[]) ... ERROR
+  test_invalid_resources_denied (__main__.UpdatedCode.test_invalid_resources_denied) (resource={}) ... ERROR
+test_legacy_hint_cannot_change_valid_authority (__main__.UpdatedCode.test_legacy_hint_cannot_change_valid_authority) ... ERROR
+test_non_owner_denied (__main__.UpdatedCode.test_non_owner_denied) ... ok
+test_owner_allowed (__main__.UpdatedCode.test_owner_allowed) ... ok
+test_same_tenant_admin_allowed (__main__.UpdatedCode.test_same_tenant_admin_allowed) ... ok
+test_spoofed_tenant_hint_denied (__main__.UpdatedCode.test_spoofed_tenant_hint_denied) ... FAIL
+test_unknown_actor_denied (__main__.UpdatedCode.test_unknown_actor_denied) ... ok
+
+======================================================================
+ERROR: test_invalid_resources_denied (__main__.UpdatedCode.test_invalid_resources_denied) (resource=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/grade_fixture.py", line 83, in test_invalid_resources_denied
+    self.denied_without_effects(service.archive_account,'admin',value)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/grade_fixture.py", line 19, in denied_without_effects
+    fn(*args)
+    ~~^^^^^^^
+  File "validation/code-baseline/original-update/service.py", line 5, in archive_account
+    account = store.ACCOUNTS.get(account_id)
+TypeError: cannot use 'list' as a dict key (unhashable type: 'list')
+
+======================================================================
+ERROR: test_invalid_resources_denied (__main__.UpdatedCode.test_invalid_resources_denied) (resource={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/grade_fixture.py", line 83, in test_invalid_resources_denied
+    self.denied_without_effects(service.archive_account,'admin',value)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/grade_fixture.py", line 19, in denied_without_effects
+    fn(*args)
+    ~~^^^^^^^
+  File "validation/code-baseline/original-update/service.py", line 5, in archive_account
+    account = store.ACCOUNTS.get(account_id)
+TypeError: cannot use 'dict' as a dict key (unhashable type: 'dict')
+
+======================================================================
+ERROR: test_legacy_hint_cannot_change_valid_authority (__main__.UpdatedCode.test_legacy_hint_cannot_change_valid_authority)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/grade_fixture.py", line 74, in test_legacy_hint_cannot_change_valid_authority
+    service.archive_account('alice','A','t2')
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/original-update/service.py", line 7, in archive_account
+    raise PermissionError('access denied')
+PermissionError: access denied
+
+======================================================================
+FAIL: test_spoofed_tenant_hint_denied (__main__.UpdatedCode.test_spoofed_tenant_hint_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/grade_fixture.py", line 71, in test_spoofed_tenant_hint_denied
+    self.denied_without_effects(service.archive_account,'eve','A','t1')
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/grade_fixture.py", line 18, in denied_without_effects
+    with self.assertRaises(PermissionError) as error:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+AssertionError: PermissionError not raised
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.002s
+
+FAILED (failures=1, errors=3)

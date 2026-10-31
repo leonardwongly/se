@@ -1,0 +1,60 @@
+test_owner_and_same_tenant_admin_export_public_fields (test_export.ExportTests.test_owner_and_same_tenant_admin_export_public_fields) ... ok
+test_ownership_does_not_override_tenant_boundary (test_export.ExportTests.test_ownership_does_not_override_tenant_boundary) ... FAIL
+test_other_owner_and_cross_tenant_access_denied (test_export.ExportTests.test_other_owner_and_cross_tenant_access_denied) ... 
+  test_other_owner_and_cross_tenant_access_denied (test_export.ExportTests.test_other_owner_and_cross_tenant_access_denied) (actor='admin', account='E') ... FAIL
+  test_other_owner_and_cross_tenant_access_denied (test_export.ExportTests.test_other_owner_and_cross_tenant_access_denied) (actor='eve', account='A') ... FAIL
+  test_other_owner_and_cross_tenant_access_denied (test_export.ExportTests.test_other_owner_and_cross_tenant_access_denied) (actor='eve', account='B') ... FAIL
+
+======================================================================
+FAIL: test_ownership_does_not_override_tenant_boundary (test_export.ExportTests.test_ownership_does_not_override_tenant_boundary)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 73, in test_ownership_does_not_override_tenant_boundary
+    self.assertDenied("alice", "E")
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 29, in assertDenied
+    with self.assertRaisesRegex(PermissionError, "^access denied$"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: PermissionError not raised
+
+======================================================================
+FAIL: test_other_owner_and_cross_tenant_access_denied (test_export.ExportTests.test_other_owner_and_cross_tenant_access_denied) (actor='admin', account='E')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 69, in test_other_owner_and_cross_tenant_access_denied
+    self.assertDenied(actor, account)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 29, in assertDenied
+    with self.assertRaisesRegex(PermissionError, "^access denied$"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: PermissionError not raised
+
+======================================================================
+FAIL: test_other_owner_and_cross_tenant_access_denied (test_export.ExportTests.test_other_owner_and_cross_tenant_access_denied) (actor='eve', account='A')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 69, in test_other_owner_and_cross_tenant_access_denied
+    self.assertDenied(actor, account)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 29, in assertDenied
+    with self.assertRaisesRegex(PermissionError, "^access denied$"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: PermissionError not raised
+
+======================================================================
+FAIL: test_other_owner_and_cross_tenant_access_denied (test_export.ExportTests.test_other_owner_and_cross_tenant_access_denied) (actor='eve', account='B')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 69, in test_other_owner_and_cross_tenant_access_denied
+    self.assertDenied(actor, account)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 29, in assertDenied
+    with self.assertRaisesRegex(PermissionError, "^access denied$"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: PermissionError not raised
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.003s
+
+FAILED (failures=4)
+NEGATIVE CONTROL PASS: removing tenant enforcement causes four intended denial assertions to fail; positive control still passes.

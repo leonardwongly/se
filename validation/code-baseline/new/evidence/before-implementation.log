@@ -1,0 +1,521 @@
+python3 -m unittest discover -s tests -v
+test_authenticated_actor (test_existing.ExistingTests.test_authenticated_actor) ... ok
+test_authority_is_rechecked_after_role_or_identity_revocation (test_export.ExportTests.test_authority_is_rechecked_after_role_or_identity_revocation) ... ERROR
+test_current_account_ownership_and_tenant_are_authoritative (test_export.ExportTests.test_current_account_ownership_and_tenant_are_authoritative) ... ERROR
+test_export_is_fresh_allowlisted_and_does_not_mutate_state (test_export.ExportTests.test_export_is_fresh_allowlisted_and_does_not_mutate_state) ... ERROR
+test_missing_and_malformed_account_id_denied (test_export.ExportTests.test_missing_and_malformed_account_id_denied) ... 
+  test_missing_and_malformed_account_id_denied (test_export.ExportTests.test_missing_and_malformed_account_id_denied) (account='missing') ... ERROR
+  test_missing_and_malformed_account_id_denied (test_export.ExportTests.test_missing_and_malformed_account_id_denied) (account='') ... ERROR
+  test_missing_and_malformed_account_id_denied (test_export.ExportTests.test_missing_and_malformed_account_id_denied) (account=' A') ... ERROR
+  test_missing_and_malformed_account_id_denied (test_export.ExportTests.test_missing_and_malformed_account_id_denied) (account='A ') ... ERROR
+  test_missing_and_malformed_account_id_denied (test_export.ExportTests.test_missing_and_malformed_account_id_denied) (account='a') ... ERROR
+  test_missing_and_malformed_account_id_denied (test_export.ExportTests.test_missing_and_malformed_account_id_denied) (account='A\x00') ... ERROR
+  test_missing_and_malformed_account_id_denied (test_export.ExportTests.test_missing_and_malformed_account_id_denied) (account=None) ... ERROR
+  test_missing_and_malformed_account_id_denied (test_export.ExportTests.test_missing_and_malformed_account_id_denied) (account=1) ... ERROR
+  test_missing_and_malformed_account_id_denied (test_export.ExportTests.test_missing_and_malformed_account_id_denied) (account=True) ... ERROR
+  test_missing_and_malformed_account_id_denied (test_export.ExportTests.test_missing_and_malformed_account_id_denied) (account=[]) ... ERROR
+  test_missing_and_malformed_account_id_denied (test_export.ExportTests.test_missing_and_malformed_account_id_denied) (account={}) ... ERROR
+  test_missing_and_malformed_account_id_denied (test_export.ExportTests.test_missing_and_malformed_account_id_denied) (account=['A']) ... ERROR
+test_other_owner_and_cross_tenant_access_denied (test_export.ExportTests.test_other_owner_and_cross_tenant_access_denied) ... 
+  test_other_owner_and_cross_tenant_access_denied (test_export.ExportTests.test_other_owner_and_cross_tenant_access_denied) (actor='alice', account='B') ... ERROR
+  test_other_owner_and_cross_tenant_access_denied (test_export.ExportTests.test_other_owner_and_cross_tenant_access_denied) (actor='bob', account='A') ... ERROR
+  test_other_owner_and_cross_tenant_access_denied (test_export.ExportTests.test_other_owner_and_cross_tenant_access_denied) (actor='alice', account='E') ... ERROR
+  test_other_owner_and_cross_tenant_access_denied (test_export.ExportTests.test_other_owner_and_cross_tenant_access_denied) (actor='admin', account='E') ... ERROR
+  test_other_owner_and_cross_tenant_access_denied (test_export.ExportTests.test_other_owner_and_cross_tenant_access_denied) (actor='eve', account='A') ... ERROR
+  test_other_owner_and_cross_tenant_access_denied (test_export.ExportTests.test_other_owner_and_cross_tenant_access_denied) (actor='eve', account='B') ... ERROR
+test_owner_and_same_tenant_admin_export_public_fields (test_export.ExportTests.test_owner_and_same_tenant_admin_export_public_fields) ... 
+  test_owner_and_same_tenant_admin_export_public_fields (test_export.ExportTests.test_owner_and_same_tenant_admin_export_public_fields) (actor='alice', account='A') ... ERROR
+  test_owner_and_same_tenant_admin_export_public_fields (test_export.ExportTests.test_owner_and_same_tenant_admin_export_public_fields) (actor='bob', account='B') ... ERROR
+  test_owner_and_same_tenant_admin_export_public_fields (test_export.ExportTests.test_owner_and_same_tenant_admin_export_public_fields) (actor='admin', account='A') ... ERROR
+  test_owner_and_same_tenant_admin_export_public_fields (test_export.ExportTests.test_owner_and_same_tenant_admin_export_public_fields) (actor='admin', account='B') ... ERROR
+  test_owner_and_same_tenant_admin_export_public_fields (test_export.ExportTests.test_owner_and_same_tenant_admin_export_public_fields) (actor='eve', account='E') ... ERROR
+test_ownership_does_not_override_tenant_boundary (test_export.ExportTests.test_ownership_does_not_override_tenant_boundary) ... ERROR
+test_transport_uses_stored_role_and_tenant (test_export.ExportTests.test_transport_uses_stored_role_and_tenant) ... ERROR
+test_unknown_and_malformed_actor_denied (test_export.ExportTests.test_unknown_and_malformed_actor_denied) ... 
+  test_unknown_and_malformed_actor_denied (test_export.ExportTests.test_unknown_and_malformed_actor_denied) (actor='unknown') ... ERROR
+  test_unknown_and_malformed_actor_denied (test_export.ExportTests.test_unknown_and_malformed_actor_denied) (actor='') ... ERROR
+  test_unknown_and_malformed_actor_denied (test_export.ExportTests.test_unknown_and_malformed_actor_denied) (actor=None) ... ERROR
+  test_unknown_and_malformed_actor_denied (test_export.ExportTests.test_unknown_and_malformed_actor_denied) (actor=1) ... ERROR
+  test_unknown_and_malformed_actor_denied (test_export.ExportTests.test_unknown_and_malformed_actor_denied) (actor=True) ... ERROR
+  test_unknown_and_malformed_actor_denied (test_export.ExportTests.test_unknown_and_malformed_actor_denied) (actor=[]) ... ERROR
+  test_unknown_and_malformed_actor_denied (test_export.ExportTests.test_unknown_and_malformed_actor_denied) (actor={}) ... ERROR
+  test_unknown_and_malformed_actor_denied (test_export.ExportTests.test_unknown_and_malformed_actor_denied) (actor=['alice']) ... ERROR
+
+======================================================================
+ERROR: test_authority_is_rechecked_after_role_or_identity_revocation (test_export.ExportTests.test_authority_is_rechecked_after_role_or_identity_revocation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 98, in test_authority_is_rechecked_after_role_or_identity_revocation
+    self.assertEqual(export_account("admin", "A")["id"], "A")
+                     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_current_account_ownership_and_tenant_are_authoritative (test_export.ExportTests.test_current_account_ownership_and_tenant_are_authoritative)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 106, in test_current_account_ownership_and_tenant_are_authoritative
+    self.assertEqual(export_account("alice", "A")["id"], "A")
+                     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_export_is_fresh_allowlisted_and_does_not_mutate_state (test_export.ExportTests.test_export_is_fresh_allowlisted_and_does_not_mutate_state)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 54, in test_export_is_fresh_allowlisted_and_does_not_mutate_state
+    first = export_account("alice", "A")
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_missing_and_malformed_account_id_denied (test_export.ExportTests.test_missing_and_malformed_account_id_denied) (account='missing')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 84, in test_missing_and_malformed_account_id_denied
+    self.assertDenied("alice", account)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 30, in assertDenied
+    export_account(actor_id, account_id)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_missing_and_malformed_account_id_denied (test_export.ExportTests.test_missing_and_malformed_account_id_denied) (account='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 84, in test_missing_and_malformed_account_id_denied
+    self.assertDenied("alice", account)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 30, in assertDenied
+    export_account(actor_id, account_id)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_missing_and_malformed_account_id_denied (test_export.ExportTests.test_missing_and_malformed_account_id_denied) (account=' A')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 84, in test_missing_and_malformed_account_id_denied
+    self.assertDenied("alice", account)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 30, in assertDenied
+    export_account(actor_id, account_id)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_missing_and_malformed_account_id_denied (test_export.ExportTests.test_missing_and_malformed_account_id_denied) (account='A ')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 84, in test_missing_and_malformed_account_id_denied
+    self.assertDenied("alice", account)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 30, in assertDenied
+    export_account(actor_id, account_id)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_missing_and_malformed_account_id_denied (test_export.ExportTests.test_missing_and_malformed_account_id_denied) (account='a')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 84, in test_missing_and_malformed_account_id_denied
+    self.assertDenied("alice", account)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 30, in assertDenied
+    export_account(actor_id, account_id)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_missing_and_malformed_account_id_denied (test_export.ExportTests.test_missing_and_malformed_account_id_denied) (account='A\x00')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 84, in test_missing_and_malformed_account_id_denied
+    self.assertDenied("alice", account)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 30, in assertDenied
+    export_account(actor_id, account_id)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_missing_and_malformed_account_id_denied (test_export.ExportTests.test_missing_and_malformed_account_id_denied) (account=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 84, in test_missing_and_malformed_account_id_denied
+    self.assertDenied("alice", account)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 30, in assertDenied
+    export_account(actor_id, account_id)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_missing_and_malformed_account_id_denied (test_export.ExportTests.test_missing_and_malformed_account_id_denied) (account=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 84, in test_missing_and_malformed_account_id_denied
+    self.assertDenied("alice", account)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 30, in assertDenied
+    export_account(actor_id, account_id)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_missing_and_malformed_account_id_denied (test_export.ExportTests.test_missing_and_malformed_account_id_denied) (account=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 84, in test_missing_and_malformed_account_id_denied
+    self.assertDenied("alice", account)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 30, in assertDenied
+    export_account(actor_id, account_id)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_missing_and_malformed_account_id_denied (test_export.ExportTests.test_missing_and_malformed_account_id_denied) (account=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 84, in test_missing_and_malformed_account_id_denied
+    self.assertDenied("alice", account)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 30, in assertDenied
+    export_account(actor_id, account_id)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_missing_and_malformed_account_id_denied (test_export.ExportTests.test_missing_and_malformed_account_id_denied) (account={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 84, in test_missing_and_malformed_account_id_denied
+    self.assertDenied("alice", account)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 30, in assertDenied
+    export_account(actor_id, account_id)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_missing_and_malformed_account_id_denied (test_export.ExportTests.test_missing_and_malformed_account_id_denied) (account=['A'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 84, in test_missing_and_malformed_account_id_denied
+    self.assertDenied("alice", account)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 30, in assertDenied
+    export_account(actor_id, account_id)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_other_owner_and_cross_tenant_access_denied (test_export.ExportTests.test_other_owner_and_cross_tenant_access_denied) (actor='alice', account='B')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 69, in test_other_owner_and_cross_tenant_access_denied
+    self.assertDenied(actor, account)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 30, in assertDenied
+    export_account(actor_id, account_id)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_other_owner_and_cross_tenant_access_denied (test_export.ExportTests.test_other_owner_and_cross_tenant_access_denied) (actor='bob', account='A')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 69, in test_other_owner_and_cross_tenant_access_denied
+    self.assertDenied(actor, account)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 30, in assertDenied
+    export_account(actor_id, account_id)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_other_owner_and_cross_tenant_access_denied (test_export.ExportTests.test_other_owner_and_cross_tenant_access_denied) (actor='alice', account='E')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 69, in test_other_owner_and_cross_tenant_access_denied
+    self.assertDenied(actor, account)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 30, in assertDenied
+    export_account(actor_id, account_id)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_other_owner_and_cross_tenant_access_denied (test_export.ExportTests.test_other_owner_and_cross_tenant_access_denied) (actor='admin', account='E')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 69, in test_other_owner_and_cross_tenant_access_denied
+    self.assertDenied(actor, account)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 30, in assertDenied
+    export_account(actor_id, account_id)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_other_owner_and_cross_tenant_access_denied (test_export.ExportTests.test_other_owner_and_cross_tenant_access_denied) (actor='eve', account='A')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 69, in test_other_owner_and_cross_tenant_access_denied
+    self.assertDenied(actor, account)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 30, in assertDenied
+    export_account(actor_id, account_id)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_other_owner_and_cross_tenant_access_denied (test_export.ExportTests.test_other_owner_and_cross_tenant_access_denied) (actor='eve', account='B')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 69, in test_other_owner_and_cross_tenant_access_denied
+    self.assertDenied(actor, account)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 30, in assertDenied
+    export_account(actor_id, account_id)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_owner_and_same_tenant_admin_export_public_fields (test_export.ExportTests.test_owner_and_same_tenant_admin_export_public_fields) (actor='alice', account='A')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 44, in test_owner_and_same_tenant_admin_export_public_fields
+    result = export_account(actor, account)
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_owner_and_same_tenant_admin_export_public_fields (test_export.ExportTests.test_owner_and_same_tenant_admin_export_public_fields) (actor='bob', account='B')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 44, in test_owner_and_same_tenant_admin_export_public_fields
+    result = export_account(actor, account)
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_owner_and_same_tenant_admin_export_public_fields (test_export.ExportTests.test_owner_and_same_tenant_admin_export_public_fields) (actor='admin', account='A')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 44, in test_owner_and_same_tenant_admin_export_public_fields
+    result = export_account(actor, account)
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_owner_and_same_tenant_admin_export_public_fields (test_export.ExportTests.test_owner_and_same_tenant_admin_export_public_fields) (actor='admin', account='B')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 44, in test_owner_and_same_tenant_admin_export_public_fields
+    result = export_account(actor, account)
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_owner_and_same_tenant_admin_export_public_fields (test_export.ExportTests.test_owner_and_same_tenant_admin_export_public_fields) (actor='eve', account='E')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 44, in test_owner_and_same_tenant_admin_export_public_fields
+    result = export_account(actor, account)
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_ownership_does_not_override_tenant_boundary (test_export.ExportTests.test_ownership_does_not_override_tenant_boundary)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 73, in test_ownership_does_not_override_tenant_boundary
+    self.assertDenied("alice", "E")
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 30, in assertDenied
+    export_account(actor_id, account_id)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_transport_uses_stored_role_and_tenant (test_export.ExportTests.test_transport_uses_stored_role_and_tenant)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 88, in test_transport_uses_stored_role_and_tenant
+    self.assertEqual(handle_export(session, "A"), {
+                     ~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/transport.py", line 4, in handle_export
+    return export_account(authenticated_session.actor_id, account_id)
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_unknown_and_malformed_actor_denied (test_export.ExportTests.test_unknown_and_malformed_actor_denied) (actor='unknown')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 78, in test_unknown_and_malformed_actor_denied
+    self.assertDenied(actor, "A")
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 30, in assertDenied
+    export_account(actor_id, account_id)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_unknown_and_malformed_actor_denied (test_export.ExportTests.test_unknown_and_malformed_actor_denied) (actor='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 78, in test_unknown_and_malformed_actor_denied
+    self.assertDenied(actor, "A")
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 30, in assertDenied
+    export_account(actor_id, account_id)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_unknown_and_malformed_actor_denied (test_export.ExportTests.test_unknown_and_malformed_actor_denied) (actor=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 78, in test_unknown_and_malformed_actor_denied
+    self.assertDenied(actor, "A")
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 30, in assertDenied
+    export_account(actor_id, account_id)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_unknown_and_malformed_actor_denied (test_export.ExportTests.test_unknown_and_malformed_actor_denied) (actor=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 78, in test_unknown_and_malformed_actor_denied
+    self.assertDenied(actor, "A")
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 30, in assertDenied
+    export_account(actor_id, account_id)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_unknown_and_malformed_actor_denied (test_export.ExportTests.test_unknown_and_malformed_actor_denied) (actor=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 78, in test_unknown_and_malformed_actor_denied
+    self.assertDenied(actor, "A")
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 30, in assertDenied
+    export_account(actor_id, account_id)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_unknown_and_malformed_actor_denied (test_export.ExportTests.test_unknown_and_malformed_actor_denied) (actor=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 78, in test_unknown_and_malformed_actor_denied
+    self.assertDenied(actor, "A")
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 30, in assertDenied
+    export_account(actor_id, account_id)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_unknown_and_malformed_actor_denied (test_export.ExportTests.test_unknown_and_malformed_actor_denied) (actor={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 78, in test_unknown_and_malformed_actor_denied
+    self.assertDenied(actor, "A")
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 30, in assertDenied
+    export_account(actor_id, account_id)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+======================================================================
+ERROR: test_unknown_and_malformed_actor_denied (test_export.ExportTests.test_unknown_and_malformed_actor_denied) (actor=['alice'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/code-baseline/new/tests/test_export.py", line 78, in test_unknown_and_malformed_actor_denied
+    self.assertDenied(actor, "A")
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "validation/code-baseline/new/tests/test_export.py", line 30, in assertDenied
+    export_account(actor_id, account_id)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/code-baseline/new/service.py", line 4, in export_account
+    raise NotImplementedError("Export is not implemented")
+NotImplementedError: Export is not implemented
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.007s
+
+FAILED (errors=36)
+make: *** [check] Error 1

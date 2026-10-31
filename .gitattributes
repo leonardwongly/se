@@ -1,0 +1,4 @@
+# Preserve retained test output and patch context exactly.
+validation/**/*.log -whitespace
+validation/**/*.patch -whitespace
+validation/**/*.diff -whitespace

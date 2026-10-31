@@ -1,0 +1,3 @@
+interface:
+  display_name: "SE When"
+  short_description: "Sequence dependencies and readiness gates"

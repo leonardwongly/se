@@ -1,0 +1,3 @@
+interface:
+  display_name: "SE Concurrent"
+  short_description: "Coordinate parallel work and safe integration"

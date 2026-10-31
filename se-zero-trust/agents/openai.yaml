@@ -1,0 +1,3 @@
+interface:
+  display_name: "SE Zero Trust"
+  short_description: "Review trust boundaries on every code change"

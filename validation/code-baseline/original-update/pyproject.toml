@@ -1,0 +1,4 @@
+[project]
+name = "se-grounding-fixture-update"
+version = "0.0.0"
+requires-python = ">=3.10"

@@ -1,0 +1,12 @@
+test_cross_tenant_admin_denied (__main__.NewCode.test_cross_tenant_admin_denied) ... ok
+test_invalid_resources_denied (__main__.NewCode.test_invalid_resources_denied) ... ok
+test_owner_allowlisted_output (__main__.NewCode.test_owner_allowlisted_output) ... ok
+test_read_is_pure_and_future_fields_excluded (__main__.NewCode.test_read_is_pure_and_future_fields_excluded) ... ok
+test_same_tenant_admin (__main__.NewCode.test_same_tenant_admin) ... ok
+test_same_tenant_non_owner_denied (__main__.NewCode.test_same_tenant_non_owner_denied) ... ok
+test_unknown_actor_denied (__main__.NewCode.test_unknown_actor_denied) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.000s
+
+OK

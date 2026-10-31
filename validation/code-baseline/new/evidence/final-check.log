@@ -1,0 +1,16 @@
+python3 -m unittest discover -s tests -v
+test_authenticated_actor (test_existing.ExistingTests.test_authenticated_actor) ... ok
+test_authority_is_rechecked_after_role_or_identity_revocation (test_export.ExportTests.test_authority_is_rechecked_after_role_or_identity_revocation) ... ok
+test_current_account_ownership_and_tenant_are_authoritative (test_export.ExportTests.test_current_account_ownership_and_tenant_are_authoritative) ... ok
+test_export_is_fresh_allowlisted_and_does_not_mutate_state (test_export.ExportTests.test_export_is_fresh_allowlisted_and_does_not_mutate_state) ... ok
+test_missing_and_malformed_account_id_denied (test_export.ExportTests.test_missing_and_malformed_account_id_denied) ... ok
+test_other_owner_and_cross_tenant_access_denied (test_export.ExportTests.test_other_owner_and_cross_tenant_access_denied) ... ok
+test_owner_and_same_tenant_admin_export_public_fields (test_export.ExportTests.test_owner_and_same_tenant_admin_export_public_fields) ... ok
+test_ownership_does_not_override_tenant_boundary (test_export.ExportTests.test_ownership_does_not_override_tenant_boundary) ... ok
+test_transport_uses_stored_role_and_tenant (test_export.ExportTests.test_transport_uses_stored_role_and_tenant) ... ok
+test_unknown_and_malformed_actor_denied (test_export.ExportTests.test_unknown_and_malformed_actor_denied) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.001s
+
+OK
