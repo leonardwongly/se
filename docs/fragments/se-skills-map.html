@@ -26,13 +26,20 @@
   </div>
   <div class="text-small" id="se-grounding">For project work: root + revision · local rules + contracts · active paths · test/CI setup</div>
   <div class="flow text-small" id="se-flow" aria-label="Example dependency path"></div>
-  <div class="skill-groups" aria-label="Nine engineering skills, grouped by role">
+  <div class="skill-groups" aria-label="Twelve engineering skills, grouped by role">
+    <section class="skill-group" aria-labelledby="se-understand">
+      <h3 id="se-understand">Ground and communicate understanding</h3>
+      <div class="viz-grid">
+        <div class="skill-cell" data-skill="proof"><button class="btn" type="button" aria-pressed="false">/se-proof</button><span class="skill-caption text-small"><span class="relevance-mark" aria-hidden="true"></span>Evidence, assumptions &amp; gaps</span></div>
+        <div class="skill-cell" data-skill="visualise"><button class="btn" type="button" aria-pressed="false">/se-visualise</button><span class="skill-caption text-small"><span class="relevance-mark" aria-hidden="true"></span>Visual comprehension when useful</span></div>
+      </div>
+    </section>
     <section class="skill-group" aria-labelledby="se-frame">
       <h3 id="se-frame">Frame the decision · as needed</h3>
       <div class="viz-grid">
         <div class="skill-cell" data-skill="what"><button class="btn" type="button" aria-pressed="false">/se-what</button><span class="skill-caption text-small"><span class="relevance-mark" aria-hidden="true"></span>Scope &amp; acceptance</span></div>
         <div class="skill-cell" data-skill="why"><button class="btn" type="button" aria-pressed="false">/se-why</button><span class="skill-caption text-small"><span class="relevance-mark" aria-hidden="true"></span>Rationale &amp; tradeoffs</span></div>
-        <div class="skill-cell" data-skill="who"><button class="btn" type="button" aria-pressed="false">/se-who</button><span class="skill-caption text-small"><span class="relevance-mark" aria-hidden="true"></span>Owners &amp; authority</span></div>
+        <div class="skill-cell" data-skill="who"><button class="btn" type="button" aria-pressed="false">/se-who</button><span class="skill-caption text-small"><span class="relevance-mark" aria-hidden="true"></span>Specialists, owners &amp; agents</span></div>
       </div>
     </section>
     <section class="skill-group" aria-labelledby="se-approach">
@@ -52,11 +59,14 @@
       </div>
     </section>
     <section class="skill-group" aria-labelledby="se-execution">
-      <h3 id="se-execution">Optional execution strategy</h3>
-      <div class="skill-cell" data-skill="concurrent"><button class="btn" type="button" aria-pressed="false">/se-concurrent</button><span class="skill-caption text-small"><span class="relevance-mark" aria-hidden="true"></span>Independent work → integration → combined checks</span></div>
+      <h3 id="se-execution">Optional execution strategies</h3>
+      <div class="viz-grid">
+        <div class="skill-cell" data-skill="swarm"><button class="btn" type="button" aria-pressed="false">/se-swarm</button><span class="skill-caption text-small"><span class="relevance-mark" aria-hidden="true"></span>Adaptive workers &amp; bounded repair</span></div>
+        <div class="skill-cell" data-skill="concurrent"><button class="btn" type="button" aria-pressed="false">/se-concurrent</button><span class="skill-caption text-small"><span class="relevance-mark" aria-hidden="true"></span>Ownership, isolation &amp; integration</span></div>
+      </div>
     </section>
   </div>
-  <div class="viz-row text-small text-muted"><span class="relevance-mark legend-mark" aria-hidden="true"></span><span>Highlighted for this example · no fixed nine-step sequence</span></div>
+  <div class="viz-row text-small text-muted"><span class="relevance-mark legend-mark" aria-hidden="true"></span><span>Highlighted for this example · no fixed twelve-step sequence</span></div>
   <hr>
   <div id="se-detail" class="detail" role="status" aria-live="polite" aria-atomic="true"></div>
 </div>
@@ -68,22 +78,25 @@
   const detail = root.querySelector('#se-detail');
   const cells = [...root.querySelectorAll('[data-skill]')];
   const skills = {
+    proof: 'Sources + project context → evidenced understanding, assumptions, and gaps; no unearned completion claim.',
+    visualise: 'Question + evidence → an appropriate visual; animate time, state, or causality when useful.',
     what: 'Request → bounded scope and observable acceptance criteria.',
     why: 'Decision + evidence → rationale and tradeoffs; inference is not recorded intent.',
-    who: 'Responsibility + ownership records → evidenced roles; ownership is not permission.',
+    who: 'Task + evidenced capabilities → suitable specialists, people, agents, and owners; expertise is not authority.',
     where: 'Behavior or claim → responsible code, runtime, or evidence; navigation is read-only.',
     how: 'Outcome + current system → mechanism or approach; explanation alone does not authorize edits.',
     when: 'Action + prerequisites → execution order and readiness; readiness is not deployment permission.',
     'zero-trust': 'Every code change → risk-scaled security review; authorization is enforced in code, not prompts.',
     concurrent: 'Independent tasks → disjoint ownership, integration, and combined validation.',
+    swarm: 'Task + evidence → adaptive scoped workers and bounded repair; stop at acceptance or the declared limit.',
     verify: 'Every code change → risk-scaled behavioral evidence; local proof is not deployed proof.'
   };
   const scenarios = {
-    scope: { relevant: ['what', 'why', 'who'], path: ['Project evidence', 'what', 'Acceptance brief'], selected: 'what' },
-    explain: { relevant: ['how', 'why'], path: ['Question', 'how', 'why', 'Read-only explanation'], selected: 'how' },
-    implement: { relevant: ['what', 'where', 'how', 'when', 'zero-trust', 'concurrent', 'verify'], path: ['Project evidence', 'what', 'where', 'zero-trust', 'how', 'when', 'concurrent', 'Integrated /se-verify'], selected: 'zero-trust' },
-    release: { relevant: ['what', 'who', 'when', 'zero-trust', 'verify'], path: ['Project evidence', 'Security evidence', 'Verification evidence', 'when'], selected: 'when' },
-    agent: { relevant: ['where', 'zero-trust', 'verify'], path: ['Project evidence', 'where', 'zero-trust', 'verify'], selected: 'zero-trust' }
+    scope: { relevant: ['proof', 'what', 'why', 'who'], path: ['Project evidence', 'proof', 'what', 'Acceptance brief'], selected: 'what' },
+    explain: { relevant: ['proof', 'how', 'why', 'visualise'], path: ['Question + sources', 'proof', 'how', 'visualise', 'Read-only explanation'], selected: 'visualise' },
+    implement: { relevant: ['proof', 'what', 'who', 'where', 'how', 'when', 'zero-trust', 'swarm', 'concurrent', 'verify'], path: ['Project evidence', 'proof', 'what', 'who', 'zero-trust', 'how', 'swarm', 'concurrent', 'Integrated /se-verify'], selected: 'swarm' },
+    release: { relevant: ['proof', 'what', 'who', 'when', 'zero-trust', 'verify'], path: ['Project evidence', 'proof', 'Security evidence', 'Verification evidence', 'when'], selected: 'when' },
+    agent: { relevant: ['proof', 'who', 'where', 'zero-trust', 'verify'], path: ['Project evidence', 'proof', 'who', 'where', 'zero-trust', 'verify'], selected: 'zero-trust' }
   };
   let state = { scenario: 'implement', selected: 'how' };
   function render() {

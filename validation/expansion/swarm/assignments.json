@@ -1,0 +1,26 @@
+{
+  "coordinator": {
+    "role": "grounding, security review, final combined source inspection and make check",
+    "owned": [
+      "evidence artifacts and final report"
+    ]
+  },
+  "archive_implementation": {
+    "owned": [
+      "project/service.py",
+      "implementation-report.md"
+    ],
+    "initial_state": "read-only until baseline failures retained",
+    "recursive_delegation": false
+  },
+  "archive_tests": {
+    "owned": [
+      "project/tests/test_archive_contract.py",
+      "baseline-contract-check.txt",
+      "test-report.md"
+    ],
+    "role": "contract-derived behavior tests and baseline failures",
+    "recursive_delegation": false
+  },
+  "scope": "local synthetic account archiving only; no external actions"
+}

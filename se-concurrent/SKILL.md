@@ -7,6 +7,9 @@ description: Coordinate concurrent engineering agents when independent research,
 
 Parallelize independent work while retaining one accountable integration owner.
 Agent availability is a capability limit, not a reason to create work or widen scope.
+This skill supplies safe concurrency mechanics. Specialist selection belongs to who;
+adaptive team execution and remediation belong to swarm. Apply those responsibilities
+directly if companion skills are unavailable; neither is an installation dependency.
 
 ## Ground the task in the project
 

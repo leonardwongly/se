@@ -1,0 +1,558 @@
+python3 -m unittest discover -s tests -v
+test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) ... 
+  test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='service', actor='alice', hint='t2') ... ERROR
+  test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='service', actor='alice', hint='unknown') ... ERROR
+  test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='service', actor='alice', hint={'tenant': 't2'}) ... ERROR
+  test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='service', actor='alice', hint=['t2']) ... ERROR
+  test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='service', actor='admin', hint='t2') ... ERROR
+  test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='service', actor='admin', hint='unknown') ... ERROR
+  test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='service', actor='admin', hint={'tenant': 't2'}) ... ERROR
+  test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='service', actor='admin', hint=['t2']) ... ERROR
+  test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='transport', actor='alice', hint='t2') ... ERROR
+  test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='transport', actor='alice', hint='unknown') ... ERROR
+  test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='transport', actor='alice', hint={'tenant': 't2'}) ... ERROR
+  test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='transport', actor='alice', hint=['t2']) ... ERROR
+  test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='transport', actor='admin', hint='t2') ... ERROR
+  test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='transport', actor='admin', hint='unknown') ... ERROR
+  test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='transport', actor='admin', hint={'tenant': 't2'}) ... ERROR
+  test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='transport', actor='admin', hint=['t2']) ... ERROR
+test_malformed_actor_ids_are_denied_without_mutation (test_archive_contract.ArchiveContractTests.test_malformed_actor_ids_are_denied_without_mutation) ... ok
+test_missing_and_malformed_account_ids_are_denied_without_mutation (test_archive_contract.ArchiveContractTests.test_missing_and_malformed_account_ids_are_denied_without_mutation) ... 
+  test_missing_and_malformed_account_ids_are_denied_without_mutation (test_archive_contract.ArchiveContractTests.test_missing_and_malformed_account_ids_are_denied_without_mutation) (route='service', account_id=[]) ... FAIL
+  test_missing_and_malformed_account_ids_are_denied_without_mutation (test_archive_contract.ArchiveContractTests.test_missing_and_malformed_account_ids_are_denied_without_mutation) (route='service', account_id={}) ... FAIL
+  test_missing_and_malformed_account_ids_are_denied_without_mutation (test_archive_contract.ArchiveContractTests.test_missing_and_malformed_account_ids_are_denied_without_mutation) (route='service', account_id=['A']) ... FAIL
+  test_missing_and_malformed_account_ids_are_denied_without_mutation (test_archive_contract.ArchiveContractTests.test_missing_and_malformed_account_ids_are_denied_without_mutation) (route='service', account_id={'id': 'A'}) ... FAIL
+  test_missing_and_malformed_account_ids_are_denied_without_mutation (test_archive_contract.ArchiveContractTests.test_missing_and_malformed_account_ids_are_denied_without_mutation) (route='transport', account_id=[]) ... FAIL
+  test_missing_and_malformed_account_ids_are_denied_without_mutation (test_archive_contract.ArchiveContractTests.test_missing_and_malformed_account_ids_are_denied_without_mutation) (route='transport', account_id={}) ... FAIL
+  test_missing_and_malformed_account_ids_are_denied_without_mutation (test_archive_contract.ArchiveContractTests.test_missing_and_malformed_account_ids_are_denied_without_mutation) (route='transport', account_id=['A']) ... FAIL
+  test_missing_and_malformed_account_ids_are_denied_without_mutation (test_archive_contract.ArchiveContractTests.test_missing_and_malformed_account_ids_are_denied_without_mutation) (route='transport', account_id={'id': 'A'}) ... FAIL
+test_nonowners_cross_tenant_and_unknown_actors_are_denied (test_archive_contract.ArchiveContractTests.test_nonowners_cross_tenant_and_unknown_actors_are_denied) ... ok
+test_owner_relationship_does_not_override_tenant_boundary (test_archive_contract.ArchiveContractTests.test_owner_relationship_does_not_override_tenant_boundary) ... 
+  test_owner_relationship_does_not_override_tenant_boundary (test_archive_contract.ArchiveContractTests.test_owner_relationship_does_not_override_tenant_boundary) (route='service', hint='t2') ... FAIL
+  test_owner_relationship_does_not_override_tenant_boundary (test_archive_contract.ArchiveContractTests.test_owner_relationship_does_not_override_tenant_boundary) (route='transport', hint='t2') ... FAIL
+test_public_signature_retains_optional_compatibility_hint (test_archive_contract.ArchiveContractTests.test_public_signature_retains_optional_compatibility_hint) ... ok
+test_same_tenant_owner_and_admin_are_allowed (test_archive_contract.ArchiveContractTests.test_same_tenant_owner_and_admin_are_allowed) ... ok
+test_spoofed_tenant_hint_cannot_authorize_cross_tenant_admin (test_archive_contract.ArchiveContractTests.test_spoofed_tenant_hint_cannot_authorize_cross_tenant_admin) ... 
+  test_spoofed_tenant_hint_cannot_authorize_cross_tenant_admin (test_archive_contract.ArchiveContractTests.test_spoofed_tenant_hint_cannot_authorize_cross_tenant_admin) (route='service', actor='admin') ... FAIL
+  test_spoofed_tenant_hint_cannot_authorize_cross_tenant_admin (test_archive_contract.ArchiveContractTests.test_spoofed_tenant_hint_cannot_authorize_cross_tenant_admin) (route='service', actor='eve') ... FAIL
+  test_spoofed_tenant_hint_cannot_authorize_cross_tenant_admin (test_archive_contract.ArchiveContractTests.test_spoofed_tenant_hint_cannot_authorize_cross_tenant_admin) (route='transport', actor='admin') ... FAIL
+  test_spoofed_tenant_hint_cannot_authorize_cross_tenant_admin (test_archive_contract.ArchiveContractTests.test_spoofed_tenant_hint_cannot_authorize_cross_tenant_admin) (route='transport', actor='eve') ... FAIL
+test_transport_uses_authenticated_actor_not_session_hints (test_archive_contract.ArchiveContractTests.test_transport_uses_authenticated_actor_not_session_hints) ... 
+  test_transport_uses_authenticated_actor_not_session_hints (test_archive_contract.ArchiveContractTests.test_transport_uses_authenticated_actor_not_session_hints) (actor='eve', account='A') ... FAIL
+test_owner_archives (test_existing.ExistingTests.test_owner_archives) ... ok
+
+======================================================================
+ERROR: test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='service', actor='alice', hint='t2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 98, in test_irrelevant_tenant_hints_cannot_deny_authorized_archive
+    self.assert_allowed_exactly(route, actor_id, 'A', hint)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 49, in assert_allowed_exactly
+    self.invoke(route, actor_id, account_id, hint)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 24, in invoke
+    return service.archive_account(actor_id, account_id, hint)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/service.py", line 7, in archive_account
+    raise PermissionError('access denied')
+PermissionError: access denied
+
+======================================================================
+ERROR: test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='service', actor='alice', hint='unknown')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 98, in test_irrelevant_tenant_hints_cannot_deny_authorized_archive
+    self.assert_allowed_exactly(route, actor_id, 'A', hint)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 49, in assert_allowed_exactly
+    self.invoke(route, actor_id, account_id, hint)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 24, in invoke
+    return service.archive_account(actor_id, account_id, hint)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/service.py", line 7, in archive_account
+    raise PermissionError('access denied')
+PermissionError: access denied
+
+======================================================================
+ERROR: test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='service', actor='alice', hint={'tenant': 't2'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 98, in test_irrelevant_tenant_hints_cannot_deny_authorized_archive
+    self.assert_allowed_exactly(route, actor_id, 'A', hint)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 49, in assert_allowed_exactly
+    self.invoke(route, actor_id, account_id, hint)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 24, in invoke
+    return service.archive_account(actor_id, account_id, hint)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/service.py", line 7, in archive_account
+    raise PermissionError('access denied')
+PermissionError: access denied
+
+======================================================================
+ERROR: test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='service', actor='alice', hint=['t2'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 98, in test_irrelevant_tenant_hints_cannot_deny_authorized_archive
+    self.assert_allowed_exactly(route, actor_id, 'A', hint)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 49, in assert_allowed_exactly
+    self.invoke(route, actor_id, account_id, hint)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 24, in invoke
+    return service.archive_account(actor_id, account_id, hint)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/service.py", line 7, in archive_account
+    raise PermissionError('access denied')
+PermissionError: access denied
+
+======================================================================
+ERROR: test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='service', actor='admin', hint='t2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 98, in test_irrelevant_tenant_hints_cannot_deny_authorized_archive
+    self.assert_allowed_exactly(route, actor_id, 'A', hint)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 49, in assert_allowed_exactly
+    self.invoke(route, actor_id, account_id, hint)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 24, in invoke
+    return service.archive_account(actor_id, account_id, hint)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/service.py", line 7, in archive_account
+    raise PermissionError('access denied')
+PermissionError: access denied
+
+======================================================================
+ERROR: test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='service', actor='admin', hint='unknown')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 98, in test_irrelevant_tenant_hints_cannot_deny_authorized_archive
+    self.assert_allowed_exactly(route, actor_id, 'A', hint)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 49, in assert_allowed_exactly
+    self.invoke(route, actor_id, account_id, hint)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 24, in invoke
+    return service.archive_account(actor_id, account_id, hint)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/service.py", line 7, in archive_account
+    raise PermissionError('access denied')
+PermissionError: access denied
+
+======================================================================
+ERROR: test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='service', actor='admin', hint={'tenant': 't2'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 98, in test_irrelevant_tenant_hints_cannot_deny_authorized_archive
+    self.assert_allowed_exactly(route, actor_id, 'A', hint)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 49, in assert_allowed_exactly
+    self.invoke(route, actor_id, account_id, hint)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 24, in invoke
+    return service.archive_account(actor_id, account_id, hint)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/service.py", line 7, in archive_account
+    raise PermissionError('access denied')
+PermissionError: access denied
+
+======================================================================
+ERROR: test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='service', actor='admin', hint=['t2'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 98, in test_irrelevant_tenant_hints_cannot_deny_authorized_archive
+    self.assert_allowed_exactly(route, actor_id, 'A', hint)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 49, in assert_allowed_exactly
+    self.invoke(route, actor_id, account_id, hint)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 24, in invoke
+    return service.archive_account(actor_id, account_id, hint)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/service.py", line 7, in archive_account
+    raise PermissionError('access denied')
+PermissionError: access denied
+
+======================================================================
+ERROR: test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='transport', actor='alice', hint='t2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 98, in test_irrelevant_tenant_hints_cannot_deny_authorized_archive
+    self.assert_allowed_exactly(route, actor_id, 'A', hint)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 49, in assert_allowed_exactly
+    self.invoke(route, actor_id, account_id, hint)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 27, in invoke
+    return transport.handle_archive(session, account_id, query)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/transport.py", line 4, in handle_archive
+    return archive_account(authenticated_session.actor_id, account_id, query.get("tenant"))
+  File "validation/expansion/swarm/project/service.py", line 7, in archive_account
+    raise PermissionError('access denied')
+PermissionError: access denied
+
+======================================================================
+ERROR: test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='transport', actor='alice', hint='unknown')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 98, in test_irrelevant_tenant_hints_cannot_deny_authorized_archive
+    self.assert_allowed_exactly(route, actor_id, 'A', hint)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 49, in assert_allowed_exactly
+    self.invoke(route, actor_id, account_id, hint)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 27, in invoke
+    return transport.handle_archive(session, account_id, query)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/transport.py", line 4, in handle_archive
+    return archive_account(authenticated_session.actor_id, account_id, query.get("tenant"))
+  File "validation/expansion/swarm/project/service.py", line 7, in archive_account
+    raise PermissionError('access denied')
+PermissionError: access denied
+
+======================================================================
+ERROR: test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='transport', actor='alice', hint={'tenant': 't2'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 98, in test_irrelevant_tenant_hints_cannot_deny_authorized_archive
+    self.assert_allowed_exactly(route, actor_id, 'A', hint)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 49, in assert_allowed_exactly
+    self.invoke(route, actor_id, account_id, hint)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 27, in invoke
+    return transport.handle_archive(session, account_id, query)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/transport.py", line 4, in handle_archive
+    return archive_account(authenticated_session.actor_id, account_id, query.get("tenant"))
+  File "validation/expansion/swarm/project/service.py", line 7, in archive_account
+    raise PermissionError('access denied')
+PermissionError: access denied
+
+======================================================================
+ERROR: test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='transport', actor='alice', hint=['t2'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 98, in test_irrelevant_tenant_hints_cannot_deny_authorized_archive
+    self.assert_allowed_exactly(route, actor_id, 'A', hint)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 49, in assert_allowed_exactly
+    self.invoke(route, actor_id, account_id, hint)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 27, in invoke
+    return transport.handle_archive(session, account_id, query)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/transport.py", line 4, in handle_archive
+    return archive_account(authenticated_session.actor_id, account_id, query.get("tenant"))
+  File "validation/expansion/swarm/project/service.py", line 7, in archive_account
+    raise PermissionError('access denied')
+PermissionError: access denied
+
+======================================================================
+ERROR: test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='transport', actor='admin', hint='t2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 98, in test_irrelevant_tenant_hints_cannot_deny_authorized_archive
+    self.assert_allowed_exactly(route, actor_id, 'A', hint)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 49, in assert_allowed_exactly
+    self.invoke(route, actor_id, account_id, hint)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 27, in invoke
+    return transport.handle_archive(session, account_id, query)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/transport.py", line 4, in handle_archive
+    return archive_account(authenticated_session.actor_id, account_id, query.get("tenant"))
+  File "validation/expansion/swarm/project/service.py", line 7, in archive_account
+    raise PermissionError('access denied')
+PermissionError: access denied
+
+======================================================================
+ERROR: test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='transport', actor='admin', hint='unknown')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 98, in test_irrelevant_tenant_hints_cannot_deny_authorized_archive
+    self.assert_allowed_exactly(route, actor_id, 'A', hint)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 49, in assert_allowed_exactly
+    self.invoke(route, actor_id, account_id, hint)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 27, in invoke
+    return transport.handle_archive(session, account_id, query)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/transport.py", line 4, in handle_archive
+    return archive_account(authenticated_session.actor_id, account_id, query.get("tenant"))
+  File "validation/expansion/swarm/project/service.py", line 7, in archive_account
+    raise PermissionError('access denied')
+PermissionError: access denied
+
+======================================================================
+ERROR: test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='transport', actor='admin', hint={'tenant': 't2'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 98, in test_irrelevant_tenant_hints_cannot_deny_authorized_archive
+    self.assert_allowed_exactly(route, actor_id, 'A', hint)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 49, in assert_allowed_exactly
+    self.invoke(route, actor_id, account_id, hint)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 27, in invoke
+    return transport.handle_archive(session, account_id, query)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/transport.py", line 4, in handle_archive
+    return archive_account(authenticated_session.actor_id, account_id, query.get("tenant"))
+  File "validation/expansion/swarm/project/service.py", line 7, in archive_account
+    raise PermissionError('access denied')
+PermissionError: access denied
+
+======================================================================
+ERROR: test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) (route='transport', actor='admin', hint=['t2'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 98, in test_irrelevant_tenant_hints_cannot_deny_authorized_archive
+    self.assert_allowed_exactly(route, actor_id, 'A', hint)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 49, in assert_allowed_exactly
+    self.invoke(route, actor_id, account_id, hint)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 27, in invoke
+    return transport.handle_archive(session, account_id, query)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/transport.py", line 4, in handle_archive
+    return archive_account(authenticated_session.actor_id, account_id, query.get("tenant"))
+  File "validation/expansion/swarm/project/service.py", line 7, in archive_account
+    raise PermissionError('access denied')
+PermissionError: access denied
+
+======================================================================
+FAIL: test_missing_and_malformed_account_ids_are_denied_without_mutation (test_archive_contract.ArchiveContractTests.test_missing_and_malformed_account_ids_are_denied_without_mutation) (route='service', account_id=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 106, in test_missing_and_malformed_account_ids_are_denied_without_mutation
+    self.assert_denied_unchanged(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        lambda: self.invoke(route, 'admin', account_id))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 41, in assert_denied_unchanged
+    self.assertIsInstance(error, PermissionError)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: TypeError("cannot use 'list' as a dict key (unhashable type: 'list')") is not an instance of <class 'PermissionError'>
+
+======================================================================
+FAIL: test_missing_and_malformed_account_ids_are_denied_without_mutation (test_archive_contract.ArchiveContractTests.test_missing_and_malformed_account_ids_are_denied_without_mutation) (route='service', account_id={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 106, in test_missing_and_malformed_account_ids_are_denied_without_mutation
+    self.assert_denied_unchanged(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        lambda: self.invoke(route, 'admin', account_id))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 41, in assert_denied_unchanged
+    self.assertIsInstance(error, PermissionError)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: TypeError("cannot use 'dict' as a dict key (unhashable type: 'dict')") is not an instance of <class 'PermissionError'>
+
+======================================================================
+FAIL: test_missing_and_malformed_account_ids_are_denied_without_mutation (test_archive_contract.ArchiveContractTests.test_missing_and_malformed_account_ids_are_denied_without_mutation) (route='service', account_id=['A'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 106, in test_missing_and_malformed_account_ids_are_denied_without_mutation
+    self.assert_denied_unchanged(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        lambda: self.invoke(route, 'admin', account_id))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 41, in assert_denied_unchanged
+    self.assertIsInstance(error, PermissionError)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: TypeError("cannot use 'list' as a dict key (unhashable type: 'list')") is not an instance of <class 'PermissionError'>
+
+======================================================================
+FAIL: test_missing_and_malformed_account_ids_are_denied_without_mutation (test_archive_contract.ArchiveContractTests.test_missing_and_malformed_account_ids_are_denied_without_mutation) (route='service', account_id={'id': 'A'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 106, in test_missing_and_malformed_account_ids_are_denied_without_mutation
+    self.assert_denied_unchanged(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        lambda: self.invoke(route, 'admin', account_id))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 41, in assert_denied_unchanged
+    self.assertIsInstance(error, PermissionError)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: TypeError("cannot use 'dict' as a dict key (unhashable type: 'dict')") is not an instance of <class 'PermissionError'>
+
+======================================================================
+FAIL: test_missing_and_malformed_account_ids_are_denied_without_mutation (test_archive_contract.ArchiveContractTests.test_missing_and_malformed_account_ids_are_denied_without_mutation) (route='transport', account_id=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 106, in test_missing_and_malformed_account_ids_are_denied_without_mutation
+    self.assert_denied_unchanged(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        lambda: self.invoke(route, 'admin', account_id))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 41, in assert_denied_unchanged
+    self.assertIsInstance(error, PermissionError)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: TypeError("cannot use 'list' as a dict key (unhashable type: 'list')") is not an instance of <class 'PermissionError'>
+
+======================================================================
+FAIL: test_missing_and_malformed_account_ids_are_denied_without_mutation (test_archive_contract.ArchiveContractTests.test_missing_and_malformed_account_ids_are_denied_without_mutation) (route='transport', account_id={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 106, in test_missing_and_malformed_account_ids_are_denied_without_mutation
+    self.assert_denied_unchanged(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        lambda: self.invoke(route, 'admin', account_id))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 41, in assert_denied_unchanged
+    self.assertIsInstance(error, PermissionError)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: TypeError("cannot use 'dict' as a dict key (unhashable type: 'dict')") is not an instance of <class 'PermissionError'>
+
+======================================================================
+FAIL: test_missing_and_malformed_account_ids_are_denied_without_mutation (test_archive_contract.ArchiveContractTests.test_missing_and_malformed_account_ids_are_denied_without_mutation) (route='transport', account_id=['A'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 106, in test_missing_and_malformed_account_ids_are_denied_without_mutation
+    self.assert_denied_unchanged(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        lambda: self.invoke(route, 'admin', account_id))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 41, in assert_denied_unchanged
+    self.assertIsInstance(error, PermissionError)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: TypeError("cannot use 'list' as a dict key (unhashable type: 'list')") is not an instance of <class 'PermissionError'>
+
+======================================================================
+FAIL: test_missing_and_malformed_account_ids_are_denied_without_mutation (test_archive_contract.ArchiveContractTests.test_missing_and_malformed_account_ids_are_denied_without_mutation) (route='transport', account_id={'id': 'A'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 106, in test_missing_and_malformed_account_ids_are_denied_without_mutation
+    self.assert_denied_unchanged(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        lambda: self.invoke(route, 'admin', account_id))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 41, in assert_denied_unchanged
+    self.assertIsInstance(error, PermissionError)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: TypeError("cannot use 'dict' as a dict key (unhashable type: 'dict')") is not an instance of <class 'PermissionError'>
+
+======================================================================
+FAIL: test_owner_relationship_does_not_override_tenant_boundary (test_archive_contract.ArchiveContractTests.test_owner_relationship_does_not_override_tenant_boundary) (route='service', hint='t2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 89, in test_owner_relationship_does_not_override_tenant_boundary
+    self.assert_denied_unchanged(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        lambda: self.invoke(route, 'alice', 'E', hint))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 37, in assert_denied_unchanged
+    self.assertTrue(store.ACCOUNTS == accounts_before,
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    'Denied archive must preserve every account and field')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Denied archive must preserve every account and field
+
+======================================================================
+FAIL: test_owner_relationship_does_not_override_tenant_boundary (test_archive_contract.ArchiveContractTests.test_owner_relationship_does_not_override_tenant_boundary) (route='transport', hint='t2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 89, in test_owner_relationship_does_not_override_tenant_boundary
+    self.assert_denied_unchanged(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        lambda: self.invoke(route, 'alice', 'E', hint))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 37, in assert_denied_unchanged
+    self.assertTrue(store.ACCOUNTS == accounts_before,
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    'Denied archive must preserve every account and field')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Denied archive must preserve every account and field
+
+======================================================================
+FAIL: test_spoofed_tenant_hint_cannot_authorize_cross_tenant_admin (test_archive_contract.ArchiveContractTests.test_spoofed_tenant_hint_cannot_authorize_cross_tenant_admin) (route='service', actor='admin')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 80, in test_spoofed_tenant_hint_cannot_authorize_cross_tenant_admin
+    self.assert_denied_unchanged(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        lambda: self.invoke(route, actor_id, account_id, hint))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 37, in assert_denied_unchanged
+    self.assertTrue(store.ACCOUNTS == accounts_before,
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    'Denied archive must preserve every account and field')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Denied archive must preserve every account and field
+
+======================================================================
+FAIL: test_spoofed_tenant_hint_cannot_authorize_cross_tenant_admin (test_archive_contract.ArchiveContractTests.test_spoofed_tenant_hint_cannot_authorize_cross_tenant_admin) (route='service', actor='eve')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 80, in test_spoofed_tenant_hint_cannot_authorize_cross_tenant_admin
+    self.assert_denied_unchanged(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        lambda: self.invoke(route, actor_id, account_id, hint))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 37, in assert_denied_unchanged
+    self.assertTrue(store.ACCOUNTS == accounts_before,
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    'Denied archive must preserve every account and field')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Denied archive must preserve every account and field
+
+======================================================================
+FAIL: test_spoofed_tenant_hint_cannot_authorize_cross_tenant_admin (test_archive_contract.ArchiveContractTests.test_spoofed_tenant_hint_cannot_authorize_cross_tenant_admin) (route='transport', actor='admin')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 80, in test_spoofed_tenant_hint_cannot_authorize_cross_tenant_admin
+    self.assert_denied_unchanged(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        lambda: self.invoke(route, actor_id, account_id, hint))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 37, in assert_denied_unchanged
+    self.assertTrue(store.ACCOUNTS == accounts_before,
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    'Denied archive must preserve every account and field')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Denied archive must preserve every account and field
+
+======================================================================
+FAIL: test_spoofed_tenant_hint_cannot_authorize_cross_tenant_admin (test_archive_contract.ArchiveContractTests.test_spoofed_tenant_hint_cannot_authorize_cross_tenant_admin) (route='transport', actor='eve')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 80, in test_spoofed_tenant_hint_cannot_authorize_cross_tenant_admin
+    self.assert_denied_unchanged(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        lambda: self.invoke(route, actor_id, account_id, hint))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 37, in assert_denied_unchanged
+    self.assertTrue(store.ACCOUNTS == accounts_before,
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    'Denied archive must preserve every account and field')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Denied archive must preserve every account and field
+
+======================================================================
+FAIL: test_transport_uses_authenticated_actor_not_session_hints (test_archive_contract.ArchiveContractTests.test_transport_uses_authenticated_actor_not_session_hints) (actor='eve', account='A')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 129, in test_transport_uses_authenticated_actor_not_session_hints
+    self.assert_denied_unchanged(operation)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "validation/expansion/swarm/project/tests/test_archive_contract.py", line 37, in assert_denied_unchanged
+    self.assertTrue(store.ACCOUNTS == accounts_before,
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    'Denied archive must preserve every account and field')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Denied archive must preserve every account and field
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.012s
+
+FAILED (failures=15, errors=16)
+make: *** [check] Error 1

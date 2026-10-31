@@ -2,3 +2,4 @@
 validation/**/*.log -whitespace
 validation/**/*.patch -whitespace
 validation/**/*.diff -whitespace
+validation/expansion/swarm/*-check.txt -whitespace

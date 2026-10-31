@@ -31,14 +31,14 @@
   <div class="detail" id="se-animation-detail" role="status" aria-live="polite" aria-atomic="true"></div>
   <div class="diagram" role="group" aria-label="Engineering workflow. Moving dots represent illustrative work and evidence, not completed real checks.">
     <svg class="wires" aria-hidden="true"><path></path></svg>
-    <div class="phase" data-node="ground"><span class="anchor" aria-hidden="true"></span><div class="phase-title">Ground in this project <span class="current-label text-small"></span></div><div class="phase-content text-small">Root + revision · local rules + contracts · active code · test/CI setup</div></div>
+    <div class="phase" data-node="ground"><span class="anchor" aria-hidden="true"></span><div class="phase-title">/se-proof · grounded understanding <span class="current-label text-small"></span></div><div class="phase-content text-small">Root + revision · local rules + contracts · active code · evidence gaps</div></div>
     <div class="phase" data-node="questions"><span class="anchor" aria-hidden="true"></span><div class="phase-title">Resolve relevant questions <span class="current-label text-small"></span></div><div class="phase-content question-labels text-small"><span>/se-what</span><span>/se-why</span><span>/se-who</span><span>/se-where</span><span>/se-how</span><span>/se-when</span></div></div>
     <div class="phase" data-node="trust"><span class="anchor" aria-hidden="true"></span><div class="phase-title">/se-zero-trust <span class="current-label text-small"></span></div><div class="phase-content text-small">Required before every new or modified code change · depth follows risk</div></div>
-    <div class="phase" data-node="work"><span class="anchor" aria-hidden="true"></span><div class="phase-title">Implement · /se-concurrent when useful <span class="current-label text-small"></span></div><div class="phase-content text-small">Optional split · disjoint ownership · shared contract</div><div class="lanes"><div class="lane" data-lane="a"><span class="anchor" aria-hidden="true"></span><span class="text-small">Owner A · interface</span></div><div class="lane" data-lane="b"><span class="anchor" aria-hidden="true"></span><span class="text-small">Owner B · service</span></div></div></div>
+    <div class="phase" data-node="work"><span class="anchor" aria-hidden="true"></span><div class="phase-title">Implement · /se-swarm when useful <span class="current-label text-small"></span></div><div class="phase-content text-small">Adaptive scoped workers · /se-concurrent owns isolation and integration</div><div class="lanes"><div class="lane" data-lane="a"><span class="anchor" aria-hidden="true"></span><span class="text-small">Owner A · interface</span></div><div class="lane" data-lane="b"><span class="anchor" aria-hidden="true"></span><span class="text-small">Owner B · service</span></div></div></div>
     <div class="phase" data-node="integrate"><span class="anchor" aria-hidden="true"></span><div class="phase-title">Integrate the combined revision <span class="current-label text-small"></span></div><div class="phase-content text-small">Writers stopped · reconcile interfaces · capture exact source state</div></div>
     <div class="phase" data-node="final-review"><span class="anchor" aria-hidden="true"></span><div class="phase-title">Recheck /se-zero-trust on the final diff <span class="current-label text-small"></span></div><div class="phase-content text-small">Review changed boundaries and authorization assumptions</div></div>
     <div class="phase" data-node="verify"><span class="anchor" aria-hidden="true"></span><div class="phase-title">/se-verify <span class="current-label text-small"></span></div><div class="phase-content text-small" id="se-verify-state">Required behavioral evidence · missing evidence cannot pass</div></div>
-    <div class="phase" data-node="outcome"><span class="anchor" aria-hidden="true"></span><div class="phase-title">Close with scoped evidence <span class="current-label text-small"></span></div><div class="phase-content text-small">Local PASS ≠ deployed proof or deployment authorization</div></div>
+    <div class="phase" data-node="outcome"><span class="anchor" aria-hidden="true"></span><div class="phase-title">Close evidence · /se-visualise when useful <span class="current-label text-small"></span></div><div class="phase-content text-small">Local PASS ≠ deployed proof or deployment authorization</div></div>
     <span class="token" id="se-token-a" aria-hidden="true"></span><span class="token" id="se-token-b" aria-hidden="true" hidden></span>
   </div>
 </div>
@@ -56,18 +56,18 @@
   const tokens = [root.querySelector('#se-token-a'), root.querySelector('#se-token-b')];
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   const stages = [
-    { node: 'ground', text: 'Start with the actual project, revision, contracts, active paths, and validation setup.' },
-    { node: 'questions', text: 'Use only the question skills needed to resolve scope, rationale, ownership, location, approach, and order.' },
+    { node: 'ground', text: '/se-proof grounds understanding in the project, revision, active paths, validation setup, and evidence gaps.' },
+    { node: 'questions', text: 'Use relevant question skills; /se-who selects suitable specialists, people, or agents without granting authority.' },
     { node: 'trust', text: 'Review trust and authorization before coding; existing approval stays scoped, and prompts grant no authority.' },
-    { node: 'work', split: true, text: 'Two independent owners implement against one agreed contract; concurrency is optional.' },
+    { node: 'work', split: true, text: '/se-swarm adapts scoped workers; /se-concurrent separates ownership and resources. This split is optional.' },
     { node: 'integrate', text: 'Stop concurrent writers, reconcile their outputs, and capture combined revision A.' },
     { node: 'final-review', text: 'Review revision A’s final diff for changed trust boundaries before accepting its evidence.' },
     { node: 'verify', result: 'fail', text: 'Revision A: a contract check FAILS. Keep the failure; this revision cannot pass.' },
-    { node: 'work', repair: true, text: 'Recheck affected trust assumptions, reuse valid review, then repair. Revision A’s failure stays recorded.' },
+    { node: 'work', repair: true, text: 'Recheck trust, reuse valid review, then one bounded /se-swarm repair cycle. Retain A’s FAIL; stop if the limit is reached.' },
     { node: 'integrate', text: 'Reintegrate the repair with all writers stopped; capture combined revision B.' },
     { node: 'final-review', text: 'Recheck revision B’s final diff and any changed trust assumptions.' },
     { node: 'verify', result: 'pass', text: 'Revision B: rerun the failed check and required combined checks; the example now has passing evidence.' },
-    { node: 'outcome', text: 'Report local PASS for revision B with evidence and limits. Deployment still requires its own authorization.' }
+    { node: 'outcome', text: 'Report B’s local evidence and limits; /se-visualise clarifies when useful. Animate time, state, or causality—not proof.' }
   ];
   let index = 0;
   let playing = false;

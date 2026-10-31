@@ -1,6 +1,6 @@
 # SE skills
 
-Nine standalone skills for project-grounded AI-assisted software engineering. Every new or modified code change requires a zero-trust review and verification, with depth proportional to risk. This repository contains nine independently installable skill packages. Publishing this repository does not install them into any agent host.
+Twelve standalone skills for project-grounded AI-assisted software engineering. Material claims and implementation decisions require relevant evidence and a coherent understanding of the mechanism. Every new or modified code change requires a zero-trust review and verification, with depth proportional to risk. Publishing this repository does not install the skills into any agent host.
 
 ## Install and explore
 
@@ -42,6 +42,8 @@ This covers source, generated/vendor updates, tests, runtime configuration, depe
 
 The responsibilities are mandatory even when only one skill is invoked or companion skills are unavailable. Markdown skills guide behavior; actual security enforcement remains in application, executor, and host controls.
 
+For information as well as code, establish what the evidence supports before presenting a conclusion. Trace the mechanism, explain relevant assumptions and failure cases, distinguish observation from inference, and make uncertainty visible. Evidence depth follows the consequence of being wrong; citation volume or agent agreement is not proof. `/se-proof` makes this responsibility explicit without claiming mathematical certainty or requiring a full audit for every answer.
+
 ## Project evidence, not assumed context
 
 | Establish | Evidence to use |
@@ -60,13 +62,16 @@ Reuse a verified project brief while it remains current. Resolve material target
 |---|---|---|
 | What? | [/se-what](se-what/SKILL.md) | Scope, acceptance criteria, non-goals, and unresolved requirements |
 | Why? | [/se-why](se-why/SKILL.md) | Evidence-backed rationale, alternatives, and tradeoffs |
-| Who? | [/se-who](se-who/SKILL.md) | People/team ownership, decision authority, and handoff responsibilities |
+| Who? | [/se-who](se-who/SKILL.md) | Evidence-based selection of people, specialists or agents; ownership, authority and handoffs |
 | Where? | [/se-where](se-where/SKILL.md) | Code, architecture, environment, and evidence locations |
 | How? | [/se-how](se-how/SKILL.md) | Mechanism explanation or implementation approach within the authorized scope |
 | When? | [/se-when](se-when/SKILL.md) | Dependencies, timing, prerequisites, and rollout conditions |
 | Zero trust | [/se-zero-trust](se-zero-trust/SKILL.md) | Mandatory change review of project trust assumptions and affected enforcement boundaries |
 | Verify | [/se-verify](se-verify/SKILL.md) | Mandatory change verification, evidence, gate decisions, and bounded claims |
 | Concurrent work | [/se-concurrent](se-concurrent/SKILL.md) | Worker assignments, safe ownership transfer, integration, and combined validation |
+| Proof | [/se-proof](se-proof/SKILL.md) | Supported claims, source provenance, causal understanding and explicit uncertainty |
+| Visualise | [/se-visualise](se-visualise/SKILL.md) | Appropriate inline explanation, with meaningful animation and accessible alternatives |
+| Swarm | [/se-swarm](se-swarm/SKILL.md) | Active multi-agent execution, evidence review and bounded remediation to completion |
 
 Each folder is independently usable and contains `SKILL.md` plus `agents/openai.yaml`. There are no mandatory sibling skills or vendor-specific tools. Actual task execution still needs the relevant host capabilities and access. Normal automatic selection is retained in metadata; discovery requires a later installation step in the target host.
 
@@ -76,22 +81,25 @@ The skill identifiers are `se-what`, `se-how`, etc. `/se-what` is a guide label,
 
 ```mermaid
 flowchart TD
-    R[Project engineering request] --> G[Establish current project evidence]
+    R[Project engineering request] --> G["/se-proof: ground claims and understand the mechanism"]
     G --> Q[Choose relevant questions]
     Q --> WHAT["/se-what: desired outcome"]
     Q --> WHY["/se-why: evidence and rationale"]
-    Q --> WHO["/se-who: people and authority"]
+    Q --> WHO["/se-who: expertise, people, agents and authority"]
     Q --> WHERE["/se-where: code and boundaries"]
     Q --> HOW["/se-how: mechanism and implementation"]
     Q --> WHEN["/se-when: order and prerequisites"]
     G --> C[Every new or modified code change]
     C --> Z["/se-zero-trust: required review"]
     Z --> E[Authorized implementation]
-    Q -. optional independent work .-> P["/se-concurrent"]
-    P --> I[Integrate a stable combined revision]
-    E --> I
+    WHO -. useful authorized delegation .-> S["/se-swarm: coordinate and iterate"]
+    S --> P["/se-concurrent: isolation and integration discipline"]
+    P -->|new code or repairs| Z
+    E --> I[Integrate a stable combined revision]
     I --> V["/se-verify: required verification"]
     V -->|scoped gate and evidence| WHEN
+    V -->|repairable failure within scope| S
+    G -. comprehension where useful .-> VIS["/se-visualise: appropriate inline explanation"]
 ```
 
 Choose question skills and concurrency according to the task. Every code-change path retains the required zero-trust and verification responsibilities, applied directly or through the corresponding skills. A conceptual explanation does not authorize implementation or require a fictional change baseline.
@@ -103,8 +111,11 @@ Choose question skills and concurrency according to the task. Every code-change 
 | Who / Where | Who maps people, teams, and decision authority; Where maps code, layers, resources, and evidence. |
 | How / When | How defines the implementation approach; When orders prerequisites and decides which action is eligible next. |
 | When / Verify | Verify produces or assesses the evidence gate; When preserves that gate and adds scheduling conditions. A conditional plan is not a CONDITIONAL gate. |
-| Who / Concurrent | Who establishes accountability; Concurrent assigns workers and manages isolation, ownership, and integration. |
+| Who / Swarm / Concurrent | Who selects suitable expertise and accountability; Swarm launches and adapts the team; Concurrent governs safe scheduling, isolation, ownership and integration. |
 | Zero trust / Verify | Zero trust selects authorization boundaries and denial cases; Verify qualifies the resulting evidence. Neither Markdown skill enforces permissions itself. |
+| Proof / Verify | Proof establishes supported claims and causal understanding; Verify executes or qualifies checks and preserves gate decisions. Neither citations nor a green suite alone prove the whole system. |
+| Proof / Why / How | Proof checks support and uncertainty; Why evaluates rationale and tradeoffs; How explains or implements the mechanism. |
+| Visualise / Proof | Visualise presents an evidence-backed mechanism for comprehension; a convincing diagram cannot fill evidence gaps or raise a gate. |
 
 Handoffs should carry the task scope, current revision/environment, known decisions, evidence locations, unresolved assumptions, authorization limits, and next responsible owner as relevant. Preserve existing valid evidence and authority; avoid restarting discovery or requesting the same approval merely because a different skill is selected.
 
@@ -115,16 +126,21 @@ After installation, invoke one explicitly with its `$` name, or let the host sel
 ```text
 Use $se-what to define acceptance criteria for adding team invitations.
 Use $se-why to investigate why this service retries failed payments.
-Use $se-who to identify owners and approvers for an authentication change.
+Use $se-who to choose the right specialist or agent for an authentication change.
 Use $se-where to locate authorization checks and their integration tests.
 Use $se-how to explain this request flow before we decide on changes.
 Use $se-when to sequence a backward-compatible database migration.
 Use $se-zero-trust to review an agent that reads issues and opens pull requests.
 Use $se-verify to assess whether this change meets its acceptance criteria.
 Use $se-concurrent to implement these independent tasks and validate the result.
+Use $se-proof to substantiate this explanation and identify what remains unknown.
+Use $se-visualise to explain this retry and recovery mechanism inline.
+Use $se-swarm to coordinate specialists, repair verified gaps, and validate the combined result.
 ```
 
 Use the smallest useful combination of question skills. Ground the task first, then carry the mandatory zero-trust and verification baseline through every code change. Use concurrency only where work can safely overlap. Do not repeat a completed, still-valid assessment merely because a different skill is selected.
+
+When a swarm is requested, launch useful workers within available capacity and authority instead of stopping at a proposed plan. Continue independent authorized work while a genuine dependency is blocked. Iterate on concrete findings until acceptance is evidenced; re-plan when progress stalls. Required approvals, permission denials and cost limits remain real boundaries. Finish when the scoped outcome is met; endless rewrites and unbounded perfection are not completion criteria.
 
 ## Scope and authority
 

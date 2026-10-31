@@ -6,6 +6,9 @@ description: Apply mandatory, risk-scaled verification and zero-trust review to 
 # SE Verify
 
 Demonstrate behavior on the relevant revision/environment; separate check outcomes from acceptance or release.
+Grounded claim support and causal understanding are the proof responsibility; verification
+adds executed checks and acceptance decisions. Apply both directly when companion skills
+are unavailable. A citation, explanation, visualization or worker consensus cannot replace a required check.
 
 ## Mandatory baseline for code changes
 

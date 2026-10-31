@@ -1,6 +1,7 @@
 """Portable package integrity and synthetic behavior checks; Python >= 3.10."""
 from pathlib import Path
 import hashlib
+import json
 import os
 import re
 import subprocess
@@ -8,7 +9,8 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED = {f'se-{name}' for name in (
-    'what', 'why', 'who', 'where', 'how', 'when', 'zero-trust', 'verify', 'concurrent'
+    'what', 'why', 'who', 'where', 'how', 'when', 'zero-trust', 'verify', 'concurrent',
+    'proof', 'visualise', 'swarm'
 )}
 
 
@@ -45,7 +47,7 @@ def require_tests(result, output, count, label):
 
 def main():
     actual = {path.parent.name for path in ROOT.glob('*/SKILL.md')}
-    require(actual == EXPECTED, f'expected nine skills, found {sorted(actual)}')
+    require(actual == EXPECTED, f'expected {len(EXPECTED)} skills, found {sorted(actual)}')
     for name in sorted(EXPECTED):
         text = (ROOT / name / 'SKILL.md').read_text()
         frontmatter = text.split('---', 2)
@@ -69,7 +71,7 @@ def main():
                     continue
                 resolved = (path.parent / target.split('#')[0]).resolve()
                 require(resolved.is_relative_to(ROOT) and resolved.exists(), f'{name}: invalid link {target}')
-    print('PASS: nine skill packages, required fields, local links, complete hash manifest')
+    print(f'PASS: {len(EXPECTED)} skill packages, required fields, local links, complete hash manifest')
 
     fixture = ROOT / 'validation/code-baseline'
     for name, project_count, independent_count in (('new', 10, 7), ('update', 8, 8)):
@@ -85,6 +87,23 @@ def main():
             'AssertionError: PermissionError not raised' in output,
             f'negative control did not detect tenant bypass\n{output}')
     print('PASS: original defective implementation rejected for tenant bypass')
+
+    expansion = ROOT / 'validation/expansion'
+    result, output = run([str(expansion / 'proof/check_archive.py')])
+    require(result.returncode == 1, f'proof exercise must retain observed defects\n{output}')
+    observations = json.loads(output)
+    bypass = next(case for case in observations['cases']
+                  if case['case'] == 'admin cross tenant with target hint')
+    require(observations['passed'] == 6 and observations['total'] == 10 and
+            not bypass['contract_pass'] and bypass['changed_accounts'] == ['E'] and
+            bypass['events_changed'], 'proof exercise did not reproduce unauthorized effects')
+    print('PASS: proof exercise reproduces tenant bypass despite original green suite')
+
+    result, output = run(['-m', 'unittest', 'discover', '-s', 'tests', '-v'], expansion / 'swarm/project')
+    require_tests(result, output, 10, 'swarm integrated project checks')
+    result, output = run([str(fixture / 'grade_fixture.py'), 'update', str(expansion / 'swarm/project')])
+    require_tests(result, output, 8, 'swarm independent checks')
+    print('PASS: swarm project and independent checks')
 
 
 if __name__ == '__main__':

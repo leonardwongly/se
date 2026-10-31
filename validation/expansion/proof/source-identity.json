@@ -1,0 +1,15 @@
+{
+  "root": "validation/code-baseline/original-update",
+  "files": {
+    "AGENTS.md": "367d02e5600cfe923cbb1f30d26333a4f60baaf2067e2597f9aca0b5c1935211",
+    "Makefile": "d45cf9b2fa7841fe689461203e073cbd78d4b2dfddaae127e6f5d0290db40923",
+    "docs/archive/legacy-design.md": "bdc149d538a6fe880ab6e5eb34cf67eebec9514a07179f31674cefd38cf275a2",
+    "docs/security-contract.md": "b821dfca7631ca0ef60ba3501fde7407f0aa79591c490dc12dee6fcb2e765e8c",
+    "pyproject.toml": "8e66f1cd98dbadd8a2c21d5efca76c8dabae1238a3276fbc1ea0be7b0074346e",
+    "service.py": "a28565411d66f5353909f6eb51bfc80d4bce3b30117b27bc80f5d7f7a15f9ecc",
+    "store.py": "4932d2c4c38ce0fdadfe4a908c3e34df7696c3ae9e21e62a57955e1df419eef3",
+    "tests/test_existing.py": "df33fe14bd37cd9c1feca6567f0e1d93e0fab4e972455fde7692236998a7344b",
+    "transport.py": "4c51f72d7b14d90660a1cb68c264352accced96c57229e6997f5fff285b10802"
+  },
+  "aggregate_sha256": "c26337c213a83ef98ba1395391dbb76746939b92dc2a793007d88f8768b405bf"
+}

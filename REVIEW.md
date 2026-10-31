@@ -1,3 +1,7 @@
+# Twelve-skill expansion
+
+The new proof, visualise and swarm skills, expanded who selection, overlap boundaries and updated guides were reviewed separately. See [current review and observed trials](validation/EXPANSION-REVIEW.md). The earlier review below is retained as history.
+
 # Review and fixes — mandatory project-grounded baseline
 
 ## Latest revision: every code change

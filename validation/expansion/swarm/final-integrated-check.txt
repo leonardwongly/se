@@ -1,0 +1,16 @@
+python3 -m unittest discover -s tests -v
+test_irrelevant_tenant_hints_cannot_deny_authorized_archive (test_archive_contract.ArchiveContractTests.test_irrelevant_tenant_hints_cannot_deny_authorized_archive) ... ok
+test_malformed_actor_ids_are_denied_without_mutation (test_archive_contract.ArchiveContractTests.test_malformed_actor_ids_are_denied_without_mutation) ... ok
+test_missing_and_malformed_account_ids_are_denied_without_mutation (test_archive_contract.ArchiveContractTests.test_missing_and_malformed_account_ids_are_denied_without_mutation) ... ok
+test_nonowners_cross_tenant_and_unknown_actors_are_denied (test_archive_contract.ArchiveContractTests.test_nonowners_cross_tenant_and_unknown_actors_are_denied) ... ok
+test_owner_relationship_does_not_override_tenant_boundary (test_archive_contract.ArchiveContractTests.test_owner_relationship_does_not_override_tenant_boundary) ... ok
+test_public_signature_retains_optional_compatibility_hint (test_archive_contract.ArchiveContractTests.test_public_signature_retains_optional_compatibility_hint) ... ok
+test_same_tenant_owner_and_admin_are_allowed (test_archive_contract.ArchiveContractTests.test_same_tenant_owner_and_admin_are_allowed) ... ok
+test_spoofed_tenant_hint_cannot_authorize_cross_tenant_admin (test_archive_contract.ArchiveContractTests.test_spoofed_tenant_hint_cannot_authorize_cross_tenant_admin) ... ok
+test_transport_uses_authenticated_actor_not_session_hints (test_archive_contract.ArchiveContractTests.test_transport_uses_authenticated_actor_not_session_hints) ... ok
+test_owner_archives (test_existing.ExistingTests.test_owner_archives) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.003s
+
+OK

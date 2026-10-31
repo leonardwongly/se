@@ -1,0 +1,13 @@
+test_cross_tenant_admin_denied (__main__.UpdatedCode.test_cross_tenant_admin_denied) ... ok
+test_invalid_resources_denied (__main__.UpdatedCode.test_invalid_resources_denied) ... ok
+test_legacy_hint_cannot_change_valid_authority (__main__.UpdatedCode.test_legacy_hint_cannot_change_valid_authority) ... ok
+test_non_owner_denied (__main__.UpdatedCode.test_non_owner_denied) ... ok
+test_owner_allowed (__main__.UpdatedCode.test_owner_allowed) ... ok
+test_same_tenant_admin_allowed (__main__.UpdatedCode.test_same_tenant_admin_allowed) ... ok
+test_spoofed_tenant_hint_denied (__main__.UpdatedCode.test_spoofed_tenant_hint_denied) ... ok
+test_unknown_actor_denied (__main__.UpdatedCode.test_unknown_actor_denied) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.000s
+
+OK

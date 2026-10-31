@@ -1,0 +1,14 @@
+--- baseline/service.py
++++ final/service.py
+@@ -2,8 +2,10 @@
+ 
+ def archive_account(actor_id, account_id, tenant_hint=None):
+     actor = store.authenticated_actor(actor_id)
++    if not isinstance(account_id, str):
++        raise PermissionError('access denied')
+     account = store.ACCOUNTS.get(account_id)
+-    if account is None or account['tenant_id'] != (tenant_hint or actor['tenant_id']):
++    if account is None or account['tenant_id'] != actor['tenant_id']:
+         raise PermissionError('access denied')
+     if actor['role'] != 'admin' and account['owner_id'] != actor_id:
+         raise PermissionError('access denied')

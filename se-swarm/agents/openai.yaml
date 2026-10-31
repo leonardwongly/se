@@ -1,0 +1,3 @@
+interface:
+  display_name: "SE Swarm"
+  short_description: "Coordinate agents through evidence, repair, and completion"

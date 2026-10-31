@@ -1,12 +1,13 @@
 ---
 name: se-who
-description: Identify the people, teams, reviewers, decision authorities, and operational owners responsible for an AI or software change. Use for accountability and approval ownership, rather than locating the code that owns a behavior.
+description: Choose suitable people or available agents to explain, investigate, implement, or review software work, and establish ownership and decision authority from evidence. Use for expertise selection and actionable delegation, rather than locating code or orchestrating an entire swarm.
 ---
 
 # SE Who
 
-Identify who performs, reviews, approves, and operates a software change, while keeping
-ownership evidence separate from permission to act.
+Choose the expertise needed to understand or complete the task, then establish who
+performs, reviews, approves, and operates the work. Keep capability, ownership, and
+permission separate: a capable agent is not automatically an authorized decision maker.
 
 ## Ground the task in the project
 
@@ -35,6 +36,34 @@ Distinguish these roles when they affect the task:
 One person may hold several roles. Do not invent a formal committee or approval chain
 for a small change when established project practice already answers the question.
 
+## Choose expertise for the actual gap
+
+Identify what is missing: a domain explanation, code-path investigation, implementation,
+test design, independent review, or a decision only an authorized person can make.
+Choose the smallest useful set of contributors based on:
+
+- Demonstrated fit: relevant maintained ownership, prior work, or observed capability;
+  a job title, model name, or self-description alone does not prove expertise.
+- Context and access: ability to inspect the current project, run the necessary tools,
+  and handle the permitted data without expanding access or exposing secrets.
+- Independence: sufficient separation from the proposed answer to challenge assumptions;
+  shared model ancestry or agreement among agents is not independent corroboration.
+- Availability and cost: current host capabilities, task budget, handoff overhead, and
+  time needed to return a useful artifact. Avoid unsupported universal model rankings.
+- Authority: whether this is technical assistance or a decision reserved to an evidenced
+  owner. Use a qualified human for required domain judgment or approval; do not impersonate one.
+
+For explanation, ask the chosen specialist for a concise mechanism, source references,
+assumptions, and a concrete example or counterexample. Assess that account against the
+actual evidence before using it to guide changes. For implementation, match the worker
+to the affected language, subsystem, trust boundaries, and validation needs.
+
+When local delegation is authorized and the selected agent is available, make the bounded
+assignment using the host's worker tools; do not stop at suggesting a role. Continue
+independent work while it runs. If the user asked only to identify an owner, provide the
+mapping without initiating a new execution task. If suitable tools or access are unavailable,
+state the gap and continue feasible work directly; never invent a launched agent.
+
 ## Establish ownership from evidence
 
 1. Prefer explicit current task assignments and maintained ownership records.
@@ -55,6 +84,9 @@ the listed people. A review approval does not imply approval for unrelated actio
 - Assign each deliverable a clear integration owner, not just a list of contributors.
 - Describe the receiving owner, artifact or interface, completion evidence, and any
   dependency needed before the handoff is usable.
+- Supply only necessary context: objective, baseline, source locations, authority limits,
+  permitted write scope or read-only role, budget, and expected evidence. Tell workers
+  others may be active and to preserve their work. A role assignment conveys no new authority.
 - When authorized concurrent work is involved, give contributors non-overlapping file
   or module ownership where practical, and identify shared interfaces before editing.
 - Ensure an integration owner reconciles interfaces and validates the combined result.
@@ -89,6 +121,11 @@ pause only the action whose correctness or authorization depends on the answer.
 Use the smallest appropriate review scope. Specialist review is justified by the
 change's actual complexity or risk, not by a blanket requirement for every task.
 
+This skill selects expertise and assigns responsibility. `/se-swarm` manages adaptive
+multi-agent execution; `/se-concurrent` manages safe overlap and integration. Those are
+optional companion skills, not installation dependencies. Reuse valid assignments and
+prior authorization instead of repeatedly asking the user to confirm the same work.
+
 ## Sources and interpretation
 
 These sources inform responsibility mapping; actual authority comes from task context
@@ -96,4 +133,5 @@ and the applicable project's rules.
 
 - [GitHub CODEOWNERS documentation](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners): file ownership and review-routing semantics.
 - [Google code review guidance](https://google.github.io/eng-practices/review/reviewer/looking-for.html): match reviewer expertise to the relevant scope.
+- [Google: picking reviewers](https://google.github.io/eng-practices/review/): select expertise and availability for the actual change.
 - [NIST SSDF 1.1](https://csrc.nist.gov/pubs/sp/800/218/final): integrate secure development practices into organizational workflows.

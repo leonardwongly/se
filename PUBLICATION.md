@@ -1,6 +1,6 @@
 # Publication notes
 
-This repository packages the nine reviewed `se-*` skills and two illustrative guides. Skill entrypoints and metadata retain the reviewed behavior. Publication does not install the skills, enforce runtime authorization, or qualify a production release.
+This repository packages twelve `se-*` skills and two illustrative guides. The original nine-skill evidence remains historical; the proof, visualise, swarm and specialist-selection update has its own [review record](validation/EXPANSION-REVIEW.md). Publication does not install the skills, enforce runtime authorization, or qualify a production release.
 
 ## Evidence portability
 
@@ -17,8 +17,8 @@ Only path text was normalized in historical evidence. Test results, timestamps, 
 
 ## Validation
 
-`python3 scripts/validate.py` checks the nine package names and required entrypoint fields, portable Markdown links, complete package hashes, both implementation test suites, both independent grader suites, and rejection of the original defective implementation. The negative control must report the specific tenant-isolation assertion failure; an import or environment error alone cannot satisfy it. This portable check is narrower than a full skill schema or live agent-routing evaluation.
+`python3 scripts/validate.py` checks the twelve package names and required entrypoint fields, portable Markdown links, complete package hashes, both implementation test suites, both independent grader suites, and rejection of the original defective implementation. The negative control must report the specific tenant-isolation assertion failure; an import or environment error alone cannot satisfy it. This portable check is narrower than a full skill schema or live agent-routing evaluation.
 
-The guide pages were exported from the previously tested fragments with the visualization runtime wrapper. The exported animation's Replay, progression, and Pause were checked in a local browser; the map rendered all nine skill controls. Their animation is illustrative; retained browser evidence is documented in `validation/ANIMATION-CHECKS.md`. No public website deployment or production-project validation is implied.
+The guide pages are exported from the source fragments with the visualization runtime wrapper. Original nine-skill browser evidence is retained in `validation/ANIMATION-CHECKS.md`; current guide checks are recorded with the twelve-skill update. Their animation is illustrative. No public website deployment or production-project validation is implied.
 
 The portable validator requires the recorded test counts and no skipped tests, so an empty test run cannot pass.

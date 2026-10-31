@@ -1,0 +1,138 @@
+{
+  "cases": [
+    {
+      "case": "owner own tenant",
+      "expected": "allow",
+      "exception": null,
+      "changed_accounts": [
+        "A"
+      ],
+      "events": [
+        {
+          "actor_id": "alice",
+          "account_id": "A"
+        }
+      ],
+      "events_changed": true,
+      "contract_pass": true
+    },
+    {
+      "case": "admin own tenant",
+      "expected": "allow",
+      "exception": null,
+      "changed_accounts": [
+        "B"
+      ],
+      "events": [
+        {
+          "actor_id": "admin",
+          "account_id": "B"
+        }
+      ],
+      "events_changed": true,
+      "contract_pass": true
+    },
+    {
+      "case": "member other owner",
+      "expected": "deny without state changes",
+      "exception": {
+        "type": "PermissionError",
+        "message": "access denied"
+      },
+      "changed_accounts": [],
+      "events": [],
+      "events_changed": false,
+      "contract_pass": true
+    },
+    {
+      "case": "admin cross tenant without hint",
+      "expected": "deny without state changes",
+      "exception": {
+        "type": "PermissionError",
+        "message": "access denied"
+      },
+      "changed_accounts": [],
+      "events": [],
+      "events_changed": false,
+      "contract_pass": true
+    },
+    {
+      "case": "admin cross tenant with target hint",
+      "expected": "deny without state changes",
+      "exception": null,
+      "changed_accounts": [
+        "E"
+      ],
+      "events": [
+        {
+          "actor_id": "admin",
+          "account_id": "E"
+        }
+      ],
+      "events_changed": true,
+      "contract_pass": false
+    },
+    {
+      "case": "owner with irrelevant hint",
+      "expected": "allow",
+      "exception": {
+        "type": "PermissionError",
+        "message": "access denied"
+      },
+      "changed_accounts": [],
+      "events": [],
+      "events_changed": false,
+      "contract_pass": false
+    },
+    {
+      "case": "unknown actor",
+      "expected": "deny without state changes",
+      "exception": {
+        "type": "PermissionError",
+        "message": "access denied"
+      },
+      "changed_accounts": [],
+      "events": [],
+      "events_changed": false,
+      "contract_pass": true
+    },
+    {
+      "case": "missing account",
+      "expected": "deny without state changes",
+      "exception": {
+        "type": "PermissionError",
+        "message": "access denied"
+      },
+      "changed_accounts": [],
+      "events": [],
+      "events_changed": false,
+      "contract_pass": true
+    },
+    {
+      "case": "list account id",
+      "expected": "deny without state changes",
+      "exception": {
+        "type": "TypeError",
+        "message": "cannot use 'list' as a dict key (unhashable type: 'list')"
+      },
+      "changed_accounts": [],
+      "events": [],
+      "events_changed": false,
+      "contract_pass": false
+    },
+    {
+      "case": "dict account id",
+      "expected": "deny without state changes",
+      "exception": {
+        "type": "TypeError",
+        "message": "cannot use 'dict' as a dict key (unhashable type: 'dict')"
+      },
+      "changed_accounts": [],
+      "events": [],
+      "events_changed": false,
+      "contract_pass": false
+    }
+  ],
+  "passed": 6,
+  "total": 10
+}

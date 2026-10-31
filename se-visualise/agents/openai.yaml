@@ -1,0 +1,3 @@
+interface:
+  display_name: "SE Visualise"
+  short_description: "Explain mechanisms with grounded inline visuals"

@@ -1,0 +1,6 @@
+test_owner_archives (test_existing.ExistingTests.test_owner_archives) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK

@@ -1,5 +1,7 @@
 # Validation — mandatory project-grounded baseline
 
+Current package: twelve skills. See the [expansion review and execution evidence](validation/EXPANSION-REVIEW.md) for proof, visualise, swarm, specialist selection and the updated guides. The nine-skill results below describe the original baseline and remain historical evidence.
+
 Date: 31 October 2026, Asia/Singapore. Scope: nine uninstalled skills, textual review, real execution in two isolated synthetic Python projects, and an interactive-map preview. No production-project or provider enforcement claim is made.
 
 ## What ran
