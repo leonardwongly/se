@@ -1,0 +1,235 @@
+{
+  "source": "<original-repository>",
+  "validator_sha256": "1358e98c5b10686151f07ac2a6a4d2d66c6e6d4a9aea503c426b8c7453fb6b6e",
+  "source_unchanged": true,
+  "known_gap_mode": false,
+  "result": "FAIL",
+  "cases": [
+    {
+      "case": "unmodified-package",
+      "status": "PASS",
+      "exit": 0,
+      "reasons": [],
+      "output": [
+        "PASS: swarm project and independent checks"
+      ]
+    },
+    {
+      "case": "index.html:valid-query-fragment",
+      "status": "PASS",
+      "exit": 0,
+      "reasons": [],
+      "output": [
+        "PASS: swarm project and independent checks"
+      ]
+    },
+    {
+      "case": "index.html:valid-percent-encoded-space",
+      "status": "PASS",
+      "exit": 0,
+      "reasons": [],
+      "output": [
+        "PASS: swarm project and independent checks"
+      ]
+    },
+    {
+      "case": "index.html:valid-parent-inside-package",
+      "status": "PASS",
+      "exit": 0,
+      "reasons": [],
+      "output": [
+        "PASS: swarm project and independent checks"
+      ]
+    },
+    {
+      "case": "index.html:ignored-nonlocal-and-fragment",
+      "status": "PASS",
+      "exit": 0,
+      "reasons": [],
+      "output": [
+        "PASS: swarm project and independent checks"
+      ]
+    },
+    {
+      "case": "index.html:missing-image",
+      "status": "FAIL",
+      "exit": 0,
+      "reasons": [
+        "expected exit 1, got 0",
+        "failure did not identify 'FAIL:'",
+        "failure did not identify 'docs/index.html'",
+        "failure did not identify 'oracle-missing-image.png'"
+      ],
+      "output": "PASS: 12 skill packages, required fields, local links, complete hash manifest\nPASS: new project checks\nPASS: new independent checks\nPASS: update project checks\nPASS: update independent checks\nPASS: original defective implementation rejected for tenant bypass\nPASS: proof exercise reproduces tenant bypass despite original green suite\nPASS: swarm project and independent checks\n"
+    },
+    {
+      "case": "index.html:missing-script",
+      "status": "FAIL",
+      "exit": 0,
+      "reasons": [
+        "expected exit 1, got 0",
+        "failure did not identify 'FAIL:'",
+        "failure did not identify 'docs/index.html'",
+        "failure did not identify 'oracle-missing-script.js'"
+      ],
+      "output": "PASS: 12 skill packages, required fields, local links, complete hash manifest\nPASS: new project checks\nPASS: new independent checks\nPASS: update project checks\nPASS: update independent checks\nPASS: original defective implementation rejected for tenant bypass\nPASS: proof exercise reproduces tenant bypass despite original green suite\nPASS: swarm project and independent checks\n"
+    },
+    {
+      "case": "index.html:missing-href",
+      "status": "FAIL",
+      "exit": 0,
+      "reasons": [
+        "expected exit 1, got 0",
+        "failure did not identify 'FAIL:'",
+        "failure did not identify 'docs/index.html'",
+        "failure did not identify 'oracle-missing-sheet.css'"
+      ],
+      "output": "PASS: 12 skill packages, required fields, local links, complete hash manifest\nPASS: new project checks\nPASS: new independent checks\nPASS: update project checks\nPASS: update independent checks\nPASS: original defective implementation rejected for tenant bypass\nPASS: proof exercise reproduces tenant bypass despite original green suite\nPASS: swarm project and independent checks\n"
+    },
+    {
+      "case": "index.html:outside-existing-target",
+      "status": "FAIL",
+      "exit": 0,
+      "reasons": [
+        "expected exit 1, got 0",
+        "failure did not identify 'FAIL:'",
+        "failure did not identify 'docs/index.html'",
+        "failure did not identify 'oracle-outside.txt'"
+      ],
+      "output": "PASS: 12 skill packages, required fields, local links, complete hash manifest\nPASS: new project checks\nPASS: new independent checks\nPASS: update project checks\nPASS: update independent checks\nPASS: original defective implementation rejected for tenant bypass\nPASS: proof exercise reproduces tenant bypass despite original green suite\nPASS: swarm project and independent checks\n"
+    },
+    {
+      "case": "index.html:encoded-outside-existing-target",
+      "status": "FAIL",
+      "exit": 0,
+      "reasons": [
+        "expected exit 1, got 0",
+        "failure did not identify 'FAIL:'",
+        "failure did not identify 'docs/index.html'",
+        "failure did not identify 'oracle-outside.txt'"
+      ],
+      "output": "PASS: 12 skill packages, required fields, local links, complete hash manifest\nPASS: new project checks\nPASS: new independent checks\nPASS: update project checks\nPASS: update independent checks\nPASS: original defective implementation rejected for tenant bypass\nPASS: proof exercise reproduces tenant bypass despite original green suite\nPASS: swarm project and independent checks\n"
+    },
+    {
+      "case": "skill-map.html:valid-query-fragment",
+      "status": "PASS",
+      "exit": 0,
+      "reasons": [],
+      "output": [
+        "PASS: swarm project and independent checks"
+      ]
+    },
+    {
+      "case": "skill-map.html:valid-percent-encoded-space",
+      "status": "PASS",
+      "exit": 0,
+      "reasons": [],
+      "output": [
+        "PASS: swarm project and independent checks"
+      ]
+    },
+    {
+      "case": "skill-map.html:valid-parent-inside-package",
+      "status": "PASS",
+      "exit": 0,
+      "reasons": [],
+      "output": [
+        "PASS: swarm project and independent checks"
+      ]
+    },
+    {
+      "case": "skill-map.html:ignored-nonlocal-and-fragment",
+      "status": "PASS",
+      "exit": 0,
+      "reasons": [],
+      "output": [
+        "PASS: swarm project and independent checks"
+      ]
+    },
+    {
+      "case": "skill-map.html:missing-image",
+      "status": "FAIL",
+      "exit": 0,
+      "reasons": [
+        "expected exit 1, got 0",
+        "failure did not identify 'FAIL:'",
+        "failure did not identify 'docs/skill-map.html'",
+        "failure did not identify 'oracle-missing-image.png'"
+      ],
+      "output": "PASS: 12 skill packages, required fields, local links, complete hash manifest\nPASS: new project checks\nPASS: new independent checks\nPASS: update project checks\nPASS: update independent checks\nPASS: original defective implementation rejected for tenant bypass\nPASS: proof exercise reproduces tenant bypass despite original green suite\nPASS: swarm project and independent checks\n"
+    },
+    {
+      "case": "skill-map.html:missing-script",
+      "status": "FAIL",
+      "exit": 0,
+      "reasons": [
+        "expected exit 1, got 0",
+        "failure did not identify 'FAIL:'",
+        "failure did not identify 'docs/skill-map.html'",
+        "failure did not identify 'oracle-missing-script.js'"
+      ],
+      "output": "PASS: 12 skill packages, required fields, local links, complete hash manifest\nPASS: new project checks\nPASS: new independent checks\nPASS: update project checks\nPASS: update independent checks\nPASS: original defective implementation rejected for tenant bypass\nPASS: proof exercise reproduces tenant bypass despite original green suite\nPASS: swarm project and independent checks\n"
+    },
+    {
+      "case": "skill-map.html:missing-href",
+      "status": "FAIL",
+      "exit": 0,
+      "reasons": [
+        "expected exit 1, got 0",
+        "failure did not identify 'FAIL:'",
+        "failure did not identify 'docs/skill-map.html'",
+        "failure did not identify 'oracle-missing-sheet.css'"
+      ],
+      "output": "PASS: 12 skill packages, required fields, local links, complete hash manifest\nPASS: new project checks\nPASS: new independent checks\nPASS: update project checks\nPASS: update independent checks\nPASS: original defective implementation rejected for tenant bypass\nPASS: proof exercise reproduces tenant bypass despite original green suite\nPASS: swarm project and independent checks\n"
+    },
+    {
+      "case": "skill-map.html:outside-existing-target",
+      "status": "FAIL",
+      "exit": 0,
+      "reasons": [
+        "expected exit 1, got 0",
+        "failure did not identify 'FAIL:'",
+        "failure did not identify 'docs/skill-map.html'",
+        "failure did not identify 'oracle-outside.txt'"
+      ],
+      "output": "PASS: 12 skill packages, required fields, local links, complete hash manifest\nPASS: new project checks\nPASS: new independent checks\nPASS: update project checks\nPASS: update independent checks\nPASS: original defective implementation rejected for tenant bypass\nPASS: proof exercise reproduces tenant bypass despite original green suite\nPASS: swarm project and independent checks\n"
+    },
+    {
+      "case": "skill-map.html:encoded-outside-existing-target",
+      "status": "FAIL",
+      "exit": 0,
+      "reasons": [
+        "expected exit 1, got 0",
+        "failure did not identify 'FAIL:'",
+        "failure did not identify 'docs/skill-map.html'",
+        "failure did not identify 'oracle-outside.txt'"
+      ],
+      "output": "PASS: 12 skill packages, required fields, local links, complete hash manifest\nPASS: new project checks\nPASS: new independent checks\nPASS: update project checks\nPASS: update independent checks\nPASS: original defective implementation rejected for tenant bypass\nPASS: proof exercise reproduces tenant bypass despite original green suite\nPASS: swarm project and independent checks\n"
+    },
+    {
+      "case": "retained-hash-mismatch-rejected",
+      "status": "PASS",
+      "exit": 1,
+      "reasons": [],
+      "output": [
+        "FAIL: digest mismatch: docs/assets/guide.css"
+      ]
+    },
+    {
+      "case": "retained-inventory-mismatch-rejected",
+      "status": "PASS",
+      "exit": 1,
+      "reasons": [],
+      "output": [
+        "FAIL: manifest file inventory differs from package"
+      ]
+    },
+    {
+      "case": "root-relative-contract-observation",
+      "status": "OBSERVATION",
+      "exit": 0,
+      "reasons": [],
+      "output": "PASS: 12 skill packages, required fields, local links, complete hash manifest\nPASS: new project checks\nPASS: new independent checks\nPASS: update project checks\nPASS: update independent checks\nPASS: original defective implementation rejected for tenant bypass\nPASS: proof exercise reproduces tenant bypass despite original green suite\nPASS: swarm project and independent checks\n"
+    }
+  ]
+}

@@ -1,0 +1,205 @@
+{
+  "source": "<isolated-repaired-checkout>",
+  "validator_sha256": "26e6d292900bda85197140447fd4ce2af12dc64b875902bd28e343f9fc383171",
+  "source_unchanged": true,
+  "known_gap_mode": false,
+  "result": "PASS",
+  "cases": [
+    {
+      "case": "unmodified-package",
+      "status": "PASS",
+      "exit": 0,
+      "reasons": [],
+      "output": [
+        "PASS: swarm project and independent checks"
+      ]
+    },
+    {
+      "case": "index.html:valid-query-fragment",
+      "status": "PASS",
+      "exit": 0,
+      "reasons": [],
+      "output": [
+        "PASS: swarm project and independent checks"
+      ]
+    },
+    {
+      "case": "index.html:valid-percent-encoded-space",
+      "status": "PASS",
+      "exit": 0,
+      "reasons": [],
+      "output": [
+        "PASS: swarm project and independent checks"
+      ]
+    },
+    {
+      "case": "index.html:valid-parent-inside-package",
+      "status": "PASS",
+      "exit": 0,
+      "reasons": [],
+      "output": [
+        "PASS: swarm project and independent checks"
+      ]
+    },
+    {
+      "case": "index.html:ignored-nonlocal-and-fragment",
+      "status": "PASS",
+      "exit": 0,
+      "reasons": [],
+      "output": [
+        "PASS: swarm project and independent checks"
+      ]
+    },
+    {
+      "case": "index.html:missing-image",
+      "status": "PASS",
+      "exit": 1,
+      "reasons": [],
+      "output": [
+        "FAIL: docs/index.html:50: src='oracle-missing-image.png': missing local target"
+      ]
+    },
+    {
+      "case": "index.html:missing-script",
+      "status": "PASS",
+      "exit": 1,
+      "reasons": [],
+      "output": [
+        "FAIL: docs/index.html:50: src='oracle-missing-script.js': missing local target"
+      ]
+    },
+    {
+      "case": "index.html:missing-href",
+      "status": "PASS",
+      "exit": 1,
+      "reasons": [],
+      "output": [
+        "FAIL: docs/index.html:50: href='oracle-missing-sheet.css?cache=3#theme': missing local target"
+      ]
+    },
+    {
+      "case": "index.html:outside-existing-target",
+      "status": "PASS",
+      "exit": 1,
+      "reasons": [],
+      "output": [
+        "FAIL: docs/index.html:50: href='../../oracle-outside.txt': target escapes repository"
+      ]
+    },
+    {
+      "case": "index.html:encoded-outside-existing-target",
+      "status": "PASS",
+      "exit": 1,
+      "reasons": [],
+      "output": [
+        "FAIL: docs/index.html:50: src='%2e%2e/%2e%2e/oracle-outside.txt': target escapes repository"
+      ]
+    },
+    {
+      "case": "skill-map.html:valid-query-fragment",
+      "status": "PASS",
+      "exit": 0,
+      "reasons": [],
+      "output": [
+        "PASS: swarm project and independent checks"
+      ]
+    },
+    {
+      "case": "skill-map.html:valid-percent-encoded-space",
+      "status": "PASS",
+      "exit": 0,
+      "reasons": [],
+      "output": [
+        "PASS: swarm project and independent checks"
+      ]
+    },
+    {
+      "case": "skill-map.html:valid-parent-inside-package",
+      "status": "PASS",
+      "exit": 0,
+      "reasons": [],
+      "output": [
+        "PASS: swarm project and independent checks"
+      ]
+    },
+    {
+      "case": "skill-map.html:ignored-nonlocal-and-fragment",
+      "status": "PASS",
+      "exit": 0,
+      "reasons": [],
+      "output": [
+        "PASS: swarm project and independent checks"
+      ]
+    },
+    {
+      "case": "skill-map.html:missing-image",
+      "status": "PASS",
+      "exit": 1,
+      "reasons": [],
+      "output": [
+        "FAIL: docs/skill-map.html:4: src='oracle-missing-image.png': missing local target"
+      ]
+    },
+    {
+      "case": "skill-map.html:missing-script",
+      "status": "PASS",
+      "exit": 1,
+      "reasons": [],
+      "output": [
+        "FAIL: docs/skill-map.html:4: src='oracle-missing-script.js': missing local target"
+      ]
+    },
+    {
+      "case": "skill-map.html:missing-href",
+      "status": "PASS",
+      "exit": 1,
+      "reasons": [],
+      "output": [
+        "FAIL: docs/skill-map.html:4: href='oracle-missing-sheet.css?cache=3#theme': missing local target"
+      ]
+    },
+    {
+      "case": "skill-map.html:outside-existing-target",
+      "status": "PASS",
+      "exit": 1,
+      "reasons": [],
+      "output": [
+        "FAIL: docs/skill-map.html:4: href='../../oracle-outside.txt': target escapes repository"
+      ]
+    },
+    {
+      "case": "skill-map.html:encoded-outside-existing-target",
+      "status": "PASS",
+      "exit": 1,
+      "reasons": [],
+      "output": [
+        "FAIL: docs/skill-map.html:4: src='%2e%2e/%2e%2e/oracle-outside.txt': target escapes repository"
+      ]
+    },
+    {
+      "case": "retained-hash-mismatch-rejected",
+      "status": "PASS",
+      "exit": 1,
+      "reasons": [],
+      "output": [
+        "FAIL: digest mismatch: docs/assets/guide.css"
+      ]
+    },
+    {
+      "case": "retained-inventory-mismatch-rejected",
+      "status": "PASS",
+      "exit": 1,
+      "reasons": [],
+      "output": [
+        "FAIL: manifest file inventory differs from package"
+      ]
+    },
+    {
+      "case": "root-relative-contract-observation",
+      "status": "OBSERVATION",
+      "exit": 1,
+      "reasons": [],
+      "output": "FAIL: docs/index.html:50: href='/docs/assets/guide.css': target escapes repository\n"
+    }
+  ]
+}

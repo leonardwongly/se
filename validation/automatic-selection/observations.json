@@ -1,0 +1,66 @@
+{
+  "date": "2026-11-05",
+  "timezone": "Asia/Singapore",
+  "base_revision": "b0033264ab4f84af01ef0ab18a66f690acaa53e9",
+  "harness": "Codex CLI 0.166.0",
+  "configured_model": "gpt-6-astra",
+  "configured_reasoning_effort": "high",
+  "provider": "openai",
+  "model_identity_limit": "Local configuration; not independently attested server metadata.",
+  "instruction_sha256": {
+    "global/AGENTS.md": "8927011ea9ed4070708accfae607de23773f1cabacf2dd416d894cbbe6c888ed",
+    "skills/se-concurrent/SKILL.md": "8b0bddf0f110535ec345cfebe163c7e990e8ae39325ba82ccf8bf16618c93d7a",
+    "skills/se-how/SKILL.md": "6904d2534c4c4ee40a499fb225eb3c5cde4215797f503c2c8389deae100ce1ef",
+    "skills/se-proof/SKILL.md": "9a82fb6d4319c64a3af249a2d2278ba0c4600c40cea87f6fcef38869a4a284f4",
+    "skills/se-swarm/SKILL.md": "d563ff7fe7a6d12aa26a86c2b6e4eb441ea00030b3ed92b9b4ae0713415286e5",
+    "skills/se-verify/SKILL.md": "05eb2ce9ca3e4e5c79c5ae3bd21ff5f86dae46520ad9804c4c2a96352a4cbd9e",
+    "skills/se-visualise/SKILL.md": "86575c94c53a5becd657bf9ac8645f2c41c6f27a9f5d537df89afc5248f9366f",
+    "skills/se-what/SKILL.md": "1fec9891c9b0b6de36f67aebbedfc01f1fa473dae358d75337df610fa772ced2",
+    "skills/se-when/SKILL.md": "8c9c21a2b8125fb29f845175bad05ddd8155bde457706207fe569ccd35ee2f84",
+    "skills/se-where/SKILL.md": "ff775f7d1828c60f72fd99a7fa167cf0050e1369f7009dae8c5eacc211042bc8",
+    "skills/se-who/SKILL.md": "0ebb90f535d5e636deee1cdfd2b488f420f3c51ff030f4ef80cd51c7af3fb6f1",
+    "skills/se-why/SKILL.md": "a8701149bee6b6b45750aff5658a1abfee426ecc17e2108deb60aebcfc606bca",
+    "skills/se-zero-trust/SKILL.md": "2708961a5e84860938e25f1c5e2510b28a5741fef38d6e97a98dfe7ea46bfb39"
+  },
+  "tested_validator_sha256": "26e6d292900bda85197140447fd4ce2af12dc64b875902bd28e343f9fc383171",
+  "tested_regressions_sha256": "3a391086f96e50ff113c090aa70c4603e8622d0d09dfd2309c789d357cbe1c72",
+  "trials": {
+    "code": {
+      "task_sha256": "8036e67a8cccc104d5d842e3001e47995fcb4027e8dc60e2c725ba03a4809ba5",
+      "task_names_skills": false,
+      "completed": true,
+      "skill_reads": [
+        {
+          "event_id": "item_4",
+          "skills": [
+            "se-proof",
+            "se-zero-trust",
+            "se-verify"
+          ],
+          "command": "/bin/zsh -lc 'cat $CODEX_HOME/skills/se-proof/SKILL.md $CODEX_HOME/skills/se-zero-trust/SKILL.md $CODEX_HOME/skills/se-verify/SKILL.md'",
+          "exit_code": 0
+        }
+      ],
+      "first_edit_event_id": "item_12",
+      "commands_executed": 14
+    },
+    "analysis": {
+      "task_sha256": "62bc8729d7d2b354c65501c52035df7d8b74be8ac34db7449eec625191bccc4d",
+      "task_names_skills": false,
+      "completed": true,
+      "skill_reads": [
+        {
+          "event_id": "item_4",
+          "skills": [
+            "se-proof"
+          ],
+          "command": "/bin/zsh -lc 'cat $CODEX_HOME/skills/se-proof/SKILL.md'",
+          "exit_code": 0
+        }
+      ],
+      "first_edit_event_id": null,
+      "commands_executed": 16
+    }
+  },
+  "provenance_note": "Selected observations extracted from completed local command events, not a full transcript. The home prefix in displayed commands is normalized to $CODEX_HOME; source labels in result JSON are portable placeholders. Full raw traces and unrelated server diagnostics remain local."
+}

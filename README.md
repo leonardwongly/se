@@ -178,4 +178,6 @@ Source links in each skill identify the basis for its recommendations. The workf
 
 See [REVIEW.md](REVIEW.md) for resolved findings and [VALIDATION.md](VALIDATION.md) for checks and limits. Actual local fixture exercises supplement structural and simulated checks; they do not establish behavior in your production projects.
 
+Two fresh Codex CLI trials selected and used relevant installed skills without skill names in their task prompts. The [automatic-selection report](validation/AUTOMATIC-SELECTION.md) records the observed reads, real validator fix, independent checks and limitations. This tests a configured global routing policy on two tasks, not all twelve skills or universal automatic selection.
+
 This bundle uses the `se-` prefix to coexist with existing general-purpose `how` and `why` skills. No replacement or global installation is part of this delivery.

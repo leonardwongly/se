@@ -1,5 +1,7 @@
 """Portable package integrity and synthetic behavior checks; Python >= 3.10."""
 from pathlib import Path
+from html.parser import HTMLParser
+from urllib.parse import unquote, urlsplit
 import hashlib
 import json
 import os
@@ -45,6 +47,39 @@ def require_tests(result, output, count, label):
             f'{label}: expected {count} passing tests without skips\n{output}')
 
 
+class HTMLReferences(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.references = []
+
+    def handle_starttag(self, tag, attrs):
+        for attribute, target in attrs:
+            if attribute in {'src', 'href'} and target is not None:
+                self.references.append((self.getpos()[0], attribute, target))
+
+
+def validate_html_links(root=ROOT):
+    root = root.resolve()
+    for name in ('docs/index.html', 'docs/skill-map.html'):
+        source = root / name
+        require(source.is_file(), f'{name}: missing HTML entry point')
+        parser = HTMLReferences()
+        parser.feed(source.read_text(encoding='utf-8'))
+        parser.close()
+        for line, attribute, target in parser.references:
+            context = f'{name}:{line}: {attribute}={target!r}'
+            try:
+                url = urlsplit(target.strip())
+                if url.scheme or url.netloc or not url.path:
+                    continue
+                # Split before decoding so encoded ? and # remain filename characters.
+                resolved = (source.parent / unquote(url.path, errors='strict')).resolve()
+                require(resolved.is_relative_to(root), f'{context}: target escapes repository')
+                require(resolved.exists(), f'{context}: missing local target')
+            except (ValueError, OSError, RuntimeError) as error:
+                require(False, f'{context}: invalid local reference ({error})')
+
+
 def main():
     actual = {path.parent.name for path in ROOT.glob('*/SKILL.md')}
     require(actual == EXPECTED, f'expected {len(EXPECTED)} skills, found {sorted(actual)}')
@@ -71,7 +106,8 @@ def main():
                     continue
                 resolved = (path.parent / target.split('#')[0]).resolve()
                 require(resolved.is_relative_to(ROOT) and resolved.exists(), f'{name}: invalid link {target}')
-    print(f'PASS: {len(EXPECTED)} skill packages, required fields, local links, complete hash manifest')
+    validate_html_links()
+    print(f'PASS: {len(EXPECTED)} skill packages, required fields, local Markdown/HTML links, complete hash manifest')
 
     fixture = ROOT / 'validation/code-baseline'
     for name, project_count, independent_count in (('new', 10, 7), ('update', 8, 8)):

@@ -1,8 +1,12 @@
 # Validation — mandatory project-grounded baseline
 
+## Automatic-selection evaluation — 5 November 2026
+
+Two fresh CLI agents selected and read relevant installed skills without skill names in their task prompts. Both scoped trials passed. The code trial also fixed missing HTML-reference validation; nine focused regressions and 21 independent acceptance checks passed. See [results, evidence, reproduction and limitations](validation/AUTOMATIC-SELECTION.md). These results are separate from the historical fixture exercises below.
+
 ## Available-tools and skills update
 
-All twelve standalone entrypoints now include relevant capability discovery, current tool/skill contract inspection, evidence-based selection, execution and output assessment, plus role-specific use guidance. The update preserves scope, authority, independent usability, verification gates and bounded completion. Textual consistency review and the package checks cover this instruction update; earlier observed agent trials are historical, not reruns of the revised instructions. No new live agent-routing, connector, or provider-adherence trial is claimed.
+All twelve standalone entrypoints now include relevant capability discovery, current tool/skill contract inspection, evidence-based selection, execution and output assessment, plus role-specific use guidance. The update preserves scope, authority, independent usability, verification gates and bounded completion. Textual consistency review and the package checks cover this instruction update; earlier observed agent trials are historical, not reruns of the revised instructions. That earlier review did not include a live routing trial. The later [automatic-selection evaluation](validation/AUTOMATIC-SELECTION.md) records two fresh CLI tasks using the installed skills and global routing instructions; it does not establish general provider adherence or connector reliability.
 
 Current package: twelve skills. See the [expansion review and execution evidence](validation/EXPANSION-REVIEW.md) for proof, visualise, swarm, specialist selection and the updated guides. The nine-skill results below describe the original baseline and remain historical evidence.
 
