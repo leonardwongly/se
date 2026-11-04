@@ -1,0 +1,44 @@
+{
+  "date": "2026-11-05",
+  "timezone": "Asia/Singapore",
+  "base_revision": "c939ba3ed42783bf6502d4562c4811e37116d1e7",
+  "environment": "local macOS, Python 3.14.5",
+  "status": "PASS",
+  "checks": {
+    "focused_script_tests": {
+      "passed": 35,
+      "skipped": 0
+    },
+    "maintenance_oracle": {
+      "passed": 79,
+      "total": 79
+    },
+    "markdown_oracle": {
+      "passed": 4,
+      "total": 4
+    },
+    "portable_package_and_synthetic_checks": "PASS",
+    "actual_local_installation": {
+      "files": 24,
+      "matched": 24,
+      "read_only": true,
+      "limit": "Byte parity with repository packages, not proof of host activation or automatic use."
+    }
+  },
+  "source_sha256": {
+    "scripts/validate.py": "d602faa4e027095c34642d88710236a356de4b4d836d11046a2b78eeec699b8a",
+    "scripts/test_validate.py": "7108c7a26c732a3c40d84f6df30e22042a06114d3822ada7e31d40867de8c4fd",
+    "scripts/check_installed.py": "ff284f138bd63d210f7642572c5b9422745bc557a08693329489b09f297da0f9",
+    "scripts/test_check_installed.py": "18039344334522017c6fd9d28ac5ea54e7683003fde8f07a7686f9805a0fa98f",
+    "scripts/test_markdown_links.py": "90ef33026a1fe980a98200e261480a67d59bff08349fb8b1418624987dd7ce89",
+    "docs/reference-walkthrough.html": "bafda1fdc68e09f6762c4f8da9066438142db94c9f6389228eb05ffc07c0d95c"
+  },
+  "commands": [
+    "python3 -B -m unittest discover -s scripts -p 'test_*.py' -v",
+    "python3 -B scripts/validate.py",
+    "python3 -B validation/expanded-selection/check_maintenance.py .",
+    "python3 -B validation/expanded-selection/check_markdown.py .",
+    "python3 -B scripts/check_installed.py --skills-dir $CODEX_HOME/skills"
+  ],
+  "limits": "Local checks only; source hashes bind executable artifacts. Documentation and manifest refreshed after recording results, followed by package validation."
+}

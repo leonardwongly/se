@@ -1,0 +1,115 @@
+{
+  "base": "c939ba3ed42783bf6502d4562c4811e37116d1e7",
+  "date": "2026-11-05",
+  "matrix": {
+    "scope": {
+      "expected_skills": [
+        "se-what",
+        "se-proof"
+      ],
+      "sandbox": "read-only",
+      "prompt_sha256": "9613463806c6ec118ba84f8915d8bd0b612380da3502344c77c5ae754a433024",
+      "repo": "$REPO"
+    },
+    "rationale": {
+      "expected_skills": [
+        "se-why",
+        "se-proof"
+      ],
+      "sandbox": "read-only",
+      "prompt_sha256": "caaf0099bc63aa1044bd8e61352706158c034ea9150f16330d8f12287be7fea7",
+      "repo": "$REPO"
+    },
+    "mechanism": {
+      "expected_skills": [
+        "se-where",
+        "se-how",
+        "se-proof"
+      ],
+      "sandbox": "read-only",
+      "prompt_sha256": "102dba958f0867a0a4991fe18c02266ece79dec2e87613136804232c88174d19",
+      "repo": "$REPO"
+    },
+    "readiness": {
+      "expected_skills": [
+        "se-when",
+        "se-verify",
+        "se-proof"
+      ],
+      "sandbox": "read-only",
+      "prompt_sha256": "4c6756ec2b75bab79edb348acf66c05a629de3c781b8204c42bdbd978b38f382",
+      "repo": "$REPO"
+    },
+    "expertise": {
+      "expected_skills": [
+        "se-who",
+        "se-proof"
+      ],
+      "sandbox": "read-only",
+      "prompt_sha256": "dfcacbb02e930f1b7eb14c89d73da2cd4c2d3b798056027bc098943454f40a73",
+      "repo": "$REPO"
+    },
+    "visual": {
+      "expected_skills": [
+        "se-visualise",
+        "se-proof",
+        "se-zero-trust",
+        "se-verify"
+      ],
+      "sandbox": "workspace-write",
+      "prompt_sha256": "6baa46a7227c5b09b5f510e97c8c3181bb96624e98a49f79103df35b06f68e7a",
+      "repo": "$TRIAL_ROOT/visual"
+    },
+    "team": {
+      "expected_skills": [
+        "se-who",
+        "se-swarm",
+        "se-concurrent",
+        "se-proof",
+        "se-zero-trust",
+        "se-verify"
+      ],
+      "sandbox": "workspace-write",
+      "prompt_sha256": "b7790b374f32ce3e756439a1537e28c81e7a8439dc1df06372ef878386ec6d8c",
+      "repo": "$TRIAL_ROOT/team"
+    }
+  },
+  "instruction_sha256": {
+    "global/AGENTS.md": "8927011ea9ed4070708accfae607de23773f1cabacf2dd416d894cbbe6c888ed",
+    "skills/se-concurrent/SKILL.md": "8b0bddf0f110535ec345cfebe163c7e990e8ae39325ba82ccf8bf16618c93d7a",
+    "skills/se-how/SKILL.md": "6904d2534c4c4ee40a499fb225eb3c5cde4215797f503c2c8389deae100ce1ef",
+    "skills/se-proof/SKILL.md": "9a82fb6d4319c64a3af249a2d2278ba0c4600c40cea87f6fcef38869a4a284f4",
+    "skills/se-swarm/SKILL.md": "d563ff7fe7a6d12aa26a86c2b6e4eb441ea00030b3ed92b9b4ae0713415286e5",
+    "skills/se-verify/SKILL.md": "05eb2ce9ca3e4e5c79c5ae3bd21ff5f86dae46520ad9804c4c2a96352a4cbd9e",
+    "skills/se-visualise/SKILL.md": "86575c94c53a5becd657bf9ac8645f2c41c6f27a9f5d537df89afc5248f9366f",
+    "skills/se-what/SKILL.md": "1fec9891c9b0b6de36f67aebbedfc01f1fa473dae358d75337df610fa772ced2",
+    "skills/se-when/SKILL.md": "8c9c21a2b8125fb29f845175bad05ddd8155bde457706207fe569ccd35ee2f84",
+    "skills/se-where/SKILL.md": "ff775f7d1828c60f72fd99a7fa167cf0050e1369f7009dae8c5eacc211042bc8",
+    "skills/se-who/SKILL.md": "0ebb90f535d5e636deee1cdfd2b488f420f3c51ff030f4ef80cd51c7af3fb6f1",
+    "skills/se-why/SKILL.md": "a8701149bee6b6b45750aff5658a1abfee426ecc17e2108deb60aebcfc606bca",
+    "skills/se-zero-trust/SKILL.md": "2708961a5e84860938e25f1c5e2510b28a5741fef38d6e97a98dfe7ea46bfb39"
+  },
+  "harness": {
+    "codex_cli": "0.166.0",
+    "configured_model": "gpt-6-astra",
+    "reasoning_effort": "high",
+    "provider": "openai",
+    "python": "3.14.5",
+    "os": "macOS",
+    "identity_limit": "Model from local configuration; not independently attested provider metadata."
+  },
+  "reruns": {
+    "mechanism-retry": {
+      "same_prompt_as": "mechanism",
+      "policy": "primary-task mapping repair"
+    },
+    "team-retry": {
+      "same_prompt_as": "team",
+      "policy": "primary-task mapping repair"
+    },
+    "expertise-retry": {
+      "same_prompt_as": "expertise",
+      "policy": "delegated own-context read repair"
+    }
+  }
+}

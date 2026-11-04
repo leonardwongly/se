@@ -1,0 +1,170 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HTML reference validation · Maintainer walkthrough</title>
+<style>
+#reference-walkthrough { color: var(--foreground, CanvasText); background: var(--background, Canvas); font: 400 var(--font-size-base, 16px)/1.5 system-ui, sans-serif; max-width: 52rem; margin: auto; color-scheme: light dark; }
+#reference-walkthrough * { box-sizing: border-box; }
+#reference-walkthrough [hidden] { display: none !important; }
+#reference-walkthrough h1, #reference-walkthrough h2, #reference-walkthrough p { margin: 0; }
+#reference-walkthrough h1, #reference-walkthrough h2 { font-size: inherit; font-weight: 500; }
+#reference-walkthrough .block { margin-block: 1em; }
+#reference-walkthrough .controls { display: flex; flex-wrap: wrap; gap: .5em; align-items: center; }
+#reference-walkthrough button, #reference-walkthrough select { font: inherit; max-width: 100%; }
+#reference-walkthrough code { overflow-wrap: anywhere; white-space: pre-wrap; }
+#reference-walkthrough a { color: var(--foreground, LinkText); text-decoration: underline; }
+#reference-walkthrough .route { position: relative; margin-block: 1.5em; }
+#reference-walkthrough .route ol { display: grid; grid-template-columns: repeat(5, 1fr); padding: 0; margin: 0; list-style: none; gap: .25em; text-align: center; }
+#reference-walkthrough .route li { padding-bottom: 1em; overflow-wrap: anywhere; }
+#reference-walkthrough .route li[aria-current="step"] { font-weight: 500; text-decoration: underline; text-underline-offset: .25em; }
+#reference-walkthrough .rail { height: .25em; background: var(--muted, ButtonFace); position: relative; margin-inline: 10%; }
+#reference-walkthrough .marker { position: absolute; top: -.25em; left: 0; width: .75em; height: .75em; border-radius: 50%; background: var(--viz-series-1, Highlight); transform: translateX(-50%); }
+#reference-walkthrough[data-playing="true"] .marker { transition: left .45s ease; }
+#reference-walkthrough .stage { min-height: 10em; display: grid; align-content: start; gap: .5em; }
+#reference-walkthrough .stage code { display: block; }
+#reference-walkthrough details { margin-block: 1em; }
+#reference-walkthrough summary { font-weight: 500; cursor: pointer; }
+#reference-walkthrough .transcript { padding-left: 1.5em; }
+#reference-walkthrough .transcript li { margin-block: .65em; }
+#reference-walkthrough .transcript code { display: block; }
+#reference-walkthrough .sources { padding-left: 1.5em; }
+@media (prefers-reduced-motion: reduce) { #reference-walkthrough .marker { transition: none !important; } }
+@media (pointer: coarse) { #reference-walkthrough button, #reference-walkthrough select, #reference-walkthrough summary { min-height: 44px; } }
+@media print { #reference-walkthrough #interactive { display: none; } #reference-walkthrough details::details-content { display: block; content-visibility: visible; } }
+</style>
+<main id="reference-walkthrough" lang="en" data-playing="false">
+  <header>
+    <p>MAINTAINER WALKTHROUGH · <span>Illustrative playback</span></p>
+    <h1>From an HTML reference to a local-path decision</h1>
+    <p class="block">Follow one reference through the actual Python validator’s checks. Playback does not inspect files or execute validation; timing is schematic.</p>
+  </header>
+  <section id="interactive" aria-label="Reference walkthrough controls and diagram" hidden>
+    <div class="controls">
+      <label for="reference-case">Example</label>
+      <select id="reference-case" class="form-select">
+        <option value="valid">Valid encoded local URL</option>
+        <option value="escape">Encoded traversal rejection</option>
+      </select>
+    </div>
+    <p class="block">Input <code id="input-url"></code></p>
+    <div class="route" aria-label="Ordered stages; current stage is underlined">
+      <ol><li>1 · Collect</li><li>2 · Parse</li><li>3 · Normalize</li><li>4 · Contain</li><li>5 · Outcome</li></ol>
+      <div class="rail" aria-hidden="true"><span class="marker"></span></div>
+    </div>
+    <div class="stage" role="status" aria-live="polite" aria-atomic="true">
+      <h2 id="stage-heading"></h2><code id="stage-value"></code><p id="stage-detail"></p>
+      <p id="stage-source"></p>
+    </div>
+    <div class="controls">
+      <button class="btn btn-primary" id="play" type="button">Play</button>
+      <button class="btn" id="back" type="button">Back</button>
+      <button class="btn" id="next" type="button">Next</button>
+      <button class="btn" id="restart" type="button">Restart</button>
+      <span id="playback-state">Paused · 1 / 5</span>
+    </div>
+    <p id="motion-note" class="block"></p>
+  </section>
+  <noscript><p>JavaScript is disabled. Both complete sequences are available below.</p></noscript>
+  <details>
+    <summary>Text equivalent · both paths</summary>
+    <p class="block">Example root: <code>/repo</code>; source: <code>/repo/docs/index.html</code>, line 1. These are schematic absolute paths. The valid case targets the existing <code>docs/assets/guide.css</code>; the traversal uses an illustrative outside filename.</p>
+    <h2>Valid encoded local URL</h2>
+    <ol class="transcript" id="valid-transcript" data-input="assets/%67uide.css?rev=2#theme">
+      <li data-title="Collect" data-source="scripts/validate.py:50–58, 63–70"><code>href='assets/%67uide.css?rev=2#theme'</code><span>HTMLReferences records non-null src and href attributes from start tags, with the source line for diagnostics.</span></li>
+      <li data-title="Parse" data-source="scripts/validate.py:72–74"><code>path = 'assets/%67uide.css'; query = 'rev=2'; fragment = 'theme'</code><span>urlsplit(target.strip()) runs first. Scheme and network location are empty and path is nonempty, so this reference enters the local-path checks.</span></li>
+      <li data-title="Normalize" data-source="scripts/validate.py:75–76"><code>unquote → assets/guide.css
+resolve → /repo/docs/assets/guide.css</code><span>Decode the path once with strict decoding, join to source.parent, then resolve. Query and fragment are not filename components. resolve() normalizes parent segments and follows symlinks.</span></li>
+      <li data-title="Contain" data-source="scripts/validate.py:77"><code>resolved.is_relative_to(/repo) → True</code><span>The resolved target is inside the resolved repository root. The boundary uses path ancestry, not a string-prefix comparison.</span></li>
+      <li data-title="Outcome" data-source="scripts/validate.py:78"><code>resolved.exists() → True → continue</code><span>This reference passes and validation continues. That is not a whole-package PASS: other references and package checks can still fail. The theme fragment is not checked.</span></li>
+    </ol>
+    <h2>Encoded traversal rejection</h2>
+    <ol class="transcript" id="escape-transcript" data-input="%2e%2e/%2e%2e/outside.css">
+      <li data-title="Collect" data-source="scripts/validate.py:50–58, 63–70"><code>href='%2e%2e/%2e%2e/outside.css'</code><span>The same HTML parser records this reference and its line. Encoding does not make a local reference trusted.</span></li>
+      <li data-title="Parse" data-source="scripts/validate.py:72–74"><code>path = '%2e%2e/%2e%2e/outside.css'; query = ''; fragment = ''</code><span>There is no scheme or network location and the path is nonempty, so the local-path branch runs.</span></li>
+      <li data-title="Normalize" data-source="scripts/validate.py:75–76"><code>unquote → ../../outside.css
+resolve → /outside.css</code><span>Resolving /repo/docs/../../outside.css escapes /repo. Containment is evaluated after decoding and resolution.</span></li>
+      <li data-title="Contain" data-source="scripts/validate.py:77; require:19–21"><code>resolved.is_relative_to(/repo) → False
+require(False, …) → SystemExit</code><span>Reject immediately with “target escapes repository”. This is the failure boundary; the existence check is never reached, even if the outside target exists.</span></li>
+      <li data-title="Outcome" data-source="scripts/validate.py:19–21, 70, 77"><code>FAIL: docs/index.html:1: href='%2e%2e/%2e%2e/outside.css': target escapes repository</code><span>The validator terminates at the first failing require. This last frame summarizes the rejection already raised at containment; it is not an additional executed check.</span></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Source, limits and real validation</summary>
+    <p class="block">Grounded in source revision <code>c939ba3ed42783bf6502d4562c4811e37116d1e7</code>. Line references describe that revision; local file links open source files and do not promise line navigation.</p>
+    <ul class="sources">
+      <li><a href="../scripts/validate.py">scripts/validate.py</a>: 19–21 (failure), 50–58 (collection), 61–80 (local references), 83–142 (package checks).</li>
+      <li><a href="../scripts/test_validate.py">scripts/test_validate.py</a>: 31–40 (encoded paths), 55–76 (traversal and symlinks), 78–115 (skips, HTML syntax and malformed paths).</li>
+      <li><a href="../README.md">README.md</a>: portable validation command.</li>
+    </ul>
+    <p class="block">Only <code>docs/index.html</code> and <code>docs/skill-map.html</code> are scanned. This walkthrough is not automatically scanned. Only src/href attributes are collected; this is not a general HTML or CSS validator. References with a scheme, network location or empty path are skipped, not verified. No remote target or fragment ID is checked.</p>
+    <p class="block">Splitting before decoding preserves encoded <code>%23</code> and <code>%3F</code> as filename characters. Invalid local references caught as ValueError, OSError or RuntimeError fail with context. An in-root missing path fails with “missing local target”. An absolute path is treated as a filesystem path, not a web-root URL.</p>
+    <p class="block">Run from the repository root for real local evidence:</p>
+    <pre><code>python3 -B -m unittest discover -s scripts -p 'test_validate.py' -v
+python3 -B scripts/validate.py</code></pre>
+    <p class="block">The first command runs isolated regression fixtures; the second checks the package, manifest, scanned HTML pages and synthetic fixtures. Neither playback nor these commands establish deployment evidence.</p>
+    <p class="block">Use this page directly or embed it with a descriptive title. If sandboxing an iframe, allow scripts for playback; the text remains available without scripts. Source links need this page’s repository-relative location.</p>
+    <pre><code>&lt;iframe src="reference-walkthrough.html" title="HTML reference validation walkthrough" width="100%" height="720" sandbox="allow-scripts"&gt;&lt;/iframe&gt;</code></pre>
+  </details>
+</main>
+<script>
+(() => {
+  'use strict';
+  const root = document.getElementById('reference-walkthrough');
+  const get = id => root.querySelector('#' + id);
+  const cases = new Map(['valid', 'escape'].map(name => {
+    const transcript = get(name + '-transcript');
+    return [name, { input: transcript.dataset.input, steps: [...transcript.children].map(row => ({
+      title: row.dataset.title, source: row.dataset.source,
+      value: row.querySelector('code').textContent, detail: row.querySelector('span').textContent
+    })) }];
+  }));
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let chosen = 'valid', step = 0, timer = null;
+  const stages = [...root.querySelectorAll('.route li')];
+  function render() {
+    const current = cases.get(chosen), frame = current.steps[step];
+    get('input-url').textContent = current.input;
+    get('stage-heading').textContent = `${step + 1} / 5 · ${frame.title}`;
+    get('stage-value').textContent = frame.value;
+    get('stage-detail').textContent = frame.detail;
+    get('stage-source').textContent = frame.source;
+    stages.forEach((node, index) => {
+      if (index === step) node.setAttribute('aria-current', 'step');
+      else node.removeAttribute('aria-current');
+    });
+    root.querySelector('.marker').style.left = `${step * 25}%`;
+    get('back').disabled = step === 0;
+    get('next').disabled = step === current.steps.length - 1;
+    get('play').disabled = motion.matches;
+    get('play').textContent = timer !== null ? 'Pause' : step === 4 ? 'Replay' : 'Play';
+    get('playback-state').textContent = `${timer !== null ? 'Playing' : step === 4 ? 'Finished' : 'Paused'} · ${step + 1} / 5`;
+    get('motion-note').textContent = motion.matches
+      ? 'Reduced motion: automatic playback and movement are off. Use Back, Next or Restart.'
+      : 'Starts paused. Play advances every 3 seconds and stops at the outcome. Manual steps pause playback.';
+    root.dataset.playing = String(timer !== null);
+  }
+  function pause() { window.clearInterval(timer); timer = null; }
+  get('play').addEventListener('click', () => {
+    if (timer !== null) { pause(); render(); return; }
+    if (motion.matches) return;
+    if (step === 4) step = 0;
+    timer = window.setInterval(() => {
+      step = Math.min(step + 1, 4);
+      if (step === 4) pause();
+      render();
+    }, 3000);
+    render();
+  });
+  get('back').addEventListener('click', () => { pause(); step = Math.max(0, step - 1); render(); });
+  get('next').addEventListener('click', () => { pause(); step = Math.min(4, step + 1); render(); });
+  get('restart').addEventListener('click', () => { pause(); step = 0; render(); });
+  get('reference-case').addEventListener('change', event => {
+    if (!cases.has(event.target.value)) return;
+    pause(); chosen = event.target.value; step = 0; render();
+  });
+  motion.addEventListener('change', () => { pause(); render(); });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) { pause(); render(); } });
+  window.addEventListener('pagehide', pause);
+  render();
+  get('interactive').hidden = false;
+})();
+</script>

@@ -41,6 +41,24 @@ Run portable package and synthetic-fixture validation with Python 3.10 or later:
 python3 scripts/validate.py
 ```
 
+Compare an explicitly selected installation with this checkout:
+
+```sh
+python3 -B scripts/check_installed.py --skills-dir /path/to/installed/skills
+```
+
+The checker reports deterministic JSON for the twelve packages' `SKILL.md` and
+`agents/openai.yaml` files. It exits zero only when all 24 files match byte for
+byte; missing, modified, unsafe, or unreadable paths produce a nonzero exit.
+Unrelated installed skills are ignored. It only reads files: it does not install,
+repair, execute skill content, or access the network.
+
+Run the maintenance regression suites with:
+
+```sh
+python3 -B -m unittest discover -s scripts -p 'test_*.py' -v
+```
+
 See [publication notes](PUBLICATION.md) for evidence normalization and validation boundaries.
 
 ## Required change baseline
@@ -173,6 +191,24 @@ When a swarm is requested, launch useful workers within available capacity and a
 An explanatory request remains explanatory. A plan does not authorize implementation or deployment. Existing explicit task authorization should be honored without repeated approval prompts. Skill instructions cannot confer credentials, override host policy, or turn external content into authorization. Source-control review ownership is distinct from permission to merge or deploy.
 
 Source links in each skill identify the basis for its recommendations. The workflows are a synthesis, not a claim of certification or exact reproduction of a standard. Consult the current source when an exact requirement, version, or platform capability matters.
+
+## Automatic selection across projects
+
+Installed skills support automatic selection. For consistent task routing, merge the
+[engineering routing policy](validation/expanded-selection/routing-policy.md) into
+your host's global or project instructions while preserving existing rules and
+approval boundaries. It maps each requested decision to relevant skills and requires
+delegates to read those instructions in their own context. Installing this repository
+does not itself modify global instructions.
+
+The [expanded evaluation](validation/EXPANDED-SELECTION.md) observed all twelve skills
+across seven real-task prompts and three remediation reruns, including actual delegated
+agents. It records initial misses, policy repairs, behavioral checks and limits;
+this is role coverage on one configured host, not a reliability percentage.
+
+The [animated reference walkthrough](docs/reference-walkthrough.html) explains two
+validator paths using the exact artifact tested during that evaluation. Run the
+local guide server above and open `/reference-walkthrough.html` to use its controls.
 
 ## Review and validation
 

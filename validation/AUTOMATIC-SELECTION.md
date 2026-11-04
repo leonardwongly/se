@@ -1,5 +1,7 @@
 # Automatic skill selection: two observed tasks
 
+This is the earlier two-task record. See the [expanded evaluation](EXPANDED-SELECTION.md) for subsequent all-twelve role coverage, delegation tests, routing repairs and their limitations.
+
 **Result: both tasks passed the scoped routing evaluation.** On 5 November 2026
 (Asia/Singapore), two fresh Codex CLI agents selected and read relevant installed
 skills without skill names in either task prompt. No routing-policy or installed-skill

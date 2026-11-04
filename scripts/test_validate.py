@@ -90,6 +90,46 @@ class HTMLLinkTests(unittest.TestCase):
                         '<a href="">Empty</a><img src><a href="  #part  ">Spaced</a>')
         validate_html_links(self.root)
 
+    def test_base_href_rejected_in_both_entry_points(self):
+        for name in ('index.html', 'skill-map.html'):
+            for element in (
+                '<base href="assets/">',
+                '<base href="missing/">',
+                '<base href="https://example.invalid/">',
+                '<base href="//example.invalid/">',
+                '<base href="">',
+                '<base href="  ">',
+                '<base href="#part">',
+                '<base href>',
+                '<BASE HREF=assets/>',
+                '<BaSe HrEf="" />',
+                '<base target="_blank" href="">',
+                '<base href="" href="https://example.invalid/">',
+            ):
+                with self.subTest(name=name, element=element):
+                    self.write_html('<!doctype html>\n' + element +
+                                    '\n<link href="assets/guide.css">', name)
+                    with patch.object(socket, 'socket', side_effect=AssertionError('network access')):
+                        with self.assertRaises(SystemExit) as caught:
+                            validate_html_links(self.root)
+                    message = str(caught.exception)
+                    self.assertIn(f'docs/{name}:2:', message)
+                    self.assertIn('<base href=', message)
+                    self.assertIn('browser URL resolution is not modeled', message)
+                    self.write_html('', name)
+
+    def test_base_without_href_and_non_markup_lookalikes_allowed(self):
+        for name in ('index.html', 'skill-map.html'):
+            self.write_html('''
+                <base target="_blank"><BASE TARGET="_self" /><base>
+                <!-- <base href="https://example.invalid/"> -->
+                <script>const example = '<base href="">';</script>
+                <style>/* <base href=""> */</style>
+                &lt;base href=""&gt;
+                <link href="assets/guide.css">
+            ''', name)
+        validate_html_links(self.root)
+
     def test_html_attribute_syntax_and_non_markup_text(self):
         (self.docs / 'a&b.css').touch()
         self.write_html('''

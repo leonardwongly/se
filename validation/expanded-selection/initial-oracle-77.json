@@ -1,0 +1,317 @@
+{
+  "cases": [
+    {
+      "case": "docs/index.html:reject-base-local",
+      "pass": true
+    },
+    {
+      "case": "docs/index.html:reject-base-remote",
+      "pass": true
+    },
+    {
+      "case": "docs/index.html:reject-base-empty",
+      "pass": true
+    },
+    {
+      "case": "docs/index.html:reject-base-valueless",
+      "pass": true
+    },
+    {
+      "case": "docs/index.html:reject-base-mixed-case",
+      "pass": true
+    },
+    {
+      "case": "docs/index.html:reject-base-duplicate-valueless",
+      "pass": true
+    },
+    {
+      "case": "docs/index.html:allow-base-target",
+      "pass": true
+    },
+    {
+      "case": "docs/index.html:preserve-missing-link-rejection",
+      "pass": true
+    },
+    {
+      "case": "docs/index.html:preserve-escape-rejection",
+      "pass": true
+    },
+    {
+      "case": "docs/skill-map.html:reject-base-local",
+      "pass": true
+    },
+    {
+      "case": "docs/skill-map.html:reject-base-remote",
+      "pass": true
+    },
+    {
+      "case": "docs/skill-map.html:reject-base-empty",
+      "pass": true
+    },
+    {
+      "case": "docs/skill-map.html:reject-base-valueless",
+      "pass": true
+    },
+    {
+      "case": "docs/skill-map.html:reject-base-mixed-case",
+      "pass": true
+    },
+    {
+      "case": "docs/skill-map.html:reject-base-duplicate-valueless",
+      "pass": true
+    },
+    {
+      "case": "docs/skill-map.html:allow-base-target",
+      "pass": true
+    },
+    {
+      "case": "docs/skill-map.html:preserve-missing-link-rejection",
+      "pass": true
+    },
+    {
+      "case": "docs/skill-map.html:preserve-escape-rejection",
+      "pass": true
+    },
+    {
+      "case": "installation:exact-all-24-files-spaces-deterministic",
+      "pass": true
+    },
+    {
+      "case": "installation:ignore-unrelated-package",
+      "pass": true
+    },
+    {
+      "case": "installation:missing:se-what/SKILL.md",
+      "pass": true
+    },
+    {
+      "case": "installation:modified:se-what/SKILL.md",
+      "pass": true
+    },
+    {
+      "case": "installation:missing:se-what/agents/openai.yaml",
+      "pass": true
+    },
+    {
+      "case": "installation:modified:se-what/agents/openai.yaml",
+      "pass": true
+    },
+    {
+      "case": "installation:missing:se-why/SKILL.md",
+      "pass": true
+    },
+    {
+      "case": "installation:modified:se-why/SKILL.md",
+      "pass": true
+    },
+    {
+      "case": "installation:missing:se-why/agents/openai.yaml",
+      "pass": true
+    },
+    {
+      "case": "installation:modified:se-why/agents/openai.yaml",
+      "pass": true
+    },
+    {
+      "case": "installation:missing:se-who/SKILL.md",
+      "pass": true
+    },
+    {
+      "case": "installation:modified:se-who/SKILL.md",
+      "pass": true
+    },
+    {
+      "case": "installation:missing:se-who/agents/openai.yaml",
+      "pass": true
+    },
+    {
+      "case": "installation:modified:se-who/agents/openai.yaml",
+      "pass": true
+    },
+    {
+      "case": "installation:missing:se-where/SKILL.md",
+      "pass": true
+    },
+    {
+      "case": "installation:modified:se-where/SKILL.md",
+      "pass": true
+    },
+    {
+      "case": "installation:missing:se-where/agents/openai.yaml",
+      "pass": true
+    },
+    {
+      "case": "installation:modified:se-where/agents/openai.yaml",
+      "pass": true
+    },
+    {
+      "case": "installation:missing:se-how/SKILL.md",
+      "pass": true
+    },
+    {
+      "case": "installation:modified:se-how/SKILL.md",
+      "pass": true
+    },
+    {
+      "case": "installation:missing:se-how/agents/openai.yaml",
+      "pass": true
+    },
+    {
+      "case": "installation:modified:se-how/agents/openai.yaml",
+      "pass": true
+    },
+    {
+      "case": "installation:missing:se-when/SKILL.md",
+      "pass": true
+    },
+    {
+      "case": "installation:modified:se-when/SKILL.md",
+      "pass": true
+    },
+    {
+      "case": "installation:missing:se-when/agents/openai.yaml",
+      "pass": true
+    },
+    {
+      "case": "installation:modified:se-when/agents/openai.yaml",
+      "pass": true
+    },
+    {
+      "case": "installation:missing:se-zero-trust/SKILL.md",
+      "pass": true
+    },
+    {
+      "case": "installation:modified:se-zero-trust/SKILL.md",
+      "pass": true
+    },
+    {
+      "case": "installation:missing:se-zero-trust/agents/openai.yaml",
+      "pass": true
+    },
+    {
+      "case": "installation:modified:se-zero-trust/agents/openai.yaml",
+      "pass": true
+    },
+    {
+      "case": "installation:missing:se-verify/SKILL.md",
+      "pass": true
+    },
+    {
+      "case": "installation:modified:se-verify/SKILL.md",
+      "pass": true
+    },
+    {
+      "case": "installation:missing:se-verify/agents/openai.yaml",
+      "pass": true
+    },
+    {
+      "case": "installation:modified:se-verify/agents/openai.yaml",
+      "pass": true
+    },
+    {
+      "case": "installation:missing:se-concurrent/SKILL.md",
+      "pass": true
+    },
+    {
+      "case": "installation:modified:se-concurrent/SKILL.md",
+      "pass": true
+    },
+    {
+      "case": "installation:missing:se-concurrent/agents/openai.yaml",
+      "pass": true
+    },
+    {
+      "case": "installation:modified:se-concurrent/agents/openai.yaml",
+      "pass": true
+    },
+    {
+      "case": "installation:missing:se-proof/SKILL.md",
+      "pass": true
+    },
+    {
+      "case": "installation:modified:se-proof/SKILL.md",
+      "pass": true
+    },
+    {
+      "case": "installation:missing:se-proof/agents/openai.yaml",
+      "pass": true
+    },
+    {
+      "case": "installation:modified:se-proof/agents/openai.yaml",
+      "pass": true
+    },
+    {
+      "case": "installation:missing:se-visualise/SKILL.md",
+      "pass": true
+    },
+    {
+      "case": "installation:modified:se-visualise/SKILL.md",
+      "pass": true
+    },
+    {
+      "case": "installation:missing:se-visualise/agents/openai.yaml",
+      "pass": true
+    },
+    {
+      "case": "installation:modified:se-visualise/agents/openai.yaml",
+      "pass": true
+    },
+    {
+      "case": "installation:missing:se-swarm/SKILL.md",
+      "pass": true
+    },
+    {
+      "case": "installation:modified:se-swarm/SKILL.md",
+      "pass": true
+    },
+    {
+      "case": "installation:missing:se-swarm/agents/openai.yaml",
+      "pass": true
+    },
+    {
+      "case": "installation:modified:se-swarm/agents/openai.yaml",
+      "pass": true
+    },
+    {
+      "case": "installation:reject-symlink:root",
+      "pass": true
+    },
+    {
+      "case": "installation:reject-symlink:ancestor",
+      "error": "AssertionError: exit=0; stdout='{\"files\":[{\"path\":\"se-concurrent/SKILL.md\",\"status\":\"match\"},{\"path\":\"se-concurrent/agents/openai.yaml\",\"status\":\"match\"},{\"path\":\"se-how/SKILL.md\",\"status\":\"match\"},{\"path\":\"se-how/agents/openai.yaml\",\"status\":\"match\"},{\"path\":\"se-proof/SKILL.md\",\"status\":\"match\"},{\"path\":\"se-proof/agents/openai.yaml\",\"status\":\"match\"},{\"path\":\"se-swarm/SKILL.md\",\"status\":\"match\"},{\"path\":\"se-swarm/agents/openai.yaml\",\"status\":\"match\"},{\"path\":\"se-verify/SKILL.md\",\"status\":\"match\"},{\"path\":\"se-verify/agents/openai.yaml\",\"status\":\"match\"},{\"path\":\"se-visualise/SKILL.md\",\"status\":\"match\"},{\"path\":\"se-visualise/agents/openai.yaml\",\"status\":\"match\"},{\"path\":\"se-what/SKILL.md\",\"status\":\"match\"},{\"path\":\"se-what/agents/openai.yaml\",\"status\":\"match\"},{\"path\":\"se-when/SKILL.md\",\"status\":\"match\"},{\"path\":\"se-when/agents/openai.yaml\",\"status\":\"match\"},{\"path\":\"se-where/SKILL.md\",\"status\":\"match\"},{\"path\":\"se-where/agents/openai.yaml\",\"status\":\"match\"},{\"path\":\"se-who/SKILL.md\",\"status\":\"match\"},{\"path\":\"se-who/agents/openai.yaml\",\"status\":\"match\"},{\"path\":\"se-why/SKILL.md\",\"status\":\"match\"},{\"path\":\"se-why/agents/openai.yaml\",\"status\":\"match\"},{\"path\":\"se-zero-trust/SKILL.md\",\"status\":\"match\"},{\"path\":\"se-zero-trust/agents/openai.yaml\",\"status\":\"match\"}],\"status\":\"match\"}\\n'; stderr=''",
+      "pass": false
+    },
+    {
+      "case": "installation:reject-symlink:package",
+      "pass": true
+    },
+    {
+      "case": "installation:reject-symlink:agents",
+      "pass": true
+    },
+    {
+      "case": "installation:reject-symlink:file",
+      "pass": true
+    },
+    {
+      "case": "installation:reject-symlink:metadata",
+      "pass": true
+    },
+    {
+      "case": "installation:invalid:missing",
+      "pass": true
+    },
+    {
+      "case": "installation:invalid:file",
+      "pass": true
+    },
+    {
+      "case": "installation:no-argument",
+      "pass": true
+    }
+  ],
+  "passed": 76,
+  "python": "3.14.5",
+  "repository": "$TRIAL_ROOT/team",
+  "total": 77
+}

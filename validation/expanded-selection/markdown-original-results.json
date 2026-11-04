@@ -1,0 +1,35 @@
+{
+  "result": "FAIL",
+  "source_unchanged": true,
+  "validator_sha256": "26e6d292900bda85197140447fd4ce2af12dc64b875902bd28e343f9fc383171",
+  "cases": [
+    {
+      "case": "query",
+      "expected_exit": 0,
+      "actual_exit": 1,
+      "pass": false,
+      "output": "FAIL: README.md: invalid link docs/index.html?cache=1#skills"
+    },
+    {
+      "case": "encoded",
+      "expected_exit": 0,
+      "actual_exit": 1,
+      "pass": false,
+      "output": "FAIL: README.md: invalid link docs/%69ndex.html"
+    },
+    {
+      "case": "missing-query-url",
+      "expected_exit": 1,
+      "actual_exit": 0,
+      "pass": false,
+      "output": "PASS: 12 skill packages, required fields, local Markdown/HTML links, complete hash manifest\nPASS: new project checks\nPASS: new independent checks\nPASS: update project checks\nPASS: update independent checks\nPASS: original defective implementation rejected for tenant bypass\nPASS: proof exercise reproduces tenant bypass despite original green suite\nPASS: swarm project and independent checks"
+    },
+    {
+      "case": "escape-query-url",
+      "expected_exit": 1,
+      "actual_exit": 0,
+      "pass": false,
+      "output": "PASS: 12 skill packages, required fields, local Markdown/HTML links, complete hash manifest\nPASS: new project checks\nPASS: new independent checks\nPASS: update project checks\nPASS: update independent checks\nPASS: original defective implementation rejected for tenant bypass\nPASS: proof exercise reproduces tenant bypass despite original green suite\nPASS: swarm project and independent checks"
+    }
+  ]
+}

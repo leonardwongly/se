@@ -1,0 +1,55 @@
+{
+  "method": "Independent read-only assessment against saved prompts and ACCEPTANCE.md. Application outcomes are separate from skill selection and full instruction-read evidence. No trial was rerun by this grader.",
+  "baseline_revision": "c939ba3ed42783bf6502d4562c4811e37116d1e7",
+  "baseline_clean_observed": true,
+  "trials": [
+    {
+      "trial": "scope",
+      "application": "PASS",
+      "evidence": ["scope.events.jsonl:item_6", "scope.events.jsonl:item_8", "scope.events.jsonl:item_10", "scope.final.txt"],
+      "assessment": "Concrete read-only comparison outcome, observed twelve-package/two-file layout, selected-package acceptance including missing/modified/unrelated contents, meaningful non-goals, and open symlink/reference/output decisions. Explicit selection or all is a labeled proposal; no implementation claimed.",
+      "limits": ["Does not assess actual installed equality or settle the future CLI contract."]
+    },
+    {
+      "trial": "rationale",
+      "application": "PASS",
+      "evidence": ["rationale.events.jsonl:item_11", "rationale.events.jsonl:item_12", "rationale.events.jsonl:item_14", "rationale.events.jsonl:item_16", "rationale.final.txt"],
+      "assessment": "Correct split-before-one-decode and resolve-before-component-containment sequence; concrete delimiter, traversal, symlink and prefix alternatives; history distinguished from inferred motivation; current implementation executed on both entrypoints and in-memory comparisons support examples.",
+      "limits": ["Regression source inspected but filesystem fixture suite not rerun; race and browser-semantic limits are explicit."]
+    },
+    {
+      "trial": "mechanism",
+      "application": "PASS",
+      "evidence": ["mechanism.events.jsonl:item_9", "mechanism.events.jsonl:item_11", "mechanism.events.jsonl:item_12", "mechanism.events.jsonl:item_14", "mechanism.final.txt"],
+      "assessment": "Correct active HTML/script binding, state/handler locations, Pause/Step/Replay causality, finite completion, explicit Play under reduced motion, and visibility/preference boundary walkthrough. Historical browser observations are hash-linked and clearly separated from fresh source analysis.",
+      "selection_note": "Initial run loaded installed se-proof only; missing primary se-where/se-how selection remains a routing miss even though the requested explanation passes.",
+      "limits": ["Node syntax check is observed; no new browser execution or hide/show runtime evidence is claimed."]
+    },
+    {
+      "trial": "readiness",
+      "application": "PASS",
+      "evidence": ["readiness.events.jsonl:item_20", "readiness.events.jsonl:item_21", "readiness.events.jsonl:item_22", "readiness.events.jsonl:item_24", "readiness.final.txt"],
+      "assessment": "Project-derived dependency order, stable final integration gate, manifest timing, invalidation rules, local-versus-release authority and actual checks are correct. Portable validator and JS syntax ran; initial installation inventory discrepancy was traced to excluded .DS_Store and corrected comparison showed twelve matches.",
+      "selection_note": "Installed se-when and se-proof loaded. Repository se-verify subject-matter reads support cited gate rules but do not establish installed se-verify selection. Direct assessment fulfills requested responsibilities without turning this separate selection miss into an application failure.",
+      "limits": ["Separate focused HTML and independent suites honestly NOT_RUN; this evaluates an unspecified future change and does not pass that future release or verify live host routing."]
+    },
+    {
+      "trial": "expertise",
+      "application": "PASS",
+      "evidence": ["expertise.events.jsonl:item_8", "expertise.events.jsonl:item_10", "expertise.events.jsonl:item_17", "expertise.final.txt", "expertise delegated url_containment_review own-turn native trace"],
+      "assessment": "Suitable explorer reviewer selected for a bounded Python/path security review. Native child metadata links /root/url_containment_review to the trial parent; own-turn calls actually read validator/tests/docs, with no edits or recursive delegation, and the child returned a scoped conclusion. Parent source review plus real-entrypoint/five in-memory checks independently substantiate conclusion and proposed next action.",
+      "selection_note": "Child performed no installed skill read in its own turn. Inherited parent history must not count as child selection; task application and that routing omission remain separate.",
+      "limits": ["Public JSONL alone omits child launch/results; native child audit was needed. Child ran no tests; parent checks are explicitly separate. Symlink/traversal fixture behavior was source-reviewed, not newly exercised."]
+    },
+    {
+      "trial": "visual",
+      "application": "PASS",
+      "evidence": ["visual.events.jsonl:item_18", "visual.events.jsonl:item_19", "visual.events.jsonl:item_20", "visual.events.jsonl:item_23", "visual.events.jsonl:item_29", "visual.events.jsonl:item_30", "visual.events.jsonl:item_33", "visual.final.txt"],
+      "artifact_sha256": "bafda1fdc68e09f6762c4f8da9066438142db94c9f6389228eb05ffc07c0d95c",
+      "assessment": "Standalone page accurately animates valid encoded-path and traversal denial; uses finite intentional controls, static transcript, reduced-motion/manual operation, source references and no external dependencies. Exact illustrated URLs ran through real validator, including assertion that containment rejection precedes existence. Browser final-source literals match artifact bytes, and tested earlier control-script bytes equal final script. Nine regressions, final package validator, preserved prior files/manifest entries and final only-two-path diff are evidenced.",
+      "preserved_failures": ["file protocol navigation blocked", "local HTTP bind denied", "immediate reduced-motion assertion failed before preference-change handling settled; corrected wait-based checks passed", "cross-call walkthroughSource variable unavailable; self-contained final preview passed", "screenshot artifact temporarily caused manifest inventory failure; artifact moved outside package and final validator passed", "additional narrow resize/screenshot request denied"],
+      "limits": ["Preview used exact HTML supplied to about:blank/setContent, not file/local-server navigation or deployment.", "Narrow layouts evidenced by DOM measurements; additional requested narrow screenshot was not captured.", "Scope preservation describes final repository state; temporary tool-generated screenshot existed and was cleaned out of the package."]
+    }
+  ],
+  "overall": "Six requested application outcomes pass within their recorded limits. This is not an all-skills selection pass; initial primary-skill omissions, child own-context selection and truncated instruction reads require separate grading/remediation."
+}

@@ -1,0 +1,35 @@
+{
+  "result": "PASS",
+  "source_unchanged": true,
+  "validator_sha256": "d602faa4e027095c34642d88710236a356de4b4d836d11046a2b78eeec699b8a",
+  "cases": [
+    {
+      "case": "query",
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "pass": true,
+      "output": "PASS: 12 skill packages, required fields, local Markdown/HTML links, complete hash manifest\nPASS: new project checks\nPASS: new independent checks\nPASS: update project checks\nPASS: update independent checks\nPASS: original defective implementation rejected for tenant bypass\nPASS: proof exercise reproduces tenant bypass despite original green suite\nPASS: swarm project and independent checks"
+    },
+    {
+      "case": "encoded",
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "pass": true,
+      "output": "PASS: 12 skill packages, required fields, local Markdown/HTML links, complete hash manifest\nPASS: new project checks\nPASS: new independent checks\nPASS: update project checks\nPASS: update independent checks\nPASS: original defective implementation rejected for tenant bypass\nPASS: proof exercise reproduces tenant bypass despite original green suite\nPASS: swarm project and independent checks"
+    },
+    {
+      "case": "missing-query-url",
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "pass": true,
+      "output": "FAIL: README.md: invalid link 'docs/absent-oracle.html?redirect=https://example.invalid': missing local target"
+    },
+    {
+      "case": "escape-query-url",
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "pass": true,
+      "output": "FAIL: README.md: invalid link '../../outside-oracle.css?redirect=https://example.invalid': target escapes repository"
+    }
+  ]
+}

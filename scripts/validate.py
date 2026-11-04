@@ -51,9 +51,12 @@ class HTMLReferences(HTMLParser):
     def __init__(self):
         super().__init__()
         self.references = []
+        self.base_hrefs = []
 
     def handle_starttag(self, tag, attrs):
         for attribute, target in attrs:
+            if tag == 'base' and attribute == 'href':
+                self.base_hrefs.append((self.getpos()[0], target))
             if attribute in {'src', 'href'} and target is not None:
                 self.references.append((self.getpos()[0], attribute, target))
 
@@ -66,6 +69,9 @@ def validate_html_links(root=ROOT):
         parser = HTMLReferences()
         parser.feed(source.read_text(encoding='utf-8'))
         parser.close()
+        for line, target in parser.base_hrefs:
+            require(False, f'{name}:{line}: <base href={target!r}> is unsupported: '
+                    'browser URL resolution is not modeled by this static checker')
         for line, attribute, target in parser.references:
             context = f'{name}:{line}: {attribute}={target!r}'
             try:
@@ -78,6 +84,25 @@ def validate_html_links(root=ROOT):
                 require(resolved.exists(), f'{context}: missing local target')
             except (ValueError, OSError, RuntimeError) as error:
                 require(False, f'{context}: invalid local reference ({error})')
+
+
+def validate_markdown_links(source, root=ROOT):
+    """Check the existing bounded inline-link syntax, not a full Markdown grammar."""
+    root = root.resolve()
+    source = source.resolve()
+    name = source.relative_to(root).as_posix()
+    for target in re.findall(r'\]\(([^)]+)\)', source.read_text(encoding='utf-8')):
+        context = f'{name}: invalid link {target!r}'
+        try:
+            url = urlsplit(target.strip())
+            if url.scheme or url.netloc or not url.path:
+                continue
+            # URL delimiters are removed before one strict filename decode.
+            resolved = (source.parent / unquote(url.path, errors='strict')).resolve()
+            require(resolved.is_relative_to(root), f'{context}: target escapes repository')
+            require(resolved.exists(), f'{context}: missing local target')
+        except (ValueError, OSError, RuntimeError) as error:
+            require(False, f'{context}: invalid local reference ({error})')
 
 
 def main():
@@ -101,11 +126,7 @@ def main():
     for name, path in files.items():
         require(hashlib.sha256(path.read_bytes()).hexdigest() == manifest[name], f'digest mismatch: {name}')
         if path.suffix == '.md':
-            for target in re.findall(r'\]\(([^)]+)\)', path.read_text()):
-                if '://' in target or target.startswith('#'):
-                    continue
-                resolved = (path.parent / target.split('#')[0]).resolve()
-                require(resolved.is_relative_to(ROOT) and resolved.exists(), f'{name}: invalid link {target}')
+            validate_markdown_links(path)
     validate_html_links()
     print(f'PASS: {len(EXPECTED)} skill packages, required fields, local Markdown/HTML links, complete hash manifest')
 

@@ -1,5 +1,10 @@
 # Validation — mandatory project-grounded baseline
 
+## Expanded selection and delegation — 5 November 2026
+
+The [expanded evaluation](validation/EXPANDED-SELECTION.md) covers all twelve skills across ten top-level sessions (seven task prompts plus three unchanged-prompt remediation reruns), with six actual delegated agents. It preserves initial selection omissions, own-context handoff and truncation fixes, independent application grading, and the 79-case maintenance oracle. The final integration also fixes a Markdown URL-classification bypass found by the delegated reviewer. See the report for scoped results and deterministic reproduction; earlier records below remain historical.
+
+
 ## Automatic-selection evaluation — 5 November 2026
 
 Two fresh CLI agents selected and read relevant installed skills without skill names in their task prompts. Both scoped trials passed. The code trial also fixed missing HTML-reference validation; nine focused regressions and 21 independent acceptance checks passed. See [results, evidence, reproduction and limitations](validation/AUTOMATIC-SELECTION.md). These results are separate from the historical fixture exercises below.

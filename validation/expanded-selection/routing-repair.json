@@ -1,0 +1,8 @@
+{
+  "before_sha256": "8927011ea9ed4070708accfae607de23773f1cabacf2dd416d894cbbe6c888ed",
+  "after_sha256": "21ec4e29f1afb1986165dcf2e2563b4e5d9c26f1800faf0a00ece6bc3273cdf4",
+  "reason": "Observed primary skill omissions and truncated skill-read handling",
+  "changed_scope": "Engineering Skill Routing section only",
+  "delegation_after_sha256": "5b6d6d2b2250889c07d879035c9fd9c777ec32eea2ed92e768bc455ab998e255",
+  "delegation_reason": "Read-only delegated reviewer inspected code but made no skill read in its own turn; inherited parent reads excluded"
+}
