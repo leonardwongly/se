@@ -1,5 +1,9 @@
 # Validation — mandatory project-grounded baseline
 
+## Available-tools and skills update
+
+All twelve standalone entrypoints now include relevant capability discovery, current tool/skill contract inspection, evidence-based selection, execution and output assessment, plus role-specific use guidance. The update preserves scope, authority, independent usability, verification gates and bounded completion. Textual consistency review and the package checks cover this instruction update; earlier observed agent trials are historical, not reruns of the revised instructions. No new live agent-routing, connector, or provider-adherence trial is claimed.
+
 Current package: twelve skills. See the [expansion review and execution evidence](validation/EXPANSION-REVIEW.md) for proof, visualise, swarm, specialist selection and the updated guides. The nine-skill results below describe the original baseline and remain historical evidence.
 
 Date: 31 October 2026, Asia/Singapore. Scope: nine uninstalled skills, textual review, real execution in two isolated synthetic Python projects, and an interactive-map preview. No production-project or provider enforcement claim is made.
@@ -50,4 +54,4 @@ Historical authoring structural validation used `python3 work/validate_se_bundle
 
 ## Publication validation
 
-The portable check is `python3 scripts/validate.py`; see [publication notes](PUBLICATION.md). Animation runtime evidence is in [ANIMATION-CHECKS.md](validation/ANIMATION-CHECKS.md). Historical authoring paths were normalized for publication; retained source hashes and observed test outcomes were preserved.
+The portable check is `python3 scripts/validate.py`; see [publication notes](PUBLICATION.md). Current custom UI and README media checks are in [CUSTOM-GUIDE.md](validation/CUSTOM-GUIDE.md). Earlier animation runtime evidence in [ANIMATION-CHECKS.md](validation/ANIMATION-CHECKS.md) is historical. Historical authoring paths were normalized for publication; retained source hashes and observed test outcomes were preserved.

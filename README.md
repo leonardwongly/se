@@ -2,6 +2,19 @@
 
 Twelve standalone skills for project-grounded AI-assisted software engineering. Material claims and implementation decisions require relevant evidence and a coherent understanding of the mechanism. Every new or modified code change requires a zero-trust review and verification, with depth proportional to risk. Publishing this repository does not install the skills into any agent host.
 
+## See the workflow
+
+![Custom workflow UI showing grounded understanding, trust review, independent workers, integration and verification.](docs/images/workflow.png)
+
+<details>
+<summary>Watch the animated workflow — expand to show, collapse to hide</summary>
+
+![Illustrative workflow: ground evidence, review trust, implement and integrate, retain a failed check, repair, and verify the new revision.](docs/images/workflow.gif)
+
+</details>
+
+These are recorded previews of the custom guide UI, not live engineering results. The GIF plays once; use the local guide to replay or step through it. Prefer no motion? Use the static image above. Run the guide locally using the instructions below for working playback controls and skill selection.
+
 ## Install and explore
 
 Install interactively using the [Skills CLI](https://www.skills.sh/docs/cli):
@@ -20,7 +33,7 @@ cd se
 python3 -m http.server 8000 --bind 127.0.0.1 --directory docs
 ```
 
-Open `http://127.0.0.1:8000/` for the animated workflow or `http://127.0.0.1:8000/skill-map.html` for the interactive map. These are illustrative guides, not live engineering checks. The repository includes standalone pages and their original host fragments; no Pages deployment is implied.
+Open `http://127.0.0.1:8000/` for the custom animated workflow and skill explorer, or `http://127.0.0.1:8000/skill-map.html` for the explorer entry point. The guide runs locally without a build step or external dependencies. Original host fragments remain in `docs/fragments` as historical sources; no Pages deployment is implied.
 
 Run portable package and synthetic-fixture validation with Python 3.10 or later:
 
@@ -31,6 +44,14 @@ python3 scripts/validate.py
 See [publication notes](PUBLICATION.md) for evidence normalization and validation boundaries.
 
 ## Required change baseline
+
+### Tool and skill selection across all twelve skills
+
+Each skill actively discovers and uses relevant capabilities from the current host and project, including skills outside the `se-*` family. Choose tools for the evidence or outcome needed, read their current instructions and schemas, and inspect the results before deciding. Prefer a suitable direct interface; use UI tools when observed UI behavior is part of the claim.
+
+Selection considers reliability, task fit, authority, privacy, cost and time. Existing valid evidence can be reused; tools are not invoked indiscriminately. Missing capabilities permit honest, authorized alternatives, but cannot turn required missing evidence into a pass or bypass an approval. Each skill includes role-specific guidance and remains independently usable without mandatory sibling skills or vendor tools.
+
+### Required responsibilities
 
 1. **Ground:** confirm the actual project, source state, local instructions, maintained contracts, active call paths, and test/CI commands.
 2. **Review trust:** inspect the change and affected existing code; identify untrusted inputs, authoritative identity, data and actions, and the enforcement boundary.
@@ -57,6 +78,10 @@ For information as well as code, establish what the evidence supports before pre
 Reuse a verified project brief while it remains current. Resolve material target or policy conflicts before dependent decisions; do bounded independent work meanwhile. Existing code alone does not establish intended policy, and stale memory or a similarly named file does not establish the active project. General conceptual questions use labeled examples without unrelated private-project access.
 
 ## Choose the skill for the decision
+
+![Twelve skills grouped by purpose; zero-trust review and verification apply to every code change, while swarm and concurrent execution are optional.](docs/images/skills-overview.png)
+
+The skills are a toolkit, not a fixed twelve-step sequence. Select the capabilities that improve the decision, then preserve the required code-change baseline.
 
 | Question | Guide label | Primary output |
 |---|---|---|
@@ -96,9 +121,10 @@ flowchart TD
     S --> P["/se-concurrent: isolation and integration discipline"]
     P -->|new code or repairs| Z
     E --> I[Integrate a stable combined revision]
-    I --> V["/se-verify: required verification"]
+    I --> F["/se-zero-trust: review combined final diff"]
+    F --> V["/se-verify: required verification"]
     V -->|scoped gate and evidence| WHEN
-    V -->|repairable failure within scope| S
+    V -->|repairable failure within scope; retain evidence| Z
     G -. comprehension where useful .-> VIS["/se-visualise: appropriate inline explanation"]
 ```
 
