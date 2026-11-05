@@ -194,6 +194,12 @@ Source links in each skill identify the basis for its recommendations. The workf
 
 ## Automatic selection across projects
 
+The [second-project evaluation](validation/CROSS-PROJECT-SELECTION.md) ran eight fresh
+tasks on ProjectPortfolio under one unchanged final policy. All twelve skill roles
+and three actual task delegates were observed. It preserves initial failures and
+project defects, publishes reproducible fixes, and records final 357-test validation
+with explicit CLI/browser/release limits.
+
 Installed skills support automatic selection. For consistent task routing, merge the
 [engineering routing policy](validation/expanded-selection/routing-policy.md) into
 your host's global or project instructions while preserving existing rules and

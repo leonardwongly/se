@@ -1,0 +1,874 @@
+{
+  "method": "Actual installed-file read receipts. Complete-source delivery and chunk evidence are separated; line matching supports manual review, not comprehension. Child own turns exclude parent turn IDs. Application graded independently.",
+  "trials": {
+    "scope": {
+      "completed": true,
+      "expected": [
+        "se-what",
+        "se-proof"
+      ],
+      "reads": [
+        {
+          "call": "item_3",
+          "skills": [
+            "se-proof",
+            "se-what",
+            "se-where"
+          ],
+          "command": "/bin/zsh -lc 'cat $CODEX_HOME/skills/se-what/SKILL.md $CODEX_HOME/skills/se-where/SKILL.md $CODEX_HOME/skills/se-proof/SKILL.md'",
+          "complete_source_delivered": [
+            "se-proof",
+            "se-what",
+            "se-where"
+          ],
+          "truncated_output": false,
+          "observed_nonblank_line_counts": {
+            "se-proof": 119,
+            "se-what": 89,
+            "se-where": 103
+          }
+        },
+        {
+          "call": "item_5",
+          "skills": [
+            "se-how"
+          ],
+          "command": "/bin/zsh -lc 'cat $CODEX_HOME/skills/se-how/SKILL.md'",
+          "complete_source_delivered": [
+            "se-how"
+          ],
+          "truncated_output": false,
+          "observed_nonblank_line_counts": {
+            "se-how": 107
+          }
+        }
+      ],
+      "delivery": {
+        "se-how": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-proof": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-what": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-where": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        }
+      },
+      "first_edit": null,
+      "completed_commands": 12,
+      "mcp_tools": []
+    },
+    "rationale": {
+      "completed": true,
+      "expected": [
+        "se-why",
+        "se-proof"
+      ],
+      "reads": [
+        {
+          "call": "item_4",
+          "skills": [
+            "se-how",
+            "se-proof",
+            "se-where",
+            "se-why"
+          ],
+          "command": "/bin/zsh -lc 'cat $CODEX_HOME/skills/se-why/SKILL.md $CODEX_HOME/skills/se-where/SKILL.md $CODEX_HOME/skills/se-how/SKILL.md $CODEX_HOME/skills/se-proof/SKILL.md'",
+          "complete_source_delivered": [
+            "se-how",
+            "se-proof",
+            "se-where",
+            "se-why"
+          ],
+          "truncated_output": false,
+          "observed_nonblank_line_counts": {
+            "se-how": 107,
+            "se-proof": 119,
+            "se-where": 103,
+            "se-why": 90
+          }
+        },
+        {
+          "call": "item_6",
+          "skills": [
+            "se-where"
+          ],
+          "command": "/bin/zsh -lc 'cat $CODEX_HOME/skills/se-where/SKILL.md'",
+          "complete_source_delivered": [
+            "se-where"
+          ],
+          "truncated_output": false,
+          "observed_nonblank_line_counts": {
+            "se-where": 103
+          }
+        }
+      ],
+      "delivery": {
+        "se-how": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-proof": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-where": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-why": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        }
+      },
+      "first_edit": null,
+      "completed_commands": 10,
+      "mcp_tools": [
+        {
+          "event": "item_8",
+          "tool": "zvec_grep_search",
+          "status": "failed"
+        }
+      ]
+    },
+    "mechanism": {
+      "completed": true,
+      "expected": [
+        "se-where",
+        "se-how",
+        "se-proof"
+      ],
+      "reads": [
+        {
+          "call": "item_4",
+          "skills": [
+            "se-how",
+            "se-proof",
+            "se-where"
+          ],
+          "command": "/bin/zsh -lc 'cat $CODEX_HOME/skills/se-where/SKILL.md $CODEX_HOME/skills/se-how/SKILL.md $CODEX_HOME/skills/se-proof/SKILL.md'",
+          "complete_source_delivered": [
+            "se-how",
+            "se-proof",
+            "se-where"
+          ],
+          "truncated_output": false,
+          "observed_nonblank_line_counts": {
+            "se-how": 107,
+            "se-proof": 119,
+            "se-where": 103
+          }
+        }
+      ],
+      "delivery": {
+        "se-how": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-proof": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-where": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        }
+      },
+      "first_edit": null,
+      "completed_commands": 7,
+      "mcp_tools": [
+        {
+          "event": "item_5",
+          "tool": "zvec_grep_search",
+          "status": "failed"
+        }
+      ]
+    },
+    "readiness": {
+      "completed": true,
+      "expected": [
+        "se-when",
+        "se-verify",
+        "se-proof"
+      ],
+      "reads": [
+        {
+          "call": "item_4",
+          "skills": [
+            "se-when"
+          ],
+          "command": "/bin/zsh -lc 'cat $CODEX_HOME/skills/se-when/SKILL.md'",
+          "complete_source_delivered": [
+            "se-when"
+          ],
+          "truncated_output": false,
+          "observed_nonblank_line_counts": {
+            "se-when": 111
+          }
+        },
+        {
+          "call": "item_5",
+          "skills": [
+            "se-proof"
+          ],
+          "command": "/bin/zsh -lc 'cat $CODEX_HOME/skills/se-proof/SKILL.md'",
+          "complete_source_delivered": [
+            "se-proof"
+          ],
+          "truncated_output": false,
+          "observed_nonblank_line_counts": {
+            "se-proof": 119
+          }
+        },
+        {
+          "call": "item_7",
+          "skills": [
+            "se-verify"
+          ],
+          "command": "/bin/zsh -lc 'cat $CODEX_HOME/skills/se-verify/SKILL.md'",
+          "complete_source_delivered": [
+            "se-verify"
+          ],
+          "truncated_output": false,
+          "observed_nonblank_line_counts": {
+            "se-verify": 144
+          }
+        }
+      ],
+      "delivery": {
+        "se-proof": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-verify": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-when": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        }
+      },
+      "first_edit": null,
+      "completed_commands": 28,
+      "mcp_tools": [
+        {
+          "event": "item_9",
+          "tool": "zvec_grep_search",
+          "status": "failed"
+        }
+      ]
+    },
+    "expertise": {
+      "completed": true,
+      "expected": [
+        "se-who",
+        "se-proof"
+      ],
+      "reads": [
+        {
+          "call": "item_4",
+          "skills": [
+            "se-proof",
+            "se-who"
+          ],
+          "command": "/bin/zsh -lc 'cat $CODEX_HOME/skills/se-who/SKILL.md $CODEX_HOME/skills/se-proof/SKILL.md'",
+          "complete_source_delivered": [
+            "se-proof",
+            "se-who"
+          ],
+          "truncated_output": false,
+          "observed_nonblank_line_counts": {
+            "se-proof": 119,
+            "se-who": 129
+          }
+        }
+      ],
+      "delivery": {
+        "se-proof": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-who": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        }
+      },
+      "first_edit": null,
+      "completed_commands": 14,
+      "mcp_tools": []
+    },
+    "verification": {
+      "completed": true,
+      "expected": [
+        "se-zero-trust",
+        "se-verify",
+        "se-proof"
+      ],
+      "reads": [
+        {
+          "call": "item_4",
+          "skills": [
+            "se-proof",
+            "se-verify",
+            "se-where"
+          ],
+          "command": "/bin/zsh -lc 'cat $CODEX_HOME/skills/se-where/SKILL.md $CODEX_HOME/skills/se-proof/SKILL.md $CODEX_HOME/skills/se-verify/SKILL.md'",
+          "complete_source_delivered": [
+            "se-proof",
+            "se-verify",
+            "se-where"
+          ],
+          "truncated_output": false,
+          "observed_nonblank_line_counts": {
+            "se-proof": 119,
+            "se-verify": 144,
+            "se-where": 103
+          }
+        },
+        {
+          "call": "item_5",
+          "skills": [
+            "se-proof",
+            "se-where"
+          ],
+          "command": "/bin/zsh -lc 'cat $CODEX_HOME/skills/se-where/SKILL.md $CODEX_HOME/skills/se-proof/SKILL.md'",
+          "complete_source_delivered": [
+            "se-proof",
+            "se-where"
+          ],
+          "truncated_output": false,
+          "observed_nonblank_line_counts": {
+            "se-proof": 119,
+            "se-where": 103
+          }
+        },
+        {
+          "call": "item_9",
+          "skills": [
+            "se-how",
+            "se-zero-trust"
+          ],
+          "command": "/bin/zsh -lc 'cat $CODEX_HOME/skills/se-zero-trust/SKILL.md $CODEX_HOME/skills/se-how/SKILL.md'",
+          "complete_source_delivered": [
+            "se-how",
+            "se-zero-trust"
+          ],
+          "truncated_output": false,
+          "observed_nonblank_line_counts": {
+            "se-how": 107,
+            "se-zero-trust": 127
+          }
+        }
+      ],
+      "delivery": {
+        "se-how": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-proof": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-verify": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-where": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-zero-trust": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        }
+      },
+      "first_edit": null,
+      "completed_commands": 12,
+      "mcp_tools": []
+    },
+    "visual": {
+      "completed": true,
+      "expected": [
+        "se-visualise",
+        "se-proof",
+        "se-zero-trust",
+        "se-verify"
+      ],
+      "reads": [
+        {
+          "call": "item_4",
+          "skills": [
+            "se-how",
+            "se-proof",
+            "se-visualise",
+            "se-where"
+          ],
+          "command": "/bin/zsh -lc 'cat $CODEX_HOME/skills/se-where/SKILL.md $CODEX_HOME/skills/se-how/SKILL.md $CODEX_HOME/skills/se-visualise/SKILL.md $CODEX_HOME/skills/se-proof/SKILL.md'",
+          "complete_source_delivered": [
+            "se-how",
+            "se-proof",
+            "se-visualise",
+            "se-where"
+          ],
+          "truncated_output": false,
+          "observed_nonblank_line_counts": {
+            "se-how": 107,
+            "se-proof": 119,
+            "se-visualise": 100,
+            "se-where": 103
+          }
+        },
+        {
+          "call": "item_6",
+          "skills": [
+            "se-how",
+            "se-where"
+          ],
+          "command": "/bin/zsh -lc 'cat $CODEX_HOME/skills/se-where/SKILL.md $CODEX_HOME/skills/se-how/SKILL.md'",
+          "complete_source_delivered": [
+            "se-how",
+            "se-where"
+          ],
+          "truncated_output": false,
+          "observed_nonblank_line_counts": {
+            "se-how": 107,
+            "se-where": 103
+          }
+        },
+        {
+          "call": "item_7",
+          "skills": [
+            "se-verify",
+            "se-zero-trust"
+          ],
+          "command": "/bin/zsh -lc 'cat $CODEX_HOME/skills/se-zero-trust/SKILL.md $CODEX_HOME/skills/se-verify/SKILL.md $AGENT_SKILLS_HOME/skills/brainstorming/SKILL.md'",
+          "complete_source_delivered": [
+            "se-verify",
+            "se-zero-trust"
+          ],
+          "truncated_output": false,
+          "observed_nonblank_line_counts": {
+            "se-verify": 144,
+            "se-zero-trust": 127
+          }
+        },
+        {
+          "call": "item_9",
+          "skills": [
+            "se-verify"
+          ],
+          "command": "/bin/zsh -lc 'cat $CODEX_HOME/skills/se-verify/SKILL.md; cat $AGENT_SKILLS_HOME/skills/brainstorming/SKILL.md'",
+          "complete_source_delivered": [
+            "se-verify"
+          ],
+          "truncated_output": false,
+          "observed_nonblank_line_counts": {
+            "se-verify": 144
+          }
+        }
+      ],
+      "delivery": {
+        "se-how": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-proof": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-verify": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-visualise": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-where": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-zero-trust": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        }
+      },
+      "first_edit": null,
+      "completed_commands": 20,
+      "mcp_tools": [
+        {
+          "event": "item_10",
+          "tool": "zvec_grep_search",
+          "status": "failed"
+        },
+        {
+          "event": "item_14",
+          "tool": "browser_navigate",
+          "status": "completed"
+        },
+        {
+          "event": "item_18",
+          "tool": "browser_navigate",
+          "status": "failed"
+        },
+        {
+          "event": "item_24",
+          "tool": "browser_run_code_unsafe",
+          "status": "completed"
+        },
+        {
+          "event": "item_25",
+          "tool": "browser_run_code_unsafe",
+          "status": "failed"
+        },
+        {
+          "event": "item_26",
+          "tool": "browser_run_code_unsafe",
+          "status": "completed"
+        },
+        {
+          "event": "item_27",
+          "tool": "browser_run_code_unsafe",
+          "status": "completed"
+        },
+        {
+          "event": "item_31",
+          "tool": "browser_run_code_unsafe",
+          "status": "completed"
+        },
+        {
+          "event": "item_32",
+          "tool": "browser_run_code_unsafe",
+          "status": "completed"
+        },
+        {
+          "event": "item_33",
+          "tool": "browser_run_code_unsafe",
+          "status": "completed"
+        },
+        {
+          "event": "item_34",
+          "tool": "browser_console_messages",
+          "status": "completed"
+        },
+        {
+          "event": "item_35",
+          "tool": "browser_take_screenshot",
+          "status": "completed"
+        },
+        {
+          "event": "item_38",
+          "tool": "browser_run_code_unsafe",
+          "status": "completed"
+        },
+        {
+          "event": "item_39",
+          "tool": "browser_take_screenshot",
+          "status": "failed"
+        },
+        {
+          "event": "item_40",
+          "tool": "browser_take_screenshot",
+          "status": "completed"
+        }
+      ]
+    },
+    "team": {
+      "completed": true,
+      "expected": [
+        "se-who",
+        "se-swarm",
+        "se-concurrent",
+        "se-proof",
+        "se-zero-trust",
+        "se-verify"
+      ],
+      "reads": [
+        {
+          "call": "item_4",
+          "skills": [
+            "se-concurrent",
+            "se-swarm",
+            "se-who"
+          ],
+          "command": "/bin/zsh -lc 'cat $CODEX_HOME/skills/se-who/SKILL.md $CODEX_HOME/skills/se-swarm/SKILL.md $CODEX_HOME/skills/se-concurrent/SKILL.md'",
+          "complete_source_delivered": [
+            "se-concurrent",
+            "se-swarm",
+            "se-who"
+          ],
+          "truncated_output": false,
+          "observed_nonblank_line_counts": {
+            "se-concurrent": 125,
+            "se-swarm": 126,
+            "se-who": 129
+          }
+        },
+        {
+          "call": "item_6",
+          "skills": [
+            "se-proof",
+            "se-verify",
+            "se-zero-trust"
+          ],
+          "command": "/bin/zsh -lc 'cat $CODEX_HOME/skills/se-proof/SKILL.md $CODEX_HOME/skills/se-zero-trust/SKILL.md $CODEX_HOME/skills/se-verify/SKILL.md'",
+          "complete_source_delivered": [
+            "se-proof",
+            "se-verify",
+            "se-zero-trust"
+          ],
+          "truncated_output": false,
+          "observed_nonblank_line_counts": {
+            "se-proof": 119,
+            "se-verify": 144,
+            "se-zero-trust": 127
+          }
+        }
+      ],
+      "delivery": {
+        "se-concurrent": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-proof": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-swarm": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-verify": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-who": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-zero-trust": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        }
+      },
+      "first_edit": "item_11",
+      "completed_commands": 17,
+      "mcp_tools": []
+    }
+  },
+  "delegates": [
+    {
+      "trial": "team",
+      "agent": "/root/worker_b",
+      "inherited_turns_excluded": true,
+      "reads": [
+        {
+          "call": "call_5d88bed49c164df3b892b17b45b88458",
+          "skills": [
+            "se-how",
+            "se-proof",
+            "se-verify",
+            "se-zero-trust"
+          ],
+          "command": "text(await tools.exec_command({cmd:\"cat $CODEX_HOME/skills/se-proof/SKILL.md $CODEX_HOME/skills/se-zero-trust/SKILL.md $CODEX_HOME/skills/se-verify/SKILL.md $CODEX_HOME/skills/se-how/SKILL.md\",\"max_output_tokens\":23000}));\ntext(await tools.exec_command({cmd:\"git status --short && git rev-parse HEAD && cat package.json && sed -n '1,180p' tests/security/ops-scripts.test.mjs && sed -n '1,120p' scripts/check-performance-budget.mjs && sed -n '390,480p' scripts/check-performance-budget.mjs\",\"max_output_tokens\":8000}));\n",
+          "complete_source_delivered": [
+            "se-proof"
+          ],
+          "truncated_output": true,
+          "observed_nonblank_line_counts": {
+            "se-how": 70,
+            "se-proof": 119,
+            "se-verify": 24,
+            "se-zero-trust": 93
+          }
+        },
+        {
+          "call": "call_e9ce60eea0e54134b3bd77afb042c574",
+          "skills": [
+            "se-zero-trust"
+          ],
+          "command": "text(await tools.exec_command({cmd:\"cat $CODEX_HOME/skills/se-zero-trust/SKILL.md\",\"max_output_tokens\":6500}));\n",
+          "complete_source_delivered": [
+            "se-zero-trust"
+          ],
+          "truncated_output": false,
+          "observed_nonblank_line_counts": {
+            "se-zero-trust": 127
+          }
+        },
+        {
+          "call": "call_dba3f223b1d54a059ecb9a47b66d0c71",
+          "skills": [
+            "se-verify"
+          ],
+          "command": "text(await tools.exec_command({cmd:\"cat $CODEX_HOME/skills/se-verify/SKILL.md\",\"max_output_tokens\":6500}));\n",
+          "complete_source_delivered": [
+            "se-verify"
+          ],
+          "truncated_output": false,
+          "observed_nonblank_line_counts": {
+            "se-verify": 144
+          }
+        },
+        {
+          "call": "call_b9c7d79c3e0f4bc0b7d449bb08a6e477",
+          "skills": [
+            "se-how"
+          ],
+          "command": "text(await tools.exec_command({cmd:\"cat $CODEX_HOME/skills/se-how/SKILL.md && sed -n '120,390p' scripts/check-performance-budget.mjs && rg -n 'performance|inventory' tests/security/ops-scripts.test.mjs && rg -n 'require|import' scripts/lib/{asset-paths.cjs,safe-input.cjs,html-attributes.mjs}\",\"max_output_tokens\":10000}));\n",
+          "complete_source_delivered": [
+            "se-how"
+          ],
+          "truncated_output": false,
+          "observed_nonblank_line_counts": {
+            "se-how": 107
+          }
+        }
+      ],
+      "delivery": {
+        "se-how": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-proof": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-verify": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-zero-trust": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        }
+      },
+      "first_edit": "call_aa5de9d6d11c48fca3f81790bdcd0527",
+      "execution_calls": 9
+    },
+    {
+      "trial": "team",
+      "agent": "/root/worker_a",
+      "inherited_turns_excluded": true,
+      "reads": [
+        {
+          "call": "call_a40ae498ff5742fcae04f56509b4e8aa",
+          "skills": [
+            "se-how",
+            "se-proof",
+            "se-verify",
+            "se-zero-trust"
+          ],
+          "command": "text(await tools.exec_command({cmd:\"cat $CODEX_HOME/skills/se-proof/SKILL.md $CODEX_HOME/skills/se-zero-trust/SKILL.md $CODEX_HOME/skills/se-verify/SKILL.md $CODEX_HOME/skills/se-how/SKILL.md\",\"max_output_tokens\":21000}));\ntext(await tools.exec_command({cmd:\"git status --short && rg -n 'reading|auditReading|readReading' tests/security/ops-scripts.test.mjs && cat scripts/lib/asset-paths.cjs scripts/lib/safe-input.cjs\",\"max_output_tokens\":11000}));\n",
+          "complete_source_delivered": [
+            "se-proof"
+          ],
+          "truncated_output": true,
+          "observed_nonblank_line_counts": {
+            "se-how": 66,
+            "se-proof": 119,
+            "se-verify": 24,
+            "se-zero-trust": 93
+          }
+        },
+        {
+          "call": "call_5710181b8bd146ff92fa08d41ed0ef64",
+          "skills": [
+            "se-verify",
+            "se-zero-trust"
+          ],
+          "command": "text(await tools.exec_command({cmd:\"sed -n '100,240p' $CODEX_HOME/skills/se-zero-trust/SKILL.md && cat $CODEX_HOME/skills/se-verify/SKILL.md\",\"max_output_tokens\":8000}));\n",
+          "complete_source_delivered": [
+            "se-verify"
+          ],
+          "truncated_output": false,
+          "observed_nonblank_line_counts": {
+            "se-verify": 144,
+            "se-zero-trust": 67
+          }
+        },
+        {
+          "call": "call_2ac3de9a27394c619afa13cd484c3080",
+          "skills": [
+            "se-how"
+          ],
+          "command": "text(await tools.exec_command({cmd:\"cat $CODEX_HOME/skills/se-how/SKILL.md && sed -n '1,270p' tests/security/ops-scripts.test.mjs && tail -45 scripts/audit-reading-metadata.mjs && node --version\",\"max_output_tokens\":9500}));\n",
+          "complete_source_delivered": [
+            "se-how"
+          ],
+          "truncated_output": false,
+          "observed_nonblank_line_counts": {
+            "se-how": 107
+          }
+        }
+      ],
+      "delivery": {
+        "se-how": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-proof": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-verify": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        },
+        "se-zero-trust": {
+          "whole_source_in_one_output": false,
+          "missing_nonblank_lines": []
+        }
+      },
+      "first_edit": "call_62c1926b1fbb4777b91b460f8bac3287",
+      "execution_calls": 8
+    },
+    {
+      "trial": "expertise",
+      "agent": "/root/html_scanner_review",
+      "inherited_turns_excluded": true,
+      "reads": [
+        {
+          "call": "call_0e3d4ebca626413db94dbf13e0d2af2e",
+          "skills": [
+            "se-proof"
+          ],
+          "command": "text(await tools.exec_command({cmd:\"cat $CODEX_HOME/skills/se-proof/SKILL.md\",\"max_output_tokens\":6500}));\ntext(await tools.exec_command({cmd:\"nl -ba scripts/check-link-health.mjs | sed -n '210,300p'; nl -ba scripts/check-performance-budget.mjs | sed -n '130,225p'; nl -ba tests/security/ops-scripts.test.mjs | sed -n '1,180p'\",\"max_output_tokens\":9500}));\n",
+          "complete_source_delivered": [
+            "se-proof"
+          ],
+          "truncated_output": false,
+          "observed_nonblank_line_counts": {
+            "se-proof": 119
+          }
+        }
+      ],
+      "delivery": {
+        "se-proof": {
+          "whole_source_in_one_output": true,
+          "missing_nonblank_lines": []
+        }
+      },
+      "first_edit": null,
+      "execution_calls": 5
+    }
+  ],
+  "manual_delivery_audit": {
+    "gate": "PASS",
+    "scope": "Expected minimum selectors in all eight trials; relevant installed instructions delivered in own context; incomplete aggregate reads recovered before reliance/edits. All three delegated agents read own instructions, inherited parent turns excluded.",
+    "visual_first_write": "item_17 (shell write_text, not a file_change event)",
+    "visual_recovery": "item_6 re-reads where/how; item_9 re-reads verify; all before first artifact write item_17",
+    "worker_a": "Initial aggregate + zero-trust remainder + full verify + full how precede first test edit",
+    "worker_b": "Initial aggregate + full zero-trust + full verify + full how precede first test edit",
+    "specialist": "Own first tool call delivers full proof, before source reads/probe",
+    "limit": "Line matching is a review aid. Actual read outputs and order were inspected; comprehension is graded from task outcomes. This does not establish name-free child handoffs."
+  }
+}

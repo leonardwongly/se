@@ -1,0 +1,328 @@
+{
+  "project": "https://github.com/leonardwongly/ProjectPortfolio",
+  "revision": "4a50ea995c37132bcfee5c64fd908d35ca0cef96",
+  "root": "$TRIAL_ROOT",
+  "policy_sha256": "5b6d6d2b2250889c07d879035c9fd9c777ec32eea2ed92e768bc455ab998e255",
+  "skill_sha256": {
+    "se-concurrent": "8b0bddf0f110535ec345cfebe163c7e990e8ae39325ba82ccf8bf16618c93d7a",
+    "se-how": "6904d2534c4c4ee40a499fb225eb3c5cde4215797f503c2c8389deae100ce1ef",
+    "se-proof": "9a82fb6d4319c64a3af249a2d2278ba0c4600c40cea87f6fcef38869a4a284f4",
+    "se-swarm": "d563ff7fe7a6d12aa26a86c2b6e4eb441ea00030b3ed92b9b4ae0713415286e5",
+    "se-verify": "05eb2ce9ca3e4e5c79c5ae3bd21ff5f86dae46520ad9804c4c2a96352a4cbd9e",
+    "se-visualise": "86575c94c53a5becd657bf9ac8645f2c41c6f27a9f5d537df89afc5248f9366f",
+    "se-what": "1fec9891c9b0b6de36f67aebbedfc01f1fa473dae358d75337df610fa772ced2",
+    "se-when": "8c9c21a2b8125fb29f845175bad05ddd8155bde457706207fe569ccd35ee2f84",
+    "se-where": "ff775f7d1828c60f72fd99a7fa167cf0050e1369f7009dae8c5eacc211042bc8",
+    "se-who": "0ebb90f535d5e636deee1cdfd2b488f420f3c51ff030f4ef80cd51c7af3fb6f1",
+    "se-why": "a8701149bee6b6b45750aff5658a1abfee426ecc17e2108deb60aebcfc606bca",
+    "se-zero-trust": "2708961a5e84860938e25f1c5e2510b28a5741fef38d6e97a98dfe7ea46bfb39"
+  },
+  "node": "v26.13.0",
+  "cli": "0.166.0",
+  "harness": {
+    "cli": "0.166.0",
+    "configured_model": "gpt-6-astra",
+    "reasoning": "high",
+    "provider": "openai",
+    "model_limit": "Local configuration, not independent provider attestation",
+    "node": "v26.13.0",
+    "project_ci_node": "24",
+    "project_instructions": "No project or temporary-checkout ancestor AGENTS.md found; global policy frozen separately."
+  },
+  "matrix": {
+    "scope": {
+      "expected_skills": [
+        "se-what",
+        "se-proof"
+      ],
+      "clone": "baseline",
+      "sandbox": "read-only",
+      "prompt_sha256": "e52b2b8a44c1961d76c76d7a1def76f6af98ed11b7f229276e66e294fce66930"
+    },
+    "rationale": {
+      "expected_skills": [
+        "se-why",
+        "se-proof"
+      ],
+      "clone": "baseline",
+      "sandbox": "read-only",
+      "prompt_sha256": "662383361e7f6ec2b4033358a3e0a890425e6313cbc53c685c245d928b4087ac"
+    },
+    "mechanism": {
+      "expected_skills": [
+        "se-where",
+        "se-how",
+        "se-proof"
+      ],
+      "clone": "baseline",
+      "sandbox": "read-only",
+      "prompt_sha256": "b7f53ad221e50dda9109b4ec8847e5780e775a19b0cd55f128d37fa0bc95b08b"
+    },
+    "readiness": {
+      "expected_skills": [
+        "se-when",
+        "se-verify",
+        "se-proof"
+      ],
+      "clone": "baseline",
+      "sandbox": "read-only",
+      "prompt_sha256": "c1640b820b533b29a3b1bbc60193e0201b545863ea963f0572cf70cda074e3e0"
+    },
+    "expertise": {
+      "expected_skills": [
+        "se-who",
+        "se-proof"
+      ],
+      "clone": "baseline",
+      "sandbox": "read-only",
+      "prompt_sha256": "b43774b6641584d8a6b8b28489cf05459fa772dc92ab0fdf53beba80d2a5849a"
+    },
+    "verification": {
+      "expected_skills": [
+        "se-zero-trust",
+        "se-verify",
+        "se-proof"
+      ],
+      "clone": "baseline",
+      "sandbox": "read-only",
+      "prompt_sha256": "ffa55c05a5a0130abf5b3e87c4873c284762dd9f8c05f9bd9ce6876801b85310"
+    },
+    "visual": {
+      "expected_skills": [
+        "se-visualise",
+        "se-proof",
+        "se-zero-trust",
+        "se-verify"
+      ],
+      "clone": "visual",
+      "sandbox": "workspace-write",
+      "prompt_sha256": "461cfba616aba23d256c5f02e60b12ffaa960f2d5f928407b353a9adff464df7"
+    },
+    "team": {
+      "expected_skills": [
+        "se-who",
+        "se-swarm",
+        "se-concurrent",
+        "se-proof",
+        "se-zero-trust",
+        "se-verify"
+      ],
+      "clone": "team",
+      "sandbox": "workspace-write",
+      "prompt_sha256": "c6a431876be93c85119bec7a4abbc6ebf6e712f990c739434e3ec0929b15dc1c"
+    }
+  },
+  "launches": {
+    "scope": {
+      "name": "scope",
+      "started_utc": "2026-11-05T02:05:31.728968+00:00",
+      "command": [
+        "codex",
+        "exec",
+        "-C",
+        "$TRIAL_ROOT/baseline",
+        "-s",
+        "read-only",
+        "--json",
+        "-o",
+        "$EVIDENCE/scope.final.txt",
+        "-"
+      ],
+      "policy_before": "5b6d6d2b2250889c07d879035c9fd9c777ec32eea2ed92e768bc455ab998e255",
+      "exit_code": 0,
+      "finished_utc": "2026-11-05T02:07:25.116537+00:00",
+      "policy_after": "5b6d6d2b2250889c07d879035c9fd9c777ec32eea2ed92e768bc455ab998e255",
+      "policy_unchanged": true
+    },
+    "rationale": {
+      "name": "rationale",
+      "started_utc": "2026-11-05T02:05:31.728419+00:00",
+      "command": [
+        "codex",
+        "exec",
+        "-C",
+        "$TRIAL_ROOT/baseline",
+        "-s",
+        "read-only",
+        "--json",
+        "-o",
+        "$EVIDENCE/rationale.final.txt",
+        "-"
+      ],
+      "policy_before": "5b6d6d2b2250889c07d879035c9fd9c777ec32eea2ed92e768bc455ab998e255",
+      "exit_code": 0,
+      "finished_utc": "2026-11-05T02:07:17.534462+00:00",
+      "policy_after": "5b6d6d2b2250889c07d879035c9fd9c777ec32eea2ed92e768bc455ab998e255",
+      "policy_unchanged": true
+    },
+    "mechanism": {
+      "name": "mechanism",
+      "started_utc": "2026-11-05T02:07:17.539014+00:00",
+      "command": [
+        "codex",
+        "exec",
+        "-C",
+        "$TRIAL_ROOT/baseline",
+        "-s",
+        "read-only",
+        "--json",
+        "-o",
+        "$EVIDENCE/mechanism.final.txt",
+        "-"
+      ],
+      "policy_before": "5b6d6d2b2250889c07d879035c9fd9c777ec32eea2ed92e768bc455ab998e255",
+      "exit_code": 0,
+      "finished_utc": "2026-11-05T02:08:23.971552+00:00",
+      "policy_after": "5b6d6d2b2250889c07d879035c9fd9c777ec32eea2ed92e768bc455ab998e255",
+      "policy_unchanged": true
+    },
+    "readiness": {
+      "name": "readiness",
+      "started_utc": "2026-11-05T02:07:25.118256+00:00",
+      "command": [
+        "codex",
+        "exec",
+        "-C",
+        "$TRIAL_ROOT/baseline",
+        "-s",
+        "read-only",
+        "--json",
+        "-o",
+        "$EVIDENCE/readiness.final.txt",
+        "-"
+      ],
+      "policy_before": "5b6d6d2b2250889c07d879035c9fd9c777ec32eea2ed92e768bc455ab998e255",
+      "exit_code": 0,
+      "finished_utc": "2026-11-05T02:09:44.790953+00:00",
+      "policy_after": "5b6d6d2b2250889c07d879035c9fd9c777ec32eea2ed92e768bc455ab998e255",
+      "policy_unchanged": true
+    },
+    "expertise": {
+      "name": "expertise",
+      "started_utc": "2026-11-05T02:15:38.088979+00:00",
+      "command": [
+        "codex",
+        "exec",
+        "-C",
+        "$TRIAL_ROOT/baseline",
+        "-s",
+        "read-only",
+        "--json",
+        "-o",
+        "$EVIDENCE/expertise.final.txt",
+        "-"
+      ],
+      "policy_before": "5b6d6d2b2250889c07d879035c9fd9c777ec32eea2ed92e768bc455ab998e255",
+      "exit_code": 0,
+      "finished_utc": "2026-11-05T02:17:58.725621+00:00",
+      "policy_after": "5b6d6d2b2250889c07d879035c9fd9c777ec32eea2ed92e768bc455ab998e255",
+      "policy_unchanged": true
+    },
+    "verification": {
+      "name": "verification",
+      "started_utc": "2026-11-05T02:08:23.975213+00:00",
+      "command": [
+        "codex",
+        "exec",
+        "-C",
+        "$TRIAL_ROOT/baseline",
+        "-s",
+        "read-only",
+        "--json",
+        "-o",
+        "$EVIDENCE/verification.final.txt",
+        "-"
+      ],
+      "policy_before": "5b6d6d2b2250889c07d879035c9fd9c777ec32eea2ed92e768bc455ab998e255",
+      "exit_code": 0,
+      "finished_utc": "2026-11-05T02:10:14.955915+00:00",
+      "policy_after": "5b6d6d2b2250889c07d879035c9fd9c777ec32eea2ed92e768bc455ab998e255",
+      "policy_unchanged": true
+    },
+    "visual": {
+      "name": "visual",
+      "started_utc": "2026-11-05T02:10:04.147469+00:00",
+      "command": [
+        "codex",
+        "exec",
+        "-C",
+        "$TRIAL_ROOT/visual",
+        "-s",
+        "workspace-write",
+        "--json",
+        "-o",
+        "$EVIDENCE/visual.final.txt",
+        "-"
+      ],
+      "policy_before": "5b6d6d2b2250889c07d879035c9fd9c777ec32eea2ed92e768bc455ab998e255",
+      "exit_code": 0,
+      "finished_utc": "2026-11-05T02:15:38.084019+00:00",
+      "policy_after": "5b6d6d2b2250889c07d879035c9fd9c777ec32eea2ed92e768bc455ab998e255",
+      "policy_unchanged": true
+    },
+    "team": {
+      "name": "team",
+      "started_utc": "2026-11-05T02:07:23.526627+00:00",
+      "command": [
+        "codex",
+        "exec",
+        "-C",
+        "$TRIAL_ROOT/team",
+        "-s",
+        "workspace-write",
+        "--json",
+        "-o",
+        "$EVIDENCE/team.final.txt",
+        "-"
+      ],
+      "policy_before": "5b6d6d2b2250889c07d879035c9fd9c777ec32eea2ed92e768bc455ab998e255",
+      "exit_code": 0,
+      "finished_utc": "2026-11-05T02:11:59.278952+00:00",
+      "policy_after": "5b6d6d2b2250889c07d879035c9fd9c777ec32eea2ed92e768bc455ab998e255",
+      "policy_unchanged": true
+    }
+  },
+  "raw_evidence_sha256": {
+    "scope": {
+      "prompt.txt": "e52b2b8a44c1961d76c76d7a1def76f6af98ed11b7f229276e66e294fce66930",
+      "events.jsonl": "3d898d2aeae538f7de8d1e35945e90c63c9f088931e1b549d16f7378cc7e82a6",
+      "final.txt": "452698466b14ab57445f6662b1906d51ba29a9d4c8af15d935eb161b443aab99"
+    },
+    "rationale": {
+      "prompt.txt": "662383361e7f6ec2b4033358a3e0a890425e6313cbc53c685c245d928b4087ac",
+      "events.jsonl": "ef4594ad1926c910e2e6595516ce1f962b88402a6bbf62641aa716f605e75914",
+      "final.txt": "2e838bc928c33f276a062bc5f633c950086f648a577cb22708f713ca32a6002b"
+    },
+    "mechanism": {
+      "prompt.txt": "b7f53ad221e50dda9109b4ec8847e5780e775a19b0cd55f128d37fa0bc95b08b",
+      "events.jsonl": "f4c89dc19084210a0693efe112130cfd37b0c34022a12325c93f6786567b5a68",
+      "final.txt": "3fb2986a2fd4fe6eb63ba49a78122ae564c7b6de486b18a608eb50957397bffb"
+    },
+    "readiness": {
+      "prompt.txt": "c1640b820b533b29a3b1bbc60193e0201b545863ea963f0572cf70cda074e3e0",
+      "events.jsonl": "f356eff4222004a9429d0b47dc6528568fee9ac95e908ba78de2a3b6f19a8910",
+      "final.txt": "fa20f3c1a3b3534bf3d777ee5973c34d5d81aa65c0d10ce20974493022224054"
+    },
+    "expertise": {
+      "prompt.txt": "b43774b6641584d8a6b8b28489cf05459fa772dc92ab0fdf53beba80d2a5849a",
+      "events.jsonl": "66f0cf3f93c6597194f5bbdb955cbc142ec4c8f84a41ef9008011ea1055aedfd",
+      "final.txt": "2c17f7ff5a43a6408ed4d111fcf7b3f117644c023aef2ec36b0bc2143234487c"
+    },
+    "verification": {
+      "prompt.txt": "ffa55c05a5a0130abf5b3e87c4873c284762dd9f8c05f9bd9ce6876801b85310",
+      "events.jsonl": "b92727a512ffb6935af828521269c4c5f14cc90ab3d5ecbdf4e4c339842e1507",
+      "final.txt": "9621ca51f1acf545c60ce0f7e0ba6b4385ebbfca19bc122b5aa4745f1c756921"
+    },
+    "visual": {
+      "prompt.txt": "461cfba616aba23d256c5f02e60b12ffaa960f2d5f928407b353a9adff464df7",
+      "events.jsonl": "9249f51f93d79dcbb27cf449224bbe5c265306ebce0638366084ed9e73356674",
+      "final.txt": "f8053e0d8f1fd1e3be7ce8e84c042bfe2dbe5229498d3ef35d8ac8398e10527a"
+    },
+    "team": {
+      "prompt.txt": "c6a431876be93c85119bec7a4abbc6ebf6e712f990c739434e3ec0929b15dc1c",
+      "events.jsonl": "a70d3f37c7b2fd9b7091db804bad481c31acff647e718b85b5016c75fd296681",
+      "final.txt": "63a2e18b9f406f99a91ee640a624d13d8ebfa6a4efd6286372579cdefe6596f0"
+    }
+  },
+  "method": "Eight fresh prompts on the second project under one unchanged final policy; no skill names in task prompts. Global routing/catalog contain skill names. All tasks launched before observing the specialist findings; later repairs are a separate phase."
+}

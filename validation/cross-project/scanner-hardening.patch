@@ -1,0 +1,161 @@
+diff --git a/scripts/lib/html-attributes.mjs b/scripts/lib/html-attributes.mjs
+index 4ba6f155..02733462 100644
+--- a/scripts/lib/html-attributes.mjs
++++ b/scripts/lib/html-attributes.mjs
+@@ -125,11 +125,13 @@ function scanHtmlAttributes(source, {
+       cursor += 1;
+     }
+     while (/\s/.test(source[cursor] || '')) cursor += 1;
+-    if (source[cursor] === '!' || source[cursor] === '?' || !/[A-Za-z]/.test(source[cursor] || '')) {
++    if (source[cursor] === '!' || source[cursor] === '?') {
+       const declarationEnd = source.indexOf('>', cursor);
+       cursor = declarationEnd === -1 ? source.length : declarationEnd + 1;
+       continue;
+     }
++    // An invalid opening '<' is text; a later '<' can still start a tag.
++    if (!/[A-Za-z]/.test(source[cursor] || '')) continue;
+ 
+     const tagNameStart = cursor;
+     while (cursor < source.length && !/[\s/>]/.test(source[cursor])) cursor += 1;
+@@ -140,7 +142,7 @@ function scanHtmlAttributes(source, {
+       continue;
+     }
+ 
+-    while (cursor < source.length) {
++    while (true) {
+       while (/\s/.test(source[cursor] || '') || source[cursor] === '/') {
+         cursor += 1;
+       }
+@@ -149,22 +151,23 @@ function scanHtmlAttributes(source, {
+         break;
+       }
+       if (cursor >= source.length || source[cursor] === '<') {
+-        findings.push(`<${tagName}> has an unterminated tag`);
++        findings.push(`HTML has an unterminated tag at offset ${tagStart}`);
+         break;
+       }
+ 
+       const nameStart = cursor;
++      // Malformed tokens consume the budget too, before emitting diagnostics.
++      parsedAttributeCount += 1;
++      if (parsedAttributeCount > maxAttributes) {
++        throw new Error(`HTML attributes exceed ${maxAttributes} entry limit`);
++      }
+       while (cursor < source.length && !/[\s=/>]/.test(source[cursor])) cursor += 1;
+       const name = source.slice(nameStart, cursor).toLowerCase();
+       if (!name) {
+-        findings.push(`<${tagName}> contains a malformed attribute`);
++        findings.push(`HTML contains a malformed attribute at offset ${nameStart}`);
+         cursor += 1;
+         continue;
+       }
+-      parsedAttributeCount += 1;
+-      if (parsedAttributeCount > maxAttributes) {
+-        throw new Error(`HTML attributes exceed ${maxAttributes} entry limit`);
+-      }
+ 
+       while (/\s/.test(source[cursor] || '')) cursor += 1;
+       let value = '';
+@@ -176,7 +179,7 @@ function scanHtmlAttributes(source, {
+           const valueStart = cursor + 1;
+           const valueEnd = source.indexOf(quote, valueStart);
+           if (valueEnd === -1) {
+-            findings.push(`${name} has an unterminated quoted value`);
++            findings.push(`HTML attribute at offset ${nameStart} has an unterminated quoted value`);
+             cursor = source.length;
+             break;
+           }
+diff --git a/tests/security/html-attribute-boundaries.test.mjs b/tests/security/html-attribute-boundaries.test.mjs
+new file mode 100644
+index 00000000..0d5a4fdb
+--- /dev/null
++++ b/tests/security/html-attribute-boundaries.test.mjs
+@@ -0,0 +1,88 @@
++import assert from 'node:assert/strict';
++import fs from 'node:fs';
++import os from 'node:os';
++import path from 'node:path';
++import test from 'node:test';
++import { scanHtmlAttributes } from '../../scripts/lib/html-attributes.mjs';
++import { collectRenderedAssetReferences } from '../../scripts/check-performance-budget.mjs';
++import { collectHtmlUrls } from '../../scripts/check-link-health.mjs';
++
++test('malformed attribute tokens consume the same budget as valid attributes', () => {
++  for (const size of [2, 32, 1024]) {
++    assert.throws(
++      () => scanHtmlAttributes(`<${'a'.repeat(size)} ${'='.repeat(size)}>`, { maxAttributes: 1 }),
++      /HTML attributes exceed 1 entry limit/
++    );
++  }
++  assert.throws(() => scanHtmlAttributes('<img = src=book/a.jpg>', { maxAttributes: 1 }), /entry limit/);
++  assert.deepEqual(scanHtmlAttributes('<img src=book/a.jpg>', { maxAttributes: 1 }).findings, []);
++});
++
++test('scanner diagnostics identify offsets without repeating untrusted names', () => {
++  const longName = 'a'.repeat(32768);
++  for (const source of [`<${longName} =>`, `<${longName} `, `<img ${longName}="`]) {
++    const { findings } = scanHtmlAttributes(source);
++    assert.equal(findings.length, 1);
++    assert.ok(findings[0].length < 128, `diagnostic expanded to ${findings[0].length} characters`);
++    assert.match(findings[0], /offset \d+/);
++  }
++});
++
++test('every truncated start-tag state produces one diagnostic', () => {
++  for (const source of ['<img', '<img ', '<img/', '<img src', '<img src=', '<img src="book/a.jpg"', '<img src=book/a.jpg']) {
++    const { findings } = scanHtmlAttributes(source);
++    assert.equal(findings.length, 1, JSON.stringify(source));
++    assert.match(findings[0], /unterminated tag/);
++  }
++  const quoted = scanHtmlAttributes('<img src="book/a.jpg');
++  assert.equal(quoted.findings.length, 1);
++  assert.match(quoted.findings[0], /unterminated quoted value/);
++});
++
++test('an invalid opening less-than does not consume the following valid start tag', () => {
++  for (const prefix of ['<', '<<', '<1', '<=']) {
++    assert.deepEqual(scanHtmlAttributes(`${prefix}<img src="book/a.jpg">`), {
++      attributes: [{ name: 'src', tagName: 'img', value: 'book/a.jpg' }], findings: []
++    });
++  }
++});
++
++test('valid EOF tags, comments, declarations and raw-text bodies keep their scan behavior', () => {
++  const source = [
++    '<!DOCTYPE html>', '<?ignored <img src="book/declaration.jpg">',
++    '<!-- <<img src="book/comment.jpg"> -->',
++    '<script><<img src="book/script.jpg"></script>',
++    '<textarea><<img src="book/textarea.jpg"></textarea>',
++    '<img src="book/quoted.jpg"><img/src=book/unquoted.jpg>',
++    '<plaintext><<img src="book/plaintext.jpg">'
++  ].join('');
++  const scanned = scanHtmlAttributes(source, { attributeNames: ['src'] });
++  assert.deepEqual(scanned.findings, []);
++  assert.deepEqual(scanned.attributes.map(({ value }) => value), ['book/quoted.jpg', 'book/unquoted.jpg']);
++  assert.equal(scanHtmlAttributes('<!-- unfinished').findings.length, 1);
++});
++
++test('performance asset collection surfaces truncated tags and recovers an asset after an extra less-than', () => {
++  for (const source of ['<img', '<img src="book/a.jpg"', '<img src=book/a.jpg']) {
++    assert.ok(collectRenderedAssetReferences(source).findings.some((finding) => /unterminated tag/.test(finding)));
++  }
++  assert.deepEqual(collectRenderedAssetReferences('<<img src="book/a.jpg">'), {
++    references: ['book/a.jpg'], highDpiReferences: [], findings: []
++  });
++});
++
++test('link collection surfaces truncated tags and recovers a URL after an extra less-than', (t) => {
++  const rootDir = fs.mkdtempSync(path.join(os.tmpdir(), 'html-boundaries-'));
++  t.after(() => fs.rmSync(rootDir, { recursive: true, force: true }));
++  const file = path.join(rootDir, 'fixture.html');
++  for (const source of ['<img', '<img src="https://public.example/a.jpg"', '<img src=https://public.example/a.jpg']) {
++    fs.writeFileSync(file, source);
++    const results = collectHtmlUrls('fixture.html', { rootDir });
++    assert.ok(results.some((result) => result.category === 'invalid-url' && /unterminated tag/.test(result.detail)));
++  }
++  fs.writeFileSync(file, '<<img src="https://public.example/a.jpg">');
++  const results = collectHtmlUrls('fixture.html', { rootDir });
++  assert.equal(results.length, 1);
++  assert.equal(results[0].url, 'https://public.example/a.jpg');
++  assert.equal(results[0].ok, true);
++});

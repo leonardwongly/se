@@ -1,0 +1,67 @@
+{
+  "node": "v26.13.0",
+  "project": "$TRIAL_ROOT/integration",
+  "source_sha256": "8e501da150f3f54bb43581104fe0b079d844d17346bc58ac212506c46382d8d3",
+  "checker_sha256": "76b088f5cd98f33d7223e2ef25225592b676a5a7a618eb53a8be526adb0df3ec",
+  "passed": 14,
+  "total": 14,
+  "results": [
+    {
+      "name": "valid attribute at budget",
+      "passed": true
+    },
+    {
+      "name": "valid excess attribute rejected",
+      "passed": true
+    },
+    {
+      "name": "malformed tokens consume budget",
+      "passed": true
+    },
+    {
+      "name": "diagnostics do not repeat arbitrarily long tag names",
+      "passed": true
+    },
+    {
+      "name": "EOF diagnostic <img",
+      "passed": true
+    },
+    {
+      "name": "EOF diagnostic <img src=\"book/a.jpg\"",
+      "passed": true
+    },
+    {
+      "name": "EOF diagnostic <img src=book/a.jpg",
+      "passed": true
+    },
+    {
+      "name": "EOF diagnostic <img disabled",
+      "passed": true
+    },
+    {
+      "name": "EOF diagnostic <img/",
+      "passed": true
+    },
+    {
+      "name": "double opener retains real attribute",
+      "passed": true
+    },
+    {
+      "name": "performance collector sees double opener",
+      "passed": true
+    },
+    {
+      "name": "performance collector reports truncated input",
+      "passed": true
+    },
+    {
+      "name": "comment and raw text positive control",
+      "passed": true
+    },
+    {
+      "name": "link collector sees double opener without fetch",
+      "passed": true
+    }
+  ],
+  "limits": "Bounded parser/caller cases; diagnostic logical lengths, not heap/exhaustion measurement. No network fetch, production impact or complete browser equivalence."
+}

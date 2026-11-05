@@ -1,5 +1,9 @@
 # Validation — mandatory project-grounded baseline
 
+## Final-policy evaluation on another project — 5 November 2026
+
+The [ProjectPortfolio evaluation](validation/CROSS-PROJECT-SELECTION.md) covers all twelve expected skill roles across eight fresh tasks and three task delegates under the same final policy. Selection and full instruction delivery are separated from independent application grading. Real scanner defects found by the review were repaired in an isolated integration; final checks pass 357 security tests, the project validation gate, 38 CLI cases and 14 scanner cases. Original failures, setup blockers, browser limits and unrun release checks remain recorded. Earlier evaluations below are historical.
+
 ## Expanded selection and delegation — 5 November 2026
 
 The [expanded evaluation](validation/EXPANDED-SELECTION.md) covers all twelve skills across ten top-level sessions (seven task prompts plus three unchanged-prompt remediation reruns), with six actual delegated agents. It preserves initial selection omissions, own-context handoff and truncation fixes, independent application grading, and the 79-case maintenance oracle. The final integration also fixes a Markdown URL-classification bypass found by the delegated reviewer. See the report for scoped results and deterministic reproduction; earlier records below remain historical.

@@ -1,0 +1,578 @@
+{
+  "schema_version": 1,
+  "grading_scope": "Substantive application against each frozen task prompt; skill selection, read timing and delivery auditing are separate parent responsibilities.",
+  "records": {
+    "scope": {
+      "application_gate": "PASS",
+      "graded_at": "2026-11-05T02:09:03.906757+00:00",
+      "baseline": "4a50ea995c37132bcfee5c64fd908d35ca0cef96",
+      "input_sha256": {
+        "scope.prompt.txt": "e52b2b8a44c1961d76c76d7a1def76f6af98ed11b7f229276e66e294fce66930",
+        "scope.final.txt": "452698466b14ab57445f6662b1906d51ba29a9d4c8af15d935eb161b443aab99",
+        "scope.events.jsonl": "3d898d2aeae538f7de8d1e35945e90c63c9f088931e1b549d16f7378cc7e82a6"
+      },
+      "criteria": [
+        {
+          "criterion": "Bounded implementation brief for both actual audit CLIs and local aggregator",
+          "result": "PASS",
+          "evidence": "Final scopes entrypoint reporting, two scripts, focused CLI tests and runbook; preserves exported signatures and result semantics. Baseline reading audit lines 165 onward and performance lines 244 onward match the described result shapes."
+        },
+        {
+          "criterion": "Ground current behavior in scripts, tests and runbook",
+          "result": "PASS",
+          "evidence": "scope.events.jsonl items 6,7,10,12,13 inspect these surfaces; item14 actually executes both no-argument scripts successfully with empty stderr. Reviewer independently read baseline scripts/package/runbook."
+        },
+        {
+          "criterion": "Observable success, failure and compatibility criteria",
+          "result": "PASS",
+          "evidence": "Final acceptance table includes 0/pass, 1/findings/error, JSON object/newline/channels, stable human output, unsafe-input parity, strict budget boundaries and interrupted-output limitation. Keeps proposed criteria distinct from observed passes."
+        },
+        {
+          "criterion": "Trust boundary, non-goals and unresolved decisions",
+          "result": "PASS",
+          "evidence": "Final identifies maintainer-controlled files -> audit -> stdout -> aggregator; preserves concrete input defenses, adds no writes/network, and separates display serialization from HTML/shell safety. Explicit questions cover schema, stable finding codes, error disclosure and bounds."
+        },
+        {
+          "criterion": "Substantive evidence and verification limits",
+          "result": "PASS",
+          "evidence": "Current human invocations are backed by item14 raw subprocess outputs; final clearly marks tests/build/failure fixtures/JSON and Node24 compatibility unrun. Future checks tie to actual package scripts and final-revision review."
+        }
+      ],
+      "findings": [],
+      "qualifications": [
+        "The proposed versioned envelope and permissive duplicate/unknown-argument default differ from the separate frozen team contract. They are permissible proposals under scope.prompt.txt, which does not prescribe a JSON shape or argument rejection policy. Do not import team acceptance into this independent planning test.",
+        "No new feature or failure-fixture execution is established. PASS means the read-only implementation brief meets its prompt, not that its proposed contract is implemented or release-ready.",
+        "Initial broad output contains some truncation; focused later reads supply the materially cited paths. Installed skill-read completeness/timing remains the parent selection audit."
+      ],
+      "reviewer_skills_read": [
+        "se-what",
+        "se-proof",
+        "se-zero-trust",
+        "se-verify"
+      ],
+      "review_method": "Frozen prompt and delivered final read; actual command/result events inspected; baseline audit/package/runbook source checked independently. No project edits or tests rerun."
+    },
+    "rationale": {
+      "application_gate": "PASS",
+      "graded_at": "2026-11-05T02:09:03.906757+00:00",
+      "baseline": "4a50ea995c37132bcfee5c64fd908d35ca0cef96",
+      "input_sha256": {
+        "rationale.prompt.txt": "662383361e7f6ec2b4033358a3e0a890425e6313cbc53c685c245d928b4087ac",
+        "rationale.final.txt": "2e838bc928c33f276a062bc5f633c950086f648a577cb22708f713ca32a6002b",
+        "rationale.events.jsonl": "ef4594ad1926c910e2e6595516ce1f962b88402a6bbf62641aa716f605e75914"
+      },
+      "criteria": [
+        {
+          "criterion": "Explain exclusive temporary staging and compare direct destination writes",
+          "result": "PASS",
+          "evidence": "Final distinguishes random name collision reduction from O_EXCL enforcement and explains new-inode hardlink isolation, avoiding truncation/partial-write damage, and costs. Baseline safe-output.cjs 190-257 plus hardlink/write-failure tests 369/422 support the mechanism."
+        },
+        {
+          "criterion": "Explain parent/destination revalidation accurately",
+          "result": "PASS",
+          "evidence": "Final distinguishes realpath/device-inode parent checks, destination type check, and optional expectedDestination snapshot; explicitly notes default calls can overwrite a changed regular file. Independently checked safe-output.cjs 70-131 and 240-254."
+        },
+        {
+          "criterion": "Inspect callers, tests and history; distinguish documented intent from inference",
+          "result": "PASS",
+          "evidence": "Events items 10/11/13/15 retain history/caller/test inspection. Final identifies 9760e52e direct O_TRUNC predecessor and 603ee010 staged replacement, but does not manufacture author intent from commit subjects. Caller distinction verified at build.js 1977 and update-vendor.mjs 321."
+        },
+        {
+          "criterion": "Work normal replacement and changed-destination case",
+          "result": "PASS",
+          "evidence": "Final follows validation -> exclusive staging -> descriptor write -> revalidation -> rename, then distinguishes symlink rejection from regular-file snapshot mismatch and default overwrite. Dedicated tests 274 and 310 explicitly assert unchanged external target/replacement and cleanup."
+        },
+        {
+          "criterion": "State actual implementation guarantees and limits",
+          "result": "PASS",
+          "evidence": "Final records non-atomic check-to-rename/cleanup windows, optional snapshot not CAS, transient parent-swap effects, no guaranteed cleanup, no fsync/metadata preservation, and no bundle-wide atomic transaction. Source comments at safe-output.cjs 181 and 252 directly support race limits."
+        },
+        {
+          "criterion": "Separate inspected test contracts from executed proof",
+          "result": "PASS",
+          "evidence": "Final explicitly states no tests/builds run and labels walkthroughs as code traces. Events substantiate source/history inspection and clean git/diff checks; no claimed runtime publication test."
+        }
+      ],
+      "findings": [],
+      "qualifications": [
+        "PASS is for explanatory accuracy and prompt completeness. Races, cleanup and concurrency guarantees were not revalidated at runtime in this trial; the final correctly avoids that claim.",
+        "Historical changes and test intent are evidenced; detailed original-author motives are not established and the final labels causal rationale as interpretation.",
+        "One combined historical-query command exits 1 after emitting useful git-show output and a later glob/search segment. This is not a passed test; the final does not portray it as one."
+      ],
+      "reviewer_skills_read": [
+        "se-why",
+        "se-proof",
+        "se-zero-trust",
+        "se-verify"
+      ],
+      "review_method": "Frozen prompt and delivered final read; actual command/result events inspected; full baseline writer, key callers and discriminating test assertions independently inspected. No project edits or tests rerun."
+    },
+    "mechanism": {
+      "application_gate": "PASS",
+      "graded_at": "2026-11-05T02:12:28.940710+00:00",
+      "baseline": "4a50ea995c37132bcfee5c64fd908d35ca0cef96",
+      "input_sha256": {
+        "mechanism.prompt.txt": "b7f53ad221e50dda9109b4ec8847e5780e775a19b0cd55f128d37fa0bc95b08b",
+        "mechanism.final.txt": "3fb2986a2fd4fe6eb63ba49a78122ae564c7b6de486b18a608eb50957397bffb",
+        "mechanism.events.jsonl": "f4c89dc19084210a0693efe112130cfd37b0c34022a12325c93f6786567b5a68"
+      },
+      "criteria": [
+        {
+          "criterion": "Locate active navigation fallback and registration path",
+          "result": "PASS",
+          "evidence": "Final identifies pwabuilder-sw.js 89 fetch listener, js/main.js initServiceWorker/register call, template script loading, install cache population and activate claim; independent reviewer read worker and registration source."
+        },
+        {
+          "criterion": "Trace preload, network, cache and emergency response",
+          "result": "PASS",
+          "evidence": "Final accurately distinguishes truthy preload return, absent/rejected preload followed by explicit fetch, fetch rejection to offline.html cache lookup, and missing/failing cache to 503 no-store text response. Source pwabuilder-sw.js 47-55 and 89-119 supports each branch."
+        },
+        {
+          "criterion": "Explain rejected preload plus network failure and HTTP errors",
+          "result": "PASS",
+          "evidence": "Final correctly states preload rejection does not directly select cache; an explicit rejected fetch does. Fulfilled HTTP 4xx/5xx responses are returned without inspecting response.ok/status. This is labeled source inspection for exact scenarios not covered by current tests."
+        },
+        {
+          "criterion": "Include non-navigation behavior and evidence limits",
+          "result": "PASS",
+          "evidence": "Final says no respondWith/fetch/cache activity by this listener for non-navigate modes and does not claim browser lifecycle/cache/deployment proof. Tests execute actual worker in VM with mocks."
+        },
+        {
+          "criterion": "Report actual evidence honestly",
+          "result": "PASS",
+          "evidence": "mechanism.events.jsonl item11 retains Node26 execution of service-worker-message.test.mjs: 6 passed, 0 failed. Final maps tested branches and explicitly leaves combined rejected-preload/rejected-fetch, HTTP pass-through and caches.open rejection as source-only evidence."
+        }
+      ],
+      "findings": [],
+      "qualifications": [
+        "Application PASS is for location/mechanism explanation; real browser registration, active worker control, persistent cache behavior and offline rendering remain unverified.",
+        "Phrase external stylesheets is best read as separately loaded stylesheet resources: actual offline.html references same-origin css files, not third-party stylesheet hosts. Its substantive limitation (HTML caching does not prove offline CSS availability) is correct."
+      ],
+      "reviewer_skills_read": [
+        "se-where",
+        "se-how",
+        "se-proof",
+        "se-verify"
+      ],
+      "review_method": "Frozen prompt and final read; actual command/result events and relevant current baseline source inspected independently. Retained executed evidence used without rerunning unchanged checks. No project edits."
+    },
+    "readiness": {
+      "application_gate": "PASS",
+      "graded_at": "2026-11-05T02:12:28.940710+00:00",
+      "baseline": "4a50ea995c37132bcfee5c64fd908d35ca0cef96",
+      "input_sha256": {
+        "readiness.prompt.txt": "c1640b820b533b29a3b1bbc60193e0201b545863ea963f0572cf70cda074e3e0",
+        "readiness.final.txt": "fa20f3c1a3b3534bf3d777ee5973c34d5d81aa65c0d10ce20974493022224054",
+        "readiness.events.jsonl": "f356eff4222004a9429d0b47dc6528568fee9ac95e908ba78de2a3b6f19a8910"
+      },
+      "criteria": [
+        {
+          "criterion": "Determine project-grounded prerequisites and sequence",
+          "result": "PASS",
+          "evidence": "Final maps reading source fields/covers -> dependency-ready writable environment -> build -> generated diff review -> targeted final-state checks -> reproducibility/full validation -> separately authorized release. Uses actual runbook/package/CI and recognizes build lock/output writes."
+        },
+        {
+          "criterion": "Execute available relevant non-network checks",
+          "result": "PASS",
+          "evidence": "Events items20-27/32/33 retain generated git diff, metadata/performance, content parity (4/4), hygiene, telemetry, vendor-governance, resume freshness, and build-export source validation (7 collections/83 entries). These are explicit commands and outputs rather than proposed checks."
+        },
+        {
+          "criterion": "Classify current readiness without hiding dependency failure",
+          "result": "PASS",
+          "evidence": "Item25 is ERR_MODULE_NOT_FOUND for yaml before workflow assertions; final calls that check BLOCKED with exit1 and full release validation BLOCKED. It identifies dependencies and authorization/environment requirements instead of installing or claiming test success."
+        },
+        {
+          "criterion": "Distinguish current snapshot from future change and reproducibility",
+          "result": "PASS",
+          "evidence": "Final says existing clean generated git diff is not fresh-build parity; no future entry is validated and current content-parity tests do not establish the new entry. Source changes require regeneration and rerun relevant evidence."
+        },
+        {
+          "criterion": "Inspect actual CI triggers and release authority",
+          "result": "PASS",
+          "evidence": "Final correctly notes Release Candidate triggers ready_for_review/manual only, unlike subsequent PR pushes; baseline workflow independently checked. It labels documented required merge contexts as not live branch-protection verification."
+        },
+        {
+          "criterion": "Explain evidence invalidation and remaining limits",
+          "result": "PASS",
+          "evidence": "Final differentiates reading-data, covers/variants, templates/runtime and time-sensitive checks, preserves unaffected resume/vendor evidence where applicable, and lists full suite/build/browser/network checks unrun. Node26 execution versus Node24 CI is explicit."
+        }
+      ],
+      "findings": [],
+      "qualifications": [
+        "Readiness-assessment application PASS coexists with reported release gate BLOCKED. Missing yaml is a concrete setup prerequisite, not a tested workflow-policy defect and not justification to declare release PASS.",
+        "No new reading change, fresh build, browser journey, hosted CI or release execution is evidenced. The requested planning/current-check assessment does not require inventing those results.",
+        "The rejected initial shell heredoc is retained; successful node -e source validation is distinct. No tests were rerun by evaluator because retained output matches unchanged baseline."
+      ],
+      "reviewer_skills_read": [
+        "se-when",
+        "se-verify",
+        "se-proof"
+      ],
+      "review_method": "Frozen prompt and final read; actual command/result events and relevant current baseline source inspected independently. Retained executed evidence used without rerunning unchanged checks. No project edits."
+    },
+    "verification": {
+      "application_gate": "PASS",
+      "graded_at": "2026-11-05T02:12:28.940710+00:00",
+      "baseline": "4a50ea995c37132bcfee5c64fd908d35ca0cef96",
+      "input_sha256": {
+        "verification.prompt.txt": "ffa55c05a5a0130abf5b3e87c4873c284762dd9f8c05f9bd9ce6876801b85310",
+        "verification.final.txt": "9621ca51f1acf545c60ce0f7e0ba6b4385ebbfca19bc122b5aa4745f1c756921",
+        "verification.events.jsonl": "b92727a512ffb6935af828521269c4c5f14cc90ab3d5ecbdf4e4c339842e1507"
+      },
+      "criteria": [
+        {
+          "criterion": "Inspect actual message enforcement and explain trusted principal",
+          "result": "PASS",
+          "evidence": "Final identifies payload shape/type/token format, exact event origin and parsed same-origin window source before skipWaiting. Correctly states token is format validation, not secret authentication or proof of user action. Independent reviewer read pwabuilder-sw.js 15-71 and page caller."
+        },
+        {
+          "criterion": "Execute relevant real-source local tests",
+          "result": "PASS",
+          "evidence": "verification.events.jsonl item11 runs node --test tests/security/service-worker-message.test.mjs with 6/6 pass. Harness loads actual worker via fs.readFileSync and vm.runInContext, dispatching actual registered message listener."
+        },
+        {
+          "criterion": "Demonstrate valid effect and denied effects",
+          "result": "PASS",
+          "evidence": "Existing test has 22 rejection cases asserting ownershipCount and skipWaiting remain zero, plus accepted 16/64-hex boundaries and exact promise ownership. Item14 isolated original probes show accepted 1/1 versus wrong event/source origin, source type, null payload and nonhex token 0/0."
+        },
+        {
+          "criterion": "Demonstrate discriminating origin-guard negative control",
+          "result": "PASS",
+          "evidence": "Item14 constructs in-memory mutant by requiring exactly one guard occurrence and removing only isTrustedMessageOrigin early return. Existing suite assertions stay unchanged; only worker source read and URL resolution are adapted. Original suite 6 pass/exit0; mutant 5 pass/1 fail/exit1 at missing message origin, ownershipCount actual1 expected0, line199. This is reached behavioral failure, not import/setup failure."
+        },
+        {
+          "criterion": "Independently verify causal effect of mutant",
+          "result": "PASS",
+          "evidence": "Item14 separate probe results show wrong-event-origin original skipWaiting/waitUntil 0/0, mutant 1/1, while other denial controls remain 0/0. Explicit mutant probe expectations label the deliberate defect; they do not substitute for the unchanged-suite negative control."
+        },
+        {
+          "criterion": "Preserve source and distinguish VM from browser proof",
+          "result": "PASS",
+          "evidence": "Item14 compares worker/test disk bytes with originals after execution; item16 clean diff and source hashes support unchanged revision. Final explicitly limits results to activation requests in VM/stubs; Playwright config blocks service workers and integration harness postMessage is stubbed."
+        }
+      ],
+      "findings": [],
+      "qualifications": [
+        "The initial heredoc failed before Node started due to shell temporary-file restrictions; it is not counted as detector sensitivity. The later in-memory node -e run supplies both passing original and intended mutant failure.",
+        "One controlled origin-guard mutation demonstrates detector quality for that defect, not exhaustive test-suite adequacy or universal security.",
+        "Browser-generated message metadata, true worker activation/controller transitions, reloads and deployed behavior remain unverified; final states these limits accurately."
+      ],
+      "reviewer_skills_read": [
+        "se-zero-trust",
+        "se-verify",
+        "se-proof"
+      ],
+      "review_method": "Frozen prompt and final read; actual command/result events and relevant current baseline source inspected independently. Retained executed evidence used without rerunning unchanged checks. No project edits."
+    },
+    "team": {
+      "application_gate": "PASS",
+      "graded_at": "2026-11-05T02:14:25.521726+00:00",
+      "baseline": "4a50ea995c37132bcfee5c64fd908d35ca0cef96",
+      "scope": "Bounded authorized CLI implementation/application; parent separately audits agent selection, concurrency and delivery timing. Application PASS does not erase full operations-suite prerequisite blocker.",
+      "input_sha256": {
+        "team.prompt.txt": "c6a431876be93c85119bec7a4abbc6ebf6e712f990c739434e3ec0929b15dc1c",
+        "team.final.txt": "63a2e18b9f406f99a91ee640a624d13d8ebfa6a4efd6286372579cdefe6596f0",
+        "team.events.jsonl": "a70d3f37c7b2fd9b7091db804bad481c31acff647e718b85b5016c75fd296681"
+      },
+      "source_sha256": {
+        "scripts/audit-reading-metadata.mjs": "7baa7d60d55a70c84dbc50e50b5d63faf4392a0de4121ec2b19d4204b7a3f9ca",
+        "scripts/check-performance-budget.mjs": "c7874319c75d716fc2cde1c6b6f1d84a2f30621c0264fa6be7edb093b266f942",
+        "tests/security/reading-json-cli.test.mjs": "15ebeccd8e36389bbe554b9686169e762374731d11240d66006ece891ecdbfd2",
+        "tests/security/performance-json-cli.test.mjs": "a74c52dbec1d6ecc0f4f0da17c7c1abf7d3b2477f9e59ab2a02334c22d01004b",
+        "docs/static-content-runbook.md": "65a311e2a6c264474c081b304a8ad1ae60d9718243e4c4bd5b42bb3d8c3a76ea"
+      },
+      "checker_sha256": "43a2870c98858bade479c2bbffc3e831cd8db32d51859bdbb25017892494c1c8",
+      "independent_oracle": {
+        "before": {
+          "passed": 6,
+          "total": 38,
+          "artifact": "team-oracle-before.json",
+          "intended_failure": "Human output instead of JSON and guarded input access before invalid-argument rejection; legacy human/import controls pass."
+        },
+        "after": {
+          "passed": 38,
+          "total": 38,
+          "artifact": "team-oracle-after.json",
+          "exit": 0
+        },
+        "command": "python3 check_team.py $TRIAL_ROOT/team team-oracle-after.json",
+        "frozen_before_candidate_inspection": true
+      },
+      "criteria": [
+        {
+          "criterion": "Exact JSON pass/finding/error shapes and stream/exit behavior",
+          "result": "PASS",
+          "evidence": "Independent 38-case checker passes all cases on copied real entrypoints, including known performance report/inventory values, clearing partial reports on errors, and reading findings strings. No reliance on candidate-exported oracle."
+        },
+        {
+          "criterion": "Invalid arguments rejected before input access",
+          "result": "PASS",
+          "evidence": "Both entrypoint branches reject all but zero args or exactly one --json before calling audit functions. Independent guarded tests exercise unknown, positional, repeated and mixed --json ordering, exit2 and JSON selection anywhere."
+        },
+        {
+          "criterion": "Human compatibility, exports and import side effects",
+          "result": "PASS",
+          "evidence": "Frozen checker compares original human pass/finding bytes and required exports/no input effects on import. New project tests also cover human execution errors; diff leaves performance human exception uncaught and reading human error handling unchanged."
+        },
+        {
+          "criterion": "Do not weaken existing content/path/file/resource defenses or add writes/network",
+          "result": "PASS",
+          "evidence": "Diff is confined to CLI wrappers and docs/new tests; audit functions, existing imports, checks and exports are unchanged. No new runtime write or network sink. Checker compares fixture bytes/metadata before and after each process; project tests retain symlink/traversal/size-denial cases."
+        },
+        {
+          "criterion": "Meaningful independent behavioral tests and original defect control",
+          "result": "PASS",
+          "evidence": "New tests spawn actual scripts with synthetic inputs; parent retained worker-original failures. Evaluator independent original run establishes 6 passing compatibility controls and 32 intended failures; exact frozen post-change run passes38/38."
+        },
+        {
+          "criterion": "Combined relevant existing tests and actual invocation routes",
+          "result": "PASS",
+          "evidence": "team.events.jsonl item27 records focused combined41/41 with existing reading/performance/shared HTML/validation-reader/cover-hashing tests and both new files. Item26 tests direct JSON, npm silent forwarding and human commands. Reviewer git diff --check independently passes."
+        },
+        {
+          "criterion": "Shared runbook accurately documents final behavior",
+          "result": "PASS",
+          "evidence": "New Local Audit Output section documents direct/npm-silent invocations, exact JSON fields/status/exit, empty arrays/null inventory on errors, classification distinction, and invalid-argument ordering. Matches both implemented branches."
+        }
+      ],
+      "findings": [],
+      "integration_validation": {
+        "state": "BLOCKED",
+        "scope": "Full unfiltered ops-scripts.test.mjs in original isolated checkout",
+        "raw_result": "27 passed, 1 failed, exit1",
+        "reason": "ERR_MODULE_NOT_FOUND: yaml before workflow-hygiene assertions",
+        "evidence": "team.events.jsonl item20",
+        "next_step": "Parent will separately validate immutable integrated source copy with already-installed lock-matching dependencies; retain original failure."
+      },
+      "qualifications": [
+        "Focused41 tests and independent38 cases establish bounded affected behavior, not full release/coverage or Node24 compatibility.",
+        "Persistent no-mutation comparison is within disposable fixture trees; no universal OS-level filesystem/network containment claim.",
+        "Only five authorized paths changed; parent audits exactly-two-worker lifecycle and full selection requirements separately.",
+        "No material code, test-oracle or documentation defect found by final read-only diff review."
+      ],
+      "reviewer_skills_read": [
+        "se-proof",
+        "se-zero-trust",
+        "se-verify"
+      ],
+      "review_method": "Exact previously frozen checker execution before candidate source reading; then changed scripts/tests/runbook and actual final/event test evidence inspected. No project or checker edits.",
+      "separate_integration_evidence": {
+        "state": "PASS",
+        "source": "integration-results.json",
+        "input_sha256": "5e19d7478a822bfb865ed4d30cab482ca0f00e5167c2730dac6b8a0bb66714b8",
+        "source_identity_matches_team": true,
+        "full_security_suite": "350/350 pass, no skipped, exit0",
+        "npm_run_validate": "exit0 including build/generated parity/hygiene/audits and configured coverage",
+        "dependency_boundary": "Read-only reuse of existing original-project node_modules, via isolated integration symlink; no install or package changes. yaml 2.9.1 and Playwright 1.63.0 match lockfile.",
+        "log_hashes_verified": true,
+        "limits": "Configured aggregate coverage thresholds pass. Subprocess CLI paths are separately behavior-tested and not all represented in parent-process coverage. Not repository-wide coverage. No validate:full, network/production checks, deployed browser or Node24 execution. No release authorization.",
+        "preserves_original_blocker": true,
+        "reviewer_execution": "Not rerun by evaluator. Parent-executed results, matching source/log hashes and security log summary independently checked."
+      }
+    },
+    "visual": {
+      "application_gate": "PASS",
+      "graded_at": "2026-11-05T02:17:36.794518+00:00",
+      "baseline": "4a50ea995c37132bcfee5c64fd908d35ca0cef96",
+      "input_sha256": {
+        "visual.prompt.txt": "461cfba616aba23d256c5f02e60b12ffaa960f2d5f928407b353a9adff464df7",
+        "visual.final.txt": "f8053e0d8f1fd1e3be7ce8e84c042bfe2dbe5229498d3ef35d8ac8398e10527a",
+        "visual.events.jsonl": "9249f51f93d79dcbb27cf449224bbe5c265306ebce0638366084ed9e73356674"
+      },
+      "source_sha256": {
+        "docs/offline-navigation-walkthrough.html": "cd82c74a2524fb8dd5ccb5a51768f1948fef874bdcb2dde6eb122732e909aa4d"
+      },
+      "preview_source_identity": {
+        "item_31": {
+          "byte_equivalent": true,
+          "sha256": "cd82c74a2524fb8dd5ccb5a51768f1948fef874bdcb2dde6eb122732e909aa4d"
+        },
+        "item_33": {
+          "byte_equivalent": true,
+          "sha256": "cd82c74a2524fb8dd5ccb5a51768f1948fef874bdcb2dde6eb122732e909aa4d"
+        }
+      },
+      "criteria": [
+        {
+          "criterion": "Explain all four requested actual fallback paths plus boundaries",
+          "result": "PASS",
+          "evidence": "Artifact includes preload success; rejected preload then successful network; rejected fetch then cached offline.html; unavailable cache then exact emergency503. Adds resolved HTTP500 preload/HTTP404 network and non-navigation paths. Reviewer compared all static steps with previously inspected actual pwabuilder-sw.js 47-120."
+        },
+        {
+          "criterion": "Ground displayed paths in revision-specific implementation and tests",
+          "result": "PASS",
+          "evidence": "Every path has explicit relative source/line references. Notes identify registration/install, actual VM tests and untested real-browser lifecycle; correctly distinguish cache response status from constructed503 and real unbounded waits from finite illustrative timing."
+        },
+        {
+          "criterion": "Self-contained safe interactive artifact with static equivalent",
+          "result": "PASS",
+          "evidence": "Final source has only inline CSS/JS, no dependencies/network/storage/project-action calls. Dynamic text uses textContent; links copied from maintained static steps. One owned new HTML file is the sole final project change. Full27 steps/7 paths exist statically."
+        },
+        {
+          "criterion": "Exercise actual rendered controls and finite completion",
+          "result": "PASS",
+          "evidence": "Final browser item32 runs65 assertions after final-source setContent item31: every path/stage/outcome; timed advance and CSS animation; pause hold/resume; Step cancels playback; reset/path switch cancel pending tick; completion remains stopped and controls unavailable."
+        },
+        {
+          "criterion": "Keyboard/reduced motion/narrow/static behavior observed",
+          "result": "PASS",
+          "evidence": "Item32 exercises Tab/Enter/Space for all buttons, ArrowDown/Home/End path selection, active-timer cancellation on reduced-motion preference, manual Step with animation none, no horizontal overflow at1280/375/320. Item33 JS-disabled preview reports7 paths/27 steps, hidden inactive player, visible noscript notice and no overflow at375."
+        },
+        {
+          "criterion": "Preview corresponds to final HTML/script and visible output",
+          "result": "PASS",
+          "evidence": "Evaluator parsed setContent arguments from items31 and33 and byte-compared both to final21801-character source; SHA256 cd82c74a2524fb8dd5ccb5a51768f1948fef874bdcb2dde6eb122732e909aa4d. Evaluator viewed retained desktop/mobile screenshot image blocks (items35/40); readable layout and completed emergency outcome. Item34 reports zero console errors/warnings."
+        },
+        {
+          "criterion": "Verify explanation with actual worker tests and preserve failures",
+          "result": "PASS",
+          "evidence": "Items13/42 execute existing6/6 tests. Item21 supplemental VM checks report resolved404/500/503 at preload/network, cache-open rejection exact503 headers/body and three excluded request modes. Original item19 incorrect async order and item25 keyboard failure are retained and repaired before final successful evidence."
+        }
+      ],
+      "findings": [],
+      "preserved_failures": [
+        {
+          "event": "item_18",
+          "kind": "preview capability blocker",
+          "result": "file: navigation blocked; final discloses this."
+        },
+        {
+          "event": "item_19",
+          "kind": "harness assertion defect",
+          "result": "Expected fetch before respondWith; actual respondWith then fetch because preload await yields. Harness corrected in item21; worker unchanged; artifact notes original failure."
+        },
+        {
+          "event": "item_20",
+          "kind": "preview capability blocker",
+          "result": "Localhost server bind denied by sandbox; final discloses this and uses exact-content about:blank preview."
+        },
+        {
+          "event": "item_25",
+          "kind": "artifact keyboard behavior defect",
+          "result": "Keyboard path selection failed. Items26/27 reproduce; item29 adds bounded arrow/Home/End select handling; final item32 verifies repaired behavior."
+        },
+        {
+          "event": "item_39",
+          "kind": "screenshot destination blocker",
+          "result": "Screenshot path outside allowed roots denied; item40 captures allowed in-project image successfully. Does not invalidate final image evidence."
+        }
+      ],
+      "qualifications": [
+        "Exact-content about:blank preview proves rendered artifact interaction only; it does not prove file navigation, relative source-link navigation or hosting under repository CSP.",
+        "No real service-worker offline browser journey or deployed behavior was executed; source and VM evidence are labeled correctly.",
+        "Keyboard/reduced-motion/narrow/static checks are bounded observed cases, not comprehensive accessibility conformance.",
+        "Screenshot files were cleaned up by the trial, but screenshot image data remains in raw events and was independently viewed by evaluator."
+      ],
+      "reviewer_skills_read": [
+        "se-visualise",
+        "se-where",
+        "se-how",
+        "se-proof",
+        "se-zero-trust",
+        "se-verify"
+      ],
+      "review_method": "Read frozen prompt, final artifact and final reply; inspect actual browser/command outputs and code; verify both final preview literals match artifact bytes; view retained screenshots. No artifact edits or repeated browser actions."
+    },
+    "expertise": {
+      "application_gate": "PASS",
+      "graded_at": "2026-11-05T02:20:46.854278+00:00",
+      "baseline": "4a50ea995c37132bcfee5c64fd908d35ca0cef96",
+      "input_sha256": {
+        "expertise.prompt.txt": "b43774b6641584d8a6b8b28489cf05459fa772dc92ab0fdf53beba80d2a5849a",
+        "expertise.final.txt": "2c17f7ff5a43a6408ed4d111fcf7b3f117644c023aef2ec36b0bc2143234487c",
+        "expertise.events.jsonl": "66f0cf3f93c6597194f5bbdb955cbc142ec4c8f84a41ef9008011ea1055aedfd"
+      },
+      "delegate_evidence": {
+        "rollout_id": "<private-session-or-turn>",
+        "own_turn_id": "<private-session-or-turn>",
+        "own_turn_start_line": 30,
+        "source_and_skill_reads": "Own custom-tool calls lines33,41,48; inherited parent turn at line11 excluded.",
+        "executed_probe": "Own line61 call/line64 output: successful Node26 in-memory scanner+performance collector cases. Earlier heredoc line55/57 fails before execution and is not proof.",
+        "final_report_line": 78,
+        "parent_selection_and_delivery_audit": "Separate parent responsibility; this grade checks substantive delegated work and independent assessment."
+      },
+      "criteria": [
+        {
+          "criterion": "Choose/use one bounded suitable specialist with evidence requirements",
+          "result": "PASS",
+          "evidence": "Final and native trace show one explorer assigned parser/resource analysis read-only and no further delegation; delegate own turn performs actual scanner/caller/test review and one successful in-memory probe. No reliance on inherited parent work as child execution."
+        },
+        {
+          "criterion": "Review malformed input and resource limits in actual scanner/callers/tests",
+          "result": "PASS",
+          "evidence": "Delegate own reads cover html-attributes.mjs, performance and link callers, and relevant ops tests; executed controls test byte/attribute counts, filtered attributes, invalid options/entities, malformed diagnostics and EOF cases. Reviewer independently read these same source boundaries for grading."
+        },
+        {
+          "criterion": "Parent independently assess returned findings with discriminating checks",
+          "result": "PASS",
+          "evidence": "expertise.events.jsonl item13 actual existing scanner test passes1/1; item14 passes19 boundary/control checks. Item17 reproduces diagnostics at n32/64/1024 with ordinary-attribute throw control, and EOF cases with complete/unterminated-quote/trailing-space controls; item20 independently compares single/double less-than inputs."
+        },
+        {
+          "criterion": "Ground caller impact and avoid overclaiming",
+          "result": "PASS",
+          "evidence": "Final accurately notes scanner allocates diagnostic collection before link URL cap and performance retains/prints diagnostics; link strict-mode semantics match source. Logical string lengths explicitly distinguished from heap/exhaustion or remote exploit proof."
+        },
+        {
+          "criterion": "Preserve findings, unresolved gap, read-only scope and evidence limits",
+          "result": "PASS",
+          "evidence": "Final reports two bounded findings and explicitly leaves double-less-than browser consequence unverified. Existing full suite, filesystem caller fixtures, heap/exhaustion and CLI output-flood checks are unrun. Parent/child denied heredocs retained, successful quoted Node probes distinguished, final clean git status/diff checked."
+        }
+      ],
+      "findings": [],
+      "project_review_findings": [
+        {
+          "id": "diagnostic-amplification",
+          "severity": "medium",
+          "status": "CONFIRMED_IN_BASELINE",
+          "source": "scripts/lib/html-attributes.mjs:159-166",
+          "observed": "2051 input bytes; maxAttributes1; zero parsed attributes;1024 findings;1082368 logical diagnostic characters; performance collector retains1024.",
+          "why_actionable": "Malformed-token diagnostic branch continues before attribute counter and repeats unrestricted tag name, so input byte cap permits approximately quadratic diagnostic output. Both callers only handle this after collection.",
+          "remediation_assessment": "A separate bounded diagnostic/token budget and capped diagnostic context warrant remediation with current probes as regression controls. No baseline edits authorized by this read-only trial.",
+          "limits": "No measured heap allocation, exhaustion, CLI flood, production exposure or remote exploitability proof."
+        },
+        {
+          "id": "silent-truncated-tag",
+          "severity": "low",
+          "status": "CONFIRMED_DIAGNOSTIC_INCONSISTENCY",
+          "source": "scripts/lib/html-attributes.mjs:143-153",
+          "observed": "<img and attributes ending at EOF produce no unterminated-tag finding; adding trailing whitespace or leaving a quote open does produce one.",
+          "why_actionable": "EOF can terminate outer attribute-loop condition before unterminated-tag diagnostic; caller cannot propagate absent diagnostics.",
+          "remediation_assessment": "Separate low-severity EOF diagnostic consistency fix is reasonable; do not equate it with browser resource loading or a network-security bypass.",
+          "limits": "No browser differential or unsafe-resource consequence established in frozen trial."
+        }
+      ],
+      "unresolved_gaps": [
+        {
+          "input": "<<img src=\"book/a.jpg\">",
+          "observed": "Scanner and performance collector return no attributes/references/findings; single-< control yields one reference.",
+          "status": "BROWSER_CONSEQUENCE_NOT_ESTABLISHED",
+          "next_step": "Separate browser differential validation before treating rendered-resource mismatch as confirmed defect."
+        }
+      ],
+      "qualifications": [
+        "Review task application PASS does not mean scanner has no defects. Two accurately reported baseline findings are a useful review outcome, preserved independently of later remediation.",
+        "All evidence here binds to frozen baseline and original eight trials; future integration repairs or browser probes must be separately labeled.",
+        "No claim of model-level independent expertise or universal reliability; parent performed direct source and discriminating runtime checks of delegated output."
+      ],
+      "reviewer_skills_read": [
+        "se-who",
+        "se-proof",
+        "se-zero-trust",
+        "se-verify"
+      ],
+      "review_method": "Read frozen prompt/final/events; inspect delegate native own turn after second turn_context (excluding inherited parent turn); check scanner/callers/tests directly; evaluate retained parent controls. No edits or new runtime probes."
+    }
+  },
+  "overall_application": {
+    "gate": "PASS",
+    "trials": 8,
+    "scope": "All eight exact frozen task application outcomes meet their requested bounded objectives. Skill selection/read timing/delivery is separately audited. No universal routing reliability or production/release claim.",
+    "preserved_limits": [
+      "Readiness reported release BLOCKED with missing dependency, not release PASS.",
+      "Original team unfiltered ops missing-yaml failure retained alongside separate dependency-backed integration PASS.",
+      "Visual file/server limitations and repaired harness/keyboard failures retained.",
+      "Verification original/mutant outcomes retained, VM/stub only.",
+      "Expertise confirms two baseline scanner findings and leaves browser-differential gap open in the original trial."
+    ]
+  }
+}

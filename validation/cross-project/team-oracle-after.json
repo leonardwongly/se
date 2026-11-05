@@ -1,0 +1,609 @@
+{
+  "timestamp": "2026-11-05T02:13:25.363066+00:00",
+  "project": "$TRIAL_ROOT/team",
+  "checker_sha256": "43a2870c98858bade479c2bbffc3e831cd8db32d51859bdbb25017892494c1c8",
+  "node": "v26.13.0",
+  "python": "3.14.5",
+  "source_sha256": {
+    "scripts/audit-reading-metadata.mjs": "7baa7d60d55a70c84dbc50e50b5d63faf4392a0de4121ec2b19d4204b7a3f9ca",
+    "scripts/build-resume.mjs": "c1c354298e81b6c7166851fc2d4d9b2b309e50e20f4beacc9054ecacda365ec6",
+    "scripts/build.js": "974b6414dbcb1090046470fa4a57466e5450d0863091f00faf29a0484bbdd915",
+    "scripts/check-link-health.mjs": "ebac55c6240f94c4be20d89b3a5c41b1760c5100fa0ce99de76ab11570ab2e41",
+    "scripts/check-markdown-negotiation.mjs": "abe1b25a8617cb2459128dfb031b7e5edf0a2198f42c1e4bf5a05309ed90fc7c",
+    "scripts/check-performance-budget.mjs": "c7874319c75d716fc2cde1c6b6f1d84a2f30621c0264fa6be7edb093b266f942",
+    "scripts/check-production-smoke.mjs": "a69a92bf6c7a64cfd8a57e7c1b4141c1460e32e92d7f7df98b8aa7420a700ef7",
+    "scripts/check-repository-hygiene.mjs": "cb29a8a9098a3e82cf5a0e08b71446ebf30affbfce3a058d2f2cbd6a45b69e60",
+    "scripts/check-resume-freshness.mjs": "3d28ca0f00aeabe0646394e7bc084f72cdf69dc3fa918ecb693ab66f59eade4a",
+    "scripts/check-telemetry-policy.mjs": "de79dd53d2c7dc7cd8aa7de7044484b662565777c352af614f59f74e10b598e0",
+    "scripts/check-vendor-governance.mjs": "dce60d9ca2367d7f93bcdfd1ba08972e2705df76142f5f2f7c93fad8e808e397",
+    "scripts/check-vendor-upstream.mjs": "dbca95604a748b4270ad96f744dfa74fba2160ac66ad170ec5cc1d1e5eab6cfe",
+    "scripts/check-workflow-hygiene.mjs": "78904888b3bcec5be97a06c78a47004cfe5bbc566c49926be4aed2ae59669928",
+    "scripts/generate-book-webp.js": "b3fb73a1ca74f812ba0a4e7ff81ea5995f18874b5e400e2ff8bca40603f3365b",
+    "scripts/lib/asset-paths.cjs": "289c3429e80dfa8f615a7e95c54d410d2701f7b37cd3489b67bcaf2b2e0f2d1f",
+    "scripts/lib/html-attributes.mjs": "995ccf4d28332bcc2612b8b0eba2a50cccfbeea8f59323bfd2592a19ea8ca59b",
+    "scripts/lib/network-safety.mjs": "30d088d3def8bb8f9131d56ec1b128ee8cc73e61b04ce79a5febd06f7b822726",
+    "scripts/lib/safe-input.cjs": "33ec675925a7c74bf9b61290f1a405c131d078ed0cd659b59322ee0c18b00881",
+    "scripts/lib/safe-output.cjs": "c1652a5b3450ce55bb1646fe0a1dcb4359dfa24583e1301936b098196676a751",
+    "scripts/lib/static-rendering.cjs": "d000cacca4e683a8494e3b20be410e077ac8f9a761f2ea9f3fed7baad252d9f2",
+    "scripts/lib/vendor-policy.mjs": "7d5577023e815342510240348d93e71d8b7a1388fd76f6d41e7ff486c74657d0",
+    "scripts/security-smoke.sh": "d5916f11b163f5dd3462e1daa848410ca8a83811ccdf847d27473173ba714dbe",
+    "scripts/update-vendor.mjs": "b4747d9bc9cc35b42440f590c9451417db3113d620bb28a486495151ad22ab81",
+    "scripts/web-bot-auth.mjs": "6ff9398c34f9b3c8220d818f636d6f979f4f8b9a5dc8c3bac7c8774abf3d4913"
+  },
+  "passed": 38,
+  "total": 38,
+  "results": [
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "json-valid",
+      "args": [
+        "--json"
+      ],
+      "fixture": "valid",
+      "expected_exit": 0,
+      "expected_status": "pass",
+      "exit": 0,
+      "stdout": "{\"status\":\"pass\",\"findings\":[]}\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "json-finding",
+      "args": [
+        "--json"
+      ],
+      "fixture": "finding",
+      "expected_exit": 1,
+      "expected_status": "fail",
+      "exit": 1,
+      "stdout": "{\"status\":\"fail\",\"findings\":[\"reading[0]: missing title\"]}\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "json-malformed",
+      "args": [
+        "--json"
+      ],
+      "fixture": "malformed",
+      "expected_exit": 1,
+      "expected_status": "error",
+      "exit": 1,
+      "stdout": "{\"status\":\"error\",\"findings\":[],\"error\":\"Expected property name or '}' in JSON at position 1 (line 1 column 2)\"}\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "json-absent",
+      "args": [
+        "--json"
+      ],
+      "fixture": "absent",
+      "expected_exit": 1,
+      "expected_status": "error",
+      "exit": 1,
+      "stdout": "{\"status\":\"error\",\"findings\":[],\"error\":\"Unsafe data/reading.json: parent directory is missing: <fixture>/data\"}\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "json-symlink",
+      "args": [
+        "--json"
+      ],
+      "fixture": "symlink",
+      "expected_exit": 1,
+      "expected_status": "error",
+      "exit": 1,
+      "stdout": "{\"status\":\"error\",\"findings\":[],\"error\":\"Unsafe data/reading.json: refusing to follow a symbolic link\"}\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "json-traversal",
+      "args": [
+        "--json"
+      ],
+      "fixture": "traversal",
+      "expected_exit": 1,
+      "expected_status": "fail",
+      "exit": 1,
+      "stdout": "{\"status\":\"fail\",\"findings\":[\"reading[0]: Invalid path at reading[0].cover: dot segments and empty segments are not allowed\"]}\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "json-wrong-shape",
+      "args": [
+        "--json"
+      ],
+      "fixture": "wrong-shape",
+      "expected_exit": 1,
+      "expected_status": "error",
+      "exit": 1,
+      "stdout": "{\"status\":\"error\",\"findings\":[],\"error\":\"Expected data/reading.json to contain an array\"}\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "human-valid",
+      "args": [],
+      "fixture": "valid",
+      "expected_exit": 0,
+      "expected_status": null,
+      "exit": 0,
+      "stdout": "Reading metadata audit OK.\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "human-finding",
+      "args": [],
+      "fixture": "finding",
+      "expected_exit": 1,
+      "expected_status": null,
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Reading metadata audit failed with 1 finding(s):\n- reading[0]: missing title\n",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "invalid-0",
+      "args": [
+        "--unknown"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": null,
+      "exit": 2,
+      "stdout": "",
+      "stderr": "Invalid arguments. Usage: node scripts/audit-reading-metadata.mjs [--json]\n",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "invalid-1",
+      "args": [
+        "position"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": null,
+      "exit": 2,
+      "stdout": "",
+      "stderr": "Invalid arguments. Usage: node scripts/audit-reading-metadata.mjs [--json]\n",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "invalid-2",
+      "args": [
+        "--"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": null,
+      "exit": 2,
+      "stdout": "",
+      "stderr": "Invalid arguments. Usage: node scripts/audit-reading-metadata.mjs [--json]\n",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "invalid-3",
+      "args": [
+        "--json",
+        "--json"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": "error",
+      "exit": 2,
+      "stdout": "{\"status\":\"error\",\"findings\":[],\"error\":\"Invalid arguments. Usage: node scripts/audit-reading-metadata.mjs [--json]\"}\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "invalid-4",
+      "args": [
+        "--unknown",
+        "--json"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": "error",
+      "exit": 2,
+      "stdout": "{\"status\":\"error\",\"findings\":[],\"error\":\"Invalid arguments. Usage: node scripts/audit-reading-metadata.mjs [--json]\"}\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "invalid-5",
+      "args": [
+        "--json",
+        "--unknown"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": "error",
+      "exit": 2,
+      "stdout": "{\"status\":\"error\",\"findings\":[],\"error\":\"Invalid arguments. Usage: node scripts/audit-reading-metadata.mjs [--json]\"}\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "invalid-6",
+      "args": [
+        "position",
+        "--json"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": "error",
+      "exit": 2,
+      "stdout": "{\"status\":\"error\",\"findings\":[],\"error\":\"Invalid arguments. Usage: node scripts/audit-reading-metadata.mjs [--json]\"}\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "invalid-7",
+      "args": [
+        "--json",
+        "position"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": "error",
+      "exit": 2,
+      "stdout": "{\"status\":\"error\",\"findings\":[],\"error\":\"Invalid arguments. Usage: node scripts/audit-reading-metadata.mjs [--json]\"}\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "invalid-8",
+      "args": [
+        "--json=1"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": null,
+      "exit": 2,
+      "stdout": "",
+      "stderr": "Invalid arguments. Usage: node scripts/audit-reading-metadata.mjs [--json]\n",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "invalid-9",
+      "args": [
+        "--json",
+        "--json",
+        "--unknown"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": "error",
+      "exit": 2,
+      "stdout": "{\"status\":\"error\",\"findings\":[],\"error\":\"Invalid arguments. Usage: node scripts/audit-reading-metadata.mjs [--json]\"}\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "import-no-running",
+      "args": [],
+      "fixture": "absent",
+      "expected_exit": 0,
+      "expected_status": null,
+      "exit": 0,
+      "stdout": "[\"ALLOWED_DUPLICATE_COVER_GROUPS\",\"MAX_COVER_FILE_BYTES\",\"MAX_READING_METADATA_BYTES\",\"auditReadingMetadata\",\"readReadingData\",\"resolveSafeCoverPath\",\"sha256SafeCoverFile\"]\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "json-valid",
+      "args": [
+        "--json"
+      ],
+      "fixture": "valid",
+      "expected_exit": 0,
+      "expected_status": "pass",
+      "exit": 0,
+      "stdout": "{\"status\":\"pass\",\"failures\":[],\"report\":[\"index.html: 0.0 KiB / 90.0 KiB\",\"work.html: 0.0 KiB / 90.0 KiB\",\"case-study-agentforge.html: 0.0 KiB / 48.0 KiB\",\"case-study-agentic.html: 0.0 KiB / 48.0 KiB\",\"case-study-apple-calendar-mcp.html: 0.0 KiB / 48.0 KiB\",\"reading.html: 0.0 KiB / 140.0 KiB\",\"offline.html: 0.0 KiB / 20.0 KiB\",\"css/custom.css: 0.0 KiB / 50.0 KiB\",\"css/case-study.css: 0.0 KiB / 8.0 KiB\",\"js/main.js: 0.0 KiB / 32.0 KiB\",\"js/site.js: 0.0 KiB / 8.0 KiB\",\"pwabuilder-sw.js: 0.0 KiB / 8.0 KiB\",\"book/: 0.0 KiB / 80.00 MiB\",\"fonts/: 0.0 KiB / 512.0 KiB\",\"images/: 0.0 KiB / 8.00 MiB\",\"js/vendor/: 0.0 KiB / 2.00 MiB\",\"rendered reading media: 0.0 KiB / 12.00 MiB\",\"rendered reading 2x media: 0.0 KiB / 6.00 MiB\"],\"inventory\":{\"directoryTotals\":[{\"path\":\"book/\",\"size\":0},{\"path\":\"fonts/\",\"size\":0},{\"path\":\"images/\",\"size\":0},{\"path\":\"js/vendor/\",\"size\":0}],\"largestFiles\":[]}}\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "json-finding",
+      "args": [
+        "--json"
+      ],
+      "fixture": "finding",
+      "expected_exit": 1,
+      "expected_status": "fail",
+      "exit": 1,
+      "stdout": "{\"status\":\"fail\",\"failures\":[\"work.html is 90.0 KiB, above 90.0 KiB\"],\"report\":[\"index.html: 0.0 KiB / 90.0 KiB\",\"work.html: 90.0 KiB / 90.0 KiB\",\"case-study-agentforge.html: 0.0 KiB / 48.0 KiB\",\"case-study-agentic.html: 0.0 KiB / 48.0 KiB\",\"case-study-apple-calendar-mcp.html: 0.0 KiB / 48.0 KiB\",\"reading.html: 0.0 KiB / 140.0 KiB\",\"offline.html: 0.0 KiB / 20.0 KiB\",\"css/custom.css: 0.0 KiB / 50.0 KiB\",\"css/case-study.css: 0.0 KiB / 8.0 KiB\",\"js/main.js: 0.0 KiB / 32.0 KiB\",\"js/site.js: 0.0 KiB / 8.0 KiB\",\"pwabuilder-sw.js: 0.0 KiB / 8.0 KiB\",\"book/: 0.0 KiB / 80.00 MiB\",\"fonts/: 0.0 KiB / 512.0 KiB\",\"images/: 0.0 KiB / 8.00 MiB\",\"js/vendor/: 0.0 KiB / 2.00 MiB\",\"rendered reading media: 0.0 KiB / 12.00 MiB\",\"rendered reading 2x media: 0.0 KiB / 6.00 MiB\"],\"inventory\":{\"directoryTotals\":[{\"path\":\"book/\",\"size\":0},{\"path\":\"fonts/\",\"size\":0},{\"path\":\"images/\",\"size\":0},{\"path\":\"js/vendor/\",\"size\":0}],\"largestFiles\":[]}}\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "json-malformed",
+      "args": [
+        "--json"
+      ],
+      "fixture": "malformed",
+      "expected_exit": 1,
+      "expected_status": "fail",
+      "exit": 1,
+      "stdout": "{\"status\":\"fail\",\"failures\":[\"reading.html: asset reference is malformed: \\\"../outside.jpg\\\" (Invalid path at rendered asset reference: dot segments and empty segments are not allowed)\"],\"report\":[\"index.html: 0.0 KiB / 90.0 KiB\",\"work.html: 0.0 KiB / 90.0 KiB\",\"case-study-agentforge.html: 0.0 KiB / 48.0 KiB\",\"case-study-agentic.html: 0.0 KiB / 48.0 KiB\",\"case-study-apple-calendar-mcp.html: 0.0 KiB / 48.0 KiB\",\"reading.html: 0.0 KiB / 140.0 KiB\",\"offline.html: 0.0 KiB / 20.0 KiB\",\"css/custom.css: 0.0 KiB / 50.0 KiB\",\"css/case-study.css: 0.0 KiB / 8.0 KiB\",\"js/main.js: 0.0 KiB / 32.0 KiB\",\"js/site.js: 0.0 KiB / 8.0 KiB\",\"pwabuilder-sw.js: 0.0 KiB / 8.0 KiB\",\"book/: 0.0 KiB / 80.00 MiB\",\"fonts/: 0.0 KiB / 512.0 KiB\",\"images/: 0.0 KiB / 8.00 MiB\",\"js/vendor/: 0.0 KiB / 2.00 MiB\",\"rendered reading media: 0.0 KiB / 12.00 MiB\",\"rendered reading 2x media: 0.0 KiB / 6.00 MiB\"],\"inventory\":{\"directoryTotals\":[{\"path\":\"book/\",\"size\":0},{\"path\":\"fonts/\",\"size\":0},{\"path\":\"images/\",\"size\":0},{\"path\":\"js/vendor/\",\"size\":0}],\"largestFiles\":[]}}\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "json-absent",
+      "args": [
+        "--json"
+      ],
+      "fixture": "absent",
+      "expected_exit": 1,
+      "expected_status": "error",
+      "exit": 1,
+      "stdout": "{\"status\":\"error\",\"failures\":[],\"report\":[],\"inventory\":null,\"error\":\"ENOENT: no such file or directory, lstat '<fixture>/index.html'\"}\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "json-symlink",
+      "args": [
+        "--json"
+      ],
+      "fixture": "symlink",
+      "expected_exit": 1,
+      "expected_status": "error",
+      "exit": 1,
+      "stdout": "{\"status\":\"error\",\"failures\":[],\"report\":[],\"inventory\":null,\"error\":\"index.html must be a non-symlink regular file\"}\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "human-valid",
+      "args": [],
+      "fixture": "valid",
+      "expected_exit": 0,
+      "expected_status": null,
+      "exit": 0,
+      "stdout": "Performance budget report:\n- index.html: 0.0 KiB / 90.0 KiB\n- work.html: 0.0 KiB / 90.0 KiB\n- case-study-agentforge.html: 0.0 KiB / 48.0 KiB\n- case-study-agentic.html: 0.0 KiB / 48.0 KiB\n- case-study-apple-calendar-mcp.html: 0.0 KiB / 48.0 KiB\n- reading.html: 0.0 KiB / 140.0 KiB\n- offline.html: 0.0 KiB / 20.0 KiB\n- css/custom.css: 0.0 KiB / 50.0 KiB\n- css/case-study.css: 0.0 KiB / 8.0 KiB\n- js/main.js: 0.0 KiB / 32.0 KiB\n- js/site.js: 0.0 KiB / 8.0 KiB\n- pwabuilder-sw.js: 0.0 KiB / 8.0 KiB\n- book/: 0.0 KiB / 80.00 MiB\n- fonts/: 0.0 KiB / 512.0 KiB\n- images/: 0.0 KiB / 8.00 MiB\n- js/vendor/: 0.0 KiB / 2.00 MiB\n- rendered reading media: 0.0 KiB / 12.00 MiB\n- rendered reading 2x media: 0.0 KiB / 6.00 MiB\nLargest asset files:\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "human-finding",
+      "args": [],
+      "fixture": "finding",
+      "expected_exit": 1,
+      "expected_status": null,
+      "exit": 1,
+      "stdout": "Performance budget report:\n- index.html: 0.0 KiB / 90.0 KiB\n- work.html: 90.0 KiB / 90.0 KiB\n- case-study-agentforge.html: 0.0 KiB / 48.0 KiB\n- case-study-agentic.html: 0.0 KiB / 48.0 KiB\n- case-study-apple-calendar-mcp.html: 0.0 KiB / 48.0 KiB\n- reading.html: 0.0 KiB / 140.0 KiB\n- offline.html: 0.0 KiB / 20.0 KiB\n- css/custom.css: 0.0 KiB / 50.0 KiB\n- css/case-study.css: 0.0 KiB / 8.0 KiB\n- js/main.js: 0.0 KiB / 32.0 KiB\n- js/site.js: 0.0 KiB / 8.0 KiB\n- pwabuilder-sw.js: 0.0 KiB / 8.0 KiB\n- book/: 0.0 KiB / 80.00 MiB\n- fonts/: 0.0 KiB / 512.0 KiB\n- images/: 0.0 KiB / 8.00 MiB\n- js/vendor/: 0.0 KiB / 2.00 MiB\n- rendered reading media: 0.0 KiB / 12.00 MiB\n- rendered reading 2x media: 0.0 KiB / 6.00 MiB\nLargest asset files:\n",
+      "stderr": "Performance budget failed with 1 finding(s):\n- work.html is 90.0 KiB, above 90.0 KiB\n",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "invalid-0",
+      "args": [
+        "--unknown"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": null,
+      "exit": 2,
+      "stdout": "",
+      "stderr": "Invalid arguments. Usage: node scripts/check-performance-budget.mjs [--json]\n",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "invalid-1",
+      "args": [
+        "position"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": null,
+      "exit": 2,
+      "stdout": "",
+      "stderr": "Invalid arguments. Usage: node scripts/check-performance-budget.mjs [--json]\n",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "invalid-2",
+      "args": [
+        "--"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": null,
+      "exit": 2,
+      "stdout": "",
+      "stderr": "Invalid arguments. Usage: node scripts/check-performance-budget.mjs [--json]\n",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "invalid-3",
+      "args": [
+        "--json",
+        "--json"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": "error",
+      "exit": 2,
+      "stdout": "{\"status\":\"error\",\"failures\":[],\"report\":[],\"inventory\":null,\"error\":\"Invalid arguments. Usage: node scripts/check-performance-budget.mjs [--json]\"}\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "invalid-4",
+      "args": [
+        "--unknown",
+        "--json"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": "error",
+      "exit": 2,
+      "stdout": "{\"status\":\"error\",\"failures\":[],\"report\":[],\"inventory\":null,\"error\":\"Invalid arguments. Usage: node scripts/check-performance-budget.mjs [--json]\"}\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "invalid-5",
+      "args": [
+        "--json",
+        "--unknown"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": "error",
+      "exit": 2,
+      "stdout": "{\"status\":\"error\",\"failures\":[],\"report\":[],\"inventory\":null,\"error\":\"Invalid arguments. Usage: node scripts/check-performance-budget.mjs [--json]\"}\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "invalid-6",
+      "args": [
+        "position",
+        "--json"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": "error",
+      "exit": 2,
+      "stdout": "{\"status\":\"error\",\"failures\":[],\"report\":[],\"inventory\":null,\"error\":\"Invalid arguments. Usage: node scripts/check-performance-budget.mjs [--json]\"}\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "invalid-7",
+      "args": [
+        "--json",
+        "position"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": "error",
+      "exit": 2,
+      "stdout": "{\"status\":\"error\",\"failures\":[],\"report\":[],\"inventory\":null,\"error\":\"Invalid arguments. Usage: node scripts/check-performance-budget.mjs [--json]\"}\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "invalid-8",
+      "args": [
+        "--json=1"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": null,
+      "exit": 2,
+      "stdout": "",
+      "stderr": "Invalid arguments. Usage: node scripts/check-performance-budget.mjs [--json]\n",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "invalid-9",
+      "args": [
+        "--json",
+        "--json",
+        "--unknown"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": "error",
+      "exit": 2,
+      "stdout": "{\"status\":\"error\",\"failures\":[],\"report\":[],\"inventory\":null,\"error\":\"Invalid arguments. Usage: node scripts/check-performance-budget.mjs [--json]\"}\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "import-no-running",
+      "args": [],
+      "fixture": "absent",
+      "expected_exit": 0,
+      "expected_status": null,
+      "exit": 0,
+      "stdout": "[\"MAX_ASSET_INVENTORY_ENTRIES\",\"checkPerformanceBudget\",\"collectRenderedAssetReferences\",\"createAssetInventoryReport\",\"walkFiles\"]\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    }
+  ]
+}

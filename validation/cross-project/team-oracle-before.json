@@ -1,0 +1,707 @@
+{
+  "timestamp": "2026-11-05T02:07:01.369856+00:00",
+  "project": "$TRIAL_ROOT/baseline",
+  "checker_sha256": "43a2870c98858bade479c2bbffc3e831cd8db32d51859bdbb25017892494c1c8",
+  "node": "v26.13.0",
+  "python": "3.14.5",
+  "source_sha256": {
+    "scripts/audit-reading-metadata.mjs": "2c53c039e244f0d7f4d979311501c36d8eb6e7bc499d18a03cdda9c7081ea6c6",
+    "scripts/build-resume.mjs": "c1c354298e81b6c7166851fc2d4d9b2b309e50e20f4beacc9054ecacda365ec6",
+    "scripts/build.js": "974b6414dbcb1090046470fa4a57466e5450d0863091f00faf29a0484bbdd915",
+    "scripts/check-link-health.mjs": "ebac55c6240f94c4be20d89b3a5c41b1760c5100fa0ce99de76ab11570ab2e41",
+    "scripts/check-markdown-negotiation.mjs": "abe1b25a8617cb2459128dfb031b7e5edf0a2198f42c1e4bf5a05309ed90fc7c",
+    "scripts/check-performance-budget.mjs": "00959d69e5a42d6f57771ff12e7df9acf0012cc7c766c93c6f3ec0278fa1c3be",
+    "scripts/check-production-smoke.mjs": "a69a92bf6c7a64cfd8a57e7c1b4141c1460e32e92d7f7df98b8aa7420a700ef7",
+    "scripts/check-repository-hygiene.mjs": "cb29a8a9098a3e82cf5a0e08b71446ebf30affbfce3a058d2f2cbd6a45b69e60",
+    "scripts/check-resume-freshness.mjs": "3d28ca0f00aeabe0646394e7bc084f72cdf69dc3fa918ecb693ab66f59eade4a",
+    "scripts/check-telemetry-policy.mjs": "de79dd53d2c7dc7cd8aa7de7044484b662565777c352af614f59f74e10b598e0",
+    "scripts/check-vendor-governance.mjs": "dce60d9ca2367d7f93bcdfd1ba08972e2705df76142f5f2f7c93fad8e808e397",
+    "scripts/check-vendor-upstream.mjs": "dbca95604a748b4270ad96f744dfa74fba2160ac66ad170ec5cc1d1e5eab6cfe",
+    "scripts/check-workflow-hygiene.mjs": "78904888b3bcec5be97a06c78a47004cfe5bbc566c49926be4aed2ae59669928",
+    "scripts/generate-book-webp.js": "b3fb73a1ca74f812ba0a4e7ff81ea5995f18874b5e400e2ff8bca40603f3365b",
+    "scripts/lib/asset-paths.cjs": "289c3429e80dfa8f615a7e95c54d410d2701f7b37cd3489b67bcaf2b2e0f2d1f",
+    "scripts/lib/html-attributes.mjs": "995ccf4d28332bcc2612b8b0eba2a50cccfbeea8f59323bfd2592a19ea8ca59b",
+    "scripts/lib/network-safety.mjs": "30d088d3def8bb8f9131d56ec1b128ee8cc73e61b04ce79a5febd06f7b822726",
+    "scripts/lib/safe-input.cjs": "33ec675925a7c74bf9b61290f1a405c131d078ed0cd659b59322ee0c18b00881",
+    "scripts/lib/safe-output.cjs": "c1652a5b3450ce55bb1646fe0a1dcb4359dfa24583e1301936b098196676a751",
+    "scripts/lib/static-rendering.cjs": "d000cacca4e683a8494e3b20be410e077ac8f9a761f2ea9f3fed7baad252d9f2",
+    "scripts/lib/vendor-policy.mjs": "7d5577023e815342510240348d93e71d8b7a1388fd76f6d41e7ff486c74657d0",
+    "scripts/security-smoke.sh": "d5916f11b163f5dd3462e1daa848410ca8a83811ccdf847d27473173ba714dbe",
+    "scripts/update-vendor.mjs": "b4747d9bc9cc35b42440f590c9451417db3113d620bb28a486495151ad22ab81",
+    "scripts/web-bot-auth.mjs": "6ff9398c34f9b3c8220d818f636d6f979f4f8b9a5dc8c3bac7c8774abf3d4913"
+  },
+  "passed": 6,
+  "total": 38,
+  "results": [
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "json-valid",
+      "args": [
+        "--json"
+      ],
+      "fixture": "valid",
+      "expected_exit": 0,
+      "expected_status": "pass",
+      "exit": 0,
+      "stdout": "Reading metadata audit OK.\n",
+      "stderr": "",
+      "failures": [
+        "stdout is not one JSON object followed by newline"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "json-finding",
+      "args": [
+        "--json"
+      ],
+      "fixture": "finding",
+      "expected_exit": 1,
+      "expected_status": "fail",
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Reading metadata audit failed with 1 finding(s):\n- reading[0]: missing title\n",
+      "failures": [
+        "JSON stderr is not empty",
+        "stdout is not one JSON object followed by newline"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "json-malformed",
+      "args": [
+        "--json"
+      ],
+      "fixture": "malformed",
+      "expected_exit": 1,
+      "expected_status": "error",
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Expected property name or '}' in JSON at position 1 (line 1 column 2)\n",
+      "failures": [
+        "JSON stderr is not empty",
+        "stdout is not one JSON object followed by newline"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "json-absent",
+      "args": [
+        "--json"
+      ],
+      "fixture": "absent",
+      "expected_exit": 1,
+      "expected_status": "error",
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Unsafe data/reading.json: parent directory is missing: <fixture>/data\n",
+      "failures": [
+        "JSON stderr is not empty",
+        "stdout is not one JSON object followed by newline"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "json-symlink",
+      "args": [
+        "--json"
+      ],
+      "fixture": "symlink",
+      "expected_exit": 1,
+      "expected_status": "error",
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Unsafe data/reading.json: refusing to follow a symbolic link\n",
+      "failures": [
+        "JSON stderr is not empty",
+        "stdout is not one JSON object followed by newline"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "json-traversal",
+      "args": [
+        "--json"
+      ],
+      "fixture": "traversal",
+      "expected_exit": 1,
+      "expected_status": "fail",
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Reading metadata audit failed with 1 finding(s):\n- reading[0]: Invalid path at reading[0].cover: dot segments and empty segments are not allowed\n",
+      "failures": [
+        "JSON stderr is not empty",
+        "stdout is not one JSON object followed by newline"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "json-wrong-shape",
+      "args": [
+        "--json"
+      ],
+      "fixture": "wrong-shape",
+      "expected_exit": 1,
+      "expected_status": "error",
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Expected data/reading.json to contain an array\n",
+      "failures": [
+        "JSON stderr is not empty",
+        "stdout is not one JSON object followed by newline"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "human-valid",
+      "args": [],
+      "fixture": "valid",
+      "expected_exit": 0,
+      "expected_status": null,
+      "exit": 0,
+      "stdout": "Reading metadata audit OK.\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "human-finding",
+      "args": [],
+      "fixture": "finding",
+      "expected_exit": 1,
+      "expected_status": null,
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Reading metadata audit failed with 1 finding(s):\n- reading[0]: missing title\n",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "invalid-0",
+      "args": [
+        "--unknown"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": null,
+      "exit": 97,
+      "stdout": "",
+      "stderr": "ORACLE_INPUT_ACCESS:lstatSync:\n",
+      "failures": [
+        "exit expected 2, got 97"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "invalid-1",
+      "args": [
+        "position"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": null,
+      "exit": 97,
+      "stdout": "",
+      "stderr": "ORACLE_INPUT_ACCESS:lstatSync:\n",
+      "failures": [
+        "exit expected 2, got 97"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "invalid-2",
+      "args": [
+        "--"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": null,
+      "exit": 97,
+      "stdout": "",
+      "stderr": "ORACLE_INPUT_ACCESS:lstatSync:\n",
+      "failures": [
+        "exit expected 2, got 97"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "invalid-3",
+      "args": [
+        "--json",
+        "--json"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": "error",
+      "exit": 97,
+      "stdout": "",
+      "stderr": "ORACLE_INPUT_ACCESS:lstatSync:\n",
+      "failures": [
+        "exit expected 2, got 97",
+        "JSON stderr is not empty",
+        "stdout is not one JSON object followed by newline"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "invalid-4",
+      "args": [
+        "--unknown",
+        "--json"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": "error",
+      "exit": 97,
+      "stdout": "",
+      "stderr": "ORACLE_INPUT_ACCESS:lstatSync:\n",
+      "failures": [
+        "exit expected 2, got 97",
+        "JSON stderr is not empty",
+        "stdout is not one JSON object followed by newline"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "invalid-5",
+      "args": [
+        "--json",
+        "--unknown"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": "error",
+      "exit": 97,
+      "stdout": "",
+      "stderr": "ORACLE_INPUT_ACCESS:lstatSync:\n",
+      "failures": [
+        "exit expected 2, got 97",
+        "JSON stderr is not empty",
+        "stdout is not one JSON object followed by newline"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "invalid-6",
+      "args": [
+        "position",
+        "--json"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": "error",
+      "exit": 97,
+      "stdout": "",
+      "stderr": "ORACLE_INPUT_ACCESS:lstatSync:\n",
+      "failures": [
+        "exit expected 2, got 97",
+        "JSON stderr is not empty",
+        "stdout is not one JSON object followed by newline"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "invalid-7",
+      "args": [
+        "--json",
+        "position"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": "error",
+      "exit": 97,
+      "stdout": "",
+      "stderr": "ORACLE_INPUT_ACCESS:lstatSync:\n",
+      "failures": [
+        "exit expected 2, got 97",
+        "JSON stderr is not empty",
+        "stdout is not one JSON object followed by newline"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "invalid-8",
+      "args": [
+        "--json=1"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": null,
+      "exit": 97,
+      "stdout": "",
+      "stderr": "ORACLE_INPUT_ACCESS:lstatSync:\n",
+      "failures": [
+        "exit expected 2, got 97"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "invalid-9",
+      "args": [
+        "--json",
+        "--json",
+        "--unknown"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": "error",
+      "exit": 97,
+      "stdout": "",
+      "stderr": "ORACLE_INPUT_ACCESS:lstatSync:\n",
+      "failures": [
+        "exit expected 2, got 97",
+        "JSON stderr is not empty",
+        "stdout is not one JSON object followed by newline"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "audit-reading-metadata.mjs",
+      "case": "import-no-running",
+      "args": [],
+      "fixture": "absent",
+      "expected_exit": 0,
+      "expected_status": null,
+      "exit": 0,
+      "stdout": "[\"ALLOWED_DUPLICATE_COVER_GROUPS\",\"MAX_COVER_FILE_BYTES\",\"MAX_READING_METADATA_BYTES\",\"auditReadingMetadata\",\"readReadingData\",\"resolveSafeCoverPath\",\"sha256SafeCoverFile\"]\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "json-valid",
+      "args": [
+        "--json"
+      ],
+      "fixture": "valid",
+      "expected_exit": 0,
+      "expected_status": "pass",
+      "exit": 0,
+      "stdout": "Performance budget report:\n- index.html: 0.0 KiB / 90.0 KiB\n- work.html: 0.0 KiB / 90.0 KiB\n- case-study-agentforge.html: 0.0 KiB / 48.0 KiB\n- case-study-agentic.html: 0.0 KiB / 48.0 KiB\n- case-study-apple-calendar-mcp.html: 0.0 KiB / 48.0 KiB\n- reading.html: 0.0 KiB / 140.0 KiB\n- offline.html: 0.0 KiB / 20.0 KiB\n- css/custom.css: 0.0 KiB / 50.0 KiB\n- css/case-study.css: 0.0 KiB / 8.0 KiB\n- js/main.js: 0.0 KiB / 32.0 KiB\n- js/site.js: 0.0 KiB / 8.0 KiB\n- pwabuilder-sw.js: 0.0 KiB / 8.0 KiB\n- book/: 0.0 KiB / 80.00 MiB\n- fonts/: 0.0 KiB / 512.0 KiB\n- images/: 0.0 KiB / 8.00 MiB\n- js/vendor/: 0.0 KiB / 2.00 MiB\n- rendered reading media: 0.0 KiB / 12.00 MiB\n- rendered reading 2x media: 0.0 KiB / 6.00 MiB\nLargest asset files:\n",
+      "stderr": "",
+      "failures": [
+        "stdout is not one JSON object followed by newline"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "json-finding",
+      "args": [
+        "--json"
+      ],
+      "fixture": "finding",
+      "expected_exit": 1,
+      "expected_status": "fail",
+      "exit": 1,
+      "stdout": "Performance budget report:\n- index.html: 0.0 KiB / 90.0 KiB\n- work.html: 90.0 KiB / 90.0 KiB\n- case-study-agentforge.html: 0.0 KiB / 48.0 KiB\n- case-study-agentic.html: 0.0 KiB / 48.0 KiB\n- case-study-apple-calendar-mcp.html: 0.0 KiB / 48.0 KiB\n- reading.html: 0.0 KiB / 140.0 KiB\n- offline.html: 0.0 KiB / 20.0 KiB\n- css/custom.css: 0.0 KiB / 50.0 KiB\n- css/case-study.css: 0.0 KiB / 8.0 KiB\n- js/main.js: 0.0 KiB / 32.0 KiB\n- js/site.js: 0.0 KiB / 8.0 KiB\n- pwabuilder-sw.js: 0.0 KiB / 8.0 KiB\n- book/: 0.0 KiB / 80.00 MiB\n- fonts/: 0.0 KiB / 512.0 KiB\n- images/: 0.0 KiB / 8.00 MiB\n- js/vendor/: 0.0 KiB / 2.00 MiB\n- rendered reading media: 0.0 KiB / 12.00 MiB\n- rendered reading 2x media: 0.0 KiB / 6.00 MiB\nLargest asset files:\n",
+      "stderr": "Performance budget failed with 1 finding(s):\n- work.html is 90.0 KiB, above 90.0 KiB\n",
+      "failures": [
+        "JSON stderr is not empty",
+        "stdout is not one JSON object followed by newline"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "json-malformed",
+      "args": [
+        "--json"
+      ],
+      "fixture": "malformed",
+      "expected_exit": 1,
+      "expected_status": "fail",
+      "exit": 1,
+      "stdout": "Performance budget report:\n- index.html: 0.0 KiB / 90.0 KiB\n- work.html: 0.0 KiB / 90.0 KiB\n- case-study-agentforge.html: 0.0 KiB / 48.0 KiB\n- case-study-agentic.html: 0.0 KiB / 48.0 KiB\n- case-study-apple-calendar-mcp.html: 0.0 KiB / 48.0 KiB\n- reading.html: 0.0 KiB / 140.0 KiB\n- offline.html: 0.0 KiB / 20.0 KiB\n- css/custom.css: 0.0 KiB / 50.0 KiB\n- css/case-study.css: 0.0 KiB / 8.0 KiB\n- js/main.js: 0.0 KiB / 32.0 KiB\n- js/site.js: 0.0 KiB / 8.0 KiB\n- pwabuilder-sw.js: 0.0 KiB / 8.0 KiB\n- book/: 0.0 KiB / 80.00 MiB\n- fonts/: 0.0 KiB / 512.0 KiB\n- images/: 0.0 KiB / 8.00 MiB\n- js/vendor/: 0.0 KiB / 2.00 MiB\n- rendered reading media: 0.0 KiB / 12.00 MiB\n- rendered reading 2x media: 0.0 KiB / 6.00 MiB\nLargest asset files:\n",
+      "stderr": "Performance budget failed with 1 finding(s):\n- reading.html: asset reference is malformed: \"../outside.jpg\" (Invalid path at rendered asset reference: dot segments and empty segments are not allowed)\n",
+      "failures": [
+        "JSON stderr is not empty",
+        "stdout is not one JSON object followed by newline"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "json-absent",
+      "args": [
+        "--json"
+      ],
+      "fixture": "absent",
+      "expected_exit": 1,
+      "expected_status": "error",
+      "exit": 1,
+      "stdout": "",
+      "stderr": "node:fs:2153\n  const stats = binding.lstat(\n                        ^\n\nError: ENOENT: no such file or directory, lstat '<fixture>/index.html'\n    at Object.lstatSync (node:fs:2153:25)\n    at fileSize (file://<fixture>/scripts/check-performance-budget.mjs:69:20)\n    at file://<fixture>/scripts/check-performance-budget.mjs:249:18\n    at Array.forEach (<anonymous>)\n    at checkPerformanceBudget (file://<fixture>/scripts/check-performance-budget.mjs:248:16)\n    at file://<fixture>/scripts/check-performance-budget.mjs:347:18\n    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)\n    at async node:internal/modules/esm/loader:650:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:105:5) {\n  errno: -2,\n  code: 'ENOENT',\n  syscall: 'lstat',\n  path: '<fixture>/index.html'\n}\n\nNode.js v26.13.0\n",
+      "failures": [
+        "JSON stderr is not empty",
+        "stdout is not one JSON object followed by newline"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "json-symlink",
+      "args": [
+        "--json"
+      ],
+      "fixture": "symlink",
+      "expected_exit": 1,
+      "expected_status": "error",
+      "exit": 1,
+      "stdout": "",
+      "stderr": "file://<fixture>/scripts/check-performance-budget.mjs:71\n    throw new Error(`${relativePath} must be a non-symlink regular file`);\n          ^\n\nError: index.html must be a non-symlink regular file\n    at fileSize (file://<fixture>/scripts/check-performance-budget.mjs:71:11)\n    at file://<fixture>/scripts/check-performance-budget.mjs:249:18\n    at Array.forEach (<anonymous>)\n    at checkPerformanceBudget (file://<fixture>/scripts/check-performance-budget.mjs:248:16)\n    at file://<fixture>/scripts/check-performance-budget.mjs:347:18\n    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)\n    at async node:internal/modules/esm/loader:650:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:105:5)\n\nNode.js v26.13.0\n",
+      "failures": [
+        "JSON stderr is not empty",
+        "stdout is not one JSON object followed by newline"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "human-valid",
+      "args": [],
+      "fixture": "valid",
+      "expected_exit": 0,
+      "expected_status": null,
+      "exit": 0,
+      "stdout": "Performance budget report:\n- index.html: 0.0 KiB / 90.0 KiB\n- work.html: 0.0 KiB / 90.0 KiB\n- case-study-agentforge.html: 0.0 KiB / 48.0 KiB\n- case-study-agentic.html: 0.0 KiB / 48.0 KiB\n- case-study-apple-calendar-mcp.html: 0.0 KiB / 48.0 KiB\n- reading.html: 0.0 KiB / 140.0 KiB\n- offline.html: 0.0 KiB / 20.0 KiB\n- css/custom.css: 0.0 KiB / 50.0 KiB\n- css/case-study.css: 0.0 KiB / 8.0 KiB\n- js/main.js: 0.0 KiB / 32.0 KiB\n- js/site.js: 0.0 KiB / 8.0 KiB\n- pwabuilder-sw.js: 0.0 KiB / 8.0 KiB\n- book/: 0.0 KiB / 80.00 MiB\n- fonts/: 0.0 KiB / 512.0 KiB\n- images/: 0.0 KiB / 8.00 MiB\n- js/vendor/: 0.0 KiB / 2.00 MiB\n- rendered reading media: 0.0 KiB / 12.00 MiB\n- rendered reading 2x media: 0.0 KiB / 6.00 MiB\nLargest asset files:\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "human-finding",
+      "args": [],
+      "fixture": "finding",
+      "expected_exit": 1,
+      "expected_status": null,
+      "exit": 1,
+      "stdout": "Performance budget report:\n- index.html: 0.0 KiB / 90.0 KiB\n- work.html: 90.0 KiB / 90.0 KiB\n- case-study-agentforge.html: 0.0 KiB / 48.0 KiB\n- case-study-agentic.html: 0.0 KiB / 48.0 KiB\n- case-study-apple-calendar-mcp.html: 0.0 KiB / 48.0 KiB\n- reading.html: 0.0 KiB / 140.0 KiB\n- offline.html: 0.0 KiB / 20.0 KiB\n- css/custom.css: 0.0 KiB / 50.0 KiB\n- css/case-study.css: 0.0 KiB / 8.0 KiB\n- js/main.js: 0.0 KiB / 32.0 KiB\n- js/site.js: 0.0 KiB / 8.0 KiB\n- pwabuilder-sw.js: 0.0 KiB / 8.0 KiB\n- book/: 0.0 KiB / 80.00 MiB\n- fonts/: 0.0 KiB / 512.0 KiB\n- images/: 0.0 KiB / 8.00 MiB\n- js/vendor/: 0.0 KiB / 2.00 MiB\n- rendered reading media: 0.0 KiB / 12.00 MiB\n- rendered reading 2x media: 0.0 KiB / 6.00 MiB\nLargest asset files:\n",
+      "stderr": "Performance budget failed with 1 finding(s):\n- work.html is 90.0 KiB, above 90.0 KiB\n",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "invalid-0",
+      "args": [
+        "--unknown"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": null,
+      "exit": 97,
+      "stdout": "",
+      "stderr": "ORACLE_INPUT_ACCESS:lstatSync:index.html\n",
+      "failures": [
+        "exit expected 2, got 97"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "invalid-1",
+      "args": [
+        "position"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": null,
+      "exit": 97,
+      "stdout": "",
+      "stderr": "ORACLE_INPUT_ACCESS:lstatSync:index.html\n",
+      "failures": [
+        "exit expected 2, got 97"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "invalid-2",
+      "args": [
+        "--"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": null,
+      "exit": 97,
+      "stdout": "",
+      "stderr": "ORACLE_INPUT_ACCESS:lstatSync:index.html\n",
+      "failures": [
+        "exit expected 2, got 97"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "invalid-3",
+      "args": [
+        "--json",
+        "--json"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": "error",
+      "exit": 97,
+      "stdout": "",
+      "stderr": "ORACLE_INPUT_ACCESS:lstatSync:index.html\n",
+      "failures": [
+        "exit expected 2, got 97",
+        "JSON stderr is not empty",
+        "stdout is not one JSON object followed by newline"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "invalid-4",
+      "args": [
+        "--unknown",
+        "--json"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": "error",
+      "exit": 97,
+      "stdout": "",
+      "stderr": "ORACLE_INPUT_ACCESS:lstatSync:index.html\n",
+      "failures": [
+        "exit expected 2, got 97",
+        "JSON stderr is not empty",
+        "stdout is not one JSON object followed by newline"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "invalid-5",
+      "args": [
+        "--json",
+        "--unknown"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": "error",
+      "exit": 97,
+      "stdout": "",
+      "stderr": "ORACLE_INPUT_ACCESS:lstatSync:index.html\n",
+      "failures": [
+        "exit expected 2, got 97",
+        "JSON stderr is not empty",
+        "stdout is not one JSON object followed by newline"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "invalid-6",
+      "args": [
+        "position",
+        "--json"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": "error",
+      "exit": 97,
+      "stdout": "",
+      "stderr": "ORACLE_INPUT_ACCESS:lstatSync:index.html\n",
+      "failures": [
+        "exit expected 2, got 97",
+        "JSON stderr is not empty",
+        "stdout is not one JSON object followed by newline"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "invalid-7",
+      "args": [
+        "--json",
+        "position"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": "error",
+      "exit": 97,
+      "stdout": "",
+      "stderr": "ORACLE_INPUT_ACCESS:lstatSync:index.html\n",
+      "failures": [
+        "exit expected 2, got 97",
+        "JSON stderr is not empty",
+        "stdout is not one JSON object followed by newline"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "invalid-8",
+      "args": [
+        "--json=1"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": null,
+      "exit": 97,
+      "stdout": "",
+      "stderr": "ORACLE_INPUT_ACCESS:lstatSync:index.html\n",
+      "failures": [
+        "exit expected 2, got 97"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "invalid-9",
+      "args": [
+        "--json",
+        "--json",
+        "--unknown"
+      ],
+      "fixture": "absent",
+      "expected_exit": 2,
+      "expected_status": "error",
+      "exit": 97,
+      "stdout": "",
+      "stderr": "ORACLE_INPUT_ACCESS:lstatSync:index.html\n",
+      "failures": [
+        "exit expected 2, got 97",
+        "JSON stderr is not empty",
+        "stdout is not one JSON object followed by newline"
+      ],
+      "passed": false
+    },
+    {
+      "cli": "check-performance-budget.mjs",
+      "case": "import-no-running",
+      "args": [],
+      "fixture": "absent",
+      "expected_exit": 0,
+      "expected_status": null,
+      "exit": 0,
+      "stdout": "[\"MAX_ASSET_INVENTORY_ENTRIES\",\"checkPerformanceBudget\",\"collectRenderedAssetReferences\",\"createAssetInventoryReport\",\"walkFiles\"]\n",
+      "stderr": "",
+      "failures": [],
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>When navigation loses the network · ProjectPortfolio</title>
+<style>
+:root { color-scheme: light; --ink:#182e32; --muted:#475e62; --paper:#f4f2e9; --line:#b9c6c2; --accent:#00675f; --soft:#dcefe7; --warn:#8a381d; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--paper); color:var(--ink); font:17px/1.6 "Avenir Next", "Segoe UI", sans-serif; }
+main { max-width:1120px; margin:auto; padding:48px 28px 70px; }
+a { color:var(--accent); text-underline-offset:3px; overflow-wrap:anywhere; }
+a:hover { text-decoration-thickness:3px; }
+:focus-visible { outline:3px solid #a13d1e; outline-offset:5px; }
+h1,h2,h3,p { margin-top:0; }
+h1 { font:normal clamp(2.5rem,6vw,4.8rem)/1.08 Georgia,serif; max-width:850px; letter-spacing:-.035em; margin-bottom:22px; }
+h2 { font:normal 2rem/1.2 Georgia,serif; }
+h3 { font-size:1.12rem; line-height:1.4; }
+.eyebrow { color:var(--accent); font:700 .76rem/1.5 ui-monospace,monospace; letter-spacing:.12em; text-transform:uppercase; }
+.lede { max-width:760px; font-size:1.15rem; }
+.meta,small,.hint { color:var(--muted); font-size:.88rem; }
+code { font: .88em/1.5 ui-monospace,monospace; overflow-wrap:anywhere; }
+.revision { display:block; overflow-wrap:anywhere; }
+.rule { border-left:4px solid var(--warn); padding:14px 20px; background:#fff9ef; margin:26px 0; }
+.rule p:last-child { margin-bottom:0; }
+.player { background:#fffef9; border:1px solid var(--line); padding:24px; margin:32px 0; }
+.controls { display:flex; align-items:end; gap:12px; flex-wrap:wrap; }
+.choice { flex:1 1 330px; }
+label { display:block; font-weight:700; margin-bottom:6px; }
+select,button { font:inherit; border:1px solid var(--accent); background:#fffef9; color:var(--ink); border-radius:5px; min-height:46px; padding:9px 14px; }
+select { width:100%; }
+button { cursor:pointer; font-weight:600; }
+button:first-child { background:var(--accent); color:white; }
+button[aria-disabled="true"] { opacity:.5; cursor:default; }
+.buttons { display:flex; flex-wrap:wrap; gap:8px; }
+.flow { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); list-style:none; padding:0; gap:14px; margin:26px 0; }
+.flow li { position:relative; border:1px solid var(--line); border-top:4px solid var(--line); padding:15px; min-height:135px; }
+.flow strong { display:block; font-size:1.05rem; }
+.flow .state { display:block; color:var(--muted); font:700 .72rem/1.5 ui-monospace,monospace; text-transform:uppercase; margin-bottom:6px; }
+.flow li.visited { border-color:var(--accent); background:#f0f7f1; }
+.flow li.current { background:var(--soft); border:2px solid var(--accent); border-top-width:4px; }
+.flow li.current .state { color:var(--accent); }
+.flow li.arrive::before { content:""; position:absolute; top:-7px; left:14px; width:10px; height:10px; border-radius:50%; background:var(--accent); animation:arrive .45s ease-out both; }
+@keyframes arrive { from { transform:translateX(-15px); opacity:0; } to { transform:translateX(0); opacity:1; } }
+.player.paused .arrive::before { animation-play-state:paused; }
+.readout { border-top:1px solid var(--line); padding-top:20px; min-height:150px; }
+#status { font-weight:700; margin-bottom:5px; }
+#detail { margin-bottom:7px; }
+#source { font-size:.88rem; }
+progress { width:100%; height:9px; accent-color:var(--accent); }
+.paths { counter-reset:path; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+.path { border-top:2px solid var(--ink); padding-top:16px; }
+.path h3::before { counter-increment:path; content:counter(path,decimal-leading-zero) " / "; color:var(--accent); font-family:ui-monospace,monospace; }
+.path ol { padding-left:24px; }
+.path li { margin-bottom:10px; }
+.path li a { display:block; font-size:.8rem; }
+.path .outcome { font-weight:600; }
+.notes { margin-top:38px; padding-top:25px; border-top:1px solid var(--line); }
+.notes li { margin-bottom:12px; }
+[hidden] { display:none !important; }
+@media(max-width:650px) { main { padding:28px 18px 45px; } .player { padding:17px; } .flow { grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; } .flow li { padding:11px; } .paths { grid-template-columns:1fr; } }
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; } }
+@media print { .controls,.buttons,progress { display:none; } main { padding:0; } .player { break-inside:avoid; } .path { break-inside:avoid; } }
+</style>
+</head>
+<body>
+<main>
+<header>
+<p class="eyebrow">ProjectPortfolio / source walkthrough / 01</p>
+<h1>When navigation<br>loses the network.</h1>
+<p class="lede">One navigation, a sequence of chances to return a response: <strong>preload → network → cached offline page → emergency 503.</strong> Each successful return ends the sequence.</p>
+<p class="meta">Grounded in the local source at revision <code class="revision">4a50ea995c37132bcfee5c64fd908d35ca0cef96</code> Illustrative playback timing; no network request, service-worker registration or cache operation is performed by this explanation.</p>
+</header>
+<aside class="rule" aria-label="Important boundaries">
+<p><strong>An HTTP error is still a response.</strong> A resolved preload or fetch response, including a 404 or 500, is returned as-is. The handler never checks <code>response.ok</code> or <code>status</code>. Only a rejected network fetch reaches the cache. <a href="../pwabuilder-sw.js#L92">pwabuilder-sw.js:92–116</a></p>
+<p><strong>Navigation only.</strong> When <code>request.mode !== 'navigate'</code>, this listener does not call <code>respondWith</code>, read preload, call fetch or consult cache. Images, styles and ordinary API fetches are outside this fallback. <a href="../pwabuilder-sw.js#L89">pwabuilder-sw.js:89–120</a></p>
+</aside>
+<section class="player paused" id="player" aria-labelledby="player-title" hidden>
+<h2 id="player-title">Follow one request</h2>
+<div class="controls">
+<div class="choice"><label for="scenario">Choose a path</label><select id="scenario"></select></div>
+<div class="buttons" role="group" aria-label="Playback controls">
+<button type="button" id="step">Step</button><button type="button" id="play">Play</button><button type="button" id="pause">Pause</button><button type="button" id="reset">Reset</button>
+</div>
+</div>
+<p class="hint" id="motion-note">Tab to any control; use Enter or Space on buttons and arrow keys in the path menu. Play advances every 1.8 seconds and stops at the outcome. Step pauses playback. Reset returns to the start of this path.</p>
+<ol class="flow" aria-label="Handler stages; the current stage is marked in text">
+<li data-stage="gate"><span class="state">Not visited</span><strong>01 · Navigation gate</strong><small>Only mode = navigate</small></li>
+<li data-stage="preload"><span class="state">Not visited</span><strong>02 · Preload</strong><small>Await preloadResponse</small></li>
+<li data-stage="network"><span class="state">Not visited</span><strong>03 · Network</strong><small>Await fetch(request)</small></li>
+<li data-stage="cache"><span class="state">Not visited</span><strong>04 · Offline cache</strong><small>Open cache; match offline.html</small></li>
+<li data-stage="emergency"><span class="state">Not visited</span><strong>05 · Emergency</strong><small>Create a plain-text 503</small></li>
+<li data-stage="return"><span class="state">Not visited</span><strong>06 · End</strong><small>Return, or leave request unclaimed</small></li>
+</ol>
+<div class="readout" role="status" aria-live="polite" aria-atomic="true">
+<p id="status"></p><p id="detail"></p><a id="source" href="#paths">Read the source path below</a>
+</div>
+<label class="hint" for="progress">Steps completed</label><progress id="progress" value="0" max="1"></progress>
+</section>
+<noscript><p class="rule">JavaScript is off. The complete sequence and all paths remain readable below.</p></noscript>
+<section aria-labelledby="paths">
+<h2 id="paths">Every path, without playback</h2>
+<p>Stages are handler decisions, not a network timing diagram. Browser preload may already be in flight before this handler awaits it. “No preload” and “rejected preload” both lead to the explicit network fetch.</p>
+<div class="paths">
+<article class="path" id="preload-path"><h3>Preload succeeds</h3><ol>
+<li data-node="gate">The request is a navigation; respondWith takes ownership.<a href="../pwabuilder-sw.js#L89">pwabuilder-sw.js:89–91</a></li>
+<li data-node="preload">Await preloadResponse. It resolves to a response.<a href="../pwabuilder-sw.js#L92">pwabuilder-sw.js:92–98</a></li>
+<li data-node="return" class="outcome">Return that preload response. The explicit fetch and cache lookup never run.<a href="../pwabuilder-sw.js#L99">pwabuilder-sw.js:99–101</a></li>
+</ol></article>
+<article class="path" id="network-path"><h3>Preload rejects; network succeeds</h3><ol>
+<li data-node="gate">The request is a navigation; respondWith takes ownership.<a href="../pwabuilder-sw.js#L89">pwabuilder-sw.js:89–91</a></li>
+<li data-node="preload">preloadResponse rejects. Its own catch absorbs the failure; this does not skip the network attempt.<a href="../pwabuilder-sw.js#L92">pwabuilder-sw.js:92–101</a></li>
+<li data-node="network">Call fetch(event.request). It resolves to a response.<a href="../pwabuilder-sw.js#L103">pwabuilder-sw.js:103–104</a></li>
+<li data-node="return" class="outcome">Return the network response. The offline cache is never opened.<a href="../pwabuilder-sw.js#L104">pwabuilder-sw.js:104–105</a></li>
+</ol></article>
+<article class="path" id="cache-path"><h3>Network rejects; cache has content</h3><ol>
+<li data-node="gate">The request is a navigation; respondWith takes ownership.<a href="../pwabuilder-sw.js#L89">pwabuilder-sw.js:89–91</a></li>
+<li data-node="preload">No preload response is available. A rejected preload would reach the same next step.<a href="../pwabuilder-sw.js#L92">pwabuilder-sw.js:92–101</a></li>
+<li data-node="network">fetch(event.request) rejects. Enter the network catch and try the offline cache.<a href="../pwabuilder-sw.js#L103">pwabuilder-sw.js:103–106</a></li>
+<li data-node="cache">Open pwabuilder-offline-cache-v2 and match offline.html. A cached response exists; this is a fixed fallback page, not a cached copy of the requested URL.<a href="../pwabuilder-sw.js#L107">pwabuilder-sw.js:3, 11, 107–109</a></li>
+<li data-node="return" class="outcome">Return the cached response unchanged; the handler does not assign it a 503 status.<a href="../pwabuilder-sw.js#L109">pwabuilder-sw.js:109–111</a></li>
+</ol></article>
+<article class="path" id="emergency-path"><h3>Network rejects; cache unavailable</h3><ol>
+<li data-node="gate">The request is a navigation; respondWith takes ownership.<a href="../pwabuilder-sw.js#L89">pwabuilder-sw.js:89–91</a></li>
+<li data-node="preload">No preload response is available, or preload rejected.<a href="../pwabuilder-sw.js#L92">pwabuilder-sw.js:92–101</a></li>
+<li data-node="network">fetch(event.request) rejects. Only now does the handler try the cache.<a href="../pwabuilder-sw.js#L103">pwabuilder-sw.js:103–106</a></li>
+<li data-node="cache">The offline.html match is missing, or caches.open / cache.match throws or rejects. There is no usable cached response.<a href="../pwabuilder-sw.js#L107">pwabuilder-sw.js:107–114</a></li>
+<li data-node="emergency">Create Response with status 503, statusText “Service Unavailable”, Cache-Control: no-store, and Content-Type: text/plain; charset=utf-8.<a href="../pwabuilder-sw.js#L47">pwabuilder-sw.js:47–56</a></li>
+<li data-node="return" class="outcome">Return the emergency response. Body: “Offline content is temporarily unavailable.”<a href="../pwabuilder-sw.js#L116">pwabuilder-sw.js:48, 116</a></li>
+</ol></article>
+<article class="path" id="http-preload-path"><h3>Boundary: preload resolves HTTP 500</h3><ol>
+<li data-node="gate">The request is a navigation.<a href="../pwabuilder-sw.js#L90">pwabuilder-sw.js:90–91</a></li>
+<li data-node="preload">The illustrative HTTP 500 is a resolved Response, not a rejected promise. It is truthy.<a href="../pwabuilder-sw.js#L94">pwabuilder-sw.js:94–99</a></li>
+<li data-node="return" class="outcome">Return the HTTP 500 response unchanged. No explicit fetch or offline lookup follows.<a href="../pwabuilder-sw.js#L99">pwabuilder-sw.js:99–101</a></li>
+</ol></article>
+<article class="path" id="http-network-path"><h3>Boundary: network resolves HTTP 404</h3><ol>
+<li data-node="gate">The request is a navigation.<a href="../pwabuilder-sw.js#L90">pwabuilder-sw.js:90–91</a></li>
+<li data-node="preload">There is no preload response.<a href="../pwabuilder-sw.js#L94">pwabuilder-sw.js:94–101</a></li>
+<li data-node="network">fetch resolves with an illustrative HTTP 404 response. The await does not throw merely because the status is an error.<a href="../pwabuilder-sw.js#L104">pwabuilder-sw.js:104–105</a></li>
+<li data-node="return" class="outcome">Return the HTTP 404 response unchanged. No offline cache lookup occurs.<a href="../pwabuilder-sw.js#L104">pwabuilder-sw.js:104–105</a></li>
+</ol></article>
+<article class="path" id="excluded-path"><h3>Boundary: non-navigation request</h3><ol>
+<li data-node="gate">A request with mode cors (for example an ordinary API fetch) does not satisfy the navigate guard.<a href="../pwabuilder-sw.js#L90">pwabuilder-sw.js:89–90</a></li>
+<li data-node="return" class="outcome">Leave the request unclaimed by this listener. No preload read, respondWith, explicit fetch or cache access. Its eventual browser outcome is outside this explanation.<a href="../pwabuilder-sw.js#L119">pwabuilder-sw.js:119–120; tests/security/service-worker-message.test.mjs:349–371</a></li>
+</ol></article>
+</div>
+</section>
+<section class="notes" aria-labelledby="evidence-title">
+<h2 id="evidence-title">Source &amp; evidence boundaries</h2>
+<ul>
+<li><strong>Runtime wiring, inspected:</strong> <a href="../js/main.js#L655">js/main.js:655</a> registers <code>/pwabuilder-sw.js</code>. Installation caches <code>offline.html</code> in <a href="../pwabuilder-sw.js#L74">pwabuilder-sw.js:74–79</a>; preload is enabled when supported at <a href="../pwabuilder-sw.js#L85">85–87</a>. This walkthrough assumes the navigation reaches that active worker; it does not prove installation on a device.</li>
+<li><strong>Existing behavioral checks:</strong> <a href="../tests/security/service-worker-message.test.mjs#L248">service-worker-message.test.mjs:248–315</a> covers preload, absent preload, rejected preload recovery and cached offline content. <a href="../tests/security/service-worker-message.test.mjs#L317">317–347</a> covers missing entries and a rejected cache match. <a href="../tests/security/service-worker-message.test.mjs#L349">349–371</a> checks non-navigation exclusion. The harness loads the actual worker into Node VM with simulated fetch, cache and Workbox APIs (<a href="../tests/security/service-worker-message.test.mjs#L6">6–107</a>).</li>
+<li><strong>Local execution:</strong> <code>node --test tests/security/service-worker-message.test.mjs</code> passed all 6 tests on Node v26.13.0. This is local harness evidence, not an offline browser or production run. The existing cases do not directly test resolved HTTP-error responses or cache-open rejection; supplemental in-memory checks against the actual worker confirmed resolved 404/500/503 responses at both response stages, cache-open rejection with the exact 503 body and headers, and exclusion of cors, no-cors and same-origin request modes. The first supplemental run had an incorrect async-order assertion; correcting that harness expectation produced a pass without a worker change.</li>
+<li><strong>Timing limit:</strong> the animation is finite, but the real handler has no timeout around preload, fetch or cache. A promise that never settles can leave it waiting. The emergency 503 requires a rejected fetch and a missing or failed cache lookup; it is not a deadline guarantee.</li>
+<li><strong>Standalone artifact:</strong> all styling, script and explanation are in this file. Open it locally or in a local preview. The repository’s <a href="../_headers#L27">_headers:27–29</a> policy restricts inline scripts and styles; hosted playback is not established and no policy changes are part of this work. Static content remains available when scripting is disabled.</li>
+</ul>
+<p class="hint">Source links are relative to this checkout. The printed line ranges identify the locations at the revision above; a plain file viewer may ignore the #L fragment. Playback reuses the static steps above so that both views describe the same paths.</p>
+</section>
+</main>
+<script>
+(() => {
+  'use strict';
+  const player = document.getElementById('player');
+  const select = document.getElementById('scenario');
+  const articles = Array.from(document.querySelectorAll('.path'));
+  const stages = Array.from(document.querySelectorAll('[data-stage]'));
+  const buttons = Object.fromEntries(['step', 'play', 'pause', 'reset'].map(id => [id, document.getElementById(id)]));
+  const status = document.getElementById('status');
+  const detail = document.getElementById('detail');
+  const source = document.getElementById('source');
+  const progress = document.getElementById('progress');
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  let index = 0;
+  let timer = null;
+  let steps = [];
+  for (const article of articles) {
+    const option = document.createElement('option');
+    option.value = article.id;
+    option.textContent = article.querySelector('h3').textContent;
+    select.append(option);
+  }
+  const stop = () => { clearTimeout(timer); timer = null; player.classList.add('paused'); };
+  function render(advance = false) {
+    const complete = index === steps.length;
+    const current = steps[index - 1];
+    for (const stage of stages) {
+      const active = Boolean(current && current.dataset.node === stage.dataset.stage);
+      const visited = steps.slice(0, index).some(step => step.dataset.node === stage.dataset.stage);
+      stage.classList.toggle('current', active);
+      stage.classList.toggle('visited', visited);
+      stage.classList.remove('arrive');
+      if (active) stage.setAttribute('aria-current', 'step'); else stage.removeAttribute('aria-current');
+      stage.querySelector('.state').textContent = active ? (complete ? 'Outcome' : 'Current step') : visited ? 'Visited' : complete ? 'Not used' : 'Not visited';
+      if (active && advance && !motion.matches) {
+        void stage.offsetWidth;
+        stage.classList.add('arrive');
+      }
+    }
+    status.textContent = `${complete ? 'Complete' : timer !== null ? 'Playing' : index ? 'Paused' : 'Ready'} · Step ${index} of ${steps.length}`;
+    if (current) {
+      const copy = current.cloneNode(true);
+      copy.querySelector('a').remove();
+      detail.textContent = copy.textContent;
+      const citation = current.querySelector('a');
+      source.textContent = citation.textContent;
+      source.setAttribute('href', citation.getAttribute('href'));
+    } else {
+      detail.textContent = 'Select Step to inspect the first decision, or Play for a timed walkthrough. All paths are readable below.';
+      source.textContent = 'Read the complete selected path';
+      source.setAttribute('href', '#' + select.value);
+    }
+    progress.max = steps.length;
+    progress.value = index;
+    buttons.step.setAttribute('aria-disabled', String(complete));
+    buttons.play.setAttribute('aria-disabled', String(complete || timer !== null || motion.matches));
+    buttons.pause.setAttribute('aria-disabled', String(timer === null));
+  }
+  function schedule() {
+    timer = setTimeout(() => {
+      index++;
+      if (index < steps.length) schedule(); else stop();
+      render(true);
+    }, 1800);
+  }
+  buttons.step.addEventListener('click', () => {
+    if (index === steps.length) return;
+    stop(); index++; render(true);
+  });
+  buttons.play.addEventListener('click', () => {
+    if (motion.matches || timer !== null || index === steps.length) return;
+    player.classList.remove('paused'); schedule(); render();
+  });
+  buttons.pause.addEventListener('click', () => { stop(); render(); });
+  function reset() {
+    stop(); index = 0;
+    const article = articles.find(item => item.id === select.value) || articles[0];
+    select.value = article.id;
+    steps = Array.from(article.querySelectorAll('li'));
+    render();
+  }
+  buttons.reset.addEventListener('click', reset);
+  select.addEventListener('change', reset);
+  select.addEventListener('keydown', event => {
+    const last = select.options.length - 1;
+    let next = select.selectedIndex;
+    if (event.key === 'ArrowDown') next = Math.min(last, next + 1);
+    else if (event.key === 'ArrowUp') next = Math.max(0, next - 1);
+    else if (event.key === 'Home') next = 0;
+    else if (event.key === 'End') next = last;
+    else return;
+    event.preventDefault();
+    select.selectedIndex = next;
+    reset();
+  });
+  function updateMotion() {
+    stop();
+    document.getElementById('motion-note').textContent = motion.matches
+      ? 'Reduced motion is on: timed Play is disabled and visual movement is removed. Use Step to advance; Reset starts this path again. Tab reaches controls, Enter or Space activates buttons, and arrow keys select a path.'
+      : 'Tab to any control; use Enter or Space on buttons and arrow keys in the path menu. Play advances every 1.8 seconds and stops at the outcome. Step pauses playback. Reset returns to the start of this path.';
+    render();
+  }
+  motion.addEventListener('change', updateMotion);
+  document.addEventListener('visibilitychange', () => { if (document.hidden) { stop(); render(); } });
+  reset(); updateMotion(); player.hidden = false;
+})();
+</script>
+</body>
+</html>

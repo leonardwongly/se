@@ -1,0 +1,11 @@
+{
+  "baseline": "4a50ea995c37132bcfee5c64fd908d35ca0cef96",
+  "files": {
+    "maintenance.patch": "84f76d0b8dcb1274ee0a5227066a7e792908d4e86d45ddf95a72f9a2d2552078",
+    "scanner-hardening.patch": "967c963a6628ac31f6ebd9531dbf2506fadb8ad86a5b8a1d6bb0537199cf5359",
+    "offline-navigation-walkthrough.html": "cd82c74a2524fb8dd5ccb5a51768f1948fef874bdcb2dde6eb122732e909aa4d",
+    "check_team.py": "43a2870c98858bade479c2bbffc3e831cd8db32d51859bdbb25017892494c1c8",
+    "check_scanner.mjs": "76b088f5cd98f33d7223e2ef25225592b676a5a7a618eb53a8be526adb0df3ec"
+  },
+  "patch_reproduction": "Both patches applied in order reproduce all seven final changed files byte-for-byte. Original project checkout remains unchanged."
+}

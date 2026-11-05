@@ -1,0 +1,549 @@
+diff --git a/docs/static-content-runbook.md b/docs/static-content-runbook.md
+index 48f4dc48..9a93b62d 100644
+--- a/docs/static-content-runbook.md
++++ b/docs/static-content-runbook.md
+@@ -31,6 +31,33 @@ See `docs/content-source-inventory.md` before adding new public claims. New clai
+    ```
+ 6. For navigation, accordion, service-worker, or responsive changes, run `npm install` once, then `npm run test:integration`.
+ 
++## Local Audit Output
++
++The reading and performance audits keep their existing human-readable output when run without arguments. For machine-readable output, pass exactly one `--json` argument:
++
++```bash
++node scripts/audit-reading-metadata.mjs --json
++node scripts/check-performance-budget.mjs --json
++# Equivalent npm commands; --silent suppresses npm's own command banner:
++npm run --silent check:reading -- --json
++npm run --silent check:performance -- --json
++```
++
++In JSON mode, each CLI writes exactly one JSON object followed by a newline to stdout and leaves stderr empty. The audits still use the project inputs relative to their script location and perform the same content, path, file, and resource checks. They do not write files or access the network.
++
++| Outcome | `status` | Exit code |
++| --- | --- | --- |
++| Audit passes | `"pass"` | `0` |
++| Audit reports findings | `"fail"` | `1` |
++| Audit cannot execute, such as missing or unreadable input | `"error"` | `1` |
++| Invalid arguments | `"error"` in JSON mode | `2` |
++
++The reading object has `{ "status": "pass", "findings": [] }`; audit findings are strings in `findings`. The performance object has `status`, `failures`, `report`, and `inventory`, preserving the audit's existing result shape: `failures` and `report` are arrays of strings, and `inventory` contains `directoryTotals` and `largestFiles` arrays of `{ "path": "...", "size": 0 }` entries, with sizes in bytes. A `"fail"` result retains these findings and report data.
++
++Execution and argument errors add a string `error` field. Reading errors have `findings: []`. Performance errors have `failures: []`, `report: []`, and `inventory: null`; they do not expose a partial report. Invalid content that the audit normally classifies as a finding remains a `"fail"`, while errors that prevent execution become `"error"`.
++
++Only no arguments or exactly `--json` are accepted. Unknown options, positional arguments, and repeated options are rejected before accessing project input. If the exact `--json` argument occurs anywhere in an invalid argument list, the CLI emits its JSON error object on stdout with empty stderr and exits `2`. Otherwise, argument errors are human-readable on stderr, with empty stdout and exit `2`.
++
+ ## Safety Checks
+ 
+ The build validates URLs, asset paths, and expected schema keys before rendering. External links must use `https:`. Relative links cannot contain path traversal segments.
+diff --git a/scripts/audit-reading-metadata.mjs b/scripts/audit-reading-metadata.mjs
+index 6e8ddd11..4256e570 100644
+--- a/scripts/audit-reading-metadata.mjs
++++ b/scripts/audit-reading-metadata.mjs
+@@ -228,18 +228,36 @@ function auditReadingMetadata(reading, { rootDir = projectRoot } = {}) {
+ }
+ 
+ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+-  try {
+-    const findings = auditReadingMetadata(readReadingData());
+-    if (findings.length > 0) {
+-      console.error(`Reading metadata audit failed with ${findings.length} finding(s):`);
+-      findings.forEach((finding) => console.error(`- ${finding}`));
+-      process.exitCode = 1;
++  const args = process.argv.slice(2);
++  const json = args.includes('--json');
++  if (args.length > 0 && !(args.length === 1 && json)) {
++    const error = 'Invalid arguments. Usage: node scripts/audit-reading-metadata.mjs [--json]';
++    if (json) {
++      console.log(JSON.stringify({ status: 'error', findings: [], error }));
+     } else {
+-      console.log('Reading metadata audit OK.');
++      console.error(error);
++    }
++    process.exitCode = 2;
++  } else {
++    try {
++      const findings = auditReadingMetadata(readReadingData());
++      if (json) {
++        console.log(JSON.stringify({ status: findings.length > 0 ? 'fail' : 'pass', findings }));
++      } else if (findings.length > 0) {
++        console.error(`Reading metadata audit failed with ${findings.length} finding(s):`);
++        findings.forEach((finding) => console.error(`- ${finding}`));
++      } else {
++        console.log('Reading metadata audit OK.');
++      }
++      if (findings.length > 0) process.exitCode = 1;
++    } catch (error) {
++      if (json) {
++        console.log(JSON.stringify({ status: 'error', findings: [], error: String(error?.message ?? error) }));
++      } else {
++        console.error(error.message);
++      }
++      process.exitCode = 1;
+     }
+-  } catch (error) {
+-    console.error(error.message);
+-    process.exitCode = 1;
+   }
+ }
+ 
+diff --git a/scripts/check-performance-budget.mjs b/scripts/check-performance-budget.mjs
+index 87b02b97..63aa9f50 100644
+--- a/scripts/check-performance-budget.mjs
++++ b/scripts/check-performance-budget.mjs
+@@ -343,7 +343,37 @@ function createAssetInventoryReport({ rootDir = projectRoot, limit = 20 } = {})
+   };
+ }
+ 
+-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
++function runCli() {
++  const args = process.argv.slice(2);
++  const json = args.includes('--json');
++  const errorResult = (error) => ({
++    status: 'error', failures: [], report: [], inventory: null, error
++  });
++
++  if (args.length > 0 && !(args.length === 1 && json)) {
++    const message = 'Invalid arguments. Usage: node scripts/check-performance-budget.mjs [--json]';
++    if (json) {
++      console.log(JSON.stringify(errorResult(message)));
++    } else {
++      console.error(message);
++    }
++    process.exitCode = 2;
++    return;
++  }
++
++  if (json) {
++    try {
++      const result = checkPerformanceBudget();
++      const status = result.failures.length > 0 ? 'fail' : 'pass';
++      console.log(JSON.stringify({ status, ...result }));
++      if (status === 'fail') process.exitCode = 1;
++    } catch (error) {
++      console.log(JSON.stringify(errorResult(error instanceof Error ? error.message : String(error))));
++      process.exitCode = 1;
++    }
++    return;
++  }
++
+   const result = checkPerformanceBudget();
+   console.log('Performance budget report:');
+   result.report.forEach((line) => console.log(`- ${line}`));
+@@ -358,6 +388,10 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href)
+   }
+ }
+ 
++if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
++  runCli();
++}
++
+ export {
+   MAX_ASSET_INVENTORY_ENTRIES,
+   checkPerformanceBudget,
+diff --git a/tests/security/reading-json-cli.test.mjs b/tests/security/reading-json-cli.test.mjs
+new file mode 100644
+index 00000000..cc074afd
+--- /dev/null
++++ b/tests/security/reading-json-cli.test.mjs
+@@ -0,0 +1,177 @@
++import assert from 'node:assert/strict';
++import { spawnSync } from 'node:child_process';
++import fs from 'node:fs';
++import os from 'node:os';
++import path from 'node:path';
++import test from 'node:test';
++import { fileURLToPath, pathToFileURL } from 'node:url';
++
++const projectRoot = fileURLToPath(new URL('../../', import.meta.url));
++const script = 'scripts/audit-reading-metadata.mjs';
++const validBook = { title: 'Safe Systems', author: 'A. Reader', isbn: '9780000000001', year: '2026' };
++
++function fixture(t, reading = [validBook]) {
++  const root = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'reading-json-cli-')));
++  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
++  for (const file of [script, 'scripts/lib/asset-paths.cjs', 'scripts/lib/safe-input.cjs']) {
++    fs.mkdirSync(path.dirname(path.join(root, file)), { recursive: true });
++    fs.copyFileSync(path.join(projectRoot, file), path.join(root, file));
++  }
++  fs.mkdirSync(path.join(root, 'data'));
++  if (reading !== null) fs.writeFileSync(path.join(root, 'data/reading.json'), JSON.stringify(reading));
++  return root;
++}
++
++function run(root, args = [], nodeArgs = []) {
++  const result = spawnSync(process.execPath, [...nodeArgs, path.join(root, script), ...args], {
++    cwd: root, encoding: 'utf8', timeout: 10000
++  });
++  assert.ifError(result.error);
++  assert.equal(result.signal, null);
++  return result;
++}
++
++function jsonResult(result, exitCode) {
++  assert.equal(result.status, exitCode, result.stderr);
++  assert.equal(result.stderr, '');
++  assert.match(result.stdout, /^\{[^\n]*\}\n$/);
++  const value = JSON.parse(result.stdout);
++  assert.ok(['pass', 'fail', 'error'].includes(value.status));
++  assert.ok(Array.isArray(value.findings));
++  assert.ok(value.findings.every((finding) => typeof finding === 'string'));
++  return value;
++}
++
++test('reading CLI JSON passes with a real declared cover and leaves inputs unchanged', (t) => {
++  const root = fixture(t, [{ ...validBook, cover: 'book/cover.jpg' }]);
++  fs.mkdirSync(path.join(root, 'book'));
++  fs.writeFileSync(path.join(root, 'book/cover.jpg'), 'fixture-cover');
++  const metadata = fs.readFileSync(path.join(root, 'data/reading.json'));
++  assert.deepEqual(jsonResult(run(root, ['--json']), 0), { status: 'pass', findings: [] });
++  assert.deepEqual(fs.readFileSync(path.join(root, 'data/reading.json')), metadata);
++  assert.equal(fs.readFileSync(path.join(root, 'book/cover.jpg'), 'utf8'), 'fixture-cover');
++});
++
++test('reading CLI JSON preserves audit findings and escapes embedded newlines', (t) => {
++  const root = fixture(t, [{ ...validBook, title: 'Quoted "title"\nnext line', author: '' }]);
++  assert.deepEqual(jsonResult(run(root, ['--json']), 1), {
++    status: 'fail', findings: ['reading[0]: missing author for "Quoted "title"\nnext line"']
++  });
++});
++
++test('reading CLI JSON reports malformed JSON, invalid top-level data, and missing input as errors', async (t) => {
++  for (const [name, input, expected] of [
++    ['malformed', '{', /JSON|property|position/i],
++    ['wrong shape', '{}', /contain an array/],
++    ['missing', null, /file is missing/]
++  ]) {
++    await t.test(name, (t) => {
++      const root = fixture(t, null);
++      if (input !== null) fs.writeFileSync(path.join(root, 'data/reading.json'), input);
++      const result = jsonResult(run(root, ['--json']), 1);
++      assert.deepEqual(Object.keys(result).sort(), ['error', 'findings', 'status']);
++      assert.equal(result.status, 'error');
++      assert.deepEqual(result.findings, []);
++      assert.equal(typeof result.error, 'string');
++      assert.match(result.error, expected);
++    });
++  }
++});
++
++test('reading CLI JSON retains metadata no-follow and resource checks', async (t) => {
++  for (const kind of ['symlink', 'oversized']) {
++    await t.test(kind, (t) => {
++      const root = fixture(t, null);
++      const target = path.join(root, 'data/reading.json');
++      if (kind === 'symlink') {
++        fs.writeFileSync(path.join(root, 'source.json'), '[]');
++        fs.symlinkSync('../source.json', target);
++      } else {
++        fs.writeFileSync(target, '');
++        fs.truncateSync(target, 2 * 1024 * 1024 + 1);
++      }
++      const result = jsonResult(run(root, ['--json']), 1);
++      assert.equal(result.status, 'error');
++      assert.deepEqual(result.findings, []);
++      assert.match(result.error, kind === 'symlink' ? /symbolic link/ : /2097152-byte limit/);
++    });
++  }
++});
++
++test('reading CLI JSON retains cover path and missing-file findings', (t) => {
++  const root = fixture(t, [
++    { ...validBook, cover: '../outside.jpg' },
++    { ...validBook, title: 'Other Book', isbn: '9780000000002', cover: 'book/missing.jpg' }
++  ]);
++  const result = jsonResult(run(root, ['--json']), 1);
++  assert.equal(result.status, 'fail');
++  assert.equal(result.findings.length, 2);
++  assert.match(result.findings[0], /dot segments/);
++  assert.match(result.findings[1], /declared cover is missing/);
++});
++
++test('reading CLI rejects invalid arguments before inspecting project input', async (t) => {
++  for (const args of [
++    ['--unknown'], ['reading.json'], ['--'], ['--json=true'],
++    ['--json', '--unknown'], ['--unknown', '--json'],
++    ['reading.json', '--json'], ['--json', 'reading.json'],
++    ['--json', '--json'], ['--json', '--json', '--json']
++  ]) {
++    await t.test(JSON.stringify(args), (t) => {
++      const root = fixture(t, null);
++      const probe = path.join(root, 'deny-input-access.mjs');
++      fs.writeFileSync(probe, `
++        import fs from 'node:fs';
++        import path from 'node:path';
++        const original = fs.lstatSync;
++        fs.lstatSync = function (target, ...options) {
++          if (path.resolve(String(target)) === ${JSON.stringify(root)}) process.exit(99);
++          return original.call(this, target, ...options);
++        };
++      `);
++      const result = run(root, args, ['--import', pathToFileURL(probe).href]);
++      if (args.includes('--json')) {
++        const value = jsonResult(result, 2);
++        assert.deepEqual(Object.keys(value).sort(), ['error', 'findings', 'status']);
++        assert.equal(value.status, 'error');
++        assert.deepEqual(value.findings, []);
++        assert.match(value.error, /argument|usage/i);
++      } else {
++        assert.equal(result.status, 2);
++        assert.equal(result.stdout, '');
++        assert.match(result.stderr, /argument|usage/i);
++      }
++    });
++  }
++});
++
++test('reading CLI no-argument success, findings, and execution error remain human-readable', (t) => {
++  const pass = run(fixture(t));
++  assert.equal(pass.status, 0);
++  assert.equal(pass.stdout, 'Reading metadata audit OK.\n');
++  assert.equal(pass.stderr, '');
++  const fail = run(fixture(t, [{ ...validBook, author: '' }]));
++  assert.equal(fail.status, 1);
++  assert.equal(fail.stdout, '');
++  assert.equal(fail.stderr, 'Reading metadata audit failed with 1 finding(s):\n- reading[0]: missing author for "Safe Systems"\n');
++  const error = run(fixture(t, null));
++  assert.equal(error.status, 1);
++  assert.equal(error.stdout, '');
++  assert.equal(error.stderr, 'Unsafe data/reading.json: file is missing\n');
++});
++
++test('reading audit imports without running or parsing CLI arguments and retains its exports', (t) => {
++  const root = fixture(t, null);
++  const source = `import * as audit from ${JSON.stringify(pathToFileURL(path.join(root, script)).href)};
++    if (Object.keys(audit).sort().join(',') !== ${JSON.stringify([
++      'ALLOWED_DUPLICATE_COVER_GROUPS', 'MAX_COVER_FILE_BYTES', 'MAX_READING_METADATA_BYTES',
++      'auditReadingMetadata', 'readReadingData', 'resolveSafeCoverPath', 'sha256SafeCoverFile'
++    ].sort().join(','))}) process.exit(3);`;
++  const result = spawnSync(process.execPath, ['--input-type=module', '-e', source, '--', '--json', '--unknown'], {
++    cwd: root, encoding: 'utf8', timeout: 10000
++  });
++  assert.ifError(result.error);
++  assert.equal(result.status, 0);
++  assert.equal(result.stdout, '');
++  assert.equal(result.stderr, '');
++});
+diff --git a/tests/security/performance-json-cli.test.mjs b/tests/security/performance-json-cli.test.mjs
+new file mode 100644
+index 00000000..87c4c603
+--- /dev/null
++++ b/tests/security/performance-json-cli.test.mjs
+@@ -0,0 +1,217 @@
++import assert from 'node:assert/strict';
++import { spawnSync } from 'node:child_process';
++import fs from 'node:fs';
++import os from 'node:os';
++import path from 'node:path';
++import test from 'node:test';
++import { fileURLToPath, pathToFileURL } from 'node:url';
++
++const projectRoot = fileURLToPath(new URL('../../', import.meta.url));
++const budgetFiles = [
++  ['index.html', '90.0'], ['work.html', '90.0'],
++  ['case-study-agentforge.html', '48.0'], ['case-study-agentic.html', '48.0'],
++  ['case-study-apple-calendar-mcp.html', '48.0'], ['reading.html', '140.0'],
++  ['offline.html', '20.0'], ['css/custom.css', '50.0'],
++  ['css/case-study.css', '8.0'], ['js/main.js', '32.0'],
++  ['js/site.js', '8.0'], ['pwabuilder-sw.js', '8.0']
++];
++
++function writeFile(root, relativePath, contents) {
++  const target = path.join(root, relativePath);
++  fs.mkdirSync(path.dirname(target), { recursive: true });
++  fs.writeFileSync(target, contents);
++}
++
++function fixture(t, { inputs = true } = {}) {
++  const root = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'performance-json-cli-')));
++  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
++  for (const relativePath of [
++    'scripts/check-performance-budget.mjs', 'scripts/lib/asset-paths.cjs',
++    'scripts/lib/safe-input.cjs', 'scripts/lib/html-attributes.mjs'
++  ]) {
++    writeFile(root, relativePath, fs.readFileSync(path.join(projectRoot, relativePath)));
++  }
++  if (inputs) {
++    for (const [relativePath] of budgetFiles) writeFile(root, relativePath, 'ok');
++    writeFile(root, 'book/cover.jpg', 'cover');
++  }
++  return root;
++}
++
++function run(root, args = [], nodeArgs = []) {
++  const result = spawnSync(process.execPath, [
++    ...nodeArgs, path.join(root, 'scripts/check-performance-budget.mjs'), ...args
++  ], { cwd: root, encoding: 'utf8', timeout: 10000 });
++  assert.ifError(result.error);
++  assert.equal(result.signal, null);
++  return result;
++}
++
++function jsonResult(result, exitCode) {
++  assert.equal(result.status, exitCode, result.stderr);
++  assert.equal(result.stderr, '');
++  const value = JSON.parse(result.stdout);
++  assert.equal(result.stdout, `${JSON.stringify(value)}\n`);
++  assert.deepEqual(Object.keys(value).sort(),
++    (value.status === 'error'
++      ? ['error', 'failures', 'inventory', 'report', 'status']
++      : ['failures', 'inventory', 'report', 'status']).sort());
++  assert.ok(value.failures.every((item) => typeof item === 'string'));
++  assert.ok(value.report.every((item) => typeof item === 'string'));
++  return value;
++}
++
++function assertError(result, exitCode, pattern) {
++  const value = jsonResult(result, exitCode);
++  assert.equal(value.status, 'error');
++  assert.deepEqual(value.failures, []);
++  assert.deepEqual(value.report, []);
++  assert.equal(value.inventory, null);
++  assert.equal(typeof value.error, 'string');
++  assert.match(value.error, pattern);
++}
++
++function expectedReport() {
++  return [
++    ...budgetFiles.map(([name, budget]) => `${name}: 0.0 KiB / ${budget} KiB`),
++    'book/: 0.0 KiB / 80.00 MiB', 'fonts/: 0.0 KiB / 512.0 KiB',
++    'images/: 0.0 KiB / 8.00 MiB', 'js/vendor/: 0.0 KiB / 2.00 MiB',
++    'rendered reading media: 0.0 KiB / 12.00 MiB',
++    'rendered reading 2x media: 0.0 KiB / 6.00 MiB'
++  ];
++}
++
++test('performance CLI emits one JSON pass object with the existing report and inventory shape', (t) => {
++  const root = fixture(t);
++  const value = jsonResult(run(root, ['--json']), 0);
++  assert.deepEqual(value, {
++    status: 'pass', failures: [], report: expectedReport(),
++    inventory: {
++      directoryTotals: [
++        { path: 'book/', size: 5 }, { path: 'fonts/', size: 0 },
++        { path: 'images/', size: 0 }, { path: 'js/vendor/', size: 0 }
++      ],
++      largestFiles: [{ path: 'book/cover.jpg', size: 5 }]
++    }
++  });
++  assert.equal(fs.readFileSync(path.join(root, 'book/cover.jpg'), 'utf8'), 'cover');
++});
++
++test('performance CLI retains human report and finding output without arguments', (t) => {
++  const root = fixture(t);
++  const expected = `Performance budget report:\n${expectedReport().map((line) => `- ${line}\n`).join('')}Largest asset files:\n- book/cover.jpg: 0.0 KiB\n`;
++  const pass = run(root);
++  assert.equal(pass.status, 0);
++  assert.equal(pass.stderr, '');
++  assert.equal(pass.stdout, expected);
++  writeFile(root, 'index.html', 'x'.repeat(91 * 1024));
++  const fail = run(root);
++  assert.equal(fail.status, 1);
++  assert.equal(fail.stdout, expected.replace('index.html: 0.0 KiB', 'index.html: 91.0 KiB'));
++  assert.equal(fail.stderr, 'Performance budget failed with 1 finding(s):\n- index.html is 91.0 KiB, above 90.0 KiB\n');
++});
++
++test('performance CLI returns JSON findings and complete report for exceeded budgets', (t) => {
++  const root = fixture(t);
++  writeFile(root, 'index.html', 'x'.repeat(91 * 1024));
++  const value = jsonResult(run(root, ['--json']), 1);
++  assert.equal(value.status, 'fail');
++  assert.deepEqual(value.failures, ['index.html is 91.0 KiB, above 90.0 KiB']);
++  assert.equal(value.report[0], 'index.html: 91.0 KiB / 90.0 KiB');
++  assert.equal(value.report.length, expectedReport().length);
++  assert.deepEqual(value.inventory.largestFiles, [{ path: 'book/cover.jpg', size: 5 }]);
++});
++
++test('performance CLI preserves malformed rendered path findings in JSON', (t) => {
++  const root = fixture(t);
++  writeFile(root, 'reading.html', '<img src="../outside.jpg">');
++  const value = jsonResult(run(root, ['--json']), 1);
++  assert.equal(value.status, 'fail');
++  assert.equal(value.failures.length, 1);
++  assert.match(value.failures[0], /reading\.html: asset reference is malformed.*dot segments/);
++  assert.ok(value.inventory);
++});
++
++test('performance CLI preserves rendered HTML resource limits in JSON', (t) => {
++  const root = fixture(t);
++  writeFile(root, 'reading.html', 'x'.repeat(1024 * 1024 + 1));
++  const value = jsonResult(run(root, ['--json']), 1);
++  assert.equal(value.status, 'fail');
++  assert.ok(value.failures.some((line) => /reading\.html asset parsing failed:.*byte limit/.test(line)));
++});
++
++test('performance CLI emits an empty error result for missing input, discarding partial reports', (t) => {
++  const root = fixture(t);
++  fs.unlinkSync(path.join(root, 'work.html'));
++  assertError(run(root, ['--json']), 1, /ENOENT.*work\.html/);
++  const human = run(root);
++  assert.equal(human.status, 1);
++  assert.equal(human.stdout, '');
++  assert.match(human.stderr, /ENOENT.*work\.html/);
++});
++
++test('performance CLI retains file and directory symlink rejection in JSON', (t) => {
++  const root = fixture(t);
++  fs.unlinkSync(path.join(root, 'index.html'));
++  fs.symlinkSync('work.html', path.join(root, 'index.html'));
++  assertError(run(root, ['--json']), 1, /index\.html must be a non-symlink regular file/);
++  fs.unlinkSync(path.join(root, 'index.html'));
++  writeFile(root, 'index.html', 'ok');
++  fs.symlinkSync('book', path.join(root, 'images'));
++  assertError(run(root, ['--json']), 1, /images must be a non-symlink directory/);
++});
++
++test('performance CLI rejects arguments before any project input access', (t) => {
++  const root = fixture(t, { inputs: false });
++  writeFile(root, 'input-access-guard.mjs', `
++    import fs from 'node:fs';
++    for (const name of ['lstatSync', 'statSync', 'existsSync', 'readdirSync', 'openSync', 'realpathSync']) {
++      const original = fs[name];
++      fs[name] = (...args) => {
++        if (String(args[0]).startsWith(${JSON.stringify(root + path.sep)}) &&
++            !String(args[0]).includes('/scripts/')) {
++          process.stderr.write('UNEXPECTED_PROJECT_INPUT_ACCESS\\n');
++          throw new Error('UNEXPECTED_PROJECT_INPUT_ACCESS');
++        }
++        return original(...args);
++      };
++    }
++  `);
++  const nodeArgs = ['--import', pathToFileURL(path.join(root, 'input-access-guard.mjs')).href];
++  const accessProbe = run(root, [], nodeArgs);
++  assert.equal(accessProbe.status, 1);
++  assert.match(accessProbe.stderr, /UNEXPECTED_PROJECT_INPUT_ACCESS/);
++  for (const args of [
++    ['--unknown'], ['input.html'], ['--json=true'], ['--'], [''],
++    ['--json', '--json'], ['--unknown', '--json'], ['--json', '--unknown'],
++    ['input.html', '--json'], ['--json', 'input.html'], ['--', '--json'],
++    ['--json', '--json', '--json']
++  ]) {
++    const result = run(root, args, nodeArgs);
++    if (args.includes('--json')) {
++      assertError(result, 2, /argument|usage/i);
++    } else {
++      assert.equal(result.status, 2, JSON.stringify(args));
++      assert.equal(result.stdout, '');
++      assert.match(result.stderr, /argument|usage/i);
++      assert.doesNotMatch(result.stderr, /UNEXPECTED_PROJECT_INPUT_ACCESS/);
++    }
++  }
++});
++
++test('performance CLI import preserves exports without auditing or emitting output', (t) => {
++  const root = fixture(t, { inputs: false });
++  const scriptUrl = pathToFileURL(path.join(root, 'scripts/check-performance-budget.mjs')).href;
++  const result = spawnSync(process.execPath, ['--input-type=module', '--eval', `
++    import assert from 'node:assert/strict';
++    const exports = await import(${JSON.stringify(scriptUrl)});
++    assert.deepEqual(Object.keys(exports).sort(), [
++      'MAX_ASSET_INVENTORY_ENTRIES', 'checkPerformanceBudget',
++      'collectRenderedAssetReferences', 'createAssetInventoryReport', 'walkFiles'
++    ].sort());
++  `, '--', '--json', '--unknown'], { cwd: root, encoding: 'utf8', timeout: 10000 });
++  assert.ifError(result.error);
++  assert.equal(result.status, 0, result.stderr);
++  assert.equal(result.stdout, '');
++  assert.equal(result.stderr, '');
++});

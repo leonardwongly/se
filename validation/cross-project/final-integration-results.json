@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-05",
+  "scope": "Separate post-trial remediation integrated with CLI changes; original eight task records remain immutable",
+  "baseline": "4a50ea995c37132bcfee5c64fd908d35ca0cef96",
+  "node": "v26.13.0",
+  "policy_unchanged": true,
+  "source_sha256": {
+    "scripts/audit-reading-metadata.mjs": "7baa7d60d55a70c84dbc50e50b5d63faf4392a0de4121ec2b19d4204b7a3f9ca",
+    "scripts/check-performance-budget.mjs": "c7874319c75d716fc2cde1c6b6f1d84a2f30621c0264fa6be7edb093b266f942",
+    "docs/static-content-runbook.md": "65a311e2a6c264474c081b304a8ad1ae60d9718243e4c4bd5b42bb3d8c3a76ea",
+    "tests/security/reading-json-cli.test.mjs": "15ebeccd8e36389bbe554b9686169e762374731d11240d66006ece891ecdbfd2",
+    "tests/security/performance-json-cli.test.mjs": "a74c52dbec1d6ecc0f4f0da17c7c1abf7d3b2477f9e59ab2a02334c22d01004b",
+    "scripts/lib/html-attributes.mjs": "8e501da150f3f54bb43581104fe0b079d844d17346bc58ac212506c46382d8d3",
+    "tests/security/html-attribute-boundaries.test.mjs": "53b08670190369d3049b783ab4d9278a1ee1f5bbddc98f24ae8940e15e41a4bc"
+  },
+  "checks": {
+    "npm_run_validate": {
+      "exit_code": 0,
+      "security_tests": 357,
+      "passed": 357,
+      "failed": 0,
+      "skipped": 0
+    },
+    "frozen_cli_oracle": {
+      "passed": 38,
+      "total": 38
+    },
+    "scanner_oracle": {
+      "passed": 14,
+      "total": 14
+    },
+    "original_project_unchanged": true
+  },
+  "log_sha256": "bef9b6d477b5ebc8fe53efec0f3a24b01d3e29c6ea298538d4e08b890fdceedb",
+  "dependency_context": "Existing lock-matching dependencies reused in isolated copy, no installation",
+  "limits": "Local Node26.13; no Node24/hosted CI/full release gate/production proof. CLI subprocess checks are not all represented in aggregate parent-process coverage."
+}

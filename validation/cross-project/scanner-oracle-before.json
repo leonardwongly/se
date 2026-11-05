@@ -1,0 +1,77 @@
+{
+  "node": "v26.13.0",
+  "project": "$TRIAL_ROOT/baseline",
+  "source_sha256": "995ccf4d28332bcc2612b8b0eba2a50cccfbeea8f59323bfd2592a19ea8ca59b",
+  "checker_sha256": "76b088f5cd98f33d7223e2ef25225592b676a5a7a618eb53a8be526adb0df3ec",
+  "passed": 4,
+  "total": 14,
+  "results": [
+    {
+      "name": "valid attribute at budget",
+      "passed": true
+    },
+    {
+      "name": "valid excess attribute rejected",
+      "passed": true
+    },
+    {
+      "name": "malformed tokens consume budget",
+      "passed": false,
+      "error": "Missing expected exception."
+    },
+    {
+      "name": "diagnostics do not repeat arbitrarily long tag names",
+      "passed": false,
+      "error": "64x tag-name length produced diagnostic lengths 10304 -> 526400; expected bounded context, not full-name repetition"
+    },
+    {
+      "name": "EOF diagnostic <img",
+      "passed": false,
+      "error": "The expression evaluated to a falsy value:\n\n  assert.ok(scan(html).findings.some(s=>/unterminated/i.test(s)))\n"
+    },
+    {
+      "name": "EOF diagnostic <img src=\"book/a.jpg\"",
+      "passed": false,
+      "error": "The expression evaluated to a falsy value:\n\n  assert.ok(scan(html).findings.some(s=>/unterminated/i.test(s)))\n"
+    },
+    {
+      "name": "EOF diagnostic <img src=book/a.jpg",
+      "passed": false,
+      "error": "The expression evaluated to a falsy value:\n\n  assert.ok(scan(html).findings.some(s=>/unterminated/i.test(s)))\n"
+    },
+    {
+      "name": "EOF diagnostic <img disabled",
+      "passed": false,
+      "error": "The expression evaluated to a falsy value:\n\n  assert.ok(scan(html).findings.some(s=>/unterminated/i.test(s)))\n"
+    },
+    {
+      "name": "EOF diagnostic <img/",
+      "passed": true
+    },
+    {
+      "name": "double opener retains real attribute",
+      "passed": false,
+      "error": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ []\n- [\n-   'book/a.jpg'\n- ]\n"
+    },
+    {
+      "name": "performance collector sees double opener",
+      "passed": false,
+      "error": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ []\n- [\n-   'book/a.jpg'\n- ]\n"
+    },
+    {
+      "name": "performance collector reports truncated input",
+      "passed": false,
+      "error": "The expression evaluated to a falsy value:\n\n  assert.ok(assets('<img src=\"book/a.jpg\"').findings.length>0)\n"
+    },
+    {
+      "name": "comment and raw text positive control",
+      "passed": true
+    },
+    {
+      "name": "link collector sees double opener without fetch",
+      "passed": false,
+      "error": "The expression evaluated to a falsy value:\n\n  assert.ok(links.some(x=>x.url==='https://example.invalid/image.jpg'))\n"
+    }
+  ],
+  "limits": "Bounded parser/caller cases; diagnostic logical lengths, not heap/exhaustion measurement. No network fetch, production impact or complete browser equivalence."
+}

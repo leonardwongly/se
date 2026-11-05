@@ -1,0 +1,29 @@
+{
+  "phase": "Separate post-trial browser check; original specialist trial did not perform this check",
+  "action": "DOMParser.parseFromString on four synthetic strings in dedicated about:blank tab using a data-image URL, no remote resource requests",
+  "observations": [
+    {
+      "input": "<img src=\"data:...\">",
+      "images": 1,
+      "body_text": ""
+    },
+    {
+      "input": "<<img src=\"data:...\">",
+      "images": 1,
+      "body_text": "<"
+    },
+    {
+      "input": "<img",
+      "images": 0,
+      "body_text": ""
+    },
+    {
+      "input": "<img src=\"data:...\"",
+      "images": 0,
+      "body_text": ""
+    }
+  ],
+  "initial_failure": "Inherited browser page required TrustedHTML; no DOM result obtained there. A dedicated blank page was then created for the bounded probe and closed afterward.",
+  "raw_evidence_sha256": "e7cceed00000ff8926ff3d439b5035af9b0ebad9168aca8b617a742e50f4feb7",
+  "limit": "Confirms parsed element presence in observed browser, not network fetch, deployed consequences or exhaustive HTML equivalence."
+}

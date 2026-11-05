@@ -1,0 +1,39 @@
+{
+  "source": "$TRIAL_ROOT/integration",
+  "baseline": "4a50ea995c37132bcfee5c64fd908d35ca0cef96",
+  "changed_sha256": {
+    "scripts/audit-reading-metadata.mjs": "7baa7d60d55a70c84dbc50e50b5d63faf4392a0de4121ec2b19d4204b7a3f9ca",
+    "scripts/check-performance-budget.mjs": "c7874319c75d716fc2cde1c6b6f1d84a2f30621c0264fa6be7edb093b266f942",
+    "tests/security/reading-json-cli.test.mjs": "15ebeccd8e36389bbe554b9686169e762374731d11240d66006ece891ecdbfd2",
+    "tests/security/performance-json-cli.test.mjs": "a74c52dbec1d6ecc0f4f0da17c7c1abf7d3b2477f9e59ab2a02334c22d01004b",
+    "docs/static-content-runbook.md": "65a311e2a6c264474c081b304a8ad1ae60d9718243e4c4bd5b42bb3d8c3a76ea"
+  },
+  "dependency_reuse": "Read-only reuse of existing original-project node_modules, via isolated integration symlink; no install or package changes. yaml 2.9.1 and Playwright 1.63.0 match lockfile.",
+  "command": "node --test tests/security/*.test.mjs",
+  "checks": {
+    "full_security_suite": {
+      "exit_code": 0,
+      "tests": 350,
+      "passed": 350,
+      "skipped": 0
+    },
+    "npm_run_validate": {
+      "exit_code": 0,
+      "includes": [
+        "build",
+        "generated-file parity",
+        "repository hygiene",
+        "reading metadata",
+        "performance budget",
+        "security tests and configured coverage thresholds"
+      ]
+    },
+    "patch_reproduction": "PASS: five files byte-identical"
+  },
+  "log_sha256": {
+    "integration-security.log": "f6565c02ddeea902f7fbee1fd6dc8976b5d945588a045b6805c262a99aed3219",
+    "integration-validate.log": "04dbcd3f99d7617efd54608f3d0ccfc06ce5709fe3869cf561928d4ceb831edc"
+  },
+  "coverage_limit": "Configured aggregate coverage thresholds pass. Subprocess CLI paths are separately behavior-tested and not all represented in parent-process coverage. Not repository-wide coverage.",
+  "release_limit": "No validate:full, network/production checks, deployed browser or Node24 execution. No release authorization."
+}

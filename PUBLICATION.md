@@ -80,3 +80,9 @@ The [two-task CLI evaluation](validation/AUTOMATIC-SELECTION.md) is a separate o
 The [expanded ten-session evaluation](validation/EXPANDED-SELECTION.md) separately records all-twelve role coverage, delegated own-context reads, initial misses and policy repairs. Its prompts and selected observations are portable; full private traces and unrelated global instructions are not distributed. Coverage is not a success-rate estimate.
 
 Markdown targets now use parsed URL fields, split query/fragment components before one strict percent-decode, and enforce resolved repository containment before existence. A URL appearing only in a local target's query no longer skips validation. Link extraction remains the existing bounded regex, not a complete Markdown parser; fragment IDs and remote availability are not checked. Run all focused script regressions with `python3 -B -m unittest discover -s scripts -p 'test_*.py' -v`.
+
+## Second-project final-policy evaluation
+
+The [ProjectPortfolio evaluation](validation/CROSS-PROJECT-SELECTION.md) publishes eight fresh task prompts, policy/skill identities, sanitized instruction-read receipts, independent application grades and deterministic checkers. All tasks use one unchanged final policy; initial project findings and post-trial remediation remain distinct. Raw sessions, unrelated global configuration and private session identifiers stay local.
+
+The maintenance and scanner patches apply only to a disposable ProjectPortfolio checkout at the pinned revision. They were not merged into that project's original checkout or deployed. The HTML explanation is preserved byte-for-byte; its relative source links target its original project location, and hosted playback is unverified. The portable package validator checks the skills package and existing guide entrypoints; it does not execute this external-project evaluation or all exported HTML artifacts.

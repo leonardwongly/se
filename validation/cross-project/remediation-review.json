@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-11-05T02:24:30.623177+00:00",
+  "scope": "Separate post-trial scanner remediation; read-only review of resource/EOF/double-less-than corrections and relevant regressions. Original eight trial grades remain immutable.",
+  "review_gate": "PASS",
+  "final_combined_validation": "Parent-owned and pending final report; this review does not substitute for final npm validate or unchanged CLI oracle rerun.",
+  "source_root": "$TRIAL_ROOT/integration",
+  "baseline": "4a50ea995c37132bcfee5c64fd908d35ca0cef96",
+  "source_sha256": {
+    "scripts/lib/html-attributes.mjs": "8e501da150f3f54bb43581104fe0b079d844d17346bc58ac212506c46382d8d3",
+    "tests/security/html-attribute-boundaries.test.mjs": "53b08670190369d3049b783ab4d9278a1ee1f5bbddc98f24ae8940e15e41a4bc"
+  },
+  "application_grades_sha256_at_review": "251b72af97012158fc8ced3306c971922e53493f1ea6e613e3d8ca88b28aa5a8",
+  "findings": [],
+  "reviewed_changes": [
+    {
+      "surface": "Malformed token budget",
+      "assessment": "PASS",
+      "evidence": "Counter now increments and enforces maxAttributes before scanning either empty or nonempty attribute names. Repeated equals signs therefore cannot emit unlimited diagnostics under maxAttributes1. Valid attributes, including unselected attributes, continue consuming the same budget."
+    },
+    {
+      "surface": "Diagnostic amplification",
+      "assessment": "PASS",
+      "evidence": "Malformed attribute, unterminated tag and unterminated quoted-value diagnostics now use numeric offsets instead of full untrusted tag/attribute names. New tests vary very long tag and attribute names; independent frozen oracle compares logical text size across64x tag-name increase."
+    },
+    {
+      "surface": "EOF diagnostic omission",
+      "assessment": "PASS",
+      "evidence": "Attribute loop explicitly reaches EOF test via while(true), including EOF immediately after tag name or unquoted/closed-quoted value. Open-quote path still breaks after its own one diagnostic, preventing accidental duplicate EOF reports."
+    },
+    {
+      "surface": "Double-less-than recovery",
+      "assessment": "PASS",
+      "evidence": "Declaration/question-mark paths retain prior skip behavior; other invalid opening characters now return to the outer search from an advanced cursor. A following less-than can begin a valid tag and loop progression remains finite. Parent DOMParser comparison observes IMG for double-less-than synthetic data-URL input."
+    },
+    {
+      "surface": "Caller/test integration",
+      "assessment": "PASS",
+      "evidence": "New tests use actual scanner/performance collector/link collector. Both callers receive EOF findings and recover double-less-than asset/URL references. Tests retain comments, declarations, raw text, plaintext, quoted/unquoted and valid count behavior; link test creates owned temporary input and calls collection only, no network request."
+    },
+    {
+      "surface": "Compatibility and security scope",
+      "assessment": "PASS",
+      "evidence": "No exports, dependencies, runtime authority, filesystem readers or network sinks changed. Malformed diagnostic wording intentionally changes to bounded offsets while keeping meaningful categories. Actual collectors preserve existing error propagation. No broader browser-parser equivalence claim."
+    }
+  ],
+  "executed_evidence_reviewed": {
+    "scanner_oracle": {
+      "before": {
+        "passed": 4,
+        "total": 14,
+        "artifact": "scanner-oracle-before.json"
+      },
+      "after": {
+        "passed": 14,
+        "total": 14,
+        "artifact": "scanner-oracle-after.json"
+      },
+      "checker_sha256": "76b088f5cd98f33d7223e2ef25225592b676a5a7a618eb53a8be526adb0df3ec",
+      "source_hash_verified": true,
+      "negative_control": "Original failures are intended missing limit exceptions/diagnostics/references; original valid budget and comment/raw-text controls pass. Candidate14/14 retains original result and uses identical checker."
+    },
+    "browser_differential": {
+      "artifact": "scanner-browser.private.json",
+      "sha256": "e7cceed00000ff8926ff3d439b5035af9b0ebad9168aca8b617a742e50f4feb7",
+      "observed": "Normal and double-less-than inputs both produce IMG with synthetic data URL; double-less-than additionally leaves text less-than. EOF examples produce no IMG.",
+      "preserved_failure": "Initial DOMParser attempt on chrome settings failed TrustedHTML assignment; successful dedicated blank-tab observation is distinct.",
+      "limit": "Parsed DOM presence only; no external resource request, deployed impact or exhaustive browser equivalence."
+    },
+    "reviewer_execution": "No behavioral checks rerun. Independently inspected diff, new test code, frozen checker code, raw before/after records and browser result. Verified current source/checker hashes match retained execution."
+  },
+  "remaining_limits": [
+    "Full combined final validation and unchanged38-case CLI oracle are separately run/reported by parent after this review.",
+    "Diagnostic measurements remain logical string sizes, not heap benchmarks or exhaustion proof.",
+    "Fixes target demonstrated cases and control regressions; scanner remains a bounded specialized scanner, not a complete HTML parser.",
+    "No original trial source or application grades changed; later remedial evidence cannot retroactively alter original trial observations."
+  ],
+  "skills_applied": [
+    "se-proof",
+    "se-zero-trust",
+    "se-verify"
+  ]
+}
