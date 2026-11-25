@@ -1,0 +1,45 @@
+[
+  {
+    "id": "ver-3",
+    "area": "verify/harness/benchmark",
+    "expect": [
+      "se-verify"
+    ],
+    "read": [],
+    "pass": false,
+    "exit": 0
+  },
+  {
+    "id": "wri-2",
+    "area": "writing/prose/plain",
+    "expect": [
+      "se-prose"
+    ],
+    "read": [],
+    "pass": false,
+    "exit": 0
+  },
+  {
+    "id": "wri-3",
+    "area": "writing/prose/plain",
+    "expect": [
+      "se-plain"
+    ],
+    "read": [
+      "se-plain"
+    ],
+    "pass": true,
+    "exit": 0
+  },
+  {
+    "id": "des-1",
+    "area": "design/blueprint/playbook",
+    "expect": [
+      "se-playbook",
+      "se-test-first"
+    ],
+    "read": [],
+    "pass": false,
+    "exit": 0
+  }
+]

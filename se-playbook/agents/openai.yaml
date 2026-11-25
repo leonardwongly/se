@@ -1,0 +1,3 @@
+interface:
+  display_name: "SE Playbook"
+  short_description: "Run rigorous work through a matched playbook"

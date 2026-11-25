@@ -1,0 +1,3 @@
+interface:
+  display_name: "SE Test First"
+  short_description: "Write the failing test, then the fix"

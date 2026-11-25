@@ -1,0 +1,2 @@
+config.py is a shared foundation, so the whole suite runs.
+TESTS: ALL

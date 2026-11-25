@@ -1,6 +1,6 @@
 # Publication notes
 
-This repository packages twelve `se-*` skills and two illustrative guides. The original nine-skill evidence remains historical; the proof, visualise, swarm and specialist-selection update has its own [review record](validation/EXPANSION-REVIEW.md). Publication does not install the skills, enforce runtime authorization, or qualify a production release.
+This repository packages 44 `se-*` skills (twelve core skills, thirty-one adapted from pstack, and `se-ci`) and two illustrative guides. The original nine-skill evidence remains historical; the proof, visualise, swarm and specialist-selection update has its own [review record](validation/EXPANSION-REVIEW.md). Publication does not install the skills, enforce runtime authorization, or qualify a production release.
 
 ## Evidence portability
 
@@ -17,7 +17,7 @@ Only path text was normalized in historical evidence. Test results, timestamps, 
 
 ## Validation
 
-`python3 scripts/validate.py` checks the twelve package names and required entrypoint fields, portable Markdown links, complete package hashes, both implementation test suites, both independent grader suites, and rejection of the original defective implementation. The negative control must report the specific tenant-isolation assertion failure; an import or environment error alone cannot satisfy it. This portable check is narrower than a full skill schema or live agent-routing evaluation.
+`python3 scripts/validate.py` checks the 44 package names and required entrypoint fields (including description length and that no skill is typed-only), portable Markdown links, references between skills, the absence of pstack naming and Cursor-only features inside skill folders, the pstack attribution notice, complete package hashes, both implementation test suites, both independent grader suites, and rejection of the original defective implementation. The negative control must report the specific tenant-isolation assertion failure; an import or environment error alone cannot satisfy it. This portable check is narrower than a full skill schema or live agent-routing evaluation.
 
 The current guide uses a custom standalone interface with local CSS and JavaScript. README PNG/GIF previews are captured from that interface. Original inline fragments remain historical sources; their older export and browser records do not establish the current UI's behavior. See [custom guide validation](validation/CUSTOM-GUIDE.md) for the current checks and media provenance. All animations are illustrative. No public website deployment or production-project validation is implied.
 
@@ -43,8 +43,8 @@ validator itself does not need permission to create symlinks.
 ## Installed-file comparison
 
 `python3 -B scripts/check_installed.py --skills-dir /path/to/installed/skills`
-compares exactly `SKILL.md` and `agents/openai.yaml` for each of the twelve
-repository packages against that explicitly selected directory. Comparison is
+compares every file of each of the 44 repository packages (entry files, playbooks,
+references and bundled scripts) against that explicitly selected directory. Comparison is
 byte-for-byte, including line endings; unrelated installed skills and extra files
 are ignored. The command never writes installed files, executes their contents,
 or uses the network. It verifies file parity, not host discovery or skill behavior.
@@ -86,3 +86,31 @@ Markdown targets now use parsed URL fields, split query/fragment components befo
 The [ProjectPortfolio evaluation](validation/CROSS-PROJECT-SELECTION.md) publishes eight fresh task prompts, policy/skill identities, sanitized instruction-read receipts, independent application grades and deterministic checkers. All tasks use one unchanged final policy; initial project findings and post-trial remediation remain distinct. Raw sessions, unrelated global configuration and private session identifiers stay local.
 
 The maintenance and scanner patches apply only to a disposable ProjectPortfolio checkout at the pinned revision. They were not merged into that project's original checkout or deployed. The HTML explanation is preserved byte-for-byte; its relative source links target its original project location, and hosted playback is unverified. The portable package validator checks the skills package and existing guide entrypoints; it does not execute this external-project evaluation or all exported HTML artifacts.
+
+## pstack port
+
+Thirty-one skills are adapted from pstack (MIT, Lauren Tan) at commit
+`c3464c11c60b1352d5e8f5f0428a3a6943837568`; see [third-party notices](THIRD_PARTY_NOTICES.md)
+and [spec 001](specs/001-pstack-integration/spec.md). `scripts/port_pstack.py` re-creates the
+renamed folders from a checkout of that commit and records the source's skill-to-skill
+references in `validation/pstack-port/source-edges.json`. Hand edits made after the port
+(host-neutral wording, descriptions, merges, the change baseline) are listed in
+[REVIEW.md](REVIEW.md). To sync a later upstream commit, port the old and the new commit
+into two scratch directories with `--any-commit`, diff them, and apply that diff here.
+
+`python3 -B -m unittest discover -s scripts -p 'test_*.py' -v` includes the port tests, which
+prove that every pstack reference survives in the SE package or is recorded with a reason in
+`validation/pstack-port/removed-edges.json`.
+
+The bundled scripts keep their own suites, which `validate.py` does not run because they need
+JavaScript runtimes. Copy the scripts folder out of the repository first, so no
+`node_modules` lands in the package:
+
+- PR watcher: `bun install --frozen-lockfile && bun test watch-pr` in a copy of
+  `se-playbook/scripts`. 56 tests pass, as on the pinned source.
+- Statechart pipeline: `npm install && npm test` in a copy of `se-states/scripts`. On the
+  reference machine the pinned source and the port give the same 300 results: 228 pass, 70
+  are skipped because `TLA2TOOLS` does not point at `tla2tools.jar`, and the same 2 fail before
+  and after the port (a symlinked-launcher test and `render.test.ts`). The 2 failures depend on
+  the environment and are not caused by the port.
+

@@ -1,0 +1,41 @@
+[
+ {
+  "number": 11,
+  "title": "test_invoice_for_random_customer fails at random",
+  "state": "open",
+  "labels": [
+   "ci",
+   "flaky"
+  ],
+  "body": "It fails a few times a week with \"invalid customer id\" and passes on re-run. Everyone just re-runs it."
+ },
+ {
+  "number": 12,
+  "title": "CI takes over a minute for nine tests",
+  "state": "open",
+  "labels": [
+   "ci"
+  ],
+  "body": "Most of the time goes to pip install on every run. The monthly report test also sleeps for 3 s."
+ },
+ {
+  "number": 13,
+  "title": "CSV export drops the last row",
+  "state": "open",
+  "labels": [
+   "bug",
+   "reports"
+  ],
+  "body": "Exporting three months gives two lines. CI was green when this shipped in #6."
+ },
+ {
+  "number": 14,
+  "title": "Security policy SEC-7: security tests on every pull request",
+  "state": "closed",
+  "labels": [
+   "policy",
+   "security"
+  ],
+  "body": "Compliance requires tests/security to run on every pull request, regardless of which files changed."
+ }
+]

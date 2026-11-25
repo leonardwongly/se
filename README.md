@@ -1,6 +1,6 @@
 # SE skills
 
-Twelve standalone skills for project-grounded AI-assisted software engineering. Material claims and implementation decisions require relevant evidence and a coherent understanding of the mechanism. Every new or modified code change requires a zero-trust review and verification, with depth proportional to risk. Publishing this repository does not install the skills into any agent host.
+Forty-four skills for project-grounded AI-assisted software engineering: twelve standalone core skills, thirty-one skills adapted from [pstack](THIRD_PARTY_NOTICES.md) (a playbook router, twenty-four engineering principles and single-purpose tools), and a CI optimisation skill. Material claims and implementation decisions require relevant evidence and a coherent understanding of the mechanism. Every new or modified code change requires a zero-trust review and verification, with depth proportional to risk. Publishing this repository does not install the skills into any agent host.
 
 ## See the workflow
 
@@ -25,6 +25,8 @@ npx skills add leonardwongly/se
 
 Choose the skills and agent host in the installer. This command runs third-party tooling; review the selected destination before confirming. No global installation is performed by this repository itself.
 
+Then add the [recommended project instruction](#recommended-project-instruction) to each project's `CLAUDE.md` or `AGENTS.md`. Without it, an agent sometimes does a task itself instead of loading the skill that matches it.
+
 Clone the repository to review it or run the guides locally:
 
 ```sh
@@ -47,9 +49,10 @@ Compare an explicitly selected installation with this checkout:
 python3 -B scripts/check_installed.py --skills-dir /path/to/installed/skills
 ```
 
-The checker reports deterministic JSON for the twelve packages' `SKILL.md` and
-`agents/openai.yaml` files. It exits zero only when all 24 files match byte for
-byte; missing, modified, unsafe, or unreadable paths produce a nonzero exit.
+The checker reports deterministic JSON for every file in each of the 44
+packages, including playbooks, references and bundled scripts. It exits zero only
+when every file matches byte for byte; missing, modified, unsafe, or unreadable
+paths produce a nonzero exit.
 Unrelated installed skills are ignored. It only reads files: it does not install,
 repair, execute skill content, or access the network.
 
@@ -63,11 +66,11 @@ See [publication notes](PUBLICATION.md) for evidence normalization and validatio
 
 ## Required change baseline
 
-### Tool and skill selection across all twelve skills
+### Tool and skill selection in the core skills
 
 Each skill actively discovers and uses relevant capabilities from the current host and project, including skills outside the `se-*` family. Choose tools for the evidence or outcome needed, read their current instructions and schemas, and inspect the results before deciding. Prefer a suitable direct interface; use UI tools when observed UI behavior is part of the claim.
 
-Selection considers reliability, task fit, authority, privacy, cost and time. Existing valid evidence can be reused; tools are not invoked indiscriminately. Missing capabilities permit honest, authorized alternatives, but cannot turn required missing evidence into a pass or bypass an approval. Each skill includes role-specific guidance and remains independently usable without mandatory sibling skills or vendor tools.
+Selection considers reliability, task fit, authority, privacy, cost and time. Existing valid evidence can be reused; tools are not invoked indiscriminately. Missing capabilities permit honest, authorized alternatives, but cannot turn required missing evidence into a pass or bypass an approval. Each core skill includes role-specific guidance and remains independently usable without mandatory sibling skills or vendor tools. Skills adapted from pstack call their siblings and are installed in groups; see [Skills adapted from pstack](#skills-adapted-from-pstack).
 
 ### Required responsibilities
 
@@ -97,7 +100,7 @@ Reuse a verified project brief while it remains current. Resolve material target
 
 ## Choose the skill for the decision
 
-![Twelve skills grouped by purpose; zero-trust review and verification apply to every code change, while swarm and concurrent execution are optional.](docs/images/skills-overview.png)
+![The twelve core skills grouped by purpose; zero-trust review and verification apply to every code change, while swarm and concurrent execution are optional.](docs/images/skills-overview.png)
 
 The skills are a toolkit, not a fixed twelve-step sequence. Select the capabilities that improve the decision, then preserve the required code-change baseline.
 
@@ -116,7 +119,39 @@ The skills are a toolkit, not a fixed twelve-step sequence. Select the capabilit
 | Visualise | [/se-visualise](se-visualise/SKILL.md) | Appropriate inline explanation, with meaningful animation and accessible alternatives |
 | Swarm | [/se-swarm](se-swarm/SKILL.md) | Active multi-agent execution, evidence review and bounded remediation to completion |
 
-Each folder is independently usable and contains `SKILL.md` plus `agents/openai.yaml`. There are no mandatory sibling skills or vendor-specific tools. Actual task execution still needs the relevant host capabilities and access. Normal automatic selection is retained in metadata; discovery requires a later installation step in the target host.
+Each core folder is independently usable and contains `SKILL.md` plus `agents/openai.yaml`. The core skills have no mandatory sibling skills or vendor-specific tools. Actual task execution still needs the relevant host capabilities and access. Normal automatic selection is retained in metadata; discovery requires a later installation step in the target host.
+
+### Skills adapted from pstack
+
+Thirty-one skills are adapted from [pstack](https://github.com/backnotprop/pstack) by Lauren Tan (MIT; see [third-party notices](THIRD_PARTY_NOTICES.md)), renamed into the `se-*` family, made host-neutral, and given the SE change baseline where they change code. pstack's `how`, `why` and `swarm` guidance was merged into [se-how](se-how/SKILL.md), [se-why](se-why/SKILL.md) and [se-swarm](se-swarm/SKILL.md). Every skill can be selected automatically or typed by name. [/se-help](se-help/SKILL.md) answers which one fits.
+
+| Group | Skills |
+|---|---|
+| Run work end to end | [/se-playbook](se-playbook/SKILL.md) (22 playbooks), [/se-blueprint](se-blueprint/SKILL.md), [/se-principles](se-principles/SKILL.md) (24 principles) |
+| Understand | [/se-explain](se-explain/SKILL.md), [/se-context](se-context/SKILL.md), [/se-restate](se-restate/SKILL.md), [/se-deepen](se-deepen/SKILL.md), [/se-plain](se-plain/SKILL.md), [/se-recap](se-recap/SKILL.md), [/se-recap-video](se-recap-video/SKILL.md) |
+| Design and challenge | [/se-design](se-design/SKILL.md), [/se-contest](se-contest/SKILL.md), [/se-challenge](se-challenge/SKILL.md), [/se-impact](se-impact/SKILL.md), [/se-states](se-states/SKILL.md) |
+| Build and clean | [/se-test-first](se-test-first/SKILL.md), [/se-typescript](se-typescript/SKILL.md), [/se-comments](se-comments/SKILL.md), [/se-prose](se-prose/SKILL.md), [/se-writing](se-writing/SKILL.md) |
+| Prove | [/se-harness](se-harness/SKILL.md), [/se-harness-sync](se-harness-sync/SKILL.md), [/se-formal](se-formal/SKILL.md), [/se-formal-sync](se-formal-sync/SKILL.md), [/se-benchmark](se-benchmark/SKILL.md), [/se-decision-log](se-decision-log/SKILL.md) |
+| Make it yours | [/se-setup](se-setup/SKILL.md), [/se-help](se-help/SKILL.md), [/se-style](se-style/SKILL.md), [/se-guardrail](se-guardrail/SKILL.md), [/se-retro](se-retro/SKILL.md) |
+| CI | [/se-ci](se-ci/SKILL.md): survey the project, keep a short `CI.md` of what matters, test only affected flows, and remove low-value tests with evidence |
+
+These skills call each other, so install each with the skills it needs:
+
+| Skill | Also install |
+|---|---|
+| `se-playbook` | the whole family: its playbooks route to most skills, and it reads `se-principles` |
+| `se-explain` | `se-how`, `se-why` |
+| `se-writing` | `se-prose` |
+| `se-design`, `se-challenge` | `se-contest` |
+| `se-impact` | `se-contest`, `se-how`, `se-why`, `se-prose` |
+| `se-harness` | `se-harness-sync` |
+| `se-formal` | `se-formal-sync`, `se-states` |
+| `se-recap` | `se-plain` |
+| `se-recap-video` | `se-recap`, `se-plain` |
+| `se-ci` | `se-swarm`, `se-visualise`, `se-impact`, `se-benchmark`, `se-decision-log`, `se-principles` |
+| Any skill that changes code or configuration | `se-zero-trust`, `se-verify` |
+
+The bundled scripts need [Bun](https://bun.sh) (the PR watcher in `se-playbook`) or Node 22.18+, Bun 1.1.5+ or Deno 2 (the statechart pipeline in `se-states`). The port is reproducible: `scripts/port_pstack.py` re-creates the renamed folders from the pinned pstack commit, and [specs/001-pstack-integration](specs/001-pstack-integration/spec.md) records every rename and rewrite.
 
 The skill identifiers are `se-what`, `se-how`, etc. `/se-what` is a guide label, not a registered slash command. In Codex, explicit invocation is `$se-what`. This package does not install command aliases or change the host's command syntax.
 
@@ -193,6 +228,31 @@ An explanatory request remains explanatory. A plan does not authorize implementa
 Source links in each skill identify the basis for its recommendations. The workflows are a synthesis, not a claim of certification or exact reproduction of a standard. Consult the current source when an exact requirement, version, or platform capability matters.
 
 ## Automatic selection across projects
+
+### Recommended project instruction
+
+Add these two sentences to the project's instruction file: `CLAUDE.md` for Claude Code, or
+`AGENTS.md` for Codex and other hosts that read it.
+
+```text
+When a request matches an installed SE skill (`se-*`), load that skill before you start, and follow it,
+even when the task looks small enough to do directly. Its rules (what counts as evidence, the SE change
+baseline, what it reports) apply only when it is loaded.
+```
+
+In the [selection evaluation](validation/PSTACK-SELECTION.md), Claude Code loaded the expected skill
+for 14 of 19 task prompts without this instruction, and for all 19 with it. With the instruction, the
+expected skill was each session's first action, and no session loaded an unrelated skill. Without
+it, Claude Code did some tasks itself: a fan-out, a check of a "fixed" claim, a one-sentence rewrite
+and a bug fix. Those results are one run per prompt on one fixture project, not a measured rate. The
+instruction has not been tested on Codex yet, and only the project file was tested, not a global
+one. It grants no authority: host rules, permission prompts and approvals still apply. Installing
+the skills does not add it for you.
+
+The engineering routing policy in the next section goes further for the twelve original skills: it
+maps each kind of decision to the skills that serve it.
+
+### Routing policy and earlier evaluations
 
 The [second-project evaluation](validation/CROSS-PROJECT-SELECTION.md) ran eight fresh
 tasks on ProjectPortfolio under one unchanged final policy. All twelve skill roles

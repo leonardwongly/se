@@ -1,6 +1,6 @@
 ---
 name: se-how
-description: Explain how a software or AI system works, or develop an evidence-backed implementation approach for a specific engineering change. Use for mechanism tracing and implementation planning; a how-to question alone does not authorize code changes.
+description: "Explain how a software or AI system works, or develop an evidence-backed implementation approach for a specific engineering change. Use for mechanism tracing and implementation planning; a how-to question alone does not authorize code changes. Also covers walkthroughs before changing code and layering questions such as where new code should live or which package should own it; for locating existing behaviour use se-where."
 ---
 
 # SE How
@@ -49,6 +49,8 @@ independent work. Do not infer policy solely from existing code or a generated w
 
 - For “how does this work?”, explain the observed mechanism and its boundaries.
 - For “how should we implement this?”, propose a concrete approach and validation.
+- For a walkthrough before a change, or a placement question (“where should this live?”,
+  “which package owns this?”, “is this the right layer?”), see **Placement and walkthroughs**.
 - For “implement this” or equivalent authorized work, use the approach to execute
   the requested change; an explanation request by itself remains read-only.
 - Preserve any existing authorization in the conversation. Do not ask again for
@@ -117,6 +119,27 @@ Scale depth to risk: a literal UI-text edit may need a grounded boundary review 
 render/static check; changed authorization needs behavior-level regression evidence.
 Do not add meaningless tests for ceremony or exempt the baseline because the diff is small.
 When only advice was requested, label checks as proposed rather than executed.
+
+## Placement and walkthroughs
+
+For a walkthrough before changing something, or a question about where new code should live,
+explain the subsystem so a senior engineer unfamiliar with it could start working in it confidently.
+
+1. If the scope is ambiguous, state your interpretation and explore; the user can redirect.
+2. For a broad area, give the exploration to one read-only subagent (`Agent` in Claude Code with
+   `subagent_type: general-purpose`, `task` in OpenCode, `spawn_agent` in Codex; without a subagent
+   tool, explore yourself) with this brief:
+
+   > You are writing an architectural explanation for a senior engineer. Explore the codebase and
+   > write an explanation that a senior engineer unfamiliar with this area could read and walk away
+   > with a solid mental model. They should understand the architecture well enough to start working
+   > in it confidently. You have read-only access to the codebase.
+
+3. Check the explanation against the code before presenting it. Light edits for clarity or context
+   are fine; keep its substance, and add the source references and grounding this skill requires.
+4. For placement, name the layer or package that should own the new code, the existing callers and
+   contracts that decide it, and the alternatives ruled out. Locating existing behaviour is
+   `se-where`'s job, and the reasons behind the current layering are `se-why`'s.
 
 ## Output contract
 

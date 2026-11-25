@@ -1,0 +1,37 @@
+[
+  {
+    "id": "how-1",
+    "area": "how/explain",
+    "expect": [
+      "se-how",
+      "se-explain"
+    ],
+    "read": [
+      "se-how"
+    ],
+    "pass": true,
+    "exit": 0
+  },
+  {
+    "id": "how-2",
+    "area": "how/explain",
+    "expect": [
+      "se-how"
+    ],
+    "read": [],
+    "pass": false,
+    "exit": 0
+  },
+  {
+    "id": "how-3",
+    "area": "how/explain",
+    "expect": [
+      "se-explain"
+    ],
+    "read": [
+      "se-explain"
+    ],
+    "pass": true,
+    "exit": 0
+  }
+]

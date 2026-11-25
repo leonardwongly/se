@@ -16,6 +16,29 @@ import sys
 sys.dont_write_bytecode = True
 from validate import EXPECTED, ROOT
 
+REQUIRED = ('SKILL.md', 'agents/openai.yaml')
+EXCLUDED_DIRS = frozenset({'.git', '__pycache__', 'node_modules'})
+EXCLUDED_FILES = frozenset({'.DS_Store'})
+
+
+def package_paths(root=None, expected=None):
+    """Every regular file of each repository package, plus each package's required files.
+
+    The required files are always listed, so a missing or unreadable repository
+    package produces errors instead of an empty inventory that would pass.
+    """
+    root = ROOT if root is None else root
+    expected = EXPECTED if expected is None else expected
+    paths = {f'{name}/{leaf}' for name in expected for leaf in REQUIRED}
+    for name in sorted(expected):
+        for directory, dirnames, filenames in os.walk(root / name):
+            dirnames[:] = [entry for entry in dirnames if entry not in EXCLUDED_DIRS]
+            for filename in filenames:
+                if filename in EXCLUDED_FILES or filename.endswith(('.pyc', '.pyo')):
+                    continue
+                paths.add((Path(directory) / filename).relative_to(root).as_posix())
+    return sorted(paths)
+
 
 class InputError(Exception):
     pass
@@ -104,9 +127,7 @@ def check_installation(skills_dir):
         scope = 'repository'
         repository = open_path(ROOT, directory=True)
         descriptors.append(repository)
-        paths = sorted(f'{name}/{filename}' for name in EXPECTED
-                       for filename in ('SKILL.md', 'agents/openai.yaml'))
-        for relative in paths:
+        for relative in package_paths():
             try:
                 expected = read_expected_path(repository, relative)
             except PathError as error:

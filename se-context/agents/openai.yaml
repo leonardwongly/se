@@ -1,0 +1,3 @@
+interface:
+  display_name: "SE Context"
+  short_description: "Rebuild recent working context into a brief"
