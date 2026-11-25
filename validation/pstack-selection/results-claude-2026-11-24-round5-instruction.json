@@ -1,0 +1,68 @@
+[
+  {
+    "id": "how-2",
+    "area": "how/explain",
+    "expect": [
+      "se-how"
+    ],
+    "read": [
+      "se-how"
+    ],
+    "pass": true,
+    "exit": 0,
+    "instructions": "load-skill-instruction.md"
+  },
+  {
+    "id": "par-1",
+    "area": "swarm/contest",
+    "expect": [
+      "se-swarm"
+    ],
+    "read": [
+      "se-swarm"
+    ],
+    "pass": true,
+    "exit": 0,
+    "instructions": "load-skill-instruction.md"
+  },
+  {
+    "id": "ver-3",
+    "area": "verify/harness/benchmark",
+    "expect": [
+      "se-verify"
+    ],
+    "read": [
+      "se-verify"
+    ],
+    "pass": true,
+    "exit": 0,
+    "instructions": "load-skill-instruction.md"
+  },
+  {
+    "id": "wri-2",
+    "area": "writing/prose/plain",
+    "expect": [
+      "se-prose"
+    ],
+    "read": [
+      "se-prose"
+    ],
+    "pass": true,
+    "exit": 0,
+    "instructions": "load-skill-instruction.md"
+  },
+  {
+    "id": "des-1",
+    "area": "design/blueprint/playbook",
+    "expect": [
+      "se-playbook",
+      "se-test-first"
+    ],
+    "read": [
+      "se-playbook"
+    ],
+    "pass": true,
+    "exit": 0,
+    "instructions": "load-skill-instruction.md"
+  }
+]

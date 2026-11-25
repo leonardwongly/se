@@ -15,11 +15,9 @@ import check_installed
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / 'scripts/check_installed.py'
-PACKAGES = ('se-concurrent', 'se-how', 'se-proof', 'se-swarm', 'se-verify',
-            'se-visualise', 'se-what', 'se-when', 'se-where', 'se-who',
-            'se-why', 'se-zero-trust')
-PATHS = sorted(f'{name}/{leaf}' for name in PACKAGES
-               for leaf in ('SKILL.md', 'agents/openai.yaml'))
+PATHS = check_installed.package_paths()
+REQUIRED_PATHS = sorted(f'{name}/{leaf}' for name in check_installed.EXPECTED
+                        for leaf in check_installed.REQUIRED)
 
 
 class InstallationTests(unittest.TestCase):
@@ -67,8 +65,27 @@ class InstallationTests(unittest.TestCase):
         self.assertEqual(report['status'], 'different')
         self.assertEqual(self.statuses(report)['se-what/SKILL.md'], 'missing')
         self.assertEqual(self.statuses(report)['se-why/agents/openai.yaml'], 'modified')
-        self.assertEqual(sum(item['status'] == 'match' for item in report['files']), 22)
+        self.assertEqual(sum(item['status'] == 'match' for item in report['files']), len(PATHS) - 2)
         self.assertEqual(target.read_bytes(), b'\xff' + original[1:])
+
+    def test_AC_11_3_missing_playbook_or_reference_is_reported(self):
+        for relative in ('se-playbook/playbooks/bug-fix.md', 'se-principles/references/prove-it-works.md'):
+            with self.subTest(relative=relative):
+                self.assertIn(relative, PATHS)
+                target = self.installed / relative
+                original = target.read_bytes()
+                target.unlink()
+                try:
+                    result, report = self.check()
+                    self.assertEqual(result.returncode, 1)
+                    self.assertEqual(self.statuses(report)[relative], 'missing')
+                finally:
+                    target.write_bytes(original)
+
+    def test_inventory_covers_every_package_file(self):
+        self.assertTrue(set(REQUIRED_PATHS) <= set(PATHS))
+        self.assertGreater(len(PATHS), len(REQUIRED_PATHS))
+        self.assertFalse([path for path in PATHS if '/node_modules/' in path or path.endswith('.DS_Store')])
 
     def test_shorter_longer_and_empty_files_are_modified(self):
         target = self.installed / PATHS[0]
@@ -85,7 +102,7 @@ class InstallationTests(unittest.TestCase):
         (self.installed / 'se-what/extra.py').write_text('raise AssertionError("must not run")')
         result, report = self.check()
         self.assertEqual(result.returncode, 0)
-        self.assertEqual(len(report['files']), 24)
+        self.assertEqual(len(report['files']), len(PATHS))
 
     def test_explicit_relative_directory_is_used(self):
         result, report = self.run_cli('--skills-dir', 'installed')
@@ -191,8 +208,8 @@ class InstallationTests(unittest.TestCase):
             report, code = check_installed.check_installation(str(self.installed))
         self.assertEqual(code, 2)
         self.assertEqual(report['status'], 'error')
-        self.assertEqual(len(report['errors']), 24)
-        self.assertEqual([item['path'] for item in report['errors']], PATHS)
+        self.assertEqual(len(report['errors']), 2 * len(check_installed.EXPECTED))
+        self.assertEqual([item['path'] for item in report['errors']], REQUIRED_PATHS)
 
     def test_no_network_or_content_execution(self):
         with patch.object(socket, 'socket', side_effect=AssertionError('network')), \

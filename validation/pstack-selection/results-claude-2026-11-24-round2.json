@@ -1,0 +1,188 @@
+[
+  {
+    "id": "why-1",
+    "area": "why",
+    "expect": [
+      "se-why"
+    ],
+    "read": [
+      "se-why"
+    ],
+    "pass": true,
+    "exit": 0
+  },
+  {
+    "id": "why-2",
+    "area": "why",
+    "expect": [
+      "se-why"
+    ],
+    "read": [
+      "se-why"
+    ],
+    "pass": true,
+    "exit": 0
+  },
+  {
+    "id": "why-3",
+    "area": "why",
+    "expect": [
+      "se-why"
+    ],
+    "read": [
+      "se-why"
+    ],
+    "pass": true,
+    "exit": 0
+  },
+  {
+    "id": "par-1",
+    "area": "swarm/contest",
+    "expect": [
+      "se-swarm"
+    ],
+    "read": [],
+    "pass": false,
+    "exit": 0
+  },
+  {
+    "id": "par-2",
+    "area": "swarm/contest",
+    "expect": [
+      "se-contest"
+    ],
+    "read": [
+      "se-contest"
+    ],
+    "pass": true,
+    "exit": 0
+  },
+  {
+    "id": "par-3",
+    "area": "swarm/contest",
+    "expect": [
+      "se-challenge"
+    ],
+    "read": [
+      "se-challenge",
+      "se-contest"
+    ],
+    "pass": true,
+    "exit": 0
+  },
+  {
+    "id": "ver-1",
+    "area": "verify/harness/benchmark",
+    "expect": [
+      "se-harness"
+    ],
+    "read": [
+      "se-harness",
+      "ledger-harness"
+    ],
+    "pass": true,
+    "exit": 0
+  },
+  {
+    "id": "ver-2",
+    "area": "verify/harness/benchmark",
+    "expect": [
+      "se-benchmark"
+    ],
+    "read": [
+      "se-benchmark"
+    ],
+    "pass": true,
+    "exit": 0
+  },
+  {
+    "id": "ver-3",
+    "area": "verify/harness/benchmark",
+    "expect": [
+      "se-verify"
+    ],
+    "read": [],
+    "pass": false,
+    "exit": 0
+  },
+  {
+    "id": "wri-1",
+    "area": "writing/prose/plain",
+    "expect": [
+      "se-writing"
+    ],
+    "read": [
+      "se-writing"
+    ],
+    "pass": true,
+    "exit": 0
+  },
+  {
+    "id": "wri-2",
+    "area": "writing/prose/plain",
+    "expect": [
+      "se-prose"
+    ],
+    "read": [],
+    "pass": false,
+    "exit": 0
+  },
+  {
+    "id": "wri-3",
+    "area": "writing/prose/plain",
+    "expect": [
+      "se-plain"
+    ],
+    "read": [],
+    "pass": false,
+    "exit": 0
+  },
+  {
+    "id": "des-1",
+    "area": "design/blueprint/playbook",
+    "expect": [
+      "se-playbook",
+      "se-test-first"
+    ],
+    "read": [],
+    "pass": false,
+    "exit": 0
+  },
+  {
+    "id": "des-2",
+    "area": "design/blueprint/playbook",
+    "expect": [
+      "se-design"
+    ],
+    "read": [
+      "se-design"
+    ],
+    "pass": true,
+    "exit": 0
+  },
+  {
+    "id": "des-3",
+    "area": "design/blueprint/playbook",
+    "expect": [
+      "se-blueprint"
+    ],
+    "read": [
+      "se-blueprint",
+      "se-decision-log"
+    ],
+    "pass": true,
+    "exit": 0
+  },
+  {
+    "id": "ci-1",
+    "area": "ci",
+    "expect": [
+      "se-ci"
+    ],
+    "read": [
+      "se-ci"
+    ],
+    "pass": true,
+    "exit": 0
+  }
+]

@@ -1,0 +1,3 @@
+interface:
+  display_name: "SE Decision Log"
+  short_description: "Keep a reviewable trail of run decisions"

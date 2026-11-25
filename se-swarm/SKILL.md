@@ -1,6 +1,6 @@
 ---
 name: se-swarm
-description: Execute substantial software tasks with a coordinated team of available agents, adapting assignments as evidence reveals gaps and iterating through integration, verification, and remediation. Use when a swarm is requested or distinct workstreams justify delegation; preserve scope, authority, and resource limits.
+description: "Execute substantial software tasks with a coordinated team of available agents, adapting assignments as evidence reveals gaps and iterating through integration, verification, and remediation. Use when a swarm or fan-out is requested, or distinct workstreams justify delegation; preserve scope, authority, and resource limits. Fan-out means N parallel workers, one per module, file or question (coverage or flakiness sweeps, audits, races, gauntlets), drained into one consolidated report. For competing candidates merged into one artifact use se-contest; for adversarial reviewers use se-challenge."
 ---
 
 # SE Swarm
@@ -142,6 +142,34 @@ evidence links, and remaining limits. Preserve unresolved failures and existing 
 absent evidence cannot pass and accepted exceptions remain explicit. Distinguish local
 verification from hosted/deployed proof and release authorization. Do not claim speedup
 without measured elapsed time and a meaningful comparison.
+
+## Fan-out patterns
+
+Use this shape when the job is parallel coverage, a race, a gauntlet or an exploration that ends in
+one report, rather than a long-running team.
+
+1. **Frame.** Open a task list with one entry per phase: frame, fan out, aggregate, report. State the
+   done predicate and the artifact or report the swarm returns. Choose the shape: partition into
+   slices, race N workers on identical briefs, or mix both. For a race or a mixed shape, declare
+   `first pass`, `rank all` or `best-of` before spawning.
+2. **Pick the worker model.** Use the `swarm workers` line in the SE settings file
+   (`~/.claude/rules/se-models.md` in Claude Code, `~/.agents/se-models.md` elsewhere) when it
+   exists; otherwise `claude-opus-5-5-high`, or the closest model your subagent tool accepts. For
+   `auto` or `inherit-parent`, omit the model. For a model race, name each arm's model up front.
+   When `se-playbook` is installed, pick each worker's reasoning level per its Subagents section.
+3. **Isolate outputs.** Give each worker its own writable output, a worktree or a path, when it
+   writes. When workers verify or measure commits, each brief names the exact SHAs. A measurement
+   brief also names the method (sample count, what one sample is, order), and the worker records both.
+4. **Fan out.** Spawn all workers at once, in the background where the tool allows. Every brief
+   stands alone: goal, scope, exact slice or race arm, how to verify and what to report. Reports use
+   `PASS`, `ISSUES` or `BLOCKED` with evidence, and a worker that can prove a defect lists every
+   issue it can prove, not only the first. If a worker drops out, continue with N-1 and note it.
+5. **Aggregate.** Read the terminal results. Drop a result that lacks the SHAs and method its brief
+   named and respawn that worker once; after a second miss, record a gap. A gap does not count as a
+   pass. For coverage, every required slice needs a result. For a race, apply the rule declared up
+   front. Do not paste raw worker dumps.
+6. **Report.** Return one consolidated report: a result table, one line per issue, gaps or
+   dropouts, and the race rule when used.
 
 ## Boundaries and sources
 

@@ -1,0 +1,3 @@
+interface:
+  display_name: "SE CI"
+  short_description: "Make CI faster and more valuable each run"

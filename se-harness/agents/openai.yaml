@@ -1,0 +1,3 @@
+interface:
+  display_name: "SE Harness"
+  short_description: "Generate a skill that drives the real app"

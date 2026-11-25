@@ -1,6 +1,6 @@
 ---
 name: se-why
-description: Explain or evaluate the rationale behind AI or software engineering decisions using code, decision records, measurements, and explicit tradeoffs; distinguish documented history from inferred justification.
+description: "Explain or evaluate the rationale behind AI or software engineering decisions using code, history, decision records, measurements, and explicit tradeoffs; distinguish documented history from inferred justification. Use for any 'why' question about a codebase or its CI: why code or a test does something (a sleep, a retry, a skip), why a run, release or metric failed or regressed and which change caused it, where a value or decision came from and whether it is recorded, postmortems, and data-backed thresholds, each with a cited answer. For how something works at runtime use se-how."
 ---
 
 # SE Why
@@ -87,6 +87,19 @@ For AI systems, examine whether model behavior is required for the outcome, what
 deterministic alternative would lose, and how uncertainty affects downstream decisions.
 Do not assume an AI component is beneficial merely because it is already present.
 Do not assign numerical weights or confidence scores without a defensible basis.
+
+## Regressions, postmortems and thresholds
+
+When the question is why a behaviour changed, why an incident happened, or where a number or
+threshold came from, answer from the record rather than from the code alone.
+
+- Read the commits and pull request discussions that introduced the target and each later change,
+  then the issues, incident notes, benchmarks or decision records they cite. Widen to other sources
+  only when that trail is thin.
+- Cite what the authors wrote. Mark your own inferences as inferences, and say what the record does
+  not answer.
+- For a regression, name the change that introduced it and the evidence that ties the two. For a
+  threshold, give the measurement it came from, or say that none is recorded.
 
 ## Output contract
 

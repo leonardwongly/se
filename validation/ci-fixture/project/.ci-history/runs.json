@@ -1,0 +1,3363 @@
+[
+ {
+  "id": 7001,
+  "head_sha": "ee14fda919d4b0475b730ca6c375d7994e81b428",
+  "event": "pull_request",
+  "branch": "pr-1",
+  "pull_request": 1,
+  "attempt": 1,
+  "created_at": "2026-10-01T09:00:00+00:00",
+  "queue_s": 82,
+  "duration_s": 59.9,
+  "conclusion": "success",
+  "failure": null,
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 59.9,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 2
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 2
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 11
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 39
+     },
+     {
+      "name": "Lint",
+      "duration_s": 2
+     },
+     {
+      "name": "Unit tests",
+      "duration_s": 3.5
+     },
+     {
+      "name": "Security gate",
+      "duration_s": 0.4
+     }
+    ]
+   }
+  ],
+  "tests": [
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_response",
+    "step": "Unit tests",
+    "duration_s": 0.002,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer",
+    "step": "Unit tests",
+    "duration_s": 0.019,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_total_includes_tax",
+    "step": "Unit tests",
+    "duration_s": 0.004,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_empty_invoice",
+    "step": "Unit tests",
+    "duration_s": 0.008,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_subtotal_helper",
+    "step": "Unit tests",
+    "duration_s": 0.004,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_total_again",
+    "step": "Unit tests",
+    "duration_s": 0.008,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.reports.test_monthly.MonthlyTests.test_monthly_totals",
+    "step": "Unit tests",
+    "duration_s": 3.07,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Unit tests",
+    "duration_s": 0.012,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Unit tests",
+    "duration_s": 0.003,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Security gate",
+    "duration_s": 0.005,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Security gate",
+    "duration_s": 0.002,
+    "outcome": "success"
+   }
+  ]
+ },
+ {
+  "id": 7002,
+  "head_sha": "89dc199a770572e7d3d7fe2f645d62d0148e3513",
+  "event": "pull_request",
+  "branch": "pr-1",
+  "pull_request": 1,
+  "attempt": 1,
+  "created_at": "2026-10-02T22:00:00+00:00",
+  "queue_s": 25,
+  "duration_s": 58.9,
+  "conclusion": "failure",
+  "failure": {
+   "step": "Unit tests",
+   "tests": [
+    "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer"
+   ],
+   "message": "ValueError: invalid customer id"
+  },
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 58.9,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 3
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 1
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 9
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 41
+     },
+     {
+      "name": "Lint",
+      "duration_s": 1
+     },
+     {
+      "name": "Unit tests",
+      "duration_s": 3.5
+     },
+     {
+      "name": "Security gate",
+      "duration_s": 0.4
+     }
+    ]
+   }
+  ],
+  "tests": [
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_response",
+    "step": "Unit tests",
+    "duration_s": 0.008,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer",
+    "step": "Unit tests",
+    "duration_s": 0.018,
+    "outcome": "failure"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_total_includes_tax",
+    "step": "Unit tests",
+    "duration_s": 0.011,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_empty_invoice",
+    "step": "Unit tests",
+    "duration_s": 0.017,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_subtotal_helper",
+    "step": "Unit tests",
+    "duration_s": 0.013,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_total_again",
+    "step": "Unit tests",
+    "duration_s": 0.001,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.reports.test_monthly.MonthlyTests.test_monthly_totals",
+    "step": "Unit tests",
+    "duration_s": 3.05,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Unit tests",
+    "duration_s": 0.013,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Unit tests",
+    "duration_s": 0.004,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Security gate",
+    "duration_s": 0.007,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Security gate",
+    "duration_s": 0.009,
+    "outcome": "success"
+   }
+  ]
+ },
+ {
+  "id": 7003,
+  "head_sha": "89dc199a770572e7d3d7fe2f645d62d0148e3513",
+  "event": "pull_request",
+  "branch": "pr-1",
+  "pull_request": 1,
+  "attempt": 2,
+  "created_at": "2026-10-04T11:00:00+00:00",
+  "queue_s": 62,
+  "duration_s": 68.0,
+  "conclusion": "success",
+  "failure": null,
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 68.0,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 3
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 2
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 12
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 45
+     },
+     {
+      "name": "Lint",
+      "duration_s": 2
+     },
+     {
+      "name": "Unit tests",
+      "duration_s": 3.6
+     },
+     {
+      "name": "Security gate",
+      "duration_s": 0.4
+     }
+    ]
+   }
+  ],
+  "tests": [
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_response",
+    "step": "Unit tests",
+    "duration_s": 0.006,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer",
+    "step": "Unit tests",
+    "duration_s": 0.001,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_total_includes_tax",
+    "step": "Unit tests",
+    "duration_s": 0.012,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_empty_invoice",
+    "step": "Unit tests",
+    "duration_s": 0.02,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_subtotal_helper",
+    "step": "Unit tests",
+    "duration_s": 0.018,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_total_again",
+    "step": "Unit tests",
+    "duration_s": 0.014,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.reports.test_monthly.MonthlyTests.test_monthly_totals",
+    "step": "Unit tests",
+    "duration_s": 3.08,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Unit tests",
+    "duration_s": 0.01,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Unit tests",
+    "duration_s": 0.003,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Security gate",
+    "duration_s": 0.007,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Security gate",
+    "duration_s": 0.006,
+    "outcome": "success"
+   }
+  ]
+ },
+ {
+  "id": 7004,
+  "head_sha": "82648fa8ad3bcc53c95114e384d9ad2217b8e66e",
+  "event": "push",
+  "branch": "main",
+  "pull_request": null,
+  "attempt": 1,
+  "created_at": "2026-10-06T00:00:00+00:00",
+  "queue_s": 61,
+  "duration_s": 61.9,
+  "conclusion": "success",
+  "failure": null,
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 61.9,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 4
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 1
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 12
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 39
+     },
+     {
+      "name": "Lint",
+      "duration_s": 2
+     },
+     {
+      "name": "Unit tests",
+      "duration_s": 3.5
+     },
+     {
+      "name": "Security gate",
+      "duration_s": 0.4
+     }
+    ]
+   }
+  ],
+  "tests": [
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_response",
+    "step": "Unit tests",
+    "duration_s": 0.008,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer",
+    "step": "Unit tests",
+    "duration_s": 0.007,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_total_includes_tax",
+    "step": "Unit tests",
+    "duration_s": 0.017,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_empty_invoice",
+    "step": "Unit tests",
+    "duration_s": 0.004,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_subtotal_helper",
+    "step": "Unit tests",
+    "duration_s": 0.007,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_total_again",
+    "step": "Unit tests",
+    "duration_s": 0.005,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.reports.test_monthly.MonthlyTests.test_monthly_totals",
+    "step": "Unit tests",
+    "duration_s": 3.02,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Unit tests",
+    "duration_s": 0.008,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Unit tests",
+    "duration_s": 0.01,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Security gate",
+    "duration_s": 0.008,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Security gate",
+    "duration_s": 0.004,
+    "outcome": "success"
+   }
+  ]
+ },
+ {
+  "id": 7005,
+  "head_sha": "67d0411185f2101275d1d083a255d4a08d396ed3",
+  "event": "push",
+  "branch": "main",
+  "pull_request": null,
+  "attempt": 1,
+  "created_at": "2026-10-07T13:00:00+00:00",
+  "queue_s": 75,
+  "duration_s": 137,
+  "conclusion": "failure",
+  "failure": {
+   "step": "Install dependencies",
+   "message": "ReadTimeoutError: HTTPSConnectionPool(host='files.pythonhosted.org', port=443): Read timed out."
+  },
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 137,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 4
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 3
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 10
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 120
+     }
+    ]
+   }
+  ],
+  "tests": []
+ },
+ {
+  "id": 7006,
+  "head_sha": "67d0411185f2101275d1d083a255d4a08d396ed3",
+  "event": "push",
+  "branch": "main",
+  "pull_request": null,
+  "attempt": 2,
+  "created_at": "2026-10-09T02:00:00+00:00",
+  "queue_s": 67,
+  "duration_s": 72.0,
+  "conclusion": "success",
+  "failure": null,
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 72.0,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 4
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 3
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 14
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 46
+     },
+     {
+      "name": "Lint",
+      "duration_s": 1
+     },
+     {
+      "name": "Unit tests",
+      "duration_s": 3.6
+     },
+     {
+      "name": "Security gate",
+      "duration_s": 0.4
+     }
+    ]
+   }
+  ],
+  "tests": [
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_response",
+    "step": "Unit tests",
+    "duration_s": 0.011,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer",
+    "step": "Unit tests",
+    "duration_s": 0.014,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_total_includes_tax",
+    "step": "Unit tests",
+    "duration_s": 0.011,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_empty_invoice",
+    "step": "Unit tests",
+    "duration_s": 0.01,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_subtotal_helper",
+    "step": "Unit tests",
+    "duration_s": 0.017,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_total_again",
+    "step": "Unit tests",
+    "duration_s": 0.003,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.reports.test_monthly.MonthlyTests.test_monthly_totals",
+    "step": "Unit tests",
+    "duration_s": 3.12,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Unit tests",
+    "duration_s": 0.002,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Unit tests",
+    "duration_s": 0.007,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Security gate",
+    "duration_s": 0.008,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Security gate",
+    "duration_s": 0.003,
+    "outcome": "success"
+   }
+  ]
+ },
+ {
+  "id": 7007,
+  "head_sha": "5a6a8c0ea9789ba29af04931ac98e967609b56bf",
+  "event": "pull_request",
+  "branch": "pr-2",
+  "pull_request": 2,
+  "attempt": 1,
+  "created_at": "2026-10-10T15:00:00+00:00",
+  "queue_s": 18,
+  "duration_s": 61.0,
+  "conclusion": "failure",
+  "failure": {
+   "step": "Unit tests",
+   "tests": [
+    "tests.billing.test_invoice.InvoiceTests.test_total_includes_tax",
+    "tests.billing.test_invoice_copy.InvoiceCopyTests.test_total_again"
+   ],
+   "message": "AssertionError: 21.6 != 21.8"
+  },
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 61.0,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 2
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 3
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 10
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 40
+     },
+     {
+      "name": "Lint",
+      "duration_s": 2
+     },
+     {
+      "name": "Unit tests",
+      "duration_s": 3.6
+     },
+     {
+      "name": "Security gate",
+      "duration_s": 0.4
+     }
+    ]
+   }
+  ],
+  "tests": [
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_response",
+    "step": "Unit tests",
+    "duration_s": 0.018,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer",
+    "step": "Unit tests",
+    "duration_s": 0.012,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_total_includes_tax",
+    "step": "Unit tests",
+    "duration_s": 0.003,
+    "outcome": "failure"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_empty_invoice",
+    "step": "Unit tests",
+    "duration_s": 0.015,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_subtotal_helper",
+    "step": "Unit tests",
+    "duration_s": 0.013,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_total_again",
+    "step": "Unit tests",
+    "duration_s": 0.015,
+    "outcome": "failure"
+   },
+   {
+    "id": "tests.reports.test_monthly.MonthlyTests.test_monthly_totals",
+    "step": "Unit tests",
+    "duration_s": 3.11,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Unit tests",
+    "duration_s": 0.014,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Unit tests",
+    "duration_s": 0.02,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Security gate",
+    "duration_s": 0.004,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Security gate",
+    "duration_s": 0.007,
+    "outcome": "success"
+   }
+  ]
+ },
+ {
+  "id": 7008,
+  "head_sha": "344df0405bbe92919777489a6057b01e60313010",
+  "event": "pull_request",
+  "branch": "pr-2",
+  "pull_request": 2,
+  "attempt": 1,
+  "created_at": "2026-10-12T04:00:00+00:00",
+  "queue_s": 78,
+  "duration_s": 64.9,
+  "conclusion": "failure",
+  "failure": {
+   "step": "Unit tests",
+   "tests": [
+    "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer"
+   ],
+   "message": "ValueError: invalid customer id"
+  },
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 64.9,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 2
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 1
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 11
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 46
+     },
+     {
+      "name": "Lint",
+      "duration_s": 1
+     },
+     {
+      "name": "Unit tests",
+      "duration_s": 3.5
+     },
+     {
+      "name": "Security gate",
+      "duration_s": 0.4
+     }
+    ]
+   }
+  ],
+  "tests": [
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_response",
+    "step": "Unit tests",
+    "duration_s": 0.014,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer",
+    "step": "Unit tests",
+    "duration_s": 0.002,
+    "outcome": "failure"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_total_includes_tax",
+    "step": "Unit tests",
+    "duration_s": 0.011,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_empty_invoice",
+    "step": "Unit tests",
+    "duration_s": 0.002,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_subtotal_helper",
+    "step": "Unit tests",
+    "duration_s": 0.005,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_total_again",
+    "step": "Unit tests",
+    "duration_s": 0.016,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.reports.test_monthly.MonthlyTests.test_monthly_totals",
+    "step": "Unit tests",
+    "duration_s": 3.05,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Unit tests",
+    "duration_s": 0.013,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Unit tests",
+    "duration_s": 0.011,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Security gate",
+    "duration_s": 0.006,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Security gate",
+    "duration_s": 0.002,
+    "outcome": "success"
+   }
+  ]
+ },
+ {
+  "id": 7009,
+  "head_sha": "344df0405bbe92919777489a6057b01e60313010",
+  "event": "pull_request",
+  "branch": "pr-2",
+  "pull_request": 2,
+  "attempt": 2,
+  "created_at": "2026-10-13T17:00:00+00:00",
+  "queue_s": 52,
+  "duration_s": 69.0,
+  "conclusion": "success",
+  "failure": null,
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 69.0,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 3
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 1
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 14
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 46
+     },
+     {
+      "name": "Lint",
+      "duration_s": 1
+     },
+     {
+      "name": "Unit tests",
+      "duration_s": 3.6
+     },
+     {
+      "name": "Security gate",
+      "duration_s": 0.4
+     }
+    ]
+   }
+  ],
+  "tests": [
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_response",
+    "step": "Unit tests",
+    "duration_s": 0.015,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer",
+    "step": "Unit tests",
+    "duration_s": 0.016,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_total_includes_tax",
+    "step": "Unit tests",
+    "duration_s": 0.003,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_empty_invoice",
+    "step": "Unit tests",
+    "duration_s": 0.012,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_subtotal_helper",
+    "step": "Unit tests",
+    "duration_s": 0.013,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_total_again",
+    "step": "Unit tests",
+    "duration_s": 0.01,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.reports.test_monthly.MonthlyTests.test_monthly_totals",
+    "step": "Unit tests",
+    "duration_s": 3.13,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Unit tests",
+    "duration_s": 0.006,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Unit tests",
+    "duration_s": 0.007,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Security gate",
+    "duration_s": 0.006,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Security gate",
+    "duration_s": 0.006,
+    "outcome": "success"
+   }
+  ]
+ },
+ {
+  "id": 7010,
+  "head_sha": "1ad3b4e607a7cdfcacbb9310db36b7bf1ab18212",
+  "event": "pull_request",
+  "branch": "pr-2",
+  "pull_request": 2,
+  "attempt": 1,
+  "created_at": "2026-10-15T06:00:00+00:00",
+  "queue_s": 39,
+  "duration_s": 61.9,
+  "conclusion": "success",
+  "failure": null,
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 61.9,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 4
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 2
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 12
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 39
+     },
+     {
+      "name": "Lint",
+      "duration_s": 1
+     },
+     {
+      "name": "Unit tests",
+      "duration_s": 3.5
+     },
+     {
+      "name": "Security gate",
+      "duration_s": 0.4
+     }
+    ]
+   }
+  ],
+  "tests": [
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_response",
+    "step": "Unit tests",
+    "duration_s": 0.001,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer",
+    "step": "Unit tests",
+    "duration_s": 0.019,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_total_includes_tax",
+    "step": "Unit tests",
+    "duration_s": 0.016,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_empty_invoice",
+    "step": "Unit tests",
+    "duration_s": 0.006,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_subtotal_helper",
+    "step": "Unit tests",
+    "duration_s": 0.007,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_total_again",
+    "step": "Unit tests",
+    "duration_s": 0.019,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.reports.test_monthly.MonthlyTests.test_monthly_totals",
+    "step": "Unit tests",
+    "duration_s": 3.06,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Unit tests",
+    "duration_s": 0.012,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Unit tests",
+    "duration_s": 0.008,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Security gate",
+    "duration_s": 0.004,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Security gate",
+    "duration_s": 0.006,
+    "outcome": "success"
+   }
+  ]
+ },
+ {
+  "id": 7011,
+  "head_sha": "fb8f5423e8d938f29a12044411280abab44cc8f1",
+  "event": "push",
+  "branch": "main",
+  "pull_request": null,
+  "attempt": 1,
+  "created_at": "2026-10-16T19:00:00+00:00",
+  "queue_s": 32,
+  "duration_s": 69.0,
+  "conclusion": "success",
+  "failure": null,
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 69.0,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 4
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 1
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 12
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 46
+     },
+     {
+      "name": "Lint",
+      "duration_s": 2
+     },
+     {
+      "name": "Unit tests",
+      "duration_s": 3.6
+     },
+     {
+      "name": "Security gate",
+      "duration_s": 0.4
+     }
+    ]
+   }
+  ],
+  "tests": [
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_response",
+    "step": "Unit tests",
+    "duration_s": 0.014,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer",
+    "step": "Unit tests",
+    "duration_s": 0.013,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_total_includes_tax",
+    "step": "Unit tests",
+    "duration_s": 0.008,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_empty_invoice",
+    "step": "Unit tests",
+    "duration_s": 0.002,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_subtotal_helper",
+    "step": "Unit tests",
+    "duration_s": 0.016,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_total_again",
+    "step": "Unit tests",
+    "duration_s": 0.008,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.reports.test_monthly.MonthlyTests.test_monthly_totals",
+    "step": "Unit tests",
+    "duration_s": 3.11,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Unit tests",
+    "duration_s": 0.012,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Unit tests",
+    "duration_s": 0.006,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Security gate",
+    "duration_s": 0.001,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Security gate",
+    "duration_s": 0.002,
+    "outcome": "success"
+   }
+  ]
+ },
+ {
+  "id": 7012,
+  "head_sha": "36d7890c684ee6da853f1232625869830333d34b",
+  "event": "pull_request",
+  "branch": "pr-3",
+  "pull_request": 3,
+  "attempt": 1,
+  "created_at": "2026-10-18T08:00:00+00:00",
+  "queue_s": 70,
+  "duration_s": 63.0,
+  "conclusion": "success",
+  "failure": null,
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 63.0,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 4
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 2
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 9
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 42
+     },
+     {
+      "name": "Lint",
+      "duration_s": 2
+     },
+     {
+      "name": "Unit tests",
+      "duration_s": 3.6
+     },
+     {
+      "name": "Security gate",
+      "duration_s": 0.4
+     }
+    ]
+   }
+  ],
+  "tests": [
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_response",
+    "step": "Unit tests",
+    "duration_s": 0.019,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer",
+    "step": "Unit tests",
+    "duration_s": 0.012,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_total_includes_tax",
+    "step": "Unit tests",
+    "duration_s": 0.009,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_empty_invoice",
+    "step": "Unit tests",
+    "duration_s": 0.003,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_subtotal_helper",
+    "step": "Unit tests",
+    "duration_s": 0.008,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_total_again",
+    "step": "Unit tests",
+    "duration_s": 0.003,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.reports.test_monthly.MonthlyTests.test_monthly_totals",
+    "step": "Unit tests",
+    "duration_s": 3.1,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Unit tests",
+    "duration_s": 0.016,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Unit tests",
+    "duration_s": 0.004,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Security gate",
+    "duration_s": 0.008,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Security gate",
+    "duration_s": 0.001,
+    "outcome": "success"
+   }
+  ]
+ },
+ {
+  "id": 7013,
+  "head_sha": "4d509688bc2302a15d497fc50cd5e63dd253d6eb",
+  "event": "pull_request",
+  "branch": "pr-3",
+  "pull_request": 3,
+  "attempt": 1,
+  "created_at": "2026-10-19T21:00:00+00:00",
+  "queue_s": 62,
+  "duration_s": 138,
+  "conclusion": "failure",
+  "failure": {
+   "step": "Install dependencies",
+   "message": "ReadTimeoutError: HTTPSConnectionPool(host='files.pythonhosted.org', port=443): Read timed out."
+  },
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 138,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 2
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 3
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 13
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 120
+     }
+    ]
+   }
+  ],
+  "tests": []
+ },
+ {
+  "id": 7014,
+  "head_sha": "4d509688bc2302a15d497fc50cd5e63dd253d6eb",
+  "event": "pull_request",
+  "branch": "pr-3",
+  "pull_request": 3,
+  "attempt": 2,
+  "created_at": "2026-10-21T10:00:00+00:00",
+  "queue_s": 81,
+  "duration_s": 64.0,
+  "conclusion": "success",
+  "failure": null,
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 64.0,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 2
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 3
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 12
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 42
+     },
+     {
+      "name": "Lint",
+      "duration_s": 1
+     },
+     {
+      "name": "Unit tests",
+      "duration_s": 3.6
+     },
+     {
+      "name": "Security gate",
+      "duration_s": 0.4
+     }
+    ]
+   }
+  ],
+  "tests": [
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_response",
+    "step": "Unit tests",
+    "duration_s": 0.017,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer",
+    "step": "Unit tests",
+    "duration_s": 0.003,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_total_includes_tax",
+    "step": "Unit tests",
+    "duration_s": 0.014,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_empty_invoice",
+    "step": "Unit tests",
+    "duration_s": 0.007,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_subtotal_helper",
+    "step": "Unit tests",
+    "duration_s": 0.02,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_total_again",
+    "step": "Unit tests",
+    "duration_s": 0.002,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.reports.test_monthly.MonthlyTests.test_monthly_totals",
+    "step": "Unit tests",
+    "duration_s": 3.09,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Unit tests",
+    "duration_s": 0.006,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Unit tests",
+    "duration_s": 0.007,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Security gate",
+    "duration_s": 0.003,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Security gate",
+    "duration_s": 0.005,
+    "outcome": "success"
+   }
+  ]
+ },
+ {
+  "id": 7015,
+  "head_sha": "938567d4a6cc42f8b79d16ec0333bc6b825e7941",
+  "event": "push",
+  "branch": "main",
+  "pull_request": null,
+  "attempt": 1,
+  "created_at": "2026-10-22T23:00:00+00:00",
+  "queue_s": 93,
+  "duration_s": 67.0,
+  "conclusion": "success",
+  "failure": null,
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 67.0,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 3
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 2
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 11
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 45
+     },
+     {
+      "name": "Lint",
+      "duration_s": 2
+     },
+     {
+      "name": "Unit tests",
+      "duration_s": 3.6
+     },
+     {
+      "name": "Security gate",
+      "duration_s": 0.4
+     }
+    ]
+   }
+  ],
+  "tests": [
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_response",
+    "step": "Unit tests",
+    "duration_s": 0.008,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer",
+    "step": "Unit tests",
+    "duration_s": 0.005,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_total_includes_tax",
+    "step": "Unit tests",
+    "duration_s": 0.018,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_empty_invoice",
+    "step": "Unit tests",
+    "duration_s": 0.007,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_subtotal_helper",
+    "step": "Unit tests",
+    "duration_s": 0.019,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_total_again",
+    "step": "Unit tests",
+    "duration_s": 0.007,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.reports.test_monthly.MonthlyTests.test_monthly_totals",
+    "step": "Unit tests",
+    "duration_s": 3.12,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Unit tests",
+    "duration_s": 0.005,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Unit tests",
+    "duration_s": 0.007,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Security gate",
+    "duration_s": 0.006,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Security gate",
+    "duration_s": 0.001,
+    "outcome": "success"
+   }
+  ]
+ },
+ {
+  "id": 7016,
+  "head_sha": "b1dbaa41a1592c14f87e67aa7102b1f8d97f9a39",
+  "event": "pull_request",
+  "branch": "pr-4",
+  "pull_request": 4,
+  "attempt": 1,
+  "created_at": "2026-10-24T12:00:00+00:00",
+  "queue_s": 44,
+  "duration_s": 64.1,
+  "conclusion": "failure",
+  "failure": {
+   "step": "Unit tests",
+   "tests": [
+    "tests.security.test_security.SecurityTests.test_rejects_injection"
+   ],
+   "message": "AssertionError: ValueError not raised"
+  },
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 64.1,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 2
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 1
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 9
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 46
+     },
+     {
+      "name": "Lint",
+      "duration_s": 2
+     },
+     {
+      "name": "Unit tests",
+      "duration_s": 3.6
+     },
+     {
+      "name": "Security gate",
+      "duration_s": 0.5
+     }
+    ]
+   }
+  ],
+  "tests": [
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_response",
+    "step": "Unit tests",
+    "duration_s": 0.016,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer",
+    "step": "Unit tests",
+    "duration_s": 0.011,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_total_includes_tax",
+    "step": "Unit tests",
+    "duration_s": 0.016,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_empty_invoice",
+    "step": "Unit tests",
+    "duration_s": 0.006,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_subtotal_helper",
+    "step": "Unit tests",
+    "duration_s": 0.013,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_total_again",
+    "step": "Unit tests",
+    "duration_s": 0.011,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.reports.test_monthly.MonthlyTests.test_monthly_totals",
+    "step": "Unit tests",
+    "duration_s": 3.12,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Unit tests",
+    "duration_s": 0.017,
+    "outcome": "failure"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Unit tests",
+    "duration_s": 0.017,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Security gate",
+    "duration_s": 0.003,
+    "outcome": "failure"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Security gate",
+    "duration_s": 0.007,
+    "outcome": "success"
+   }
+  ]
+ },
+ {
+  "id": 7017,
+  "head_sha": "059619a88b7d81416eeae9e3ef3cbea34861d152",
+  "event": "pull_request",
+  "branch": "pr-4",
+  "pull_request": 4,
+  "attempt": 1,
+  "created_at": "2026-10-26T01:00:00+00:00",
+  "queue_s": 73,
+  "duration_s": 59.0,
+  "conclusion": "failure",
+  "failure": {
+   "step": "Unit tests",
+   "tests": [
+    "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer"
+   ],
+   "message": "ValueError: invalid customer id"
+  },
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 59.0,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 2
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 1
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 12
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 38
+     },
+     {
+      "name": "Lint",
+      "duration_s": 2
+     },
+     {
+      "name": "Unit tests",
+      "duration_s": 3.6
+     },
+     {
+      "name": "Security gate",
+      "duration_s": 0.4
+     }
+    ]
+   }
+  ],
+  "tests": [
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_response",
+    "step": "Unit tests",
+    "duration_s": 0.017,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer",
+    "step": "Unit tests",
+    "duration_s": 0.017,
+    "outcome": "failure"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_total_includes_tax",
+    "step": "Unit tests",
+    "duration_s": 0.016,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_empty_invoice",
+    "step": "Unit tests",
+    "duration_s": 0.01,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_subtotal_helper",
+    "step": "Unit tests",
+    "duration_s": 0.018,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_total_again",
+    "step": "Unit tests",
+    "duration_s": 0.007,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.reports.test_monthly.MonthlyTests.test_monthly_totals",
+    "step": "Unit tests",
+    "duration_s": 3.05,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Unit tests",
+    "duration_s": 0.017,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Unit tests",
+    "duration_s": 0.015,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Security gate",
+    "duration_s": 0.004,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Security gate",
+    "duration_s": 0.004,
+    "outcome": "success"
+   }
+  ]
+ },
+ {
+  "id": 7018,
+  "head_sha": "059619a88b7d81416eeae9e3ef3cbea34861d152",
+  "event": "pull_request",
+  "branch": "pr-4",
+  "pull_request": 4,
+  "attempt": 2,
+  "created_at": "2026-10-27T14:00:00+00:00",
+  "queue_s": 45,
+  "duration_s": 61.9,
+  "conclusion": "success",
+  "failure": null,
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 61.9,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 3
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 1
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 12
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 40
+     },
+     {
+      "name": "Lint",
+      "duration_s": 2
+     },
+     {
+      "name": "Unit tests",
+      "duration_s": 3.5
+     },
+     {
+      "name": "Security gate",
+      "duration_s": 0.4
+     }
+    ]
+   }
+  ],
+  "tests": [
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_response",
+    "step": "Unit tests",
+    "duration_s": 0.009,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer",
+    "step": "Unit tests",
+    "duration_s": 0.011,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_total_includes_tax",
+    "step": "Unit tests",
+    "duration_s": 0.005,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_empty_invoice",
+    "step": "Unit tests",
+    "duration_s": 0.002,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_subtotal_helper",
+    "step": "Unit tests",
+    "duration_s": 0.013,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_total_again",
+    "step": "Unit tests",
+    "duration_s": 0.019,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.reports.test_monthly.MonthlyTests.test_monthly_totals",
+    "step": "Unit tests",
+    "duration_s": 3.02,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Unit tests",
+    "duration_s": 0.018,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Unit tests",
+    "duration_s": 0.016,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Security gate",
+    "duration_s": 0.005,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Security gate",
+    "duration_s": 0.003,
+    "outcome": "success"
+   }
+  ]
+ },
+ {
+  "id": 7019,
+  "head_sha": "72b2ed67c14d8fdc0dde77410ec5ecbf2d359e6a",
+  "event": "push",
+  "branch": "main",
+  "pull_request": null,
+  "attempt": 1,
+  "created_at": "2026-10-29T03:00:00+00:00",
+  "queue_s": 57,
+  "duration_s": 62.0,
+  "conclusion": "success",
+  "failure": null,
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 62.0,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 2
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 2
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 13
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 39
+     },
+     {
+      "name": "Lint",
+      "duration_s": 2
+     },
+     {
+      "name": "Unit tests",
+      "duration_s": 3.6
+     },
+     {
+      "name": "Security gate",
+      "duration_s": 0.4
+     }
+    ]
+   }
+  ],
+  "tests": [
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_response",
+    "step": "Unit tests",
+    "duration_s": 0.002,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer",
+    "step": "Unit tests",
+    "duration_s": 0.014,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_total_includes_tax",
+    "step": "Unit tests",
+    "duration_s": 0.011,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_empty_invoice",
+    "step": "Unit tests",
+    "duration_s": 0.003,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_subtotal_helper",
+    "step": "Unit tests",
+    "duration_s": 0.015,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_total_again",
+    "step": "Unit tests",
+    "duration_s": 0.014,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.reports.test_monthly.MonthlyTests.test_monthly_totals",
+    "step": "Unit tests",
+    "duration_s": 3.08,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Unit tests",
+    "duration_s": 0.018,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Unit tests",
+    "duration_s": 0.016,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Security gate",
+    "duration_s": 0.01,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Security gate",
+    "duration_s": 0.006,
+    "outcome": "success"
+   }
+  ]
+ },
+ {
+  "id": 7020,
+  "head_sha": "a68080bebd2c757b8e741521e4665aab036963a9",
+  "event": "pull_request",
+  "branch": "pr-5",
+  "pull_request": 5,
+  "attempt": 1,
+  "created_at": "2026-10-30T16:00:00+00:00",
+  "queue_s": 32,
+  "duration_s": 62.9,
+  "conclusion": "failure",
+  "failure": {
+   "step": "Unit tests",
+   "tests": [
+    "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer"
+   ],
+   "message": "ValueError: invalid customer id"
+  },
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 62.9,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 2
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 3
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 9
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 43
+     },
+     {
+      "name": "Lint",
+      "duration_s": 2
+     },
+     {
+      "name": "Unit tests",
+      "duration_s": 3.5
+     },
+     {
+      "name": "Security gate",
+      "duration_s": 0.4
+     }
+    ]
+   }
+  ],
+  "tests": [
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_response",
+    "step": "Unit tests",
+    "duration_s": 0.01,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer",
+    "step": "Unit tests",
+    "duration_s": 0.01,
+    "outcome": "failure"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_total_includes_tax",
+    "step": "Unit tests",
+    "duration_s": 0.004,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_empty_invoice",
+    "step": "Unit tests",
+    "duration_s": 0.013,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_subtotal_helper",
+    "step": "Unit tests",
+    "duration_s": 0.02,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_total_again",
+    "step": "Unit tests",
+    "duration_s": 0.01,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.reports.test_monthly.MonthlyTests.test_monthly_totals",
+    "step": "Unit tests",
+    "duration_s": 3.02,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Unit tests",
+    "duration_s": 0.002,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Unit tests",
+    "duration_s": 0.007,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Security gate",
+    "duration_s": 0.005,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Security gate",
+    "duration_s": 0.003,
+    "outcome": "success"
+   }
+  ]
+ },
+ {
+  "id": 7021,
+  "head_sha": "a68080bebd2c757b8e741521e4665aab036963a9",
+  "event": "pull_request",
+  "branch": "pr-5",
+  "pull_request": 5,
+  "attempt": 2,
+  "created_at": "2026-11-01T05:00:00+00:00",
+  "queue_s": 15,
+  "duration_s": 67.9,
+  "conclusion": "success",
+  "failure": null,
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 67.9,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 4
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 1
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 11
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 46
+     },
+     {
+      "name": "Lint",
+      "duration_s": 2
+     },
+     {
+      "name": "Unit tests",
+      "duration_s": 3.5
+     },
+     {
+      "name": "Security gate",
+      "duration_s": 0.4
+     }
+    ]
+   }
+  ],
+  "tests": [
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_response",
+    "step": "Unit tests",
+    "duration_s": 0.002,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer",
+    "step": "Unit tests",
+    "duration_s": 0.019,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_total_includes_tax",
+    "step": "Unit tests",
+    "duration_s": 0.002,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_empty_invoice",
+    "step": "Unit tests",
+    "duration_s": 0.018,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_subtotal_helper",
+    "step": "Unit tests",
+    "duration_s": 0.019,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_total_again",
+    "step": "Unit tests",
+    "duration_s": 0.005,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.reports.test_monthly.MonthlyTests.test_monthly_totals",
+    "step": "Unit tests",
+    "duration_s": 3.02,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Unit tests",
+    "duration_s": 0.003,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Unit tests",
+    "duration_s": 0.018,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Security gate",
+    "duration_s": 0.007,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Security gate",
+    "duration_s": 0.003,
+    "outcome": "success"
+   }
+  ]
+ },
+ {
+  "id": 7022,
+  "head_sha": "d44ce3902fb57771a65d412e92ae453f9a55d090",
+  "event": "push",
+  "branch": "main",
+  "pull_request": null,
+  "attempt": 1,
+  "created_at": "2026-11-02T18:00:00+00:00",
+  "queue_s": 86,
+  "duration_s": 63.0,
+  "conclusion": "success",
+  "failure": null,
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 63.0,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 2
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 3
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 12
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 40
+     },
+     {
+      "name": "Lint",
+      "duration_s": 2
+     },
+     {
+      "name": "Unit tests",
+      "duration_s": 3.6
+     },
+     {
+      "name": "Security gate",
+      "duration_s": 0.4
+     }
+    ]
+   }
+  ],
+  "tests": [
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_response",
+    "step": "Unit tests",
+    "duration_s": 0.002,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer",
+    "step": "Unit tests",
+    "duration_s": 0.004,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_total_includes_tax",
+    "step": "Unit tests",
+    "duration_s": 0.007,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_empty_invoice",
+    "step": "Unit tests",
+    "duration_s": 0.014,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_subtotal_helper",
+    "step": "Unit tests",
+    "duration_s": 0.01,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_total_again",
+    "step": "Unit tests",
+    "duration_s": 0.008,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.reports.test_monthly.MonthlyTests.test_monthly_totals",
+    "step": "Unit tests",
+    "duration_s": 3.11,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Unit tests",
+    "duration_s": 0.013,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Unit tests",
+    "duration_s": 0.01,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Security gate",
+    "duration_s": 0.01,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Security gate",
+    "duration_s": 0.003,
+    "outcome": "success"
+   }
+  ]
+ },
+ {
+  "id": 7023,
+  "head_sha": "8d2f0390a29f274e08be71c2057c414f52f1c693",
+  "event": "pull_request",
+  "branch": "pr-6",
+  "pull_request": 6,
+  "attempt": 1,
+  "created_at": "2026-11-04T07:00:00+00:00",
+  "queue_s": 72,
+  "duration_s": 136,
+  "conclusion": "failure",
+  "failure": {
+   "step": "Install dependencies",
+   "message": "ReadTimeoutError: HTTPSConnectionPool(host='files.pythonhosted.org', port=443): Read timed out."
+  },
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 136,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 4
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 3
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 9
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 120
+     }
+    ]
+   }
+  ],
+  "tests": []
+ },
+ {
+  "id": 7024,
+  "head_sha": "8d2f0390a29f274e08be71c2057c414f52f1c693",
+  "event": "pull_request",
+  "branch": "pr-6",
+  "pull_request": 6,
+  "attempt": 2,
+  "created_at": "2026-11-05T20:00:00+00:00",
+  "queue_s": 74,
+  "duration_s": 64.0,
+  "conclusion": "success",
+  "failure": null,
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 64.0,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 3
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 1
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 10
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 45
+     },
+     {
+      "name": "Lint",
+      "duration_s": 1
+     },
+     {
+      "name": "Unit tests",
+      "duration_s": 3.6
+     },
+     {
+      "name": "Security gate",
+      "duration_s": 0.4
+     }
+    ]
+   }
+  ],
+  "tests": [
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_response",
+    "step": "Unit tests",
+    "duration_s": 0.011,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer",
+    "step": "Unit tests",
+    "duration_s": 0.017,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_total_includes_tax",
+    "step": "Unit tests",
+    "duration_s": 0.01,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_empty_invoice",
+    "step": "Unit tests",
+    "duration_s": 0.002,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_subtotal_helper",
+    "step": "Unit tests",
+    "duration_s": 0.007,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_total_again",
+    "step": "Unit tests",
+    "duration_s": 0.014,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.reports.test_monthly.MonthlyTests.test_monthly_totals",
+    "step": "Unit tests",
+    "duration_s": 3.1,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Unit tests",
+    "duration_s": 0.013,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Unit tests",
+    "duration_s": 0.018,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Security gate",
+    "duration_s": 0.004,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Security gate",
+    "duration_s": 0.003,
+    "outcome": "success"
+   }
+  ]
+ },
+ {
+  "id": 7025,
+  "head_sha": "cfa1f3956dbc8f1c981785d15cdc75596f3954fb",
+  "event": "pull_request",
+  "branch": "pr-6",
+  "pull_request": 6,
+  "attempt": 1,
+  "created_at": "2026-11-07T09:00:00+00:00",
+  "queue_s": 57,
+  "duration_s": 63.9,
+  "conclusion": "success",
+  "failure": null,
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 63.9,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 4
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 1
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 14
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 40
+     },
+     {
+      "name": "Lint",
+      "duration_s": 1
+     },
+     {
+      "name": "Unit tests",
+      "duration_s": 3.5
+     },
+     {
+      "name": "Security gate",
+      "duration_s": 0.4
+     }
+    ]
+   }
+  ],
+  "tests": [
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_response",
+    "step": "Unit tests",
+    "duration_s": 0.003,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer",
+    "step": "Unit tests",
+    "duration_s": 0.007,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_total_includes_tax",
+    "step": "Unit tests",
+    "duration_s": 0.005,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_empty_invoice",
+    "step": "Unit tests",
+    "duration_s": 0.008,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_subtotal_helper",
+    "step": "Unit tests",
+    "duration_s": 0.017,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_total_again",
+    "step": "Unit tests",
+    "duration_s": 0.003,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.reports.test_monthly.MonthlyTests.test_monthly_totals",
+    "step": "Unit tests",
+    "duration_s": 3.04,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Unit tests",
+    "duration_s": 0.012,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Unit tests",
+    "duration_s": 0.016,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Security gate",
+    "duration_s": 0.007,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Security gate",
+    "duration_s": 0.003,
+    "outcome": "success"
+   }
+  ]
+ },
+ {
+  "id": 7026,
+  "head_sha": "a7d6d44b015a97b0b15f04dbb73ae0de642a3d1a",
+  "event": "push",
+  "branch": "main",
+  "pull_request": null,
+  "attempt": 1,
+  "created_at": "2026-11-08T22:00:00+00:00",
+  "queue_s": 66,
+  "duration_s": 68.9,
+  "conclusion": "failure",
+  "failure": {
+   "step": "Unit tests",
+   "tests": [
+    "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer"
+   ],
+   "message": "ValueError: invalid customer id"
+  },
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 68.9,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 4
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 2
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 14
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 44
+     },
+     {
+      "name": "Lint",
+      "duration_s": 1
+     },
+     {
+      "name": "Unit tests",
+      "duration_s": 3.5
+     },
+     {
+      "name": "Security gate",
+      "duration_s": 0.4
+     }
+    ]
+   }
+  ],
+  "tests": [
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_response",
+    "step": "Unit tests",
+    "duration_s": 0.016,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer",
+    "step": "Unit tests",
+    "duration_s": 0.016,
+    "outcome": "failure"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_total_includes_tax",
+    "step": "Unit tests",
+    "duration_s": 0.002,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_empty_invoice",
+    "step": "Unit tests",
+    "duration_s": 0.003,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_subtotal_helper",
+    "step": "Unit tests",
+    "duration_s": 0.002,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_total_again",
+    "step": "Unit tests",
+    "duration_s": 0.012,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.reports.test_monthly.MonthlyTests.test_monthly_totals",
+    "step": "Unit tests",
+    "duration_s": 3.08,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Unit tests",
+    "duration_s": 0.013,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Unit tests",
+    "duration_s": 0.004,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Security gate",
+    "duration_s": 0.008,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Security gate",
+    "duration_s": 0.003,
+    "outcome": "success"
+   }
+  ]
+ },
+ {
+  "id": 7027,
+  "head_sha": "a7d6d44b015a97b0b15f04dbb73ae0de642a3d1a",
+  "event": "push",
+  "branch": "main",
+  "pull_request": null,
+  "attempt": 2,
+  "created_at": "2026-11-10T11:00:00+00:00",
+  "queue_s": 54,
+  "duration_s": 62.0,
+  "conclusion": "success",
+  "failure": null,
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 62.0,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 2
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 3
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 12
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 40
+     },
+     {
+      "name": "Lint",
+      "duration_s": 1
+     },
+     {
+      "name": "Unit tests",
+      "duration_s": 3.6
+     },
+     {
+      "name": "Security gate",
+      "duration_s": 0.4
+     }
+    ]
+   }
+  ],
+  "tests": [
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_response",
+    "step": "Unit tests",
+    "duration_s": 0.012,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer",
+    "step": "Unit tests",
+    "duration_s": 0.018,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_total_includes_tax",
+    "step": "Unit tests",
+    "duration_s": 0.011,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_empty_invoice",
+    "step": "Unit tests",
+    "duration_s": 0.01,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_subtotal_helper",
+    "step": "Unit tests",
+    "duration_s": 0.016,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_total_again",
+    "step": "Unit tests",
+    "duration_s": 0.017,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.reports.test_monthly.MonthlyTests.test_monthly_totals",
+    "step": "Unit tests",
+    "duration_s": 3.07,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Unit tests",
+    "duration_s": 0.016,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Unit tests",
+    "duration_s": 0.003,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Security gate",
+    "duration_s": 0.005,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Security gate",
+    "duration_s": 0.004,
+    "outcome": "success"
+   }
+  ]
+ },
+ {
+  "id": 7028,
+  "head_sha": "281cca230b0ac294e271bc0fb42d55f9153b069c",
+  "event": "push",
+  "branch": "main",
+  "pull_request": null,
+  "attempt": 1,
+  "created_at": "2026-11-12T00:00:00+00:00",
+  "queue_s": 56,
+  "duration_s": 68.0,
+  "conclusion": "success",
+  "failure": null,
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 68.0,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 4
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 3
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 14
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 41
+     },
+     {
+      "name": "Lint",
+      "duration_s": 2
+     },
+     {
+      "name": "Unit tests",
+      "duration_s": 3.6
+     },
+     {
+      "name": "Security gate",
+      "duration_s": 0.4
+     }
+    ]
+   }
+  ],
+  "tests": [
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_response",
+    "step": "Unit tests",
+    "duration_s": 0.001,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer",
+    "step": "Unit tests",
+    "duration_s": 0.013,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_total_includes_tax",
+    "step": "Unit tests",
+    "duration_s": 0.008,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_empty_invoice",
+    "step": "Unit tests",
+    "duration_s": 0.009,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_subtotal_helper",
+    "step": "Unit tests",
+    "duration_s": 0.008,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_total_again",
+    "step": "Unit tests",
+    "duration_s": 0.02,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.reports.test_monthly.MonthlyTests.test_monthly_totals",
+    "step": "Unit tests",
+    "duration_s": 3.07,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Unit tests",
+    "duration_s": 0.018,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Unit tests",
+    "duration_s": 0.007,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Security gate",
+    "duration_s": 0.009,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Security gate",
+    "duration_s": 0.008,
+    "outcome": "success"
+   }
+  ]
+ },
+ {
+  "id": 7029,
+  "head_sha": "25b57ecaf96f2cbdde1ee8748c006cfce9b4afa7",
+  "event": "push",
+  "branch": "main",
+  "pull_request": null,
+  "attempt": 1,
+  "created_at": "2026-11-13T13:00:00+00:00",
+  "queue_s": 48,
+  "duration_s": 64.9,
+  "conclusion": "failure",
+  "failure": {
+   "step": "Unit tests",
+   "tests": [
+    "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer"
+   ],
+   "message": "ValueError: invalid customer id"
+  },
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 64.9,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 3
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 3
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 14
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 40
+     },
+     {
+      "name": "Lint",
+      "duration_s": 1
+     },
+     {
+      "name": "Unit tests",
+      "duration_s": 3.5
+     },
+     {
+      "name": "Security gate",
+      "duration_s": 0.4
+     }
+    ]
+   }
+  ],
+  "tests": [
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_response",
+    "step": "Unit tests",
+    "duration_s": 0.003,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer",
+    "step": "Unit tests",
+    "duration_s": 0.017,
+    "outcome": "failure"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_total_includes_tax",
+    "step": "Unit tests",
+    "duration_s": 0.014,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_empty_invoice",
+    "step": "Unit tests",
+    "duration_s": 0.002,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_subtotal_helper",
+    "step": "Unit tests",
+    "duration_s": 0.006,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_total_again",
+    "step": "Unit tests",
+    "duration_s": 0.02,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.reports.test_monthly.MonthlyTests.test_monthly_totals",
+    "step": "Unit tests",
+    "duration_s": 3.06,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Unit tests",
+    "duration_s": 0.008,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Unit tests",
+    "duration_s": 0.016,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Security gate",
+    "duration_s": 0.005,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Security gate",
+    "duration_s": 0.002,
+    "outcome": "success"
+   }
+  ]
+ },
+ {
+  "id": 7030,
+  "head_sha": "25b57ecaf96f2cbdde1ee8748c006cfce9b4afa7",
+  "event": "push",
+  "branch": "main",
+  "pull_request": null,
+  "attempt": 2,
+  "created_at": "2026-11-15T02:00:00+00:00",
+  "queue_s": 77,
+  "duration_s": 63.0,
+  "conclusion": "success",
+  "failure": null,
+  "jobs": [
+   {
+    "name": "test",
+    "runner": "ubuntu-latest",
+    "duration_s": 63.0,
+    "steps": [
+     {
+      "name": "Set up job",
+      "duration_s": 4
+     },
+     {
+      "name": "Checkout",
+      "duration_s": 2
+     },
+     {
+      "name": "Set up Python",
+      "duration_s": 13
+     },
+     {
+      "name": "Install dependencies",
+      "duration_s": 39
+     },
+     {
+      "name": "Lint",
+      "duration_s": 1
+     },
+     {
+      "name": "Unit tests",
+      "duration_s": 3.6
+     },
+     {
+      "name": "Security gate",
+      "duration_s": 0.4
+     }
+    ]
+   }
+  ],
+  "tests": [
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_response",
+    "step": "Unit tests",
+    "duration_s": 0.01,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.api.test_handlers.HandlerTests.test_invoice_for_random_customer",
+    "step": "Unit tests",
+    "duration_s": 0.014,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_total_includes_tax",
+    "step": "Unit tests",
+    "duration_s": 0.018,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice.InvoiceTests.test_empty_invoice",
+    "step": "Unit tests",
+    "duration_s": 0.005,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_subtotal_helper",
+    "step": "Unit tests",
+    "duration_s": 0.002,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.billing.test_invoice_copy.InvoiceCopyTests.test_total_again",
+    "step": "Unit tests",
+    "duration_s": 0.015,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.reports.test_monthly.MonthlyTests.test_monthly_totals",
+    "step": "Unit tests",
+    "duration_s": 3.11,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Unit tests",
+    "duration_s": 0.02,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Unit tests",
+    "duration_s": 0.013,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_rejects_injection",
+    "step": "Security gate",
+    "duration_s": 0.004,
+    "outcome": "success"
+   },
+   {
+    "id": "tests.security.test_security.SecurityTests.test_requires_billing_role",
+    "step": "Security gate",
+    "duration_s": 0.008,
+    "outcome": "success"
+   }
+  ]
+ }
+]

@@ -1,0 +1,111 @@
+[
+ {
+  "number": 1,
+  "title": "Add tax rounding to invoices",
+  "state": "merged",
+  "author": "dev-a",
+  "files": [
+   "app/billing/invoice.py",
+   "tests/billing/test_invoice.py"
+  ],
+  "comments": [
+   {
+    "author": "dev-b",
+    "body": "CI failed on test_invoice_for_random_customer, unrelated to this change. Re-ran it and it passed."
+   }
+  ]
+ },
+ {
+  "number": 2,
+  "title": "Refactor subtotal calculation",
+  "state": "merged",
+  "author": "dev-b",
+  "files": [
+   "app/billing/invoice.py"
+  ],
+  "comments": [
+   {
+    "author": "dev-a",
+    "body": "test_total_includes_tax caught the rounding change, good. Fixed in the next commit."
+   },
+   {
+    "author": "dev-b",
+    "body": "Random customer test failed again, re-running."
+   }
+  ]
+ },
+ {
+  "number": 3,
+  "title": "Remove the monthly report cache",
+  "state": "merged",
+  "author": "dev-c",
+  "files": [
+   "app/reports/monthly.py"
+  ],
+  "comments": [
+   {
+    "author": "dev-a",
+    "body": "The cache is gone, but test_monthly_totals still sleeps for 3 seconds waiting for it."
+   },
+   {
+    "author": "dev-c",
+    "body": "Install step timed out talking to PyPI, re-ran."
+   }
+  ]
+ },
+ {
+  "number": 4,
+  "title": "Accept customer ids with spaces",
+  "state": "merged",
+  "author": "dev-d",
+  "files": [
+   "app/security.py",
+   "app/api/handlers.py"
+  ],
+  "comments": [
+   {
+    "author": "dev-b",
+    "body": "The security gate caught that this lets \"1; DROP TABLE invoices\" through. Reverted the regex change."
+   },
+   {
+    "author": "dev-d",
+    "body": "Also hit the flaky random customer test."
+   }
+  ]
+ },
+ {
+  "number": 5,
+  "title": "Speed up CI",
+  "state": "closed",
+  "author": "dev-c",
+  "files": [
+   ".github/workflows/ci.yml"
+  ],
+  "comments": [
+   {
+    "author": "dev-c",
+    "body": "Every run spends about 40 s installing dependencies; we never cache them. Most runs take over a minute for 9 tests."
+   },
+   {
+    "author": "dev-a",
+    "body": "Closing for now, no time to finish."
+   }
+  ]
+ },
+ {
+  "number": 6,
+  "title": "Add CSV export for monthly reports",
+  "state": "merged",
+  "author": "dev-a",
+  "files": [
+   "app/reports/monthly.py",
+   "app/cli.py"
+  ],
+  "comments": [
+   {
+    "author": "dev-b",
+    "body": "No test for export_csv yet? Approving anyway, it is small."
+   }
+  ]
+ }
+]

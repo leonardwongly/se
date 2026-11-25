@@ -1,0 +1,112 @@
+[
+  {
+    "id": "par-3",
+    "area": "swarm/contest",
+    "expect": [
+      "se-challenge"
+    ],
+    "read": [
+      "se-challenge",
+      "se-contest"
+    ],
+    "pass": true,
+    "exit": 0,
+    "instructions": "load-skill-instruction.md"
+  },
+  {
+    "id": "ver-1",
+    "area": "verify/harness/benchmark",
+    "expect": [
+      "se-harness"
+    ],
+    "read": [
+      "se-harness",
+      "ledger-harness",
+      "se-zero-trust",
+      "se-verify"
+    ],
+    "pass": true,
+    "exit": 0,
+    "instructions": "load-skill-instruction.md"
+  },
+  {
+    "id": "ver-2",
+    "area": "verify/harness/benchmark",
+    "expect": [
+      "se-benchmark"
+    ],
+    "read": [
+      "se-benchmark"
+    ],
+    "pass": true,
+    "exit": 0,
+    "instructions": "load-skill-instruction.md"
+  },
+  {
+    "id": "wri-1",
+    "area": "writing/prose/plain",
+    "expect": [
+      "se-writing"
+    ],
+    "read": [
+      "se-writing"
+    ],
+    "pass": true,
+    "exit": 0,
+    "instructions": "load-skill-instruction.md"
+  },
+  {
+    "id": "wri-3",
+    "area": "writing/prose/plain",
+    "expect": [
+      "se-plain"
+    ],
+    "read": [
+      "se-plain"
+    ],
+    "pass": true,
+    "exit": 0,
+    "instructions": "load-skill-instruction.md"
+  },
+  {
+    "id": "des-2",
+    "area": "design/blueprint/playbook",
+    "expect": [
+      "se-design"
+    ],
+    "read": [
+      "se-design"
+    ],
+    "pass": true,
+    "exit": 0,
+    "instructions": "load-skill-instruction.md"
+  },
+  {
+    "id": "des-3",
+    "area": "design/blueprint/playbook",
+    "expect": [
+      "se-blueprint"
+    ],
+    "read": [
+      "se-blueprint",
+      "se-decision-log",
+      "se-playbook"
+    ],
+    "pass": true,
+    "exit": 0,
+    "instructions": "load-skill-instruction.md"
+  },
+  {
+    "id": "ci-1",
+    "area": "ci",
+    "expect": [
+      "se-ci"
+    ],
+    "read": [
+      "se-ci"
+    ],
+    "pass": true,
+    "exit": 0,
+    "instructions": "load-skill-instruction.md"
+  }
+]

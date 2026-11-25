@@ -1,0 +1,169 @@
+[
+  {
+    "id": "how-1",
+    "area": "how/explain",
+    "expect": [
+      "se-how",
+      "se-explain"
+    ],
+    "read": [
+      "se-how"
+    ],
+    "pass": true,
+    "exit": 0,
+    "instructions": "load-skill-instruction.md"
+  },
+  {
+    "id": "how-3",
+    "area": "how/explain",
+    "expect": [
+      "se-explain"
+    ],
+    "read": [
+      "se-explain"
+    ],
+    "pass": true,
+    "exit": 0,
+    "instructions": "load-skill-instruction.md"
+  },
+  {
+    "id": "why-1",
+    "area": "why",
+    "expect": [
+      "se-why"
+    ],
+    "read": [
+      "se-why"
+    ],
+    "pass": true,
+    "exit": 0,
+    "instructions": "load-skill-instruction.md"
+  },
+  {
+    "id": "why-2",
+    "area": "why",
+    "expect": [
+      "se-why"
+    ],
+    "read": [
+      "se-why"
+    ],
+    "pass": true,
+    "exit": 0,
+    "instructions": "load-skill-instruction.md"
+  },
+  {
+    "id": "why-3",
+    "area": "why",
+    "expect": [
+      "se-why"
+    ],
+    "read": [
+      "se-why"
+    ],
+    "pass": true,
+    "exit": 0,
+    "instructions": "load-skill-instruction.md"
+  },
+  {
+    "id": "par-2",
+    "area": "swarm/contest",
+    "expect": [
+      "se-contest"
+    ],
+    "read": [
+      "se-contest"
+    ],
+    "pass": true,
+    "exit": 1,
+    "instructions": "load-skill-instruction.md"
+  },
+  {
+    "id": "par-3",
+    "area": "swarm/contest",
+    "expect": [
+      "se-challenge"
+    ],
+    "read": [],
+    "pass": false,
+    "exit": 1,
+    "instructions": "load-skill-instruction.md"
+  },
+  {
+    "id": "ver-1",
+    "area": "verify/harness/benchmark",
+    "expect": [
+      "se-harness"
+    ],
+    "read": [],
+    "pass": false,
+    "exit": 1,
+    "instructions": "load-skill-instruction.md"
+  },
+  {
+    "id": "ver-2",
+    "area": "verify/harness/benchmark",
+    "expect": [
+      "se-benchmark"
+    ],
+    "read": [],
+    "pass": false,
+    "exit": 1,
+    "instructions": "load-skill-instruction.md"
+  },
+  {
+    "id": "wri-1",
+    "area": "writing/prose/plain",
+    "expect": [
+      "se-writing"
+    ],
+    "read": [],
+    "pass": false,
+    "exit": 1,
+    "instructions": "load-skill-instruction.md"
+  },
+  {
+    "id": "wri-3",
+    "area": "writing/prose/plain",
+    "expect": [
+      "se-plain"
+    ],
+    "read": [],
+    "pass": false,
+    "exit": 1,
+    "instructions": "load-skill-instruction.md"
+  },
+  {
+    "id": "des-2",
+    "area": "design/blueprint/playbook",
+    "expect": [
+      "se-design"
+    ],
+    "read": [],
+    "pass": false,
+    "exit": 1,
+    "instructions": "load-skill-instruction.md"
+  },
+  {
+    "id": "des-3",
+    "area": "design/blueprint/playbook",
+    "expect": [
+      "se-blueprint"
+    ],
+    "read": [],
+    "pass": false,
+    "exit": 1,
+    "instructions": "load-skill-instruction.md"
+  },
+  {
+    "id": "ci-1",
+    "area": "ci",
+    "expect": [
+      "se-ci"
+    ],
+    "read": [],
+    "pass": false,
+    "exit": 1,
+    "instructions": "load-skill-instruction.md"
+  }
+]

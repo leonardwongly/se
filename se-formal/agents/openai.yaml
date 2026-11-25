@@ -1,0 +1,3 @@
+interface:
+  display_name: "SE Formal"
+  short_description: "Generate formal verification for risky code"

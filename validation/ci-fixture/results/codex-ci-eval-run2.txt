@@ -1,0 +1,14 @@
+PASS AC-2.2: CI.md exists after the follow-up run
+PASS AC-5.1: CI.md stays within 250 lines
+PASS AC-NFR4.2: CI.md holds no secrets or tokens
+FAIL AC-NFR1.2: no original test was deleted without a traced replacement (untraced ['test_invoice_for_random_customer'])
+PASS AC-NFR1.2: no test was newly skipped
+PASS AC-12.3: the proposed low-value test is still in place
+PASS AC-2.2: CI.md records the new revision
+PASS AC-5.2: no bucket repeats an entry
+PASS AC-13.1: the changelog records both runs
+PASS AC-7.1: the reply ends with a TESTS line
+PASS AC-7.1: selection includes ['tests.api', 'tests.billing', 'tests.security']
+PASS AC-9.1: selection excludes ['tests.reports']
+PASS AC-9.4: the security gate is selected
+Ran 13 checks: 12 passed, 1 failed

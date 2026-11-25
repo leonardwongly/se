@@ -1,0 +1,24 @@
+# 001 — Tasks
+
+- [x] T-1 Create the branch `feat/pstack-integration`. Clone pstack at `c3464c1` into scratch. Record the bun test baselines for the PR watcher and statechart. (FR-10, AC-10.1)
+- [x] T-2 Write `scripts/test_port_pstack.py`: reference-form rewriting, prose left unchanged, a principle moving into references, and edge preservation. (AC-4.3, AC-5.4, AC-1.2)
+- [x] T-3 Write `scripts/port_pstack.py` with the rename table and residue report until T-2 passes. (FR-1, FR-3, FR-4)
+- [x] T-4 Add negative and positive tests to `test_validate.py`. Cover broken links, unknown skills, residue, the typed-only flag and description length. (AC-5.3, AC-11.2)
+- [x] T-5 Extend `validate.py`: the 44-name inventory, a skill-reference check, a residue check, a description check and a notice check. (FR-5, FR-11, AC-7.1, AC-NFR3.1, AC-9.1)
+- [x] T-6 Run the port script into the repo and review the residue report. (FR-1)
+- [x] T-7 Build the `se-principles` index and the router's principle reading. (FR-3, AC-3.1–3.3)
+- [x] T-8 Make the router and playbooks host-neutral in `se-playbook`: replace the review triage reference and the harness references. (FR-8, AC-8.1–8.2)
+- [x] T-9 [P] Rewrite judgement items in batch A: `se-design`, `se-contest`, `se-challenge`, `se-deepen`, `se-blueprint`, `se-states`, `se-test-first`, `se-typescript`. Cover descriptions, host neutrality and the baseline section. (FR-7, FR-8, FR-12)
+- [x] T-10 [P] Rewrite batch B the same way: `se-comments`, `se-prose`, `se-writing`, `se-harness`, `se-harness-sync`, `se-formal`, `se-formal-sync`, `se-benchmark`. (FR-7, FR-8, FR-12, AC-4.2)
+- [x] T-11 [P] Rewrite batch C the same way: `se-impact`, `se-decision-log`, `se-recap`, `se-recap-video`, `se-plain`, `se-style`, `se-guardrail`, `se-retro`, `se-explain`, `se-context`, `se-restate`. (FR-7, FR-8, FR-12, AC-4.2)
+- [x] T-12 Write `se-help`, with in-package references that replace the 9 broken links, and `se-setup`, with host-aware model rule paths. (FR-5, AC-6.3, AC-8.3)
+- [x] T-13 Merge pstack's how, why and swarm into `se-how`, `se-why` and `se-swarm` as additive sections. (FR-2, AC-2.1–2.4, AC-6.2)
+- [x] T-14 Rename the script packages, update the statechart strings and corpus, then run the bun suites and diff the scripts against the source. (FR-10, AC-10.1–10.2, AC-NFR4.1)
+- [x] T-15 Add `agents/openai.yaml` to each new skill. (FR-11)
+- [x] T-16 Extend `check_installed.py` to all files, and add a test for a missing playbook. (AC-11.3)
+- [x] T-17 Add `THIRD_PARTY_NOTICES.md`, the README credit, the install-together table and the skill tables. Update the twelve-skill wording in README and PUBLICATION. Delete `docs/pstack-vs-se.html`. (FR-6, FR-9, AC-6.1, AC-9.2)
+- [x] T-18 Regenerate `MANIFEST.sha256` and run `validate.py` and every unittest suite. (AC-11.1, AC-NFR1.1–1.2)
+- [ ] T-19 Run the selection evaluation, fix descriptions, re-run the failures and write `validation/PSTACK-SELECTION.md`. (FR-13, AC-13.1–13.2) — partial: Claude Code ran all 19 prompts in four rounds; 14 of 19 read an expected skill in their latest run, the `se-why`, `se-swarm` and `se-plain` descriptions were rewritten, and the remaining gap is reported. Codex ran 8 of 19 (7 routed as expected); its other 11 wait for its usage limit. See validation/PSTACK-SELECTION.md.
+- [ ] T-20 Add a `REVIEW.md` section with AC-by-AC evidence. Set the spec Status to `Implemented`. (all) — AC table added to REVIEW.md; AC-13.1 is not met, so Status stays Approved. The amendments were approved on 2026-11-24.
+- [x] T-21 Set every skill's title to its SE display name (24 kept pstack titles, 3 had none) and make the validator fail a title that differs from the display name, with a regression test. Found during verification: the residue check did not cover titles. (FR-4, AC-4.1, AC-11.2)
+- [x] T-22 Make the SE change baseline load `se-zero-trust` and `se-verify` by name in the 16 skills that carry it, add a validator check with a regression test, and re-run the playbook-driven bug-fix prompt to confirm both load. (FR-12, AC-12.1, AC-12.2) — done: the re-run loaded both skills and reported their results; AC-12.2 was approved on 2026-11-24.

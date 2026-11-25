@@ -1,0 +1,50 @@
+PASS AC-4.1: CI.md exists at the project root
+PASS AC-5.1: CI.md stays within 250 lines
+PASS AC-NFR4.2: CI.md holds no secrets or tokens
+FAIL AC-NFR1.2: no original test was deleted without a traced replacement (untraced ['test_invoice_for_random_customer'])
+PASS AC-NFR1.2: no test was newly skipped
+PASS AC-12.3: the proposed low-value test is still in place
+PASS AC-1.2: CI.md records the surveyed revision
+PASS AC-1.2: CI.md records a file count
+PASS AC-1.1: survey coverage names pull requests, issues, CI history and configuration
+PASS AC-1.1: survey coverage says what was not accessible
+PASS AC-3.2: CI.md labels the classification method
+PASS AC-4.1: bucket heading present: required gates?
+PASS AC-4.1: bucket heading present: flaky
+PASS AC-4.1: bucket heading present: slow
+PASS AC-4.1: bucket heading present: low[- ]value
+PASS AC-4.1: bucket heading present: coverage gaps?
+PASS AC-4.1: bucket heading present: recurring failure
+PASS AC-4.1: bucket heading present: infrastructure
+FAIL AC-4.1: flaky test found
+FAIL AC-4.2: evidence cited for: flaky test found
+PASS AC-4.1: slow test found
+PASS AC-4.2: evidence cited for: slow test found
+PASS AC-4.1: duplicate and implementation-detail tests found
+PASS AC-4.2: evidence cited for: duplicate and implementation-detail tests found
+PASS AC-4.1: untested CSV export found
+PASS AC-4.2: evidence cited for: untested CSV export found
+PASS AC-4.1: install timeouts named as a recurring cause
+PASS AC-4.2: evidence cited for: install timeouts named as a recurring cause
+PASS AC-4.1: missing dependency cache found
+PASS AC-4.2: evidence cited for: missing dependency cache found
+PASS AC-4.1: security gate recorded as required
+PASS AC-4.2: evidence cited for: security gate recorded as required
+PASS AC-5.4: CI.md opens with a top-three summary
+PASS AC-6.1: flow map includes both entry points
+PASS AC-6.2: flow map attaches tests to billing, reports and api
+PASS AC-6.3: config is marked as a shared foundation
+PASS AC-11.3: numbers state their sample size
+PASS AC-12.1: removal or merge of the duplicate tests is proposed with evidence
+PASS AC-12.3: the removal waits on approval
+PASS AC-13.1: the changelog records this run
+PASS AC-14.3: product code is unchanged; defects are proposed, not fixed
+PASS AC-8.1: workflows parse as YAML
+FAIL AC-8.1: tests run in more than one job, organised by flow or module (1 test jobs)
+PASS AC-8.1: jobs wait only on jobs whose output they use
+PASS AC-9.1: pull requests select tests by affected flow
+PASS AC-9.2: shared foundations (config, dependencies) force the full suite
+PASS AC-9.3: the default branch or a schedule runs the full suite
+PASS AC-9.4: the security gate runs unconditionally on every pull request
+PASS AC-14.2: actionlint accepts the workflows
+Ran 49 checks: 45 passed, 4 failed

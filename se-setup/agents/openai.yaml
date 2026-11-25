@@ -1,0 +1,3 @@
+interface:
+  display_name: "SE Setup"
+  short_description: "Choose models and budget for each SE role"

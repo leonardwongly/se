@@ -1,0 +1,18 @@
+[
+  {
+    "id": "des-1",
+    "area": "design/blueprint/playbook",
+    "expect": [
+      "se-playbook",
+      "se-test-first"
+    ],
+    "read": [
+      "se-playbook",
+      "se-verify",
+      "se-zero-trust"
+    ],
+    "pass": true,
+    "exit": 0,
+    "instructions": "load-skill-instruction.md"
+  }
+]

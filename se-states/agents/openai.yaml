@@ -1,0 +1,3 @@
+interface:
+  display_name: "SE States"
+  short_description: "Check state models and draw statecharts"

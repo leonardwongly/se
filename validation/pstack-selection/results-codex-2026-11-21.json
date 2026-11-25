@@ -1,0 +1,299 @@
+{
+ "host": "codex exec (default model)",
+ "date": "2026-11-21",
+ "skills": "global install, 44 SE skills",
+ "results": [
+  {
+   "id": "how-1",
+   "area": "how/explain",
+   "expect": [
+    "se-how",
+    "se-explain"
+   ],
+   "read": [
+    "se-how",
+    "se-proof",
+    "se-where"
+   ],
+   "pass": true,
+   "exit": 0,
+   "completed": true,
+   "note": "",
+   "budget_warning": false
+  },
+  {
+   "id": "how-2",
+   "area": "how/explain",
+   "expect": [
+    "se-how"
+   ],
+   "read": [
+    "se-where",
+    "se-proof"
+   ],
+   "pass": false,
+   "exit": 0,
+   "completed": true,
+   "note": "",
+   "budget_warning": false
+  },
+  {
+   "id": "how-3",
+   "area": "how/explain",
+   "expect": [
+    "se-explain"
+   ],
+   "read": [
+    "se-explain",
+    "se-proof",
+    "se-how",
+    "se-where",
+    "se-who",
+    "se-prose",
+    "se-why"
+   ],
+   "pass": true,
+   "exit": 0,
+   "completed": true,
+   "note": "",
+   "budget_warning": false
+  },
+  {
+   "id": "why-1",
+   "area": "why",
+   "expect": [
+    "se-why"
+   ],
+   "read": [
+    "se-proof",
+    "se-why"
+   ],
+   "pass": true,
+   "exit": 0,
+   "completed": true,
+   "note": "",
+   "budget_warning": false
+  },
+  {
+   "id": "why-2",
+   "area": "why",
+   "expect": [
+    "se-why"
+   ],
+   "read": [
+    "se-where",
+    "se-proof",
+    "se-why"
+   ],
+   "pass": true,
+   "exit": 0,
+   "completed": true,
+   "note": "",
+   "budget_warning": false
+  },
+  {
+   "id": "why-3",
+   "area": "why",
+   "expect": [
+    "se-why"
+   ],
+   "read": [
+    "se-proof",
+    "se-why",
+    "se-where"
+   ],
+   "pass": true,
+   "exit": 0,
+   "completed": true,
+   "note": "",
+   "budget_warning": false
+  },
+  {
+   "id": "par-1",
+   "area": "swarm/contest",
+   "expect": [
+    "se-swarm"
+   ],
+   "read": [
+    "audit-test-quality",
+    "se-swarm",
+    "se-who",
+    "se-concurrent",
+    "se-proof",
+    "se-playbook"
+   ],
+   "pass": true,
+   "exit": 0,
+   "completed": true,
+   "note": "",
+   "budget_warning": false
+  },
+  {
+   "id": "par-2",
+   "area": "swarm/contest",
+   "expect": [
+    "se-contest"
+   ],
+   "read": [
+    "se-concurrent",
+    "se-contest",
+    "se-who",
+    "se-zero-trust",
+    "se-proof",
+    "se-verify",
+    "se-playbook",
+    "se-swarm",
+    "se-what"
+   ],
+   "pass": true,
+   "exit": 1,
+   "completed": true,
+   "note": "session stopped by the Codex usage limit",
+   "budget_warning": false
+  },
+  {
+   "id": "par-3",
+   "area": "swarm/contest",
+   "expect": [
+    "se-challenge"
+   ],
+   "read": [],
+   "pass": false,
+   "exit": 1,
+   "completed": false,
+   "note": "session stopped by the Codex usage limit",
+   "budget_warning": false
+  },
+  {
+   "id": "ver-1",
+   "area": "verify/harness/benchmark",
+   "expect": [
+    "se-harness"
+   ],
+   "read": [],
+   "pass": false,
+   "exit": 1,
+   "completed": false,
+   "note": "session stopped by the Codex usage limit",
+   "budget_warning": false
+  },
+  {
+   "id": "ver-2",
+   "area": "verify/harness/benchmark",
+   "expect": [
+    "se-benchmark"
+   ],
+   "read": [],
+   "pass": false,
+   "exit": 1,
+   "completed": false,
+   "note": "session stopped by the Codex usage limit",
+   "budget_warning": false
+  },
+  {
+   "id": "ver-3",
+   "area": "verify/harness/benchmark",
+   "expect": [
+    "se-verify"
+   ],
+   "read": [],
+   "pass": false,
+   "exit": 1,
+   "completed": false,
+   "note": "session stopped by the Codex usage limit",
+   "budget_warning": false
+  },
+  {
+   "id": "wri-1",
+   "area": "writing/prose/plain",
+   "expect": [
+    "se-writing"
+   ],
+   "read": [],
+   "pass": false,
+   "exit": 1,
+   "completed": false,
+   "note": "session stopped by the Codex usage limit",
+   "budget_warning": false
+  },
+  {
+   "id": "wri-2",
+   "area": "writing/prose/plain",
+   "expect": [
+    "se-prose"
+   ],
+   "read": [],
+   "pass": false,
+   "exit": 1,
+   "completed": false,
+   "note": "session stopped by the Codex usage limit",
+   "budget_warning": false
+  },
+  {
+   "id": "wri-3",
+   "area": "writing/prose/plain",
+   "expect": [
+    "se-plain"
+   ],
+   "read": [],
+   "pass": false,
+   "exit": 1,
+   "completed": false,
+   "note": "session stopped by the Codex usage limit",
+   "budget_warning": false
+  },
+  {
+   "id": "des-1",
+   "area": "design/blueprint/playbook",
+   "expect": [
+    "se-playbook",
+    "se-test-first"
+   ],
+   "read": [],
+   "pass": false,
+   "exit": 1,
+   "completed": false,
+   "note": "session stopped by the Codex usage limit",
+   "budget_warning": false
+  },
+  {
+   "id": "des-2",
+   "area": "design/blueprint/playbook",
+   "expect": [
+    "se-design"
+   ],
+   "read": [],
+   "pass": false,
+   "exit": 1,
+   "completed": false,
+   "note": "session stopped by the Codex usage limit",
+   "budget_warning": false
+  },
+  {
+   "id": "des-3",
+   "area": "design/blueprint/playbook",
+   "expect": [
+    "se-blueprint"
+   ],
+   "read": [],
+   "pass": false,
+   "exit": 1,
+   "completed": false,
+   "note": "session stopped by the Codex usage limit",
+   "budget_warning": false
+  },
+  {
+   "id": "ci-1",
+   "area": "ci",
+   "expect": [
+    "se-ci"
+   ],
+   "read": [],
+   "pass": false,
+   "exit": 1,
+   "completed": false,
+   "note": "session stopped by the Codex usage limit",
+   "budget_warning": false
+  }
+ ]
+}

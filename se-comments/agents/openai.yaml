@@ -1,0 +1,3 @@
+interface:
+  display_name: "SE Comments"
+  short_description: "Review and clean comments in a change"
